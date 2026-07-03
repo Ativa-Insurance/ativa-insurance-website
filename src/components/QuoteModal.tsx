@@ -24,7 +24,7 @@ const SELECT = `${INPUT} appearance-none cursor-pointer`;
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 type Data      = Record<string, string>;
-type Phase     = "select" | "form" | "success";
+type Phase     = "select" | "form" | "success" | "error";
 type PID       = "auto" | "property" | "renters" | "pet" | "flood" | "umbrella" | "vacant" | "boat" | "motorcycle" | "bundle";
 type VinStatus = "idle" | "loading" | "success" | "error";
 
@@ -1104,7 +1104,6 @@ export default function QuoteModal({ onClose, initialProduct, initialData }: Quo
   const [vehicles, setVehicles]     = useState<VehicleData[]>([]);
   const [drivers, setDrivers]       = useState<DriverData[]>([emptyDriver()]);
   const [submitting, setSubmitting] = useState(false);
-  const [submitFailed, setSubmitFailed] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -1256,13 +1255,13 @@ export default function QuoteModal({ onClose, initialProduct, initialData }: Quo
     });
 
     setSubmitting(false);
-    setSubmitFailed(!success);
-    setPhase("success");
+    setPhase(success ? "success" : "error");
   };
 
   // ── Modal shell ─────────────────────────────────────────────────────────────
   const title    = phase === "select" ? "Find My Best Rate"
                  : phase === "form" && product ? PRODUCT_LABEL[product]
+                 : phase === "error" ? "Submission Error"
                  : "Quote Requested";
   const subtitle = phase === "form" ? "Find My Best Rate" : "Personal Lines";
 
@@ -1325,7 +1324,7 @@ export default function QuoteModal({ onClose, initialProduct, initialData }: Quo
         </div>
 
         {/* ── Error ── */}
-        {phase === "success" && submitFailed && (
+        {phase === "error" && (
           <div className="flex flex-col items-center text-center py-12 px-6 gap-5">
             <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ backgroundColor: "#FEE2E2" }}>
               <svg viewBox="0 0 24 24" fill="none" stroke="#DC2626" strokeWidth="2.5" className="w-8 h-8">
@@ -1362,7 +1361,7 @@ export default function QuoteModal({ onClose, initialProduct, initialData }: Quo
         )}
 
         {/* ── Success ── */}
-        {phase === "success" && !submitFailed && (
+        {phase === "success" && (
           <div className="flex flex-col items-center text-center py-12 px-6 gap-5">
             <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ backgroundColor: ACCENT }}>
               <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" className="w-8 h-8">

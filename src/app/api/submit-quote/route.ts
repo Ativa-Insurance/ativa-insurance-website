@@ -196,7 +196,10 @@ export async function POST(req: NextRequest) {
     });
 
   } catch (err) {
-    console.error("[Ativa] submit-quote critical error:", err);
+    console.error("[submit-quote] Critical error:", {
+      message: err instanceof Error ? err.message : String(err),
+      stack:   err instanceof Error ? err.stack?.split("\n")[1] : undefined,
+    });
     return NextResponse.json({
       success: false,
       error:   err instanceof Error ? err.message : "Unknown error",
