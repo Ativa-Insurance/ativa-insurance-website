@@ -2,9 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react";
 import AddressAutocomplete from "./AddressAutocomplete";
-import { sendQuoteEmail } from "@/lib/emailjs";
 import { submitToIntake } from "@/lib/submitToIntake";
-import { notifyStaffNewLead } from "@/lib/notifyStaff";
 import { useLanguage } from "@/context/LanguageContext";
 import type { Mode } from "@/types";
 
@@ -640,7 +638,6 @@ export default function CommercialQuoteModal({ onClose, initialProduct }: Commer
   const [multi, setMulti]       = useState<Multi>({});
   const [errors, setErrors]     = useState<Record<string, string>>({});
   const [submitting, setSubmit] = useState(false);
-  const [sendError, setSendErr]         = useState(false);
   const [submitFailed, setSubmitFailed] = useState(false);
 
   useEffect(() => {
@@ -745,46 +742,23 @@ export default function CommercialQuoteModal({ onClose, initialProduct }: Commer
   // ── Submit ──────────────────────────────────────────────────────────────────
   const submit = async () => {
     setSubmit(true);
-    setSendErr(false);
     const lines = [`Product: ${product ? PRODUCT_LABEL[product] : "Unknown"}`, `Mode: Commercial Lines`];
     Object.entries(data).forEach(([k, v]) => { if (v) lines.push(`${k}: ${v}`); });
     Object.entries(multi).forEach(([k, v]) => { if (v?.length) lines.push(`${k}: ${v.join(", ")}`); });
 
-    const [emailResult, intakeResult] = await Promise.allSettled([
-      sendQuoteEmail({
-        product_type:   product ? PRODUCT_LABEL[product] : "Commercial Quote",
-        mode:           "Commercial Lines",
-        language:       lang.toUpperCase(),
-        timestamp:      new Date().toLocaleString("en-US", { timeZone: "America/New_York" }) + " ET",
-        fields_summary: lines.join("\n"),
-        to_email:       "info@ativainsurance.com",
-      }),
-      submitToIntake({
-        name:            data.fullName        ?? "",
-        phone:           data.phone           ?? "",
-        email:           data.email           ?? "",
-        address:         data.businessAddress ?? data.projectAddress ?? "",
-        city:            data.city            ?? "",
-        insuranceType:   product ? PRODUCT_LABEL[product] : "Commercial Quote",
-        additionalNotes: lines.join("\n"),
-      }),
-    ]);
-
-    const emailSucceeded  = emailResult.status === "fulfilled";
-    const intakeSucceeded = intakeResult.status === "fulfilled" && intakeResult.value === true;
-
-    if (!emailSucceeded) setSendErr(true);
-
-    notifyStaffNewLead({
-      name:    data.fullName ?? "",
-      phone:   data.phone   ?? "",
-      email:   data.email   ?? "",
-      product: product ? PRODUCT_LABEL[product] : "Commercial Quote",
-      mode:    "Commercial",
+    const success = await submitToIntake({
+      name:            data.fullName        ?? "",
+      phone:           data.phone           ?? "",
+      email:           data.email           ?? "",
+      address:         data.businessAddress ?? data.projectAddress ?? "",
+      city:            data.city            ?? "",
+      insuranceType:   product ? PRODUCT_LABEL[product] : "Commercial Quote",
+      additionalNotes: lines.join("\n"),
+      mode:            "Commercial",
     });
 
     setSubmit(false);
-    setSubmitFailed(!emailSucceeded && !intakeSucceeded);
+    setSubmitFailed(!success);
     setPhase("success");
   };
 
@@ -908,11 +882,6 @@ export default function CommercialQuoteModal({ onClose, initialProduct }: Commer
               <p className="text-sm leading-relaxed max-w-xs mx-auto mb-1" style={{ color: TEXT_MUTED }}>
                 A licensed commercial agent will reach out within 1 business day with your personalized quote.
               </p>
-              {sendError && (
-                <p className="mt-3 text-xs" style={{ color: "#FBBF24" }}>
-                  Delivery issue — we&apos;ll still follow up. Or call 561-946-8261.
-                </p>
-              )}
             </div>
             <a href="https://wa.me/13213448474" target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm text-white"

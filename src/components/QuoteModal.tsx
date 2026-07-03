@@ -2,9 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react";
 import AddressAutocomplete from "./AddressAutocomplete";
-import { sendQuoteEmail } from "@/lib/emailjs";
 import { submitToIntake } from "@/lib/submitToIntake";
-import { notifyStaffNewLead } from "@/lib/notifyStaff";
 import { validateDOB, validatePetDOB } from "@/lib/validateDOB";
 import { useLanguage } from "@/context/LanguageContext";
 import type { Mode } from "@/types";
@@ -1106,7 +1104,6 @@ export default function QuoteModal({ onClose, initialProduct, initialData }: Quo
   const [vehicles, setVehicles]     = useState<VehicleData[]>([]);
   const [drivers, setDrivers]       = useState<DriverData[]>([emptyDriver()]);
   const [submitting, setSubmitting] = useState(false);
-  const [sendError, setSendError]       = useState(false);
   const [submitFailed, setSubmitFailed] = useState(false);
 
   useEffect(() => {
@@ -1232,7 +1229,6 @@ export default function QuoteModal({ onClose, initialProduct, initialData }: Quo
   // ── Submit ──────────────────────────────────────────────────────────────────
   const submit = async () => {
     setSubmitting(true);
-    setSendError(false);
     const lines = [`Product: ${product ? PRODUCT_LABEL[product] : "Unknown"}`];
     Object.entries(data).forEach(([k, v]) => { if (v) lines.push(`${k}: ${v}`); });
     if (bundleItems.length) lines.push(`Bundle items: ${bundleItems.map(i => PRODUCT_LABEL[i as PID]).join(", ")}`);
@@ -1248,41 +1244,19 @@ export default function QuoteModal({ onClose, initialProduct, initialData }: Quo
       });
     }
 
-    const [emailResult, intakeResult] = await Promise.allSettled([
-      sendQuoteEmail({
-        product_type:   product ? PRODUCT_LABEL[product] : "Quote",
-        mode:           "Personal Lines",
-        language:       lang.toUpperCase(),
-        timestamp:      new Date().toLocaleString("en-US", { timeZone: "America/New_York" }) + " ET",
-        fields_summary: lines.join("\n"),
-        to_email:       "info@ativainsurance.com",
-      }),
-      submitToIntake({
-        name:            data.fullName ?? "",
-        phone:           data.phone    ?? "",
-        email:           data.email    ?? "",
-        address:         data.propertyAddress ?? data.rentalAddress ?? data.garageZip ?? "",
-        city:            data.city     ?? "",
-        insuranceType:   product ? PRODUCT_LABEL[product] : "Personal Quote",
-        additionalNotes: lines.join("\n"),
-      }),
-    ]);
-
-    const emailSucceeded  = emailResult.status === "fulfilled";
-    const intakeSucceeded = intakeResult.status === "fulfilled" && intakeResult.value === true;
-
-    if (!emailSucceeded) setSendError(true);
-
-    notifyStaffNewLead({
-      name:    data.fullName ?? "",
-      phone:   data.phone   ?? "",
-      email:   data.email   ?? "",
-      product: product ? PRODUCT_LABEL[product] : "Personal Quote",
-      mode:    "Personal",
+    const success = await submitToIntake({
+      name:            data.fullName ?? "",
+      phone:           data.phone    ?? "",
+      email:           data.email    ?? "",
+      address:         data.propertyAddress ?? data.rentalAddress ?? data.garageZip ?? "",
+      city:            data.city     ?? "",
+      insuranceType:   product ? PRODUCT_LABEL[product] : "Personal Quote",
+      additionalNotes: lines.join("\n"),
+      mode:            "Personal",
     });
 
     setSubmitting(false);
-    setSubmitFailed(!emailSucceeded && !intakeSucceeded);
+    setSubmitFailed(!success);
     setPhase("success");
   };
 
@@ -1400,11 +1374,6 @@ export default function QuoteModal({ onClose, initialProduct, initialData }: Quo
               <p className="text-base leading-relaxed max-w-xs mx-auto" style={{ color: "var(--text-muted)" }}>
                 We&apos;ll be in touch within minutes. Check your phone — a licensed agent will reach out shortly.
               </p>
-              {sendError && (
-                <p className="mt-3 text-xs text-amber-500">
-                  Email delivery issue — we&apos;ll still follow up. Or call 561-946-8261.
-                </p>
-              )}
             </div>
             <a href="https://wa.me/13213448474" target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm text-white"

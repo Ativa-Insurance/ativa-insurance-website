@@ -1,9 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { sendQuoteEmail } from "@/lib/emailjs";
 import { submitToIntake } from "@/lib/submitToIntake";
-import { notifyStaffNewLead } from "@/lib/notifyStaff";
 import { validatePetDOB } from "@/lib/validateDOB";
 import { useLanguage } from "@/context/LanguageContext";
 import type { Mode } from "@/types";
@@ -31,13 +29,12 @@ const ACCENT     = "#1B3A6B";
 const ACCENT_HOV = "#2451A0";
 
 export default function PetInsuranceForm({ productTitle, onClose }: Props) {
-  const { t, lang } = useLanguage();
+  const { t } = useLanguage();
   const [step, setStep]             = useState(0);
   const [data, setData]             = useState<Data>({});
   const [errors, setErrors]         = useState<Record<string, string>>({});
   const [submitted, setSubmitted]   = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [sendError, setSendError]       = useState(false);
   const [submitFailed, setSubmitFailed] = useState(false);
 
   const update = useCallback((key: string, val: string) => {
@@ -90,7 +87,6 @@ export default function PetInsuranceForm({ productTitle, onClose }: Props) {
 
   const handleSubmit = async () => {
     setSubmitting(true);
-    setSendError(false);
     const summary = [
       `Pet Name: ${data.petName                           || "(not provided)"}`,
       `Species: ${data.species                            || "(not provided)"}`,
@@ -103,41 +99,19 @@ export default function PetInsuranceForm({ productTitle, onClose }: Props) {
       `Email: ${data.email                               || "(not provided)"}`,
     ].join("\n");
 
-    const [emailResult, intakeResult] = await Promise.allSettled([
-      sendQuoteEmail({
-        product_type:   productTitle,
-        mode:           "Personal Lines",
-        language:       lang.toUpperCase(),
-        timestamp:      new Date().toLocaleString("en-US", { timeZone: "America/New_York" }) + " ET",
-        fields_summary: summary,
-        to_email:       "info@ativainsurance.com",
-      }),
-      submitToIntake({
-        name:            data.fullName ?? "",
-        phone:           data.phone    ?? "",
-        email:           data.email    ?? "",
-        address:         data.petName  ?? "",
-        city:            data.city     ?? "",
-        insuranceType:   productTitle,
-        additionalNotes: summary,
-      }),
-    ]);
-
-    const emailSucceeded  = emailResult.status === "fulfilled";
-    const intakeSucceeded = intakeResult.status === "fulfilled" && intakeResult.value === true;
-
-    if (!emailSucceeded) setSendError(true);
-
-    notifyStaffNewLead({
-      name:    data.fullName ?? "",
-      phone:   data.phone   ?? "",
-      email:   data.email   ?? "",
-      product: productTitle,
-      mode:    "Personal",
+    const success = await submitToIntake({
+      name:            data.fullName ?? "",
+      phone:           data.phone    ?? "",
+      email:           data.email    ?? "",
+      address:         data.petName  ?? "",
+      city:            data.city     ?? "",
+      insuranceType:   productTitle,
+      additionalNotes: summary,
+      mode:            "Personal",
     });
 
     setSubmitting(false);
-    setSubmitFailed(!emailSucceeded && !intakeSucceeded);
+    setSubmitFailed(!success);
     setSubmitted(true);
   };
 
@@ -200,11 +174,6 @@ export default function PetInsuranceForm({ productTitle, onClose }: Props) {
             {t("form.success.title")}
           </h3>
           <p style={{ color: "var(--text-muted)" }}>{t("form.success.body")}</p>
-          {sendError && (
-            <p className="mt-2 text-xs text-amber-500">
-              (Could not send email — please call 561-946-8261)
-            </p>
-          )}
         </div>
         <a
           href="https://wa.me/13213448474"

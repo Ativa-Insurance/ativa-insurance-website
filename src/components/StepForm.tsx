@@ -4,9 +4,7 @@ import { useState, useCallback } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import type { FormStep, FormData, Mode } from "@/types";
 import AddressAutocomplete from "./AddressAutocomplete";
-import { sendQuoteEmail } from "@/lib/emailjs";
 import { submitToIntake } from "@/lib/submitToIntake";
-import { notifyStaffNewLead } from "@/lib/notifyStaff";
 
 interface StepFormProps {
   steps: FormStep[];
@@ -34,7 +32,6 @@ export default function StepForm({ steps, mode, productTitle, onClose }: StepFor
   const [errors, setErrors]     = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [sendError, setSendError]     = useState(false);
   const [submitFailed, setSubmitFailed] = useState(false);
 
   const isPersonal = mode === "personal";
@@ -76,9 +73,6 @@ export default function StepForm({ steps, mode, productTitle, onClose }: StepFor
 
   const handleSubmit = async () => {
     setSubmitting(true);
-    setSendError(false);
-
-    // Build human-readable field summary
     const allFields = steps.flatMap((s) => s.fields);
     const summary = allFields
       .map((f) => {
@@ -88,41 +82,19 @@ export default function StepForm({ steps, mode, productTitle, onClose }: StepFor
       })
       .join("\n");
 
-    const [emailResult, intakeResult] = await Promise.allSettled([
-      sendQuoteEmail({
-        product_type:   productTitle,
-        mode:           mode === "personal" ? "Personal Lines" : "Commercial Lines",
-        language:       lang.toUpperCase(),
-        timestamp:      new Date().toLocaleString("en-US", { timeZone: "America/New_York" }) + " ET",
-        fields_summary: summary,
-        to_email:       "info@ativainsurance.com",
-      }),
-      submitToIntake({
-        name:            formData.fullName  ?? formData.name ?? "",
-        phone:           formData.phone     ?? "",
-        email:           formData.email     ?? "",
-        address:         formData.address   ?? formData.propertyAddress ?? formData.rentalAddress ?? "",
-        city:            formData.city      ?? "",
-        insuranceType:   productTitle,
-        additionalNotes: summary,
-      }),
-    ]);
-
-    const emailSucceeded  = emailResult.status === "fulfilled";
-    const intakeSucceeded = intakeResult.status === "fulfilled" && intakeResult.value === true;
-
-    if (!emailSucceeded) setSendError(true);
-
-    notifyStaffNewLead({
-      name:    formData.fullName ?? formData.name ?? "",
-      phone:   formData.phone   ?? "",
-      email:   formData.email   ?? "",
-      product: productTitle,
-      mode:    mode === "personal" ? "Personal" : "Commercial",
+    const success = await submitToIntake({
+      name:            formData.fullName  ?? formData.name ?? "",
+      phone:           formData.phone     ?? "",
+      email:           formData.email     ?? "",
+      address:         formData.address   ?? formData.propertyAddress ?? formData.rentalAddress ?? "",
+      city:            formData.city      ?? "",
+      insuranceType:   productTitle,
+      additionalNotes: summary,
+      mode:            mode === "personal" ? "Personal" : "Commercial",
     });
 
     setSubmitting(false);
-    setSubmitFailed(!emailSucceeded && !intakeSucceeded);
+    setSubmitFailed(!success);
     setSubmitted(true);
   };
 
@@ -195,11 +167,6 @@ export default function StepForm({ steps, mode, productTitle, onClose }: StepFor
             {t("form.success.title")}
           </h3>
           <p style={{ color: "var(--text-muted)" }}>{t("form.success.body")}</p>
-          {sendError && (
-            <p className="mt-2 text-xs text-amber-500">
-              (Could not send email automatically — please call 561-946-8261)
-            </p>
-          )}
         </div>
         {/* WhatsApp CTA */}
         <a
