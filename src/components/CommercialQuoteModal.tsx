@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect } from "react";
 import AddressAutocomplete from "./AddressAutocomplete";
 import { sendQuoteEmail } from "@/lib/emailjs";
 import { submitToIntake } from "@/lib/submitToIntake";
+import { notifyStaffNewLead } from "@/lib/notifyStaff";
 import { useLanguage } from "@/context/LanguageContext";
 import type { Mode } from "@/types";
 
@@ -639,7 +640,8 @@ export default function CommercialQuoteModal({ onClose, initialProduct }: Commer
   const [multi, setMulti]       = useState<Multi>({});
   const [errors, setErrors]     = useState<Record<string, string>>({});
   const [submitting, setSubmit] = useState(false);
-  const [sendError, setSendErr] = useState(false);
+  const [sendError, setSendErr]         = useState(false);
+  const [submitFailed, setSubmitFailed] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -748,31 +750,41 @@ export default function CommercialQuoteModal({ onClose, initialProduct }: Commer
     Object.entries(data).forEach(([k, v]) => { if (v) lines.push(`${k}: ${v}`); });
     Object.entries(multi).forEach(([k, v]) => { if (v?.length) lines.push(`${k}: ${v.join(", ")}`); });
 
-    try {
-      await sendQuoteEmail({
+    const [emailResult, intakeResult] = await Promise.allSettled([
+      sendQuoteEmail({
         product_type:   product ? PRODUCT_LABEL[product] : "Commercial Quote",
         mode:           "Commercial Lines",
         language:       lang.toUpperCase(),
         timestamp:      new Date().toLocaleString("en-US", { timeZone: "America/New_York" }) + " ET",
         fields_summary: lines.join("\n"),
         to_email:       "info@ativainsurance.com",
-      });
-    } catch (err) {
-      console.error("[Ativa] CommercialQuoteModal submit failed:", err);
-      setSendErr(true);
-    }
+      }),
+      submitToIntake({
+        name:            data.fullName        ?? "",
+        phone:           data.phone           ?? "",
+        email:           data.email           ?? "",
+        address:         data.businessAddress ?? data.projectAddress ?? "",
+        city:            data.city            ?? "",
+        insuranceType:   product ? PRODUCT_LABEL[product] : "Commercial Quote",
+        additionalNotes: lines.join("\n"),
+      }),
+    ]);
 
-    submitToIntake({
-      name:            data.fullName        ?? "",
-      phone:           data.phone           ?? "",
-      email:           data.email           ?? "",
-      address:         data.businessAddress ?? data.projectAddress ?? "",
-      city:            data.city            ?? "",
-      insuranceType:   product ? PRODUCT_LABEL[product] : "Commercial Quote",
-      additionalNotes: lines.join("\n"),
+    const emailSucceeded  = emailResult.status === "fulfilled";
+    const intakeSucceeded = intakeResult.status === "fulfilled" && intakeResult.value === true;
+
+    if (!emailSucceeded) setSendErr(true);
+
+    notifyStaffNewLead({
+      name:    data.fullName ?? "",
+      phone:   data.phone   ?? "",
+      email:   data.email   ?? "",
+      product: product ? PRODUCT_LABEL[product] : "Commercial Quote",
+      mode:    "Commercial",
     });
 
     setSubmit(false);
+    setSubmitFailed(!emailSucceeded && !intakeSucceeded);
     setPhase("success");
   };
 
@@ -841,8 +853,46 @@ export default function CommercialQuoteModal({ onClose, initialProduct }: Commer
           </button>
         </div>
 
+        {/* ── Error ── */}
+        {phase === "success" && submitFailed && (
+          <div className="flex flex-col items-center text-center py-12 px-6 gap-5">
+            <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ backgroundColor: "#FEE2E2" }}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#DC2626" strokeWidth="2.5" className="w-8 h-8">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold mb-2" style={{ color: TEXT_CLR }}>Something went wrong</h3>
+              <p className="text-sm leading-relaxed max-w-xs mx-auto" style={{ color: TEXT_MUTED }}>
+                We couldn&apos;t submit your request. Please call or text us directly at 561-946-8261 so we don&apos;t miss your request.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 w-full max-w-xs">
+              <a
+                href="tel:+15619468261"
+                className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm text-white"
+                style={{ backgroundColor: "#DC2626" }}
+              >
+                Call Now — 561-946-8261
+              </a>
+              <a
+                href="sms:+15619468261"
+                className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm"
+                style={{ backgroundColor: "#FEE2E2", color: "#DC2626" }}
+              >
+                Text Now — 561-946-8261
+              </a>
+            </div>
+            <button onClick={onClose}
+              className="px-8 py-2.5 rounded-xl font-semibold text-sm"
+              style={{ border: `1px solid ${BORDER_CLR}`, color: TEXT_MUTED, backgroundColor: "transparent" }}>
+              Close
+            </button>
+          </div>
+        )}
+
         {/* ── Success ── */}
-        {phase === "success" && (
+        {phase === "success" && !submitFailed && (
           <div className="flex flex-col items-center text-center py-12 px-6 gap-5">
             {/* Amber ring + check */}
             <div className="relative">

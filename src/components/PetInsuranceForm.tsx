@@ -2,6 +2,8 @@
 
 import { useState, useCallback } from "react";
 import { sendQuoteEmail } from "@/lib/emailjs";
+import { submitToIntake } from "@/lib/submitToIntake";
+import { notifyStaffNewLead } from "@/lib/notifyStaff";
 import { validatePetDOB } from "@/lib/validateDOB";
 import { useLanguage } from "@/context/LanguageContext";
 import type { Mode } from "@/types";
@@ -35,7 +37,8 @@ export default function PetInsuranceForm({ productTitle, onClose }: Props) {
   const [errors, setErrors]         = useState<Record<string, string>>({});
   const [submitted, setSubmitted]   = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [sendError, setSendError]   = useState(false);
+  const [sendError, setSendError]       = useState(false);
+  const [submitFailed, setSubmitFailed] = useState(false);
 
   const update = useCallback((key: string, val: string) => {
     setData(p => ({ ...p, [key]: val }));
@@ -100,22 +103,85 @@ export default function PetInsuranceForm({ productTitle, onClose }: Props) {
       `Email: ${data.email                               || "(not provided)"}`,
     ].join("\n");
 
-    try {
-      await sendQuoteEmail({
+    const [emailResult, intakeResult] = await Promise.allSettled([
+      sendQuoteEmail({
         product_type:   productTitle,
         mode:           "Personal Lines",
         language:       lang.toUpperCase(),
         timestamp:      new Date().toLocaleString("en-US", { timeZone: "America/New_York" }) + " ET",
         fields_summary: summary,
         to_email:       "info@ativainsurance.com",
-      });
-    } catch (err) {
-      console.error("[Ativa] PetInsuranceForm submit failed:", err);
-      setSendError(true);
-    }
+      }),
+      submitToIntake({
+        name:            data.fullName ?? "",
+        phone:           data.phone    ?? "",
+        email:           data.email    ?? "",
+        address:         data.petName  ?? "",
+        city:            data.city     ?? "",
+        insuranceType:   productTitle,
+        additionalNotes: summary,
+      }),
+    ]);
+
+    const emailSucceeded  = emailResult.status === "fulfilled";
+    const intakeSucceeded = intakeResult.status === "fulfilled" && intakeResult.value === true;
+
+    if (!emailSucceeded) setSendError(true);
+
+    notifyStaffNewLead({
+      name:    data.fullName ?? "",
+      phone:   data.phone   ?? "",
+      email:   data.email   ?? "",
+      product: productTitle,
+      mode:    "Personal",
+    });
+
     setSubmitting(false);
+    setSubmitFailed(!emailSucceeded && !intakeSucceeded);
     setSubmitted(true);
   };
+
+  /* ── Error screen ────────────────────────────────────────────────────────── */
+  if (submitted && submitFailed) {
+    return (
+      <div className="flex flex-col items-center justify-center text-center py-14 px-6 gap-5">
+        <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ backgroundColor: "#FEE2E2" }}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#DC2626" strokeWidth="2.5" className="w-8 h-8">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+          </svg>
+        </div>
+        <div>
+          <h3 className="text-xl font-bold mb-2" style={{ color: "var(--text)" }}>Something went wrong</h3>
+          <p className="text-sm leading-relaxed max-w-xs mx-auto" style={{ color: "var(--text-muted)" }}>
+            We couldn&apos;t submit your request. Please call or text us directly at 561-946-8261 so we don&apos;t miss your request.
+          </p>
+        </div>
+        <div className="flex flex-col gap-3 w-full max-w-xs">
+          <a
+            href="tel:+15619468261"
+            className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm text-white"
+            style={{ backgroundColor: "#DC2626" }}
+          >
+            Call Now — 561-946-8261
+          </a>
+          <a
+            href="sms:+15619468261"
+            className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm"
+            style={{ backgroundColor: "#FEE2E2", color: "#DC2626" }}
+          >
+            Text Now — 561-946-8261
+          </a>
+        </div>
+        <button
+          onClick={onClose}
+          className="px-8 py-2.5 rounded-xl font-semibold text-sm border-2"
+          style={{ borderColor: "#CBD5E1", color: "var(--text-muted)" }}
+        >
+          Close
+        </button>
+      </div>
+    );
+  }
 
   /* ── Success ─────────────────────────────────────────────────────────────── */
   if (submitted) {
