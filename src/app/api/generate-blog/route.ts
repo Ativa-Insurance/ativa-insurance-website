@@ -70,7 +70,7 @@ SIGNATURE FRAME:
 Every post should feel like: "This seems simple... but whoever understands this... plays a different game."
 
 CTA (always use this exact version — never salesy):
-"If any of this sounds like your situation — Ana Letícia reviews policies at no cost. Just send a message at ativainsurance.com"
+"If any of this sounds like your situation — Ana Leticia Zuany reviews policies at no cost. Just send a message at ativainsurance.com"
 
 SEO REQUIREMENTS:
 - H1 = primary question people actually type
@@ -265,7 +265,7 @@ BLOG POST STRUCTURE (mandatory):
    End with a realization that makes reader think about their own situation.
 
 7. CTA:
-   "If any of this sounds like your situation — Ana Letícia reviews policies at no cost. Just send a message at ativainsurance.com"
+   "If any of this sounds like your situation — Ana Leticia Zuany reviews policies at no cost. Just send a message at ativainsurance.com"
 
 Return ONLY valid JSON, no markdown backticks:
 {

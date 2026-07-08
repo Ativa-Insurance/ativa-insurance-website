@@ -118,7 +118,7 @@ export async function POST(req: NextRequest) {
                     <a href="sms:5619468261" style="color:#0F2A44;">Text us</a>
                   </p>
                 </div>
-                <p style="color:#334155;line-height:1.7;">— Ana Letícia &amp; the Ativa Insurance Team</p>
+                <p style="color:#334155;line-height:1.7;">— Ana Leticia Zuany &amp; the Ativa Insurance Team</p>
               </div>
             </div>
           `,
