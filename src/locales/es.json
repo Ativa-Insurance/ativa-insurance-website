@@ -91,6 +91,21 @@
       { "id": "umbrella",        "title": "Paraguas Comercial",        "description": "Cobertura de exceso cuando la póliza estándar no es suficiente." }
     ]
   },
+  "why": {
+    "headline1": "Por qué los clientes eligen",
+    "headline2": "Ativa Insurance",
+    "benefit1": "Trabajamos para ti, no para la aseguradora",
+    "benefit2": "Cotizaciones el mismo día en la mayoría de casos",
+    "benefit3": "Comparamos docenas de aseguradoras de primer nivel",
+    "benefit4": "Cobertura personalizada que se adapta a tu vida",
+    "benefit5": "Un asesor para todas tus necesidades de seguro",
+    "benefit6": "Atención en Inglés, Português y Español",
+    "eyebrow": "La Ventaja Ativa",
+    "cardHeadline": "Asesoría independiente. Mejor cobertura. Mejores tarifas.",
+    "cardBody": "Los agentes cautivos solo ofrecen productos de una aseguradora. Comparamos opciones de múltiples aseguradoras de primer nivel para encontrar la cobertura adecuada al mejor precio.",
+    "cardQuote": "Trabajamos para ti, no para la aseguradora.",
+    "cta": "Cómo Funciona"
+  },
   "form": {
     "steps": {
       "contact": "Tus Datos",

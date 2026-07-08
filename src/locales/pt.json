@@ -91,6 +91,21 @@
       { "id": "umbrella",        "title": "Guarda-Chuva Comercial",        "description": "Cobertura de excesso de responsabilidade quando a apólice padrão não é suficiente." }
     ]
   },
+  "why": {
+    "headline1": "Por que clientes escolhem",
+    "headline2": "Ativa Insurance",
+    "benefit1": "Trabalhamos para você, não para a seguradora",
+    "benefit2": "Cotações no mesmo dia em maioria dos casos",
+    "benefit3": "Comparamos dezenas de seguradoras de ponta",
+    "benefit4": "Cobertura personalizada que se adapta a você",
+    "benefit5": "Um consultor para todas as suas necessidades",
+    "benefit6": "Atendimento em Inglês, Português e Espanhol",
+    "eyebrow": "A Vantagem Ativa",
+    "cardHeadline": "Conselho independente. Melhor cobertura. Melhores preços.",
+    "cardBody": "Agentes cativos oferecem apenas os produtos de uma seguradora. Comparamos opções de múltiplas seguradoras para encontrar a cobertura certa ao melhor preço.",
+    "cardQuote": "Trabalhamos para você, não para a seguradora.",
+    "cta": "Como Funciona"
+  },
   "form": {
     "steps": {
       "contact": "Seus Dados",

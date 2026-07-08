@@ -91,6 +91,21 @@
       { "id": "umbrella",        "title": "Commercial Umbrella",  "description": "Excess liability coverage when a standard policy isn't enough." }
     ]
   },
+  "why": {
+    "headline1": "Why clients choose",
+    "headline2": "Ativa Insurance",
+    "benefit1": "We work for you, not the insurance company",
+    "benefit2": "Same-day quotes in most cases",
+    "benefit3": "Compare dozens of top-rated carriers",
+    "benefit4": "Personalized coverage that fits your life",
+    "benefit5": "One advisor for all your insurance needs",
+    "benefit6": "Bilingual support in English, Português & Español",
+    "eyebrow": "The Ativa Advantage",
+    "cardHeadline": "Independent advice. Better coverage. Better rates.",
+    "cardBody": "Captive agents only offer one company's products. We compare options from multiple top-rated insurance companies to find the right coverage for you at the best possible price.",
+    "cardQuote": "We work for you, not the insurance company.",
+    "cta": "How It Works"
+  },
   "form": {
     "steps": {
       "contact": "Your Info",
