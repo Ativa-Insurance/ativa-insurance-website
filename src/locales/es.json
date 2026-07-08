@@ -36,7 +36,15 @@
       "floodIns": "Seguro contra Inundación",
       "umbrellaIns": "Paraguas",
       "petIns": "Seguro para Mascotas",
-      "alsoAvailable": "También disponible:"
+      "alsoAvailable": "También disponible:",
+      "findCoverage": "Encuentra la cobertura correcta.",
+      "shopMarket": "Comparamos el mercado por ti.",
+      "heroSub": "Selecciona el tipo de seguro que necesitas y obtén la mejor tarifa con múltiples aseguradoras — sin llamadas, sin presión.",
+      "preferToStart": "¿Prefieres comenzar rápido?",
+      "enterZip": "Ingresa el código ZIP",
+      "seeMyRate": "Ver Mi Tarifa",
+      "notSureText": "¿No estás seguro de qué necesitas?",
+      "talkToAdvisor": "Habla con un asesor con licencia"
     },
     "commercial": {
       "headline": "Un Seguro que Trabaja tan Duro como Tú",

@@ -36,7 +36,15 @@
       "floodIns": "Seguro contra Inundação",
       "umbrellaIns": "Guarda-Chuva",
       "petIns": "Seguro Pet",
-      "alsoAvailable": "Também disponível:"
+      "alsoAvailable": "Também disponível:",
+      "findCoverage": "Encontre a cobertura ideal.",
+      "shopMarket": "Comparamos o mercado para você.",
+      "heroSub": "Selecione o tipo de seguro que precisa e obtenha a melhor taxa com múltiplas seguradoras — sem ligações, sem pressão.",
+      "preferToStart": "Prefere começar rápido?",
+      "enterZip": "Digite o CEP",
+      "seeMyRate": "Ver Minha Taxa",
+      "notSureText": "Não tem certeza do que precisa?",
+      "talkToAdvisor": "Fale com um consultor licenciado"
     },
     "commercial": {
       "headline": "Seguro que Trabalha Tanto Quanto Você",

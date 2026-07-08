@@ -36,7 +36,15 @@
       "floodIns": "Flood Insurance",
       "umbrellaIns": "Umbrella",
       "petIns": "Pet Insurance",
-      "alsoAvailable": "Also available:"
+      "alsoAvailable": "Also available:",
+      "findCoverage": "Find the right coverage.",
+      "shopMarket": "We shop the market for you.",
+      "heroSub": "Select the type of insurance you need and get your best rate from multiple top-rated carriers — no calls, no pressure.",
+      "preferToStart": "Prefer to start fast?",
+      "enterZip": "Enter ZIP Code",
+      "seeMyRate": "See My Rate",
+      "notSureText": "Not sure what you need?",
+      "talkToAdvisor": "Talk to a licensed advisor"
     },
     "commercial": {
       "headline": "Insurance That Works as Hard as You Do",

@@ -1225,11 +1225,11 @@ function AtivaSite() {
       <TrustBar mode={mode} />
 
       {/* ── Hero — everything above the fold ────────────────────────────── */}
-      <div style={{ position: "relative" }}>
-      <section className={`relative ${isPersonal ? "hero-bg-personal pers-hero-section" : "hero-bg-commercial comm-hero-section"}`}>
+      <div style={{ position: "relative", overflow: "hidden" }}>
+      <section className={`relative ${isPersonal ? "hero-bg-personal" : "hero-bg-commercial comm-hero-section"}`}>
         {/* Background illustration — hidden on mobile (performance) */}
         <div className="hidden md:block">
-          {isPersonal ? <PersonalHeroBg /> : <CommercialHeroBg />}
+          {!isPersonal && <CommercialHeroBg />}
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
@@ -1656,270 +1656,149 @@ function AtivaSite() {
 
           {/* ── PERSONAL: Centered headline + product grid ── */}
           {isPersonal ? (
-            <div key="personal-hero" className="mode-fade-in">
+            <div key="personal-hero-v3" className="mode-fade-in"
+              style={{
+                marginLeft:          "calc(-50vw + 50%)",
+                marginRight:         "calc(-50vw + 50%)",
+                width:               "100vw",
+                display:             "grid",
+                gridTemplateColumns: "1fr 1fr",
+                minHeight:           "580px",
+              }}
+            >
               <style>{`
                 @keyframes zip-shake {
-                  0%,100% { transform: translateX(0);  }
+                  0%,100% { transform: translateX(0); }
                   20%     { transform: translateX(-6px); }
-                  40%     { transform: translateX(6px);  }
+                  40%     { transform: translateX(6px); }
                   60%     { transform: translateX(-4px); }
-                  80%     { transform: translateX(4px);  }
+                  80%     { transform: translateX(4px); }
                 }
                 .zip-shake { animation: zip-shake 0.45s ease-in-out; }
-                .hero-zip-btn:hover  { background: #1E3A5F !important; }
-                .hero-zip-in:focus   { outline: none; box-shadow: 0 0 0 3px rgba(245,166,35,0.15) !important; }
-                .pers-prod-card:hover {
-                  border-color: #F5A623 !important;
-                  box-shadow: 0 4px 16px rgba(245,166,35,0.12) !important;
-                  transform: translateY(-2px) !important;
-                }
-                @media (max-width: 900px) {
-                  .pers-product-grid { grid-template-columns: 1fr !important; }
-                  .pers-mini-grid    { grid-template-columns: 1fr 1fr !important; }
-                }
               `}</style>
 
-              {/* Part A — Headline */}
-              <div style={{ textAlign: "center", maxWidth: "780px", margin: "0 auto", padding: "0 24px 24px" }}>
+              {/* Left: hero photo */}
+              <div style={{ position: "relative", overflow: "hidden" }}>
+                <Image
+                  src="/images/personal-hero-bg.png"
+                  alt=""
+                  fill
+                  style={{ objectFit: "cover", objectPosition: "right center" }}
+                  priority
+                />
+              </div>
+
+              {/* Right: headline + ZIP widget */}
+              <div style={{
+                display:         "flex",
+                flexDirection:   "column",
+                justifyContent:  "center",
+                padding:         "64px clamp(24px, 5vw, 64px)",
+                backgroundColor: "#F4F8FF",
+              }}>
                 <h1 style={{
-                  fontSize: "clamp(2.6rem, 5vw, 3.6rem)",
-                  fontWeight: 900,
-                  color: "#0B1F33",
-                  lineHeight: 1.08,
-                  marginBottom: "12px",
+                  fontSize:      "clamp(2rem, 3vw, 2.8rem)",
+                  fontWeight:    900,
+                  color:         "#0B1F33",
+                  lineHeight:    1.1,
                   letterSpacing: "-0.03em",
+                  marginBottom:  "14px",
                 }}>
-                  {t("hero.personal.shopHeadline")}
+                  {t("hero.personal.findCoverage")}
+                  <br />
+                  <span style={{ color: "#1B3A6B" }}>{t("hero.personal.shopMarket")}</span>
                 </h1>
-                <p style={{ fontSize: "17px", color: "#4A5568", lineHeight: 1.6 }}>
-                  {t("hero.personal.shopSub")}
-                </p>
-              </div>
 
-              {/* Part B — Product grid */}
-              <div
-                className="pers-product-grid"
-                style={{
-                  maxWidth: "1000px",
-                  margin: "0 auto",
-                  padding: "0 24px 40px",
-                  display: "grid",
-                  gridTemplateColumns: "55% 45%",
-                  gap: "16px",
-                  alignItems: "start",
-                }}
-              >
-                {/* LEFT — Auto hero widget */}
-                <div style={{
-                  background:   "#FFFFFF",
-                  border:       "1.5px solid rgba(27,58,107,0.12)",
-                  borderTop:    "3px solid #1B3A6B",
-                  borderRadius: "20px",
-                  padding:      "28px",
-                  boxShadow:    "0 8px 40px rgba(27,58,107,0.10)",
+                <p style={{
+                  fontSize:     "16px",
+                  color:        "#4A5568",
+                  lineHeight:   1.65,
+                  marginBottom: "36px",
+                  maxWidth:     "420px",
                 }}>
-                  <div style={{ minHeight: "120px", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "12px" }}>
-                    <Image
-                      src="/icons/auto-insurance.png?v=2"
-                      alt="Auto Insurance"
-                      width={110} height={110}
-                      style={{ width: "110px", height: "110px", objectFit: "contain", display: "block" }}
-                    />
-                  </div>
-                  <p style={{ fontSize: "20px", fontWeight: 700, color: "#0B1F33", marginBottom: "4px" }}>
-                    {t("hero.personal.autoWidgetTitle")}
-                  </p>
-                  <p style={{ fontSize: "14px", color: "#64748B", marginBottom: "20px" }}>
-                    {t("hero.personal.autoWidgetSavings")}
-                  </p>
+                  {t("hero.personal.heroSub")}
+                </p>
 
-                  {/* ZIP row */}
-                  <p style={{ fontSize: "11px", letterSpacing: "2px", color: "#94A3B8", fontWeight: 600, marginBottom: "6px", textTransform: "uppercase" }}>
-                    Location
-                  </p>
-                  <div className={zipShake ? "zip-shake" : ""} style={{ marginBottom: "12px" }}>
-                    <div style={{
-                      display:      "flex",
-                      gap:          0,
-                      borderRadius: "12px",
-                      overflow:     "hidden",
-                      border:       `1.5px solid ${zipErrMsg ? "#DC2626" : "#E2E8F0"}`,
-                    }}>
-                      <input
-                        type="text"
-                        inputMode="numeric"
-                        maxLength={5}
-                        className="hero-zip-in"
-                        placeholder="ZIP Code"
-                        value={heroZip}
-                        onChange={e => {
-                          const v = e.target.value.replace(/\D/g, "").slice(0, 5);
-                          setHeroZip(v);
-                          if (zipErrMsg) setZipErrMsg("");
-                        }}
-                        onKeyDown={e => { if (e.key === "Enter") handleZipSubmit(); }}
-                        style={{
-                          flex:       1,
-                          height:     "52px",
-                          padding:    "0 16px",
-                          fontSize:   "16px",
-                          border:     "none",
-                          outline:    "none",
-                          background: "#F7FAFC",
-                          color:      "#0B1F33",
-                          fontWeight: 500,
-                        }}
-                      />
-                      <button
-                        type="button"
-                        className="hero-zip-btn"
-                        onClick={handleZipSubmit}
-                        style={{
-                          width:       "160px",
-                          height:      "52px",
-                          background:  "#1B3A6B",
-                          color:       "#FFFFFF",
-                          fontSize:    "15px",
-                          fontWeight:  700,
-                          border:      "none",
-                          cursor:      "pointer",
-                          whiteSpace:  "nowrap",
-                          flexShrink:  0,
-                          transition:  "background 150ms ease",
-                        }}
-                      >
-                        {t("hero.personal.getQuoteCta")}
-                      </button>
-                    </div>
-                    {zipErrMsg && (
-                      <p style={{ fontSize: "13px", color: "#DC2626", marginTop: "6px" }}>{zipErrMsg}</p>
-                    )}
-                  </div>
+                <p style={{
+                  fontSize:      "11px",
+                  fontWeight:    700,
+                  color:         "#64748B",
+                  textTransform: "uppercase",
+                  letterSpacing: "1.5px",
+                  marginBottom:  "10px",
+                }}>
+                  {t("hero.personal.preferToStart")}
+                </p>
 
-                  <button
-                    type="button"
-                    onClick={() => { setQuoteProduct("auto"); setQuoteOpen(true); }}
-                    style={{ background: "none", border: "none", cursor: "pointer", padding: 0, fontSize: "13px", color: "#64748B", textAlign: "left" }}
-                  >
-                    {t("hero.personal.wantMoreInfo")}{" "}
-                    <span style={{ color: "#F5A623", textDecoration: "underline" }}>{t("hero.personal.autoWidgetTitle")}</span> →
-                  </button>
-                </div>
-
-                {/* RIGHT — 2×2 mini product grid */}
-                <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                  <div
-                    className="pers-mini-grid"
-                    style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}
-                  >
-                    {[
-                      { id: "bundle",   label: t("hero.personal.bundleSave"),  icon: "/icons/bundle-save.png?v=2"        },
-                      { id: "home",     label: t("hero.personal.propertyIns"), icon: "/icons/property-insurance.png?v=2" },
-                      { id: "flood",    label: t("hero.personal.floodIns"),    icon: "/icons/flood-insurance.png?v=2"    },
-                      { id: "umbrella", label: t("hero.personal.umbrellaIns"), icon: "/icons/umbrella.png?v=2"           },
-                    ].map(card => (
-                      <button
-                        key={card.id}
-                        type="button"
-                        className="pers-prod-card"
-                        onClick={() => { setQuoteProduct(card.id); setQuoteOpen(true); }}
-                        style={{
-                          background:    "#FFFFFF",
-                          border:        "1px solid #E8EDF3",
-                          borderRadius:  "16px",
-                          padding:       "16px 12px",
-                          textAlign:     "center",
-                          cursor:        "pointer",
-                          transition:    "border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease",
-                          display:       "flex",
-                          flexDirection: "column",
-                          alignItems:    "center",
-                        }}
-                      >
-                        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "10px" }}>
-                          <Image
-                            src={card.icon}
-                            alt={card.label}
-                            width={120} height={120}
-                            style={{ width: "120px", height: "120px", objectFit: "contain" }}
-                          />
-                        </div>
-                        <span style={{ fontSize: "15px", fontWeight: 700, color: "#0B1F33", lineHeight: 1.2 }}>
-                          {card.label}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-
-                  {/* Pet — text link below grid */}
-                  <button
-                    type="button"
-                    onClick={() => { setQuoteProduct("pet"); setQuoteOpen(true); }}
+                <div style={{ display: "flex", gap: "10px", marginBottom: "12px", alignItems: "stretch" }}>
+                  <input
+                    className={zipShake ? "zip-shake" : ""}
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    placeholder={t("hero.personal.enterZip")}
+                    value={heroZip}
+                    onChange={e => setHeroZip(e.target.value.replace(/\D/g, "").slice(0, 5))}
+                    onKeyDown={e => e.key === "Enter" && handleZipSubmit()}
                     style={{
-                      background: "none", border: "none", cursor: "pointer", padding: "6px 0",
-                      fontSize: "13px", color: "#64748B", textAlign: "center", width: "100%",
+                      flex:            "0 0 auto",
+                      width:           "160px",
+                      padding:         "13px 16px",
+                      borderRadius:    "10px",
+                      border:          `1.5px solid ${zipErrMsg ? "#EF4444" : "#CBD5E1"}`,
+                      fontSize:        "15px",
+                      fontWeight:      500,
+                      color:           "#0B1F33",
+                      backgroundColor: "#FFFFFF",
+                      outline:         "none",
                     }}
+                  />
+                  <button
+                    type="button"
+                    onClick={handleZipSubmit}
+                    style={{
+                      flex:            "0 0 auto",
+                      padding:         "13px 22px",
+                      borderRadius:    "10px",
+                      backgroundColor: "#1B3A6B",
+                      color:           "#FFFFFF",
+                      fontSize:        "15px",
+                      fontWeight:      700,
+                      border:          "none",
+                      cursor:          "pointer",
+                      whiteSpace:      "nowrap",
+                      transition:      "opacity 200ms ease",
+                    }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.opacity = "0.85"; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.opacity = "1"; }}
                   >
-                    {t("hero.personal.alsoAvailable")}{" "}
-                    <span style={{ color: "#1B3A6B", fontWeight: 600, textDecoration: "underline" }}>
-                      {t("hero.personal.petIns")}
-                    </span>{" →"}
+                    {t("hero.personal.seeMyRate")} →
                   </button>
                 </div>
-              </div>
 
-              {/* Below grid */}
-              <div style={{ textAlign: "center", paddingBottom: "16px" }}>
+                {zipErrMsg && (
+                  <p style={{ color: "#EF4444", fontSize: "13px", marginBottom: "10px" }}>
+                    {zipErrMsg}
+                  </p>
+                )}
+
                 <a
                   href="sms:5619468261"
-                  style={{ fontSize: "14px", color: "#94A3B8", textDecoration: "none", transition: "color 150ms ease" }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = "#64748B"; }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = "#94A3B8"; }}
+                  style={{
+                    fontSize:       "14px",
+                    color:          "#64748B",
+                    fontWeight:     500,
+                    textDecoration: "none",
+                    transition:     "color 150ms ease",
+                  }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = "#1B3A6B"; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = "#64748B"; }}
                 >
-                  {t("hero.personal.orTalk")}
+                  {t("hero.personal.notSureText")}{" "}
+                  <span style={{ color: "#1B3A6B", fontWeight: 600 }}>
+                    {t("hero.personal.talkToAdvisor")} →
+                  </span>
                 </a>
-              </div>
-
-              {/* Toggle block — below product grid */}
-              <div style={{ marginTop: "32px", display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}>
-                <p style={{
-                  fontSize: "13px",
-                  color: "#1E3A5F",
-                  fontWeight: 500,
-                  opacity: isPersonal ? 1 : 0,
-                  transition: "opacity 0.3s ease",
-                  pointerEvents: isPersonal ? "auto" : "none",
-                }}>
-                  {t("toggle.headline")}
-                </p>
-
-                <Toggle mode={mode} onChange={handleModeChange} />
-
-                {/* Microcopy below toggle — crossfades on mode switch */}
-                <div style={{ position: "relative", height: "18px", width: "100%", display: "flex", justifyContent: "center" }}>
-                  <span style={{
-                    position: "absolute",
-                    fontSize: "12px",
-                    color: isPersonal ? "#64748B" : "#475569",
-                    opacity: isPersonal ? 1 : 0,
-                    transition: "opacity 0.35s ease",
-                    whiteSpace: "nowrap",
-                    pointerEvents: isPersonal ? "auto" : "none",
-                  }}>
-                    {t("toggle.switchToCommercial")}
-                  </span>
-                  <span style={{
-                    position: "absolute",
-                    fontSize: "12px",
-                    color: "#64748B",
-                    opacity: isPersonal ? 0 : 1,
-                    transition: "opacity 0.35s ease",
-                    whiteSpace: "nowrap",
-                    pointerEvents: isPersonal ? "none" : "auto",
-                  }}>
-                    {t("toggle.switchToPersonal")}
-                  </span>
-                </div>
               </div>
             </div>
 
