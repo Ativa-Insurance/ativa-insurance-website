@@ -52,7 +52,7 @@ const STEPS_PERSONAL = [
   {
     num: "02",
     Icon: IconSearch,
-    title: "We shop 50+ carriers",
+    title: "We shop multiple top-rated carriers",
     desc: "Our licensed agents compare top-rated carriers to find your best rate and coverage match.",
   },
   {
@@ -247,11 +247,12 @@ export default function HowItWorks({ mode }: Props) {
   return (
     <section
       style={{
-        backgroundColor: "#F7FAFC",
+        backgroundColor: isPersonal ? "#F7FAFC" : "#EEF2F8",
         width: "100%",
         padding: "80px 24px",
         position: "relative",
         overflow: "visible",
+        borderTop: "1px solid rgba(0,0,0,0.05)",
       }}
     >
       <style>{`
@@ -276,32 +277,34 @@ export default function HowItWorks({ mode }: Props) {
         <div style={{ textAlign: "center", marginBottom: "48px" }}>
           <p
             style={{
-              fontSize: "12px",
-              letterSpacing: "2px",
+              fontSize: "11px",
+              letterSpacing: "2.5px",
               color: "#F5A623",
-              fontWeight: 600,
+              fontWeight: 700,
               textTransform: "uppercase",
-              marginBottom: "10px",
+              marginBottom: "12px",
             }}
           >
             Simple Process
           </p>
           <h2
             style={{
-              fontSize: "2rem",
-              fontWeight: 700,
-              color: "#0F172A",
-              margin: "0 0 12px",
-              lineHeight: 1.2,
+              fontSize: "clamp(1.8rem, 3vw, 2.4rem)",
+              fontWeight: 900,
+              color: "#0B1F33",
+              margin: "0 0 10px",
+              lineHeight: 1.1,
+              letterSpacing: "-0.025em",
             }}
           >
             How It Works
           </h2>
           <p
             style={{
-              fontSize: "1rem",
+              fontSize: "16px",
               color: "#64748B",
               margin: 0,
+              lineHeight: 1.55,
             }}
           >
             No calls required. No spam. Just your best rate.
@@ -342,17 +345,17 @@ export default function HowItWorks({ mode }: Props) {
                 {/* Icon circle */}
                 <div
                   style={{
-                    width: "56px",
-                    height: "56px",
+                    width: "64px",
+                    height: "64px",
                     borderRadius: "50%",
                     backgroundColor: "#FFFFFF",
                     border: "1.5px solid #E2E8F0",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    margin: "0 auto 16px",
+                    margin: "0 auto 14px",
                     color: "#F5A623",
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+                    boxShadow: "0 4px 16px rgba(0,0,0,0.07)",
                   }}
                 >
                   <Icon />
@@ -361,25 +364,26 @@ export default function HowItWorks({ mode }: Props) {
                 {/* Step number */}
                 <p
                   style={{
-                    fontSize:      "13px",
-                    letterSpacing: "0.08em",
+                    fontSize:      "11px",
+                    letterSpacing: "2px",
                     color:         "#F5A623",
-                    fontWeight:    600,
+                    fontWeight:    700,
                     textTransform: "uppercase",
                     margin:        "0 0 8px",
                   }}
                 >
-                  {num}
+                  Step {num}
                 </p>
 
                 {/* Title */}
                 <h3
                   style={{
-                    fontSize:   "18px",
-                    fontWeight: 600,
-                    color:      "#0F172A",
-                    margin:     "0 0 10px",
-                    lineHeight: 1.2,
+                    fontSize:      "17px",
+                    fontWeight:    800,
+                    color:         "#0B1F33",
+                    margin:        "0 0 10px",
+                    lineHeight:    1.15,
+                    letterSpacing: "-0.015em",
                   }}
                 >
                   {title}
@@ -388,9 +392,9 @@ export default function HowItWorks({ mode }: Props) {
                 {/* Description */}
                 <p
                   style={{
-                    fontSize:   "16px",
+                    fontSize:   "15px",
                     color:      "#4B5563",
-                    lineHeight: 1.75,
+                    lineHeight: 1.7,
                     margin:     0,
                   }}
                 >

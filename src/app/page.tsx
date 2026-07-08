@@ -369,10 +369,10 @@ const COMPARISON_COPY: Record<Language, {
   en: {
     eyebrow: "The Ativa Advantage",
     heading: "Why independent beats going direct",
-    sub: "A captive agent works for one carrier. We work for you — comparing 50+ top-rated carriers so you always get the best rate.",
+    sub: "A captive agent works for one carrier. We work for you — comparing multiple top-rated carriers so you always get the best rate.",
     colDirect: "Direct / Captive Agent", colAtiva: "Ativa Insurance", cta: "See My Price",
     rows: [
-      { feature: "Carrier options",   direct: "1 carrier only",           ativa: "50+ carriers compared"          },
+      { feature: "Carrier options",   direct: "1 carrier only",           ativa: "Multiple top-rated carriers"    },
       { feature: "Your rate",         direct: "Fixed — take it or leave", ativa: "Best rate, guaranteed"          },
       { feature: "Languages",         direct: "English only",             ativa: "English · Portuguese · Spanish" },
       { feature: "Your advisor",      direct: "Call center / chatbot",    ativa: "Licensed local agent"           },
@@ -382,10 +382,10 @@ const COMPARISON_COPY: Record<Language, {
   pt: {
     eyebrow: "A Vantagem Ativa",
     heading: "Por que independente supera o direto",
-    sub: "Um agente cativo trabalha para uma seguradora. Nós trabalhamos para você — comparando mais de 20 seguradoras.",
+    sub: "Um agente cativo trabalha para uma seguradora. Nós trabalhamos para você — comparando múltiplas seguradoras de primeira linha.",
     colDirect: "Agente Cativo / Direto", colAtiva: "Ativa Insurance", cta: "Obter Cotação Gratuita",
     rows: [
-      { feature: "Opções de seguradora", direct: "Apenas 1 seguradora",         ativa: "Mais de 20 seguradoras"        },
+      { feature: "Opções de seguradora", direct: "Apenas 1 seguradora",         ativa: "Várias seguradoras de elite"   },
       { feature: "Sua tarifa",           direct: "Fixa — pegar ou largar",       ativa: "Melhor tarifa, garantida"      },
       { feature: "Idiomas",              direct: "Somente inglês",               ativa: "Inglês · Português · Espanhol" },
       { feature: "Seu consultor",        direct: "Central de atendimento / bot", ativa: "Agente local licenciado"       },
@@ -395,10 +395,10 @@ const COMPARISON_COPY: Record<Language, {
   es: {
     eyebrow: "La Ventaja Ativa",
     heading: "Por qué independiente supera al directo",
-    sub: "Un agente cautivo trabaja para una aseguradora. Nosotros trabajamos para usted — comparando más de 20 aseguradoras.",
+    sub: "Un agente cautivo trabaja para una aseguradora. Nosotros trabajamos para usted — comparando múltiples aseguradoras de primera línea.",
     colDirect: "Agente Cautivo / Directo", colAtiva: "Ativa Insurance", cta: "Obtener Cotización Gratis",
     rows: [
-      { feature: "Opciones de aseguradora", direct: "Solo 1 aseguradora",          ativa: "Más de 20 aseguradoras"         },
+      { feature: "Opciones de aseguradora", direct: "Solo 1 aseguradora",          ativa: "Varias aseguradoras de élite"   },
       { feature: "Su tarifa",               direct: "Fija — lo tomas o lo dejas",   ativa: "Mejor tarifa, garantizada"      },
       { feature: "Idiomas",                 direct: "Solo inglés",                  ativa: "Inglés · Portugués · Español"   },
       { feature: "Su asesor",               direct: "Centro de llamadas / chatbot", ativa: "Agente local licenciado"        },
@@ -1065,7 +1065,7 @@ function AtivaSite() {
 
   const heroSub: Record<Mode, string> = {
     personal:   userState
-      ? `Coverage built for ${userState} families — we shop 50+ carriers to get you the best rate.`
+      ? `Coverage built for ${userState} families — we shop multiple top-rated carriers to get you the best rate.`
       : t("hero.personal.sub"),
     commercial: userState
       ? `Coverage built for ${userState} businesses — fleets, contractors, and growing companies trust Ativa.`

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: "%s | Ativa Insurance",
   },
   description:
-    "Get free insurance quotes in minutes. Ativa Insurance shops 50+ top carriers for auto, home, flood, and business insurance. Bilingual agents. Same-day coverage.",
+    "Get free insurance quotes in minutes. Ativa Insurance shops multiple top-rated carriers for auto, home, flood, and business insurance. Bilingual agents. Same-day coverage.",
   keywords:
     "insurance quotes Florida, auto insurance, home insurance, bilingual insurance agent, independent insurance agency Florida, commercial insurance Florida",
   metadataBase: new URL(BASE_URL),
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Ativa Insurance | Best Insurance Quotes in Florida & East Coast",
     description:
-      "Get free insurance quotes in minutes. Ativa Insurance shops 50+ top carriers for auto, home, flood, and business insurance. Bilingual agents. Same-day coverage.",
+      "Get free insurance quotes in minutes. Ativa Insurance shops multiple top-rated carriers for auto, home, flood, and business insurance. Bilingual agents. Same-day coverage.",
     url: BASE_URL,
     siteName: "Ativa Insurance",
     type: "website",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Ativa Insurance | Best Insurance Quotes in Florida & East Coast",
-    description: "Get free insurance quotes in minutes. Bilingual agents. 50+ carriers. Same-day coverage.",
+    description: "Get free insurance quotes in minutes. Bilingual agents. Multiple top-rated carriers. Same-day coverage.",
     images: ["/images/og-image.jpg"],
   },
 };
