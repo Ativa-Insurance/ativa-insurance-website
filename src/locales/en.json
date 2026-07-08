@@ -30,10 +30,13 @@
       "wantMoreInfo": "Want more info? Explore",
       "orTalk": "Or prefer to talk? Send us a text →",
       "seeAll": "See All Products →",
-      "seeAllSub": "See renters, condo, umbrella & more",
+      "seeAllSub": "View all 6 personal products →",
       "bundleSave": "Bundle & Save",
       "propertyIns": "Property Insurance",
-      "floodIns": "Flood Insurance"
+      "floodIns": "Flood Insurance",
+      "umbrellaIns": "Umbrella",
+      "petIns": "Pet Insurance",
+      "alsoAvailable": "Also available:"
     },
     "commercial": {
       "headline": "Insurance That Works as Hard as You Do",

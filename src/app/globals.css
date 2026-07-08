@@ -89,7 +89,9 @@ select option { background-color: #ffffff; color: #111827; }
 .animate-marquee:hover { animation-play-state: paused; }
 
 /* ─── Hero backgrounds ───────────────────────────────────────────────────── */
-.hero-bg-personal  { background-color: #FFFFFF; }
+.hero-bg-personal  {
+  background: linear-gradient(160deg, #EEF4FF 0%, #F5F8FF 45%, #FAFBFE 75%, #FFFFFF 100%);
+}
 .hero-bg-commercial {
   background-color: #111827;
   background-image:

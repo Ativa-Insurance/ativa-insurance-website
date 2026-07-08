@@ -30,10 +30,13 @@
       "wantMoreInfo": "Quer saber mais? Veja",
       "orTalk": "Prefere conversar? Nos envie uma mensagem →",
       "seeAll": "Ver Todos os Produtos →",
-      "seeAllSub": "Veja inquilinos, condomínio, guarda-chuva e mais",
+      "seeAllSub": "Ver todos os 6 produtos pessoais →",
       "bundleSave": "Combine e Economize",
       "propertyIns": "Seguro Residencial",
-      "floodIns": "Seguro contra Inundação"
+      "floodIns": "Seguro contra Inundação",
+      "umbrellaIns": "Guarda-Chuva",
+      "petIns": "Seguro Pet",
+      "alsoAvailable": "Também disponível:"
     },
     "commercial": {
       "headline": "Seguro que Trabalha Tanto Quanto Você",

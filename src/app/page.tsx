@@ -1261,55 +1261,24 @@ function AtivaSite() {
 
               {/* 2 · Headline */}
               <h1 style={{
-                fontSize: "clamp(1.55rem, 5.5vw, 1.9rem)",
-                fontWeight: 800,
+                fontSize: "clamp(1.7rem, 6vw, 2.1rem)",
+                fontWeight: 900,
                 textAlign: "center",
                 color: "#0B1F33",
-                lineHeight: 1.12,
-                letterSpacing: "-0.02em",
+                lineHeight: 1.08,
+                letterSpacing: "-0.025em",
                 padding: "0 12px",
-                marginBottom: "6px",
+                marginBottom: "8px",
               }}>
                 {t("hero.personal.shopHeadline")}
               </h1>
 
               {/* 3 · Subheadline */}
-              <p style={{ textAlign: "center", fontSize: "13px", color: "#64748B", padding: "0 16px", marginBottom: "10px", lineHeight: 1.45 }}>
+              <p style={{ textAlign: "center", fontSize: "13px", color: "#4A5568", padding: "0 16px", marginBottom: "14px", lineHeight: 1.5 }}>
                 {t("hero.personal.shopSub")}
               </p>
 
-              {/* 4 · Trust row */}
-              <a
-                href="https://maps.app.goo.gl/Zd8AptfZe46v9ntj8"
-                target="_blank" rel="noopener noreferrer"
-                style={{
-                  display: "flex", justifyContent: "center", alignItems: "center",
-                  flexWrap: "wrap", gap: "4px", padding: "0 12px",
-                  marginBottom: "12px", textDecoration: "none",
-                  transition: "opacity 150ms ease",
-                }}
-                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "0.8"; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "1"; }}
-              >
-                <svg viewBox="0 0 24 24" width="14" height="14" style={{ flexShrink: 0 }}>
-                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/>
-                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                </svg>
-                {[1,2,3,4,5].map(s => (
-                  <svg key={s} width="11" height="11" viewBox="0 0 20 20" fill="#F5A623">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                  </svg>
-                ))}
-                <span style={{ fontSize: "11px", color: "#64748B" }}>{t("trust.reviewsShort")}</span>
-                <span style={{ fontSize: "11px", color: "#CBD5E1" }}>·</span>
-                <span style={{ fontSize: "11px", color: "#64748B" }}>{t("trust.statesShort")}</span>
-                <span style={{ fontSize: "11px", color: "#CBD5E1" }}>·</span>
-                <span style={{ fontSize: "11px", color: "#64748B" }}>{t("trust.sameDay")}</span>
-              </a>
-
-              {/* 5 · Auto Insurance widget — compact */}
+              {/* 4 · Auto Insurance widget — compact */}
               <div style={{
                 margin: "0 16px",
                 background: "#FFFFFF",
@@ -1367,7 +1336,7 @@ function AtivaSite() {
                     onClick={handleZipSubmit}
                     style={{
                       width: "100%", height: "48px",
-                      background: "#0F2A44", color: "#FFFFFF",
+                      background: "#1B3A6B", color: "#FFFFFF",
                       fontSize: "15px", fontWeight: 700,
                       border: "none", borderRadius: "10px",
                       cursor: "pointer", transition: "background 150ms ease",
@@ -1397,21 +1366,18 @@ function AtivaSite() {
                 gap: "8px", padding: "8px 16px 0",
               }}>
                 {[
-                  { id: "bundle", label: t("hero.personal.bundleSave"),  icon: "/icons/bundle-save.png?v=2"         },
-                  { id: "home",   label: t("hero.personal.propertyIns"), icon: "/icons/property-insurance.png?v=2"  },
-                  { id: "flood",  label: t("hero.personal.floodIns"),    icon: "/icons/flood-insurance.png?v=2"     },
-                  { id: "all",    label: t("hero.personal.seeAll"),      icon: null                                 },
+                  { id: "bundle",   label: t("hero.personal.bundleSave"),  icon: "/icons/bundle-save.png?v=2"        },
+                  { id: "home",     label: t("hero.personal.propertyIns"), icon: "/icons/property-insurance.png?v=2" },
+                  { id: "flood",    label: t("hero.personal.floodIns"),    icon: "/icons/flood-insurance.png?v=2"    },
+                  { id: "umbrella", label: t("hero.personal.umbrellaIns"), icon: "/icons/umbrella.png?v=2"           },
                 ].map(card => (
                   <button
                     key={card.id}
                     type="button"
                     className="mob-prod-card"
-                    onClick={() => {
-                      if (card.id === "all") { setQuoteProduct(undefined); setQuoteOpen(true); }
-                      else { setQuoteProduct(card.id); setQuoteOpen(true); }
-                    }}
+                    onClick={() => { setQuoteProduct(card.id); setQuoteOpen(true); }}
                     style={{
-                      background: card.id === "all" ? "#F7FAFC" : "#FFFFFF",
+                      background: "#FFFFFF",
                       border: "1px solid #E8EDF3",
                       borderRadius: "12px",
                       padding: "10px 8px",
@@ -1421,24 +1387,33 @@ function AtivaSite() {
                       transition: "border-color 150ms ease, box-shadow 150ms ease",
                     }}
                   >
-                    {card.icon ? (
-                      <Image
-                        src={card.icon}
-                        alt={card.label}
-                        width={56} height={56}
-                        style={{ width: "56px", height: "56px", objectFit: "contain", marginBottom: "6px" }}
-                      />
-                    ) : (
-                      <div style={{ width: "56px", height: "56px", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "6px" }}>
-                        <span style={{ fontSize: "24px", color: "#CBD5E1" }}>＋</span>
-                      </div>
-                    )}
+                    <Image
+                      src={card.icon}
+                      alt={card.label}
+                      width={56} height={56}
+                      style={{ width: "56px", height: "56px", objectFit: "contain", marginBottom: "6px" }}
+                    />
                     <span style={{ fontSize: "13px", fontWeight: 600, color: "#0B1F33", lineHeight: 1.2 }}>
                       {card.label}
                     </span>
                   </button>
                 ))}
               </div>
+              {/* Pet — text link */}
+              <button
+                type="button"
+                onClick={() => { setQuoteProduct("pet"); setQuoteOpen(true); }}
+                style={{
+                  display: "block", width: "100%", background: "none", border: "none",
+                  cursor: "pointer", fontSize: "12px", color: "#64748B",
+                  textAlign: "center", marginTop: "8px", padding: "4px 0",
+                }}
+              >
+                {t("hero.personal.alsoAvailable")}{" "}
+                <span style={{ color: "#1B3A6B", fontWeight: 600, textDecoration: "underline" }}>
+                  {t("hero.personal.petIns")}
+                </span>{" →"}
+              </button>
             </div>
 
           ) : (
@@ -1748,51 +1723,21 @@ function AtivaSite() {
                 }
               `}</style>
 
-              {/* Part A — Headline + trust row */}
-              <div style={{ textAlign: "center", maxWidth: "800px", margin: "0 auto", padding: "0 24px 28px" }}>
+              {/* Part A — Headline */}
+              <div style={{ textAlign: "center", maxWidth: "780px", margin: "0 auto", padding: "0 24px 24px" }}>
                 <h1 style={{
-                  fontSize: "clamp(2.2rem, 4vw, 3rem)",
-                  fontWeight: 800,
+                  fontSize: "clamp(2.6rem, 5vw, 3.6rem)",
+                  fontWeight: 900,
                   color: "#0B1F33",
-                  lineHeight: 1.15,
+                  lineHeight: 1.08,
                   marginBottom: "12px",
-                  letterSpacing: "-0.02em",
+                  letterSpacing: "-0.03em",
                 }}>
                   {t("hero.personal.shopHeadline")}
                 </h1>
-                <p style={{ fontSize: "18px", color: "#64748B", marginBottom: "20px", lineHeight: 1.55 }}>
+                <p style={{ fontSize: "17px", color: "#4A5568", lineHeight: 1.6 }}>
                   {t("hero.personal.shopSub")}
                 </p>
-
-                {/* Trust row */}
-                <div style={{ display: "flex", gap: "6px", justifyContent: "center", flexWrap: "wrap", alignItems: "center" }}>
-                  <a
-                    href="https://maps.app.goo.gl/Zd8AptfZe46v9ntj8"
-                    target="_blank" rel="noopener noreferrer"
-                    style={{ display: "flex", alignItems: "center", gap: "6px", textDecoration: "none", transition: "opacity 150ms ease" }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "0.85"; }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = "1"; }}
-                  >
-                    <svg viewBox="0 0 24 24" width="18" height="18" style={{ flexShrink: 0 }}>
-                      <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                      <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                      <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/>
-                      <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                    </svg>
-                    {[1,2,3,4,5].map(s => (
-                      <svg key={s} width="14" height="14" viewBox="0 0 20 20" fill="#F5A623">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                      </svg>
-                    ))}
-                    <span style={{ fontSize: "13px", color: "#64748B", marginLeft: "2px" }}>{t("trust.reviewsFull")}</span>
-                  </a>
-                  <span style={{ color: "#CBD5E1", fontSize: "13px" }}>·</span>
-                  <span style={{ fontSize: "13px", color: "#64748B" }}>{t("trust.states")}</span>
-                  <span style={{ color: "#CBD5E1", fontSize: "13px" }}>·</span>
-                  <span style={{ fontSize: "13px", color: "#64748B" }}>{t("trust.sameDayResponse")}</span>
-                  <span style={{ color: "#CBD5E1", fontSize: "13px" }}>·</span>
-                  <span style={{ fontSize: "13px", color: "#64748B" }}>{t("trust.noSpam")}</span>
-                </div>
               </div>
 
               {/* Part B — Product grid */}
@@ -1811,10 +1756,11 @@ function AtivaSite() {
                 {/* LEFT — Auto hero widget */}
                 <div style={{
                   background:   "#FFFFFF",
-                  border:       "2px solid #F5A623",
+                  border:       "1.5px solid rgba(27,58,107,0.12)",
+                  borderTop:    "3px solid #1B3A6B",
                   borderRadius: "20px",
                   padding:      "28px",
-                  boxShadow:    "0 8px 32px rgba(245,166,35,0.15)",
+                  boxShadow:    "0 8px 40px rgba(27,58,107,0.10)",
                 }}>
                   <div style={{ minHeight: "120px", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "12px" }}>
                     <Image
@@ -1875,7 +1821,7 @@ function AtivaSite() {
                         style={{
                           width:       "160px",
                           height:      "52px",
-                          background:  "#0F2A44",
+                          background:  "#1B3A6B",
                           color:       "#FFFFFF",
                           fontSize:    "15px",
                           fontWeight:  700,
@@ -1905,38 +1851,35 @@ function AtivaSite() {
                 </div>
 
                 {/* RIGHT — 2×2 mini product grid */}
-                <div
-                  className="pers-mini-grid"
-                  style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}
-                >
-                  {[
-                    { id: "bundle", label: t("hero.personal.bundleSave"),  icon: "/icons/bundle-save.png?v=2"    },
-                    { id: "home",   label: t("hero.personal.propertyIns"), icon: "/icons/property-insurance.png?v=2" },
-                    { id: "flood",  label: t("hero.personal.floodIns"),    icon: "/icons/flood-insurance.png?v=2" },
-                    { id: "all",    label: t("hero.personal.seeAll"),      icon: null },
-                  ].map(card => (
-                    <button
-                      key={card.id}
-                      type="button"
-                      className="pers-prod-card"
-                      onClick={() => {
-                        if (card.id === "all") { setQuoteProduct(undefined); setQuoteOpen(true); }
-                        else { setQuoteProduct(card.id); setQuoteOpen(true); }
-                      }}
-                      style={{
-                        background:    card.id === "all" ? "#F7FAFC" : "#FFFFFF",
-                        border:        "1px solid #E8EDF3",
-                        borderRadius:  "16px",
-                        padding:       "16px 12px",
-                        textAlign:     "center",
-                        cursor:        "pointer",
-                        transition:    "border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease",
-                        display:       "flex",
-                        flexDirection: "column",
-                        alignItems:    "center",
-                      }}
-                    >
-                      {card.icon ? (
+                <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+                  <div
+                    className="pers-mini-grid"
+                    style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}
+                  >
+                    {[
+                      { id: "bundle",   label: t("hero.personal.bundleSave"),  icon: "/icons/bundle-save.png?v=2"        },
+                      { id: "home",     label: t("hero.personal.propertyIns"), icon: "/icons/property-insurance.png?v=2" },
+                      { id: "flood",    label: t("hero.personal.floodIns"),    icon: "/icons/flood-insurance.png?v=2"    },
+                      { id: "umbrella", label: t("hero.personal.umbrellaIns"), icon: "/icons/umbrella.png?v=2"           },
+                    ].map(card => (
+                      <button
+                        key={card.id}
+                        type="button"
+                        className="pers-prod-card"
+                        onClick={() => { setQuoteProduct(card.id); setQuoteOpen(true); }}
+                        style={{
+                          background:    "#FFFFFF",
+                          border:        "1px solid #E8EDF3",
+                          borderRadius:  "16px",
+                          padding:       "16px 12px",
+                          textAlign:     "center",
+                          cursor:        "pointer",
+                          transition:    "border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease",
+                          display:       "flex",
+                          flexDirection: "column",
+                          alignItems:    "center",
+                        }}
+                      >
                         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "10px" }}>
                           <Image
                             src={card.icon}
@@ -1945,21 +1888,27 @@ function AtivaSite() {
                             style={{ width: "120px", height: "120px", objectFit: "contain" }}
                           />
                         </div>
-                      ) : (
-                        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "10px" }}>
-                          <span style={{ fontSize: "32px", color: "#CBD5E1" }}>＋</span>
-                        </div>
-                      )}
-                      <span style={{ fontSize: "15px", fontWeight: 700, color: "#0B1F33", lineHeight: 1.2 }}>
-                        {card.label}
-                      </span>
-                      {card.id === "all" && (
-                        <span style={{ fontSize: "12px", color: "#94A3B8", marginTop: "4px" }}>
-                          {t("hero.personal.seeAllSub")}
+                        <span style={{ fontSize: "15px", fontWeight: 700, color: "#0B1F33", lineHeight: 1.2 }}>
+                          {card.label}
                         </span>
-                      )}
-                    </button>
-                  ))}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Pet — text link below grid */}
+                  <button
+                    type="button"
+                    onClick={() => { setQuoteProduct("pet"); setQuoteOpen(true); }}
+                    style={{
+                      background: "none", border: "none", cursor: "pointer", padding: "6px 0",
+                      fontSize: "13px", color: "#64748B", textAlign: "center", width: "100%",
+                    }}
+                  >
+                    {t("hero.personal.alsoAvailable")}{" "}
+                    <span style={{ color: "#1B3A6B", fontWeight: 600, textDecoration: "underline" }}>
+                      {t("hero.personal.petIns")}
+                    </span>{" →"}
+                  </button>
                 </div>
               </div>
 

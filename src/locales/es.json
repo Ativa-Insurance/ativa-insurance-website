@@ -30,10 +30,13 @@
       "wantMoreInfo": "¿Quiere saber más? Explorar",
       "orTalk": "¿Prefiere hablar? Envíenos un mensaje →",
       "seeAll": "Ver Todos los Productos →",
-      "seeAllSub": "Vea inquilinos, condominio, paraguas y más",
+      "seeAllSub": "Ver los 6 productos personales →",
       "bundleSave": "Combina y Ahorra",
       "propertyIns": "Seguro de Propiedad",
-      "floodIns": "Seguro contra Inundación"
+      "floodIns": "Seguro contra Inundación",
+      "umbrellaIns": "Paraguas",
+      "petIns": "Seguro para Mascotas",
+      "alsoAvailable": "También disponible:"
     },
     "commercial": {
       "headline": "Un Seguro que Trabaja tan Duro como Tú",
