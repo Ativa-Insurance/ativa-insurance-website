@@ -5,12 +5,10 @@ import type { Mode } from "@/types";
 import { useLanguage } from "@/context/LanguageContext";
 
 // ─── Carrier definitions ─────────────────────────────────────────────────────
-// Source of truth: CLAUDE.md carrier list
-// file: exact filename in /public/carriers/ (may contain spaces / mixed case)
 
 interface Carrier {
-  name: string; // display name / alt text
-  file: string; // actual filename on disk
+  name: string;
+  file: string;
 }
 
 const PERSONAL_CARRIERS: Carrier[] = [
@@ -65,37 +63,29 @@ const COMMERCIAL_CARRIERS: Carrier[] = [
   { name: "BTIS",            file: "btis.png" },
 ];
 
-// Encode spaces in filename for use as a URL path segment
 function logoSrc(file: string): string {
   return `/carriers/${file.replace(/ /g, "%20")}`;
 }
 
-// ─── Single carrier logo item ─────────────────────────────────────────────────
+// ─── Single carrier logo ──────────────────────────────────────────────────────
 
-function CarrierItem({
-  carrier,
-  isPersonal,
-}: {
-  carrier: Carrier;
-  isPersonal: boolean;
-}) {
+function CarrierItem({ carrier }: { carrier: Carrier }) {
   const [failed, setFailed]   = useState(false);
   const [hovered, setHovered] = useState(false);
 
-  // Filter: greyscale + dimmed by default, full color on hover
-  const imgFilter = hovered
-    ? "grayscale(0%) opacity(1)"
-    : "grayscale(100%) opacity(0.55)";
-
   if (failed) {
-    // Text fallback — same pill style as the old marquee
     return (
       <span
-        className="text-sm font-semibold whitespace-nowrap px-5 py-2 rounded-full border"
         style={{
-          color:           "#1B3A6B",
-          borderColor:     "#C7D7FD",
+          display:         "inline-block",
+          fontSize:        "12px",
+          fontWeight:      600,
+          whiteSpace:      "nowrap",
+          padding:         "6px 14px",
+          borderRadius:    "20px",
+          border:          "1px solid #C7D7FD",
           backgroundColor: "#EEF2FF",
+          color:           "#1B3A6B",
         }}
       >
         {carrier.name}
@@ -110,15 +100,15 @@ function CarrierItem({
       alt={carrier.name}
       height={52}
       style={{
-        height:      "52px",
-        width:       "auto",
-        maxWidth:    "156px",
-        objectFit:   "contain",
-        display:     "block",
-        filter:      imgFilter,
-        transition:  "filter 300ms ease, opacity 300ms ease",
-        userSelect:  "none",
-        cursor:      "pointer",
+        height:     "52px",
+        width:      "auto",
+        maxWidth:   "156px",
+        objectFit:  "contain",
+        display:    "block",
+        filter:     hovered ? "grayscale(0%) opacity(1)" : "grayscale(100%) opacity(0.50)",
+        transition: "filter 300ms ease",
+        userSelect: "none",
+        cursor:     "pointer",
       }}
       onError={() => setFailed(true)}
       onMouseEnter={() => setHovered(true)}
@@ -128,71 +118,110 @@ function CarrierItem({
   );
 }
 
-// ─── Marquee section ──────────────────────────────────────────────────────────
+// ─── Main component ───────────────────────────────────────────────────────────
 
-interface CarrierMarqueeProps {
-  mode: Mode;
-}
-
-export default function CarrierMarquee({ mode }: CarrierMarqueeProps) {
+export default function CarrierMarquee({ mode }: { mode: Mode }) {
   const { t } = useLanguage();
   const isPersonal = mode === "personal";
   const carriers   = isPersonal ? PERSONAL_CARRIERS : COMMERCIAL_CARRIERS;
+  const doubled    = [...carriers, ...carriers];
 
-  // Duplicate list for seamless infinite scroll
-  const doubled = [...carriers, ...carriers];
-
-  const bgColor   = isPersonal ? "#F8FAFF" : "#FFFFFF";
-  const fadeColor = bgColor;
+  // Section always white — logos need neutral bg to display correctly
+  const bgColor      = "#FFFFFF";
+  const headingColor = isPersonal ? "#1B3A6B" : "#0B1F33";
 
   return (
     <section
-      className="py-14 overflow-hidden"
       style={{
         backgroundColor: bgColor,
-        borderTop: "1px solid rgba(0,0,0,0.06)",
-        borderBottom: "1px solid rgba(0,0,0,0.06)",
+        borderTop:       "1px solid rgba(0,0,0,0.06)",
+        borderBottom:    "1px solid rgba(0,0,0,0.06)",
+        padding:         "56px 0 48px",
+        overflow:        "hidden",
       }}
     >
-      {/* Heading */}
-      <div className="max-w-5xl mx-auto px-6 text-center mb-8">
-        <h2 className="text-xl font-bold mb-1" style={{ color: "var(--text)" }}>
+      {/* ── Heading ── */}
+      <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 24px", textAlign: "center", marginBottom: "36px" }}>
+        <p
+          style={{
+            fontSize:      "11px",
+            letterSpacing: "2.5px",
+            fontWeight:    700,
+            textTransform: "uppercase",
+            color:         "#F5A623",
+            marginBottom:  "10px",
+          }}
+        >
+          Our Carrier Partners
+        </p>
+        <h2
+          style={{
+            fontSize:      "clamp(1.6rem, 2.5vw, 2rem)",
+            fontWeight:    900,
+            color:         headingColor,
+            margin:        "0 0 8px",
+            lineHeight:    1.1,
+            letterSpacing: "-0.025em",
+          }}
+        >
           {t("carriers.heading")}
         </h2>
-        <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+        <p
+          style={{
+            fontSize:  "15px",
+            color:     "#64748B",
+            margin:    0,
+            lineHeight: 1.5,
+          }}
+        >
           {t("carriers.sub")}
         </p>
       </div>
 
-      {/* Scrolling track */}
-      <div className="relative">
+      {/* ── Scrolling track ── */}
+      <div style={{ position: "relative" }}>
         {/* Left fade */}
         <div
-          className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
           style={{
-            background: `linear-gradient(to right, ${fadeColor}, transparent)`,
+            position:      "absolute",
+            left:          0,
+            top:           0,
+            bottom:        0,
+            width:         "96px",
+            zIndex:        10,
+            pointerEvents: "none",
+            background:    `linear-gradient(to right, ${bgColor}, transparent)`,
           }}
         />
         {/* Right fade */}
         <div
-          className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
           style={{
-            background: `linear-gradient(to left, ${fadeColor}, transparent)`,
+            position:      "absolute",
+            right:         0,
+            top:           0,
+            bottom:        0,
+            width:         "96px",
+            zIndex:        10,
+            pointerEvents: "none",
+            background:    `linear-gradient(to left, ${bgColor}, transparent)`,
           }}
         />
 
-        <div className="flex overflow-hidden">
+        <div style={{ display: "flex", overflow: "hidden" }}>
           <div className="flex items-center shrink-0 animate-marquee">
             {doubled.map((carrier, i) => (
               <div
                 key={`${carrier.file}-${i}`}
-                className="flex items-center justify-center shrink-0 mx-8"
-                style={{ height: "68px" }}
+                style={{
+                  display:        "flex",
+                  alignItems:     "center",
+                  justifyContent: "center",
+                  flexShrink:     0,
+                  margin:         "0 32px",
+                  height:         "72px",
+                }}
               >
-                <CarrierItem
-                  carrier={carrier}
-                  isPersonal={isPersonal}
-                />
+                <CarrierItem carrier={carrier} />
               </div>
             ))}
           </div>
