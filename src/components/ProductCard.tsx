@@ -6,26 +6,31 @@ import type { Mode } from "@/types";
 // ─── Tier assignment ──────────────────────────────────────────────────────────
 
 const PERSONAL_TIERS: Record<string, 1 | 2 | 3> = {
-  auto:    1,
-  home:    2,  condo:        2,
-  renters: 3,  flood:        3,  bundle: 3,
+  auto:     1,
+  home:     2,  flood:    2,  bundle:   2,
+  umbrella: 3,  pet:      3,
 };
 
 const COMMERCIAL_TIERS: Record<string, 1 | 2 | 3> = {
   gl:               1,
-  "commercial-auto": 2, bop:          2,
-  "workers-comp":   3,  professional: 3,  cyber: 3,
+  "commercial-auto": 2, "workers-comp": 2, trucking: 2,
+  cargo:            3,  umbrella:       3,
 };
 
 // ─── Per-card trust lines ─────────────────────────────────────────────────────
 
 const TRUST_LINES: Record<string, string> = {
   auto:              "⚡ Same-day coverage available",
-  home:              "🔒 Compare 50+ carriers instantly",
-  bundle:            "💰 Most clients save 18%+",
-  gl:                "⚡ Certificate ready same day",
+  home:              "🔒 Compare multiple top-rated carriers",
+  flood:             "🌊 Wright Flood · Neptune · NFIP options",
+  bundle:            "💰 Most clients save 18%+ when bundling",
+  umbrella:          "🛡️ Up to $5M in extra liability protection",
+  pet:               "🐾 Accident, illness & wellness options",
+  gl:                "⚡ Certificate of Insurance ready same day",
   "commercial-auto": "🔒 Fleet rates from top carriers",
-  "workers-comp":    "✓ Stay compliant — fast",
+  "workers-comp":    "✓ Stay compliant — fast turnaround",
+  trucking:          "🚚 Long-haul, local & specialized coverage",
+  cargo:             "📦 Freight & goods in transit protection",
 };
 
 // ─── Per-card CTA labels ──────────────────────────────────────────────────────
@@ -33,16 +38,15 @@ const TRUST_LINES: Record<string, string> = {
 const CTA_LABELS: Record<string, string> = {
   auto:              "Get Covered Today →",
   home:              "Find My Best Rate →",
-  renters:           "Protect My Stuff →",
-  condo:             "Cover My Pet →",
   flood:             "Check Flood Risk →",
   bundle:            "Show My Savings →",
+  umbrella:          "Get Extra Protection →",
+  pet:               "Cover My Pet →",
   gl:                "See My Business Rate →",
-  bop:               "Protect My Project →",
   "commercial-auto": "Cover My Fleet →",
   "workers-comp":    "Get WC Coverage →",
-  professional:      "See My Business Rate →",
-  cyber:             "See My Business Rate →",
+  trucking:          "Cover My Trucks →",
+  cargo:             "Protect My Cargo →",
 };
 
 // ─── Icon image map ───────────────────────────────────────────────────────────
@@ -50,16 +54,15 @@ const CTA_LABELS: Record<string, string> = {
 const ICON_IMAGES: Record<string, string> = {
   auto:              "/icons/auto-insurance.png?v=2",
   home:              "/icons/property-insurance.png?v=2",
-  renters:           "/icons/renters-insurance.png?v=2",
-  condo:             "/icons/pet-insurance.png?v=2",
   flood:             "/icons/flood-insurance.png?v=2",
   bundle:            "/icons/bundle-save.png?v=2",
-  bop:               "/icons/builders-risk.png?v=2",
+  umbrella:          "/icons/umbrella.png?v=2",
+  pet:               "/icons/pet-insurance.png?v=2",
   gl:                "/icons/general-liability.png?v=2",
   "commercial-auto": "/icons/commercial-auto.png?v=2",
-  "workers-comp":    "/icons/workers-compensation.png?v=2",
-  professional:      "/icons/professional-liability.png?v=2",
-  cyber:             "/icons/cyber-liability.png?v=2",
+  "workers-comp":    "/icons/workers-comp.png?v=2",
+  trucking:          "/icons/commercial-auto.png?v=2",
+  cargo:             "/icons/inland-marine.png?v=2",
 };
 
 // ─── Tier visual config ───────────────────────────────────────────────────────

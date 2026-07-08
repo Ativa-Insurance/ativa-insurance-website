@@ -2094,6 +2094,68 @@ function AtivaSite() {
         </div>
       )}
 
+      {/* ── Product Marketplace ───────────────────────────────────────────── */}
+      <section
+        data-reveal
+        id="products"
+        style={{
+          backgroundColor: isPersonal ? "#FFFFFF" : "#F4F7FB",
+          borderTop:    "1px solid rgba(0,0,0,0.06)",
+          borderBottom: "1px solid rgba(0,0,0,0.06)",
+          padding:      "64px 0",
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          {/* Heading */}
+          <div style={{ textAlign: "center", marginBottom: "40px" }}>
+            <h2 style={{
+              fontSize: "clamp(1.6rem, 3vw, 2.2rem)",
+              fontWeight: 900,
+              color: "#0B1F33",
+              letterSpacing: "-0.025em",
+              lineHeight: 1.1,
+              marginBottom: "8px",
+            }}>
+              {isPersonal ? t("products.personalHeading") : t("products.commercialHeading")}
+            </h2>
+            <p style={{ fontSize: "15px", color: "#64748B", lineHeight: 1.55 }}>
+              {isPersonal ? t("products.personalSub") : t("products.commercialSub")}
+            </p>
+          </div>
+
+          {/* Desktop grid — hidden on mobile */}
+          <div
+            className="hidden md:grid"
+            style={{
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: "20px",
+            }}
+          >
+            {products.map((product) => (
+              <ProductCard
+                key={product.id}
+                id={product.id}
+                title={product.title}
+                description={product.description}
+                mode={mode}
+                onClick={handleProductClick}
+                onCardHoverEnter={handleCardHoverEnter}
+                onCardHoverLeave={handleCardHoverLeave}
+              />
+            ))}
+          </div>
+
+          {/* Mobile carousel — hidden on desktop */}
+          <MobileCardCarousel
+            products={products}
+            mode={mode}
+            onClick={handleProductClick}
+            onCardHoverEnter={handleCardHoverEnter}
+            onCardHoverLeave={handleCardHoverLeave}
+          />
+        </div>
+      </section>
+
       {/* ── Carriers ──────────────────────────────────────────────────────── */}
       <div data-reveal><CarrierMarquee mode={mode} /></div>
 

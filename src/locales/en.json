@@ -60,6 +60,10 @@
     { "value": "Same-Day","label": "Quote Turnaround" }
   ],
   "products": {
+    "personalHeading": "All Personal Coverage Options",
+    "commercialHeading": "Business Coverage Options",
+    "personalSub": "Click any product to start your free quote — takes 3 minutes.",
+    "commercialSub": "Select a line and we'll match you to the right carrier.",
     "personal": [
       { "id": "auto",     "title": "Auto Insurance",      "description": "Get covered today — even if you just bought your car." },
       { "id": "home",     "title": "Property Insurance",  "description": "Compare rates before your renewal hits." },
