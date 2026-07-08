@@ -93,11 +93,11 @@ select option { background-color: #ffffff; color: #111827; }
   background: linear-gradient(160deg, #EEF4FF 0%, #F5F8FF 45%, #FAFBFE 75%, #FFFFFF 100%);
 }
 .hero-bg-commercial {
-  background-color: #111827;
+  background-color: #0B1F33;
   background-image:
-    linear-gradient(rgba(245,158,11,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(245,158,11,0.05) 1px, transparent 1px);
-  background-size: 36px 36px;
+    linear-gradient(rgba(245,166,35,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,166,35,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
 /* ─── Toggle arrow pulse ─────────────────────────────────────────────────── */
