@@ -279,7 +279,7 @@ export default function HowItWorks({ mode }: Props) {
             style={{
               fontSize: "11px",
               letterSpacing: "2.5px",
-              color: "#F5A623",
+              color: "var(--eyebrow)",
               fontWeight: 700,
               textTransform: "uppercase",
               marginBottom: "12px",
@@ -366,7 +366,7 @@ export default function HowItWorks({ mode }: Props) {
                   style={{
                     fontSize:      "11px",
                     letterSpacing: "2px",
-                    color:         "#F5A623",
+                    color:         "var(--eyebrow)",
                     fontWeight:    700,
                     textTransform: "uppercase",
                     margin:        "0 0 8px",

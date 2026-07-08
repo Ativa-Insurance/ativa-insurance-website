@@ -321,7 +321,7 @@ export default function Reviews({ mode }: { mode: Mode }) {
               letterSpacing: "2.5px",
               fontWeight:    700,
               textTransform: "uppercase",
-              color:         "#F5A623",
+              color:         "var(--eyebrow)",
               marginBottom:  "10px",
             }}
           >

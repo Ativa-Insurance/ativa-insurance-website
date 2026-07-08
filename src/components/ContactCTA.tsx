@@ -19,6 +19,7 @@ export default function ContactCTA({ mode, onGetQuote }: Props) {
 
   return (
     <section
+      className="section-mobile-pad"
       style={{
         backgroundColor: bg,
         backgroundImage: `linear-gradient(${gridLine} 1px, transparent 1px), linear-gradient(90deg, ${gridLine} 1px, transparent 1px)`,
@@ -93,6 +94,7 @@ export default function ContactCTA({ mode, onGetQuote }: Props) {
           <button
             type="button"
             onClick={onGetQuote}
+            className="focus-ring-light"
             style={{
               display:         "inline-flex",
               alignItems:      "center",
@@ -122,6 +124,7 @@ export default function ContactCTA({ mode, onGetQuote }: Props) {
 
           <a
             href="tel:5619468261"
+            className="focus-ring-light"
             style={{
               display:        "inline-flex",
               alignItems:     "center",

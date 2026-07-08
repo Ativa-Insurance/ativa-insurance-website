@@ -46,6 +46,7 @@ function SocialIcon({ label, href, icon }: typeof SOCIAL_LINKS[0]) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
+      className="focus-ring-light touch-target"
       style={{
         color:      hovered ? "#F5A623" : "rgba(255,255,255,0.50)",
         transform:  hovered ? "translateY(-2px)" : "translateY(0)",

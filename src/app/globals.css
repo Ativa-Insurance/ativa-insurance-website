@@ -21,6 +21,8 @@
   --card-bg: #FFFFFF;
   --card-shadow: 0 4px 24px rgba(0,0,0,0.06);
   --card-shadow-hover: 0 12px 40px rgba(0,0,0,0.12);
+  /* Eyebrow labels on light backgrounds — amber-700, 4.6:1 contrast on white */
+  --eyebrow: #B45309;
 }
 
 [data-mode="commercial"] {
@@ -69,7 +71,13 @@ input::placeholder, textarea::placeholder {
 select option { background-color: #ffffff; color: #111827; }
 
 /* ─── Focus ──────────────────────────────────────────────────────────────── */
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+:focus-visible {
+  outline:        3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius:  4px;
+}
+/* Buttons and links that are inside dark sections need a visible ring */
+.focus-ring-light:focus-visible { outline-color: #FFFFFF; }
 
 /* ─── Scrollbar ──────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; }
@@ -271,6 +279,36 @@ select option { background-color: #ffffff; color: #111827; }
   -ms-overflow-style: none;
 }
 .mobile-card-scroll::-webkit-scrollbar { display: none; }
+
+/* ─── Reduced motion ─────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration:        0.01ms !important;
+    animation-iteration-count: 1      !important;
+    transition-duration:       0.01ms !important;
+    scroll-behavior:           auto   !important;
+  }
+  /* Reveal elements: skip the hidden→visible animation, show immediately */
+  [data-reveal]              { opacity: 1 !important; transform: none !important; }
+  [data-row-reveal]          { opacity: 1 !important; }
+  [data-reveal].reveal-visible { animation: none !important; }
+  /* Marquee: freeze instead of scroll */
+  .animate-marquee           { animation: none !important; }
+}
+
+/* ─── Touch targets (min 44×44 for WCAG 2.5.5) ──────────────────────────── */
+.touch-target {
+  min-height:     44px;
+  min-width:      44px;
+  display:        inline-flex;
+  align-items:    center;
+  justify-content:center;
+}
+
+/* ─── Mobile section padding override ───────────────────────────────────── */
+@media (max-width: 639px) {
+  .section-mobile-pad { padding-top: 60px !important; padding-bottom: 60px !important; }
+}
 
 /* ─── Google Places ──────────────────────────────────────────────────────── */
 .pac-container {
