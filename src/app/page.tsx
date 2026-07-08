@@ -1034,7 +1034,9 @@ function AtivaSite() {
   const [mobCommZipShake, setMobCommZipShake]     = useState(false);
   const mobCommDropRef                            = useRef<HTMLDivElement>(null);
 
-  const products   = tProducts(mode);
+  const products            = tProducts(mode);
+  const personalProducts   = tProducts("personal");
+  const commercialProducts = tProducts("commercial");
   const isPersonal = mode === "personal";
 
   // ── Geo-detection: personalise hero sub with user's state ─────────────────
@@ -1089,6 +1091,16 @@ function AtivaSite() {
       setCommercialQuoteOpen(true);
     }
   }, [isPersonal]);
+
+  const handlePersonalProductClick = useCallback((id: string) => {
+    setQuoteProduct(id);
+    setQuoteOpen(true);
+  }, []);
+
+  const handleCommercialProductClick = useCallback((id: string) => {
+    setCommercialQuoteProduct(id);
+    setCommercialQuoteOpen(true);
+  }, []);
 
   const openQuote = useCallback(() => {
     if (isPersonal) { setQuoteProduct(undefined); setQuoteOpen(true); }
@@ -1979,60 +1991,101 @@ function AtivaSite() {
         data-reveal
         id="products"
         style={{
-          backgroundColor: isPersonal ? "#FFFFFF" : "#F4F7FB",
+          backgroundColor: "#FFFFFF",
           borderTop:    "1px solid rgba(0,0,0,0.06)",
           borderBottom: "1px solid rgba(0,0,0,0.06)",
           padding:      "64px 0",
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          {/* Heading */}
-          <div style={{ textAlign: "center", marginBottom: "40px" }}>
-            <h2 style={{
-              fontSize: "clamp(1.6rem, 3vw, 2.2rem)",
-              fontWeight: 900,
-              color: "#0B1F33",
-              letterSpacing: "-0.025em",
-              lineHeight: 1.1,
-              marginBottom: "8px",
-            }}>
-              {isPersonal ? t("products.personalHeading") : t("products.commercialHeading")}
-            </h2>
-            <p style={{ fontSize: "15px", color: "#64748B", lineHeight: 1.55 }}>
-              {isPersonal ? t("products.personalSub") : t("products.commercialSub")}
-            </p>
-          </div>
 
-          {/* Desktop grid — hidden on mobile */}
-          <div
-            className="hidden md:grid"
-            style={{
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: "20px",
-            }}
-          >
-            {products.map((product) => (
-              <ProductCard
-                key={product.id}
-                id={product.id}
-                title={product.title}
-                description={product.description}
-                mode={mode}
-                onClick={handleProductClick}
+          {/* ── Personal Insurance row ── */}
+          <div style={{ marginBottom: "48px" }}>
+            <div style={{ textAlign: "center", marginBottom: "28px" }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "16px" }}>
+                <div style={{ flex: 1, height: "1px", backgroundColor: "rgba(27,58,107,0.15)", maxWidth: "100px" }} />
+                <p style={{
+                  fontSize: "11px", fontWeight: 700, letterSpacing: "2.5px",
+                  textTransform: "uppercase", color: "#1B3A6B",
+                }}>
+                  {t("products.personalRowLabel")}
+                </p>
+                <div style={{ flex: 1, height: "1px", backgroundColor: "rgba(27,58,107,0.15)", maxWidth: "100px" }} />
+              </div>
+              <p style={{ fontSize: "13px", color: "#94A3B8", marginTop: "6px" }}>
+                {t("products.personalSub")}
+              </p>
+            </div>
+            <div
+              className="hidden md:grid"
+              style={{ gridTemplateColumns: "repeat(6, 1fr)", gap: "14px" }}
+            >
+              {personalProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  id={product.id}
+                  title={product.title}
+                  description={product.description}
+                  mode="personal"
+                  onClick={handlePersonalProductClick}
+                  onCardHoverEnter={handleCardHoverEnter}
+                  onCardHoverLeave={handleCardHoverLeave}
+                />
+              ))}
+            </div>
+            <div className="md:hidden">
+              <MobileCardCarousel
+                products={personalProducts}
+                mode="personal"
+                onClick={handlePersonalProductClick}
                 onCardHoverEnter={handleCardHoverEnter}
                 onCardHoverLeave={handleCardHoverLeave}
               />
-            ))}
+            </div>
           </div>
 
-          {/* Mobile carousel — hidden on desktop */}
-          <MobileCardCarousel
-            products={products}
-            mode={mode}
-            onClick={handleProductClick}
-            onCardHoverEnter={handleCardHoverEnter}
-            onCardHoverLeave={handleCardHoverLeave}
-          />
+          {/* ── Commercial Insurance row ── */}
+          <div>
+            <div style={{ textAlign: "center", marginBottom: "28px" }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "16px" }}>
+                <div style={{ flex: 1, height: "1px", backgroundColor: "rgba(180,83,9,0.2)", maxWidth: "100px" }} />
+                <p style={{
+                  fontSize: "11px", fontWeight: 700, letterSpacing: "2.5px",
+                  textTransform: "uppercase", color: "#B45309",
+                }}>
+                  {t("products.commercialRowLabel")}
+                </p>
+                <div style={{ flex: 1, height: "1px", backgroundColor: "rgba(180,83,9,0.2)", maxWidth: "100px" }} />
+              </div>
+            </div>
+            <div
+              className="hidden md:grid"
+              style={{ gridTemplateColumns: "repeat(6, 1fr)", gap: "14px" }}
+            >
+              {commercialProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  id={product.id}
+                  title={product.title}
+                  description={product.description}
+                  mode="commercial"
+                  onClick={handleCommercialProductClick}
+                  onCardHoverEnter={handleCardHoverEnter}
+                  onCardHoverLeave={handleCardHoverLeave}
+                />
+              ))}
+            </div>
+            <div className="md:hidden">
+              <MobileCardCarousel
+                products={commercialProducts}
+                mode="commercial"
+                onClick={handleCommercialProductClick}
+                onCardHoverEnter={handleCardHoverEnter}
+                onCardHoverLeave={handleCardHoverLeave}
+              />
+            </div>
+          </div>
+
         </div>
       </section>
 

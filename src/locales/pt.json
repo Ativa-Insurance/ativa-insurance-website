@@ -72,6 +72,8 @@
     "commercialHeading": "Coberturas para Empresas",
     "personalSub": "Clique em qualquer produto para iniciar sua cotação gratuita — leva 3 minutos.",
     "commercialSub": "Selecione uma linha e encontraremos a seguradora certa para você.",
+    "personalRowLabel": "Seguro Pessoal",
+    "commercialRowLabel": "Seguro Comercial",
     "personal": [
       { "id": "auto",     "title": "Seguro Auto",              "description": "Cubra seu veículo hoje — mesmo que você acabou de comprar." },
       { "id": "home",     "title": "Seguro Residencial",       "description": "Compare preços antes da sua renovação chegar." },
