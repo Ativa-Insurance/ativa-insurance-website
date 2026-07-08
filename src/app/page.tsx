@@ -674,20 +674,20 @@ function StickyBottomBar({ onGetQuote }: { onGetQuote: () => void }) {
 
 const HERO_CTA_HOVER: Record<string, Record<string, string>> = {
   personal: {
-    auto:    "Get Covered Today →",
-    home:    "Find My Best Rate →",
-    renters: "Protect My Stuff →",
-    condo:   "Cover My Pet →",
-    flood:   "Check Flood Risk →",
-    bundle:  "Show My Savings →",
+    auto:     "Get Covered Today →",
+    home:     "Find My Best Rate →",
+    flood:    "Check Flood Risk →",
+    bundle:   "Show My Savings →",
+    umbrella: "Get Extra Protection →",
+    pet:      "Cover My Pet →",
   },
   commercial: {
     gl:                "See My Business Rate →",
-    bop:               "Protect My Project →",
-    "commercial-auto": "Cover My Fleet →",
     "workers-comp":    "Get WC Coverage →",
-    professional:      "See My Business Rate →",
-    cyber:             "See My Business Rate →",
+    "commercial-auto": "Cover My Fleet →",
+    trucking:          "Cover My Trucks →",
+    cargo:             "Protect My Cargo →",
+    umbrella:          "Get Umbrella Quote →",
   },
 };
 
@@ -698,31 +698,31 @@ const HERO_COMMERCIAL_IDS = ["commercial-auto", "gl", "workers-comp"];
 // ─── Commercial quote widget ──────────────────────────────────────────────────
 
 const WIDGET_PRODUCTS = [
-  { id: "commercial-auto",  label: "Commercial Auto",           icon: "/icons/commercial-auto.png?v=2"        },
-  { id: "gl",               label: "General Liability",         icon: "/icons/general-liability.png?v=2"      },
-  { id: "workers-comp",     label: "Workers' Compensation",     icon: "/icons/workers-comp.png?v=2"           },
-  { id: "builders-risk",    label: "Builders Risk",             icon: "/icons/builders-risk.png?v=2"          },
-  { id: "professional",     label: "Professional Liability",    icon: "/icons/professional-liability.png?v=2" },
-  { id: "cyber",            label: "Cyber Liability",           icon: "/icons/cyber-liability.png?v=2"        },
-  { id: "inland-marine",    label: "Inland Marine",             icon: "/icons/inland-marine.png?v=2"          },
-  { id: "umbrella",         label: "Umbrella / Excess Liability", icon: "/icons/umbrella.png?v=2"             },
-  { id: "surety",           label: "Surety Bond",               icon: "/icons/surety-bond.png?v=2"            },
-  { id: "do",               label: "Directors & Officers",      icon: "/icons/professional-liability.png?v=2" },
-  { id: "liquor-liability", label: "Liquor Liability",          icon: "/icons/liquor-liability.png?v=2"       },
+  { id: "gl",               label: "General Liability",           icon: "/icons/general-liability.png?v=2"      },
+  { id: "workers-comp",     label: "Workers' Compensation",       icon: "/icons/workers-comp.png?v=2"           },
+  { id: "commercial-auto",  label: "Commercial Auto",             icon: "/icons/commercial-auto.png?v=2"        },
+  { id: "trucking",         label: "Trucking / Fleet",            icon: "/icons/commercial-auto.png?v=2"        },
+  { id: "cargo",            label: "Cargo Insurance",             icon: "/icons/inland-marine.png?v=2"          },
+  { id: "umbrella",         label: "Commercial Umbrella",         icon: "/icons/umbrella.png?v=2"               },
+  { id: "professional",     label: "Professional Liability",      icon: "/icons/professional-liability.png?v=2" },
+  { id: "cyber",            label: "Cyber Liability",             icon: "/icons/cyber-liability.png?v=2"        },
+  { id: "builders-risk",    label: "Builders Risk",               icon: "/icons/builders-risk.png?v=2"          },
+  { id: "inland-marine",    label: "Inland Marine",               icon: "/icons/inland-marine.png?v=2"          },
+  { id: "surety",           label: "Surety Bond",                 icon: "/icons/surety-bond.png?v=2"            },
 ];
 
 const WIDGET_CTA_LABELS: Record<string, string> = {
-  "commercial-auto":  "Get My Commercial Auto Quote →",
   "gl":               "Get My GL Quote →",
   "workers-comp":     "Get My WC Quote →",
-  "builders-risk":    "Get My Builders Quote →",
+  "commercial-auto":  "Get My Commercial Auto Quote →",
+  "trucking":         "Get My Trucking Quote →",
+  "cargo":            "Get My Cargo Quote →",
+  "umbrella":         "Get My Umbrella Quote →",
   "professional":     "Get My PL Quote →",
   "cyber":            "Get My Cyber Quote →",
+  "builders-risk":    "Get My Builders Quote →",
   "inland-marine":    "Get My Inland Marine Quote →",
-  "umbrella":         "Get My Umbrella Quote →",
   "surety":           "Get My Bond Quote →",
-  "do":               "Get My D&O Quote →",
-  "liquor-liability": "Get My Liquor Quote →",
 };
 
 // ─── Mobile hero card maps (icon path + CTA label per hero product) ────────────

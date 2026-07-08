@@ -58,20 +58,20 @@
   ],
   "products": {
     "personal": [
-      { "id": "auto",    "title": "Seguro de Auto",          "description": "Cúbrete hoy — aunque acabas de comprar tu auto." },
-      { "id": "home",    "title": "Seguro de Propiedad",     "description": "Compara precios antes de que llegue tu renovación." },
-      { "id": "renters", "title": "Seguro para Inquilinos",  "description": "Protege todo lo que tienes — desde $12/mes." },
-      { "id": "condo",   "title": "Seguro para Mascotas",    "description": "Una consulta puede costar más que un año de cobertura." },
-      { "id": "flood",   "title": "Seguro contra Inundación","description": "Requerido en la mayoría de zonas de riesgo — cúbrete rápido." },
-      { "id": "bundle",  "title": "Combina y Ahorra",        "description": "La mayoría ahorra 18% combinando dos o más pólizas." }
+      { "id": "auto",     "title": "Seguro de Auto",           "description": "Cúbrete hoy — aunque acabas de comprar tu auto." },
+      { "id": "home",     "title": "Seguro de Propiedad",      "description": "Compara precios antes de que llegue tu renovación." },
+      { "id": "flood",    "title": "Seguro contra Inundación", "description": "Requerido en la mayoría de zonas de riesgo — cúbrete rápido." },
+      { "id": "bundle",   "title": "Combina y Ahorra",         "description": "La mayoría ahorra 18% combinando dos o más pólizas." },
+      { "id": "umbrella", "title": "Seguro Paraguas",          "description": "Protección adicional sobre tus pólizas de hogar y auto." },
+      { "id": "pet",      "title": "Seguro para Mascotas",     "description": "Una consulta puede costar más que un año de cobertura." }
     ],
     "commercial": [
-      { "id": "bop",             "title": "Seguro de Construcción",         "description": "Protege tu proyecto desde el primer hasta el último día." },
-      { "id": "gl",              "title": "Responsabilidad General",        "description": "La mayoría de clientes lo exige antes de comenzar." },
-      { "id": "commercial-auto", "title": "Auto Comercial",                 "description": "Un accidente sin cobertura puede cerrar tu negocio." },
-      { "id": "workers-comp",    "title": "Compensación Laboral",           "description": "Obligatorio en Florida — ponte al día hoy." },
-      { "id": "professional",    "title": "Responsabilidad Profesional",    "description": "Una demanda sin E&O puede costarte todo el contrato." },
-      { "id": "cyber",           "title": "Responsabilidad Cibernética",    "description": "Las brechas de datos cuestan +$200K a pequeños negocios." }
+      { "id": "gl",              "title": "Responsabilidad General",   "description": "La mayoría de clientes lo exige antes de comenzar." },
+      { "id": "workers-comp",    "title": "Compensación Laboral",      "description": "Obligatorio en Florida — ponte al día hoy." },
+      { "id": "commercial-auto", "title": "Auto Comercial",            "description": "Un accidente sin cobertura puede cerrar tu negocio." },
+      { "id": "trucking",        "title": "Transporte / Flota",        "description": "Operadores y flotas — responsabilidad, daños físicos y más." },
+      { "id": "cargo",           "title": "Seguro de Carga",           "description": "Protege tu mercancía e inventario durante el transporte." },
+      { "id": "umbrella",        "title": "Paraguas Comercial",        "description": "Cobertura de exceso cuando la póliza estándar no es suficiente." }
     ]
   },
   "form": {

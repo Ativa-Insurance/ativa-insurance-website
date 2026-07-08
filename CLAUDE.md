@@ -37,14 +37,15 @@ Primary goal:
 ## DESIGN SYSTEM
 
 ### PERSONAL MODE
-- Background: white / beige (light, clean)
-- Tone: friendly, simple, approachable
+- Background: white / light gray (#F8F9FB)
+- Palette: Ativa Navy (#1B3A6B), White, Azul Médio (#1E4D8C)
+- Tone: friendly, family-focused, bright, airy, trustworthy
 - Icons: home, car, family (soft style)
 
-### COMMERCIAL MODE
-- Background:  gold / yellow
-- Accent: dark navy / charcoal
-- Tone: premium, strong, business-focused
+### COMMERCIAL MODE (D1 — CONFIRMED BY OWNER: dark direction)
+- Background: dark navy (#0B1F33) / black
+- Accent: orange (#F5A623)
+- Tone: strong, professional, established, high contrast, authority
 
 ---
 
@@ -95,21 +96,21 @@ UI must dynamically change:
 
 ## PRODUCTS
 
-### PERSONAL PRODUCTS
+### PERSONAL PRODUCTS (D2 — CONFIRMED BY OWNER)
 - Auto
-- Home
-- Renters
-- Condo
+- Home / Property
 - Flood
-- Bundle (REPLACES Life/Health)
+- Bundle & Save
+- Umbrella
+- Pet
 
-### COMMERCIAL PRODUCTS
-- BOP
+### COMMERCIAL PRODUCTS (D3 — CONFIRMED BY OWNER)
 - General Liability
+- Workers' Comp
 - Commercial Auto
-- Workers Comp
-- Professional Liability
-- Cyber Liability
+- Trucking / Fleet
+- Cargo
+- Umbrella
 
 ---
 

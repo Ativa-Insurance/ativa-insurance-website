@@ -58,20 +58,20 @@
   ],
   "products": {
     "personal": [
-      { "id": "auto",    "title": "Auto Insurance",    "description": "Get covered today — even if you just bought your car." },
-      { "id": "home",    "title": "Property Insurance",  "description": "Compare rates before your renewal hits." },
-      { "id": "renters", "title": "Renters Insurance", "description": "Protect everything you own — from $12/mo." },
-      { "id": "condo",   "title": "Pet Insurance",     "description": "One vet bill can cost more than a year of coverage." },
-      { "id": "flood",   "title": "Flood Insurance",   "description": "Required for most Florida flood zones — get fast." },
-      { "id": "bundle",  "title": "Bundle & Save",     "description": "Most clients save 18% combining two or more policies." }
+      { "id": "auto",     "title": "Auto Insurance",      "description": "Get covered today — even if you just bought your car." },
+      { "id": "home",     "title": "Property Insurance",  "description": "Compare rates before your renewal hits." },
+      { "id": "flood",    "title": "Flood Insurance",     "description": "Required for most Florida flood zones — get covered fast." },
+      { "id": "bundle",   "title": "Bundle & Save",       "description": "Most clients save 18% combining two or more policies." },
+      { "id": "umbrella", "title": "Umbrella Insurance",  "description": "Extra protection above your home and auto policies." },
+      { "id": "pet",      "title": "Pet Insurance",       "description": "One vet bill can cost more than a year of coverage." }
     ],
     "commercial": [
-      { "id": "bop",             "title": "Builders Risk",         "description": "Protect your project from day one to final inspection." },
-      { "id": "gl",              "title": "General Liability",     "description": "Required by most clients before you can start work." },
-      { "id": "commercial-auto", "title": "Commercial Auto",       "description": "One accident without coverage can close a business." },
-      { "id": "workers-comp",    "title": "Workers' Comp",         "description": "Required in Florida — get compliant today." },
-      { "id": "professional",    "title": "Professional Liability","description": "One claim without E&O can cost your entire contract." },
-      { "id": "cyber",           "title": "Cyber Liability",       "description": "Data breaches cost small businesses $200K+ on average." }
+      { "id": "gl",              "title": "General Liability",    "description": "Required by most clients before you can start work." },
+      { "id": "workers-comp",    "title": "Workers' Comp",        "description": "Required in Florida — get compliant today." },
+      { "id": "commercial-auto", "title": "Commercial Auto",      "description": "One accident without coverage can close a business." },
+      { "id": "trucking",        "title": "Trucking / Fleet",     "description": "Owner-operators and fleets — liability, physical damage & more." },
+      { "id": "cargo",           "title": "Cargo Insurance",      "description": "Protect your freight and inventory while in transit." },
+      { "id": "umbrella",        "title": "Commercial Umbrella",  "description": "Excess liability coverage when a standard policy isn't enough." }
     ]
   },
   "form": {

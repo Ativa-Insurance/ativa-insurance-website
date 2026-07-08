@@ -42,7 +42,7 @@ type Phase = "select" | "form" | "success";
 type PID   =
   | "gl" | "commercial-auto" | "workers-comp" | "professional"
   | "cyber" | "builders-risk" | "inland-marine" | "umbrella"
-  | "surety" | "do" | "liquor-liability";
+  | "surety" | "do" | "liquor-liability" | "trucking" | "cargo";
 
 // ─── Product catalogue ────────────────────────────────────────────────────────
 
@@ -58,6 +58,8 @@ const PRODUCTS: { id: PID; label: string; icon: string; desc: string }[] = [
   { id: "surety",          label: "Surety Bond",             icon: "📜", desc: "Contract, license & permit bonds"          },
   { id: "do",               label: "Directors & Officers",   icon: "🤝", desc: "Board & executive liability protection"    },
   { id: "liquor-liability", label: "Liquor Liability",       icon: "🍷", desc: "Coverage for alcohol-related incidents"     },
+  { id: "trucking",         label: "Trucking / Fleet",        icon: "🚚", desc: "Long-haul, local & specialized truck coverage" },
+  { id: "cargo",            label: "Cargo Insurance",         icon: "📦", desc: "Freight & goods in transit protection"         },
 ];
 
 const PRODUCT_LABEL: Record<PID, string> = Object.fromEntries(
@@ -76,6 +78,8 @@ const STEP_NAME: Record<PID, string[]> = {
   "surety":          ["Bond Info",      "Contact"],
   "do":               ["Company Info",   "Contact"],
   "liquor-liability": ["Business Info",  "Contact"],
+  "trucking":         ["Fleet Info",     "Contact"],
+  "cargo":            ["Cargo Info",     "Contact"],
 };
 
 const US_STATES = [
@@ -716,6 +720,12 @@ export default function CommercialQuoteModal({ onClose, initialProduct }: Commer
         case "liquor-liability":
           r("businessName"); r("establishmentType"); r("hasLicense"); r("monthlySales"); r("hasSecurity"); r("revenue"); r("businessAddress");
           break;
+        case "trucking":
+          r("businessName"); r("numVehicles"); rm("vehicleTypes"); r("primaryUse"); r("violations");
+          break;
+        case "cargo":
+          r("businessName"); r("equipmentType"); r("equipmentValue"); r("offSite");
+          break;
       }
     }
     setErrors(e);
@@ -778,6 +788,8 @@ export default function CommercialQuoteModal({ onClose, initialProduct }: Commer
       case "surety":          return <SuretyFields data={data} update={update} errors={errors} />;
       case "do":               return <DOFields data={data} update={update} errors={errors} />;
       case "liquor-liability": return <LiquorLiabilityFields data={data} update={update} errors={errors} />;
+      case "trucking":         return <CommAutoFields data={data} update={update} errors={errors} multi={multi} onToggle={toggleMulti} />;
+      case "cargo":            return <InlandMarineFields data={data} update={update} errors={errors} />;
       default:                 return null;
     }
   };
