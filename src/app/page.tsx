@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { LanguageProvider, useLanguage } from "@/context/LanguageContext";
 import Header from "@/components/Header";
+import TrustBar from "@/components/TrustBar";
 import Toggle from "@/components/Toggle";
 import ProductCard from "@/components/ProductCard";
 import QuoteModal from "@/components/QuoteModal";
@@ -1218,6 +1219,9 @@ function AtivaSite() {
 
       {/* ── Header ──────────────────────────────────────────────────────── */}
       <Header mode={mode} onGetQuote={openQuote} />
+
+      {/* ── Trust credentials strip ──────────────────────────────────────── */}
+      <TrustBar mode={mode} />
 
       {/* ── Hero — everything above the fold ────────────────────────────── */}
       <div style={{ position: "relative" }}>
