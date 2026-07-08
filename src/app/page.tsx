@@ -16,6 +16,7 @@ import FAQ from "@/components/FAQ";
 import Blog from "@/components/Blog";
 import ChatWidget from "@/components/ChatWidget";
 import HowItWorks from "@/components/HowItWorks";
+import ContactCTA from "@/components/ContactCTA";
 import Footer from "@/components/Footer";
 import ProductBottomSheet from "@/components/ProductBottomSheet";
 import MobileFAB from "@/components/MobileFAB";
@@ -2176,6 +2177,9 @@ function AtivaSite() {
 
       {/* ── Blog ──────────────────────────────────────────────────────────── */}
       <div data-reveal><Blog mode={mode} /></div>
+
+      {/* ── Contact CTA ───────────────────────────────────────────────────── */}
+      <div data-reveal><ContactCTA mode={mode} onGetQuote={openQuote} /></div>
 
       {/* ── Footer ────────────────────────────────────────────────────────── */}
       {/* Spacer so FAB doesn't overlap footer content on mobile */}

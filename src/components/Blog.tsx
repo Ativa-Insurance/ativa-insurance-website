@@ -4,10 +4,12 @@ import Link from "next/link";
 import type { Mode } from "@/types";
 import { useLanguage } from "@/context/LanguageContext";
 
+// ─── Article data ─────────────────────────────────────────────────────────────
+
 interface HeroArticle {
-  slug: string;
-  title: string;
-  excerpt: string;
+  slug:     string;
+  title:    string;
+  excerpt:  string;
   category: string;
   readTime: string;
 }
@@ -60,36 +62,136 @@ const COMMERCIAL_ARTICLES: HeroArticle[] = [
   },
 ];
 
-interface BlogProps {
-  mode: Mode;
+// ─── Article card ─────────────────────────────────────────────────────────────
+
+function ArticleCard({ post, accentColor }: { post: HeroArticle; accentColor: string }) {
+  return (
+    <Link href={`/blog/${post.slug}`} style={{ textDecoration: "none", display: "block", height: "100%" }}>
+      <article
+        className="group"
+        style={{
+          backgroundColor: "#FFFFFF",
+          border:          "1px solid #E8EDF5",
+          borderRadius:    "16px",
+          overflow:        "hidden",
+          display:         "flex",
+          flexDirection:   "column",
+          height:          "100%",
+          boxShadow:       "0 2px 8px rgba(0,0,0,0.04)",
+          transition:      "box-shadow 250ms ease, transform 250ms ease",
+        }}
+        onMouseEnter={(e) => {
+          (e.currentTarget as HTMLElement).style.boxShadow = "0 12px 36px rgba(0,0,0,0.10)";
+          (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
+        }}
+        onMouseLeave={(e) => {
+          (e.currentTarget as HTMLElement).style.boxShadow = "0 2px 8px rgba(0,0,0,0.04)";
+          (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+        }}
+      >
+        {/* Accent top bar */}
+        <div style={{ height: "4px", backgroundColor: accentColor, flexShrink: 0 }} />
+
+        <div style={{ padding: "22px 22px 20px", display: "flex", flexDirection: "column", flex: 1 }}>
+          {/* Meta row */}
+          <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "14px" }}>
+            <span
+              style={{
+                fontSize:        "11px",
+                fontWeight:      700,
+                letterSpacing:   "1.5px",
+                textTransform:   "uppercase",
+                padding:         "4px 10px",
+                borderRadius:    "20px",
+                backgroundColor: accentColor === "#1B3A6B" ? "#EEF4FF" : "rgba(245,166,35,0.12)",
+                color:           accentColor === "#1B3A6B" ? "#1B3A6B" : "#B45309",
+              }}
+            >
+              {post.category}
+            </span>
+            <span style={{ fontSize: "12px", color: "#94A3B8" }}>{post.readTime}</span>
+          </div>
+
+          {/* Title */}
+          <h3
+            style={{
+              fontSize:      "16px",
+              fontWeight:    800,
+              color:         "#0B1F33",
+              lineHeight:    1.3,
+              margin:        "0 0 10px",
+              letterSpacing: "-0.01em",
+            }}
+          >
+            {post.title}
+          </h3>
+
+          {/* Excerpt */}
+          <p
+            style={{
+              fontSize:   "14px",
+              color:      "#64748B",
+              lineHeight: 1.7,
+              margin:     "0 0 auto",
+              flex:       1,
+            }}
+          >
+            {post.excerpt}
+          </p>
+
+          {/* CTA */}
+          <div
+            style={{
+              marginTop:     "18px",
+              paddingTop:    "14px",
+              borderTop:     "1px solid #F1F5F9",
+              fontSize:      "14px",
+              fontWeight:    700,
+              color:         accentColor === "#1B3A6B" ? "#1B3A6B" : "#B45309",
+              display:       "flex",
+              alignItems:    "center",
+              gap:           "4px",
+            }}
+          >
+            <span className="group-hover:translate-x-1" style={{ display: "inline-block", transition: "transform 200ms ease" }}>
+              Read article →
+            </span>
+          </div>
+        </div>
+      </article>
+    </Link>
+  );
 }
 
-export default function Blog({ mode }: BlogProps) {
+// ─── Main component ───────────────────────────────────────────────────────────
+
+export default function Blog({ mode }: { mode: Mode }) {
   const { t } = useLanguage();
-  const isPersonal = mode === "personal";
-
-  const posts = isPersonal ? PERSONAL_ARTICLES : COMMERCIAL_ARTICLES;
-
-  const accentColor = isPersonal ? "#1B3A6B" : "#F5C400";
+  const isPersonal  = mode === "personal";
+  const posts       = isPersonal ? PERSONAL_ARTICLES : COMMERCIAL_ARTICLES;
+  const accentColor = isPersonal ? "#1B3A6B" : "#F5A623";
 
   return (
-    <section className="relative py-16 px-6 overflow-hidden"
+    <section
       style={{
-        backgroundColor: isPersonal ? "var(--bg)" : "#F4F6F8",
-        borderTop: "1px solid rgba(0,0,0,0.06)",
+        backgroundColor: isPersonal ? "#F8F9FB" : "#F4F7FB",
+        borderTop:       "1px solid rgba(0,0,0,0.06)",
+        padding:         "80px 24px",
+        position:        "relative",
+        overflow:        "hidden",
       }}
     >
-      {/* Decorative ring — bottom-left, 4% opacity, clipped by overflow-hidden */}
+      {/* Decorative ring */}
       <svg
         aria-hidden
         viewBox="0 0 1 1"
         style={{
-          position: "absolute",
-          bottom: "-100px",
-          left: "-100px",
-          width: "380px",
-          height: "380px",
-          opacity: isPersonal ? 0.04 : 0.03,
+          position:      "absolute",
+          bottom:        "-100px",
+          left:          "-100px",
+          width:         "380px",
+          height:        "380px",
+          opacity:       0.04,
           pointerEvents: "none",
         }}
       >
@@ -97,71 +199,73 @@ export default function Blog({ mode }: BlogProps) {
         <circle cx="0.5" cy="0.5" r="0.38" fill="none" stroke={isPersonal ? "#1E3A5F" : "#F5A623"} strokeWidth="0.02" />
       </svg>
 
-      <div className="relative max-w-5xl mx-auto">
-        <div className="text-center mb-10">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-2" style={{ color: "var(--text)" }}>
+      <div style={{ maxWidth: "960px", margin: "0 auto", position: "relative" }}>
+
+        {/* ── Heading ── */}
+        <div style={{ textAlign: "center", marginBottom: "44px" }}>
+          <p
+            style={{
+              fontSize:      "11px",
+              letterSpacing: "2.5px",
+              fontWeight:    700,
+              textTransform: "uppercase",
+              color:         "#F5A623",
+              marginBottom:  "10px",
+            }}
+          >
+            Insurance Insights
+          </p>
+          <h2
+            style={{
+              fontSize:      "clamp(1.8rem, 3vw, 2.4rem)",
+              fontWeight:    900,
+              color:         "#0B1F33",
+              margin:        "0 0 10px",
+              lineHeight:    1.1,
+              letterSpacing: "-0.025em",
+            }}
+          >
             {t("blog.heading")}
           </h2>
-          <p style={{ color: "var(--text-muted)" }}>{t("blog.sub")}</p>
+          <p style={{ fontSize: "16px", color: "#64748B", margin: 0, lineHeight: 1.5 }}>
+            {t("blog.sub")}
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {/* ── Cards ── */}
+        <div
+          style={{
+            display:             "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+            gap:                 "20px",
+          }}
+        >
           {posts.map((post, i) => (
-            <Link key={i} href={`/blog/${post.slug}`} className="block" style={{ textDecoration: "none" }}>
-            <article
-              className="flex flex-col rounded-2xl overflow-hidden cursor-pointer group h-full"
-              style={{
-                backgroundColor: "var(--surface)",
-                border: "1px solid var(--border)",
-                boxShadow: "var(--card-shadow)",
-                transition: "box-shadow 0.2s, transform 0.2s",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.boxShadow = "var(--card-shadow-hover)";
-                (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.boxShadow = "var(--card-shadow)";
-                (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-              }}
-            >
-              <div className="h-1.5 w-full" style={{ backgroundColor: accentColor }} />
-
-              <div className="p-5 flex flex-col flex-1">
-                <div className="flex items-center gap-2 mb-3">
-                  <span
-                    className="text-xs font-bold uppercase tracking-wide px-2.5 py-1 rounded-full"
-                    style={{
-                      backgroundColor: "var(--accent-light)",
-                      color: "var(--accent)",
-                    }}
-                  >
-                    {post.category}
-                  </span>
-                  <span className="text-xs" style={{ color: "var(--text-muted)" }}>
-                    {post.readTime}
-                  </span>
-                </div>
-
-                <h3 className="font-bold leading-snug mb-2" style={{ color: "var(--text)", fontSize: "17px" }}>
-                  {post.title}
-                </h3>
-                <p className="flex-1" style={{ color: "var(--text-muted)", fontSize: "15px", lineHeight: 1.7 }}>
-                  {post.excerpt}
-                </p>
-
-                <div
-                  className="mt-4 font-bold transition-transform duration-200 group-hover:translate-x-1"
-                  style={{ color: "#B45309", fontSize: "15px" }}
-                >
-                  Read: {post.title} →
-                </div>
-              </div>
-            </article>
-            </Link>
+            <ArticleCard key={i} post={post} accentColor={accentColor} />
           ))}
         </div>
-      </div>{/* end relative content */}
+
+        {/* ── View all link ── */}
+        <div style={{ textAlign: "center", marginTop: "36px" }}>
+          <Link
+            href="/blog"
+            style={{
+              display:       "inline-flex",
+              alignItems:    "center",
+              gap:           "6px",
+              fontSize:      "14px",
+              fontWeight:    700,
+              color:         isPersonal ? "#1B3A6B" : "#B45309",
+              textDecoration: "none",
+              borderBottom:  `2px solid ${isPersonal ? "rgba(27,58,107,0.25)" : "rgba(180,83,9,0.25)"}`,
+              paddingBottom: "2px",
+            }}
+          >
+            View all articles →
+          </Link>
+        </div>
+
+      </div>
     </section>
   );
 }

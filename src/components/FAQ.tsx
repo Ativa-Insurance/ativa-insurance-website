@@ -122,12 +122,12 @@ export default function FAQ({ mode }: FAQProps) {
 
   return (
     <section
-      className="relative py-16 px-6 overflow-hidden"
       style={{
-        background: isPersonal
-          ? "radial-gradient(ellipse at 30% 50%, #EEF2F7 0%, #F8F9FB 55%, #FFFFFF 100%)"
-          : "#FFFFFF",
-        borderTop: "1px solid rgba(0,0,0,0.06)",
+        backgroundColor: "#FFFFFF",
+        borderTop:       "1px solid rgba(0,0,0,0.06)",
+        padding:         "80px 24px",
+        position:        "relative",
+        overflow:        "hidden",
       }}
     >
       {/* Decorative blobs — both modes */}
@@ -177,11 +177,34 @@ export default function FAQ({ mode }: FAQProps) {
       </>
 
       <div className="relative max-w-3xl mx-auto">
-        <div className="text-center mb-10">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-2" style={{ color: "var(--text)" }}>
+        <div style={{ textAlign: "center", marginBottom: "44px" }}>
+          <p
+            style={{
+              fontSize:      "11px",
+              letterSpacing: "2.5px",
+              fontWeight:    700,
+              textTransform: "uppercase",
+              color:         "#F5A623",
+              marginBottom:  "10px",
+            }}
+          >
+            Common Questions
+          </p>
+          <h2
+            style={{
+              fontSize:      "clamp(1.8rem, 3vw, 2.4rem)",
+              fontWeight:    900,
+              color:         "#0B1F33",
+              margin:        "0 0 10px",
+              lineHeight:    1.1,
+              letterSpacing: "-0.025em",
+            }}
+          >
             {t("faq.heading")}
           </h2>
-          <p style={{ color: "var(--text-muted)" }}>{t("faq.sub")}</p>
+          <p style={{ fontSize: "16px", color: "#64748B", margin: 0, lineHeight: 1.5 }}>
+            {t("faq.sub")}
+          </p>
         </div>
 
         <div className="space-y-2.5">
@@ -197,33 +220,64 @@ export default function FAQ({ mode }: FAQProps) {
         </div>
 
         {/* Section CTA */}
-        <div className="mt-10 text-center">
-          <p className="text-sm mb-4" style={{ color: "var(--text-muted)" }}>
-            Still have questions? Talk to a licensed agent.
+        <div
+          style={{
+            marginTop:       "44px",
+            backgroundColor: "#F8F9FB",
+            border:          "1px solid #E8EDF5",
+            borderRadius:    "16px",
+            padding:         "28px 32px",
+            textAlign:       "center",
+          }}
+        >
+          <p style={{ fontSize: "17px", fontWeight: 700, color: "#0B1F33", margin: "0 0 6px" }}>
+            Still have questions?
           </p>
-          <a
-            href="sms:5619468261"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm border-2"
-            style={{
-              color: "#0F2A44",
-              borderColor: "#0F2A44",
-              backgroundColor: "transparent",
-              transition: "background-color 200ms ease, color 200ms ease",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#0F2A44";
-              (e.currentTarget as HTMLAnchorElement).style.color = "#FFFFFF";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "transparent";
-              (e.currentTarget as HTMLAnchorElement).style.color = "#0F2A44";
-            }}
-          >
-            <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 shrink-0">
-              <path fillRule="evenodd" d="M4.848 2.771A49.144 49.144 0 0112 2.25c2.43 0 4.817.178 7.152.52 1.978.292 3.348 2.024 3.348 3.97v6.02c0 1.946-1.37 3.678-3.348 3.97a48.901 48.901 0 01-3.476.383.39.39 0 00-.297.17l-2.755 4.133a.75.75 0 01-1.248 0l-2.755-4.133a.39.39 0 00-.297-.17 48.9 48.9 0 01-3.476-.384c-1.978-.29-3.348-2.024-3.348-3.97V6.741c0-1.946 1.37-3.68 3.348-3.97z" clipRule="evenodd"/>
-            </svg>
-            Send Us a Text →
-          </a>
+          <p style={{ fontSize: "15px", color: "#64748B", margin: "0 0 20px" }}>
+            Talk to a licensed agent — free, no obligation.
+          </p>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "16px", flexWrap: "wrap" }}>
+            <a
+              href="sms:5619468261"
+              style={{
+                display:         "inline-flex",
+                alignItems:      "center",
+                gap:             "8px",
+                padding:         "12px 24px",
+                borderRadius:    "10px",
+                backgroundColor: "#1B3A6B",
+                color:           "#FFFFFF",
+                fontSize:        "14px",
+                fontWeight:      700,
+                textDecoration:  "none",
+                transition:      "opacity 200ms ease",
+              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.opacity = "0.85"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.opacity = "1"; }}
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" style={{ flexShrink: 0 }}>
+                <path fillRule="evenodd" d="M4.848 2.771A49.144 49.144 0 0112 2.25c2.43 0 4.817.178 7.152.52 1.978.292 3.348 2.024 3.348 3.97v6.02c0 1.946-1.37 3.678-3.348 3.97a48.901 48.901 0 01-3.476.383.39.39 0 00-.297.17l-2.755 4.133a.75.75 0 01-1.248 0l-2.755-4.133a.39.39 0 00-.297-.17 48.9 48.9 0 01-3.476-.384c-1.978-.29-3.348-2.024-3.348-3.97V6.741c0-1.946 1.37-3.68 3.348-3.97z" clipRule="evenodd"/>
+              </svg>
+              Text Us Now
+            </a>
+            <a
+              href="tel:5619468261"
+              style={{
+                display:        "inline-flex",
+                alignItems:     "center",
+                gap:            "8px",
+                fontSize:       "14px",
+                fontWeight:     600,
+                color:          "#1B3A6B",
+                textDecoration: "none",
+              }}
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" style={{ flexShrink: 0 }}>
+                <path fillRule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clipRule="evenodd"/>
+              </svg>
+              561-946-8261
+            </a>
+          </div>
         </div>
       </div>
     </section>
