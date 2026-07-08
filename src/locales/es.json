@@ -378,6 +378,16 @@
     "textUs": "Enviar Mensaje"
   },
   "langHint": "🌐 Disponible en Inglés, Portugués y Español",
+  "contactCta": {
+    "eyebrow":          "Empiece Hoy",
+    "personalHeadline": "Obtenga la Mejor Tarifa — en Minutos",
+    "commercialHeadline":"Proteja su Negocio — Rápido",
+    "personalSub":      "Sin llamadas. Sin spam. Una cotización rápida y gratuita con un agente licenciado.",
+    "commercialSub":    "Certificados el mismo día. Sin presión. Especialistas comerciales licenciados.",
+    "personalCta":      "Quiero Mi Cotización Gratis →",
+    "commercialCta":    "Cobertura para Mi Empresa →",
+    "microcopy":        "Gratis · Sin compromiso · Licenciada en CT, FL, GA, NC, SC, NJ, TN, MD, MA, OH, PA"
+  },
   "footer": {
     "tagline":    "Agencia de Seguros Independiente",
     "agent":      "Licenciada en CT, FL, GA, MA, MD, NC, NJ, OH, PA, SC, TN",

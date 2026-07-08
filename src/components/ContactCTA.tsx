@@ -1,6 +1,7 @@
 "use client";
 
 import type { Mode } from "@/types";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface Props {
   mode: Mode;
@@ -8,9 +9,10 @@ interface Props {
 }
 
 export default function ContactCTA({ mode, onGetQuote }: Props) {
+  const { t } = useLanguage();
   const isPersonal = mode === "personal";
 
-  const bg      = isPersonal ? "#1B3A6B" : "#0B1F33";
+  const bg       = isPersonal ? "#1B3A6B" : "#0B1F33";
   const gridLine = isPersonal
     ? "rgba(255,255,255,0.04)"
     : "rgba(245,166,35,0.05)";
@@ -31,17 +33,17 @@ export default function ContactCTA({ mode, onGetQuote }: Props) {
       <div
         aria-hidden
         style={{
-          position:        "absolute",
-          top:             "50%",
-          left:            "50%",
-          transform:       "translate(-50%, -50%)",
-          width:           "600px",
-          height:          "600px",
-          borderRadius:    "50%",
-          background:      isPersonal
+          position:      "absolute",
+          top:           "50%",
+          left:          "50%",
+          transform:     "translate(-50%, -50%)",
+          width:         "600px",
+          height:        "600px",
+          borderRadius:  "50%",
+          background:    isPersonal
             ? "radial-gradient(circle, rgba(30,77,140,0.6) 0%, transparent 70%)"
             : "radial-gradient(circle, rgba(245,166,35,0.08) 0%, transparent 70%)",
-          pointerEvents:   "none",
+          pointerEvents: "none",
         }}
       />
 
@@ -57,7 +59,7 @@ export default function ContactCTA({ mode, onGetQuote }: Props) {
             marginBottom:  "14px",
           }}
         >
-          Get Started Today
+          {t("contactCta.eyebrow")}
         </p>
 
         {/* Headline */}
@@ -71,23 +73,19 @@ export default function ContactCTA({ mode, onGetQuote }: Props) {
             letterSpacing: "-0.03em",
           }}
         >
-          {isPersonal
-            ? "Get Your Best Rate — In Minutes"
-            : "Protect Your Business — Fast"}
+          {isPersonal ? t("contactCta.personalHeadline") : t("contactCta.commercialHeadline")}
         </h2>
 
         {/* Sub */}
         <p
           style={{
-            fontSize:     "17px",
-            color:        "rgba(255,255,255,0.70)",
-            margin:       "0 0 36px",
-            lineHeight:   1.6,
+            fontSize:   "17px",
+            color:      "rgba(255,255,255,0.70)",
+            margin:     "0 0 36px",
+            lineHeight: 1.6,
           }}
         >
-          {isPersonal
-            ? "No calls required. No spam. Just a fast, free quote from a licensed agent."
-            : "Same-day certificates. No pressure. Licensed commercial specialists."}
+          {isPersonal ? t("contactCta.personalSub") : t("contactCta.commercialSub")}
         </p>
 
         {/* CTAs */}
@@ -119,7 +117,7 @@ export default function ContactCTA({ mode, onGetQuote }: Props) {
               (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
             }}
           >
-            {isPersonal ? "Get My Free Quote →" : "Get Business Coverage →"}
+            {isPersonal ? t("contactCta.personalCta") : t("contactCta.commercialCta")}
           </button>
 
           <a
@@ -144,16 +142,16 @@ export default function ContactCTA({ mode, onGetQuote }: Props) {
           </a>
         </div>
 
-        {/* Trust micro-copy */}
+        {/* Trust microcopy */}
         <p
           style={{
-            marginTop:  "24px",
-            fontSize:   "13px",
-            color:      "rgba(255,255,255,0.40)",
+            marginTop:     "24px",
+            fontSize:      "13px",
+            color:         "rgba(255,255,255,0.40)",
             letterSpacing: "0.02em",
           }}
         >
-          Free · No obligation · Licensed in CT, FL, GA, NC, SC, NJ, TN, MD, MA, OH, PA
+          {t("contactCta.microcopy")}
         </p>
       </div>
     </section>

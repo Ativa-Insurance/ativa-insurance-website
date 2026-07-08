@@ -378,6 +378,16 @@
     "textUs": "Text Us"
   },
   "langHint": "🌐 Available in English, Portuguese & Spanish",
+  "contactCta": {
+    "eyebrow":         "Get Started Today",
+    "personalHeadline":"Get Your Best Rate — In Minutes",
+    "commercialHeadline":"Protect Your Business — Fast",
+    "personalSub":     "No calls required. No spam. Just a fast, free quote from a licensed agent.",
+    "commercialSub":   "Same-day certificates. No pressure. Licensed commercial specialists.",
+    "personalCta":     "Get My Free Quote →",
+    "commercialCta":   "Get Business Coverage →",
+    "microcopy":       "Free · No obligation · Licensed in CT, FL, GA, NC, SC, NJ, TN, MD, MA, OH, PA"
+  },
   "footer": {
     "tagline":    "Independent Insurance Agency",
     "agent":      "Licensed in CT, FL, GA, MA, MD, NC, NJ, OH, PA, SC, TN",
