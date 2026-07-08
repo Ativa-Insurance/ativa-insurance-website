@@ -32,6 +32,7 @@ interface VehicleData {
   vin: string; primaryUse: string; dailyMiles: string;
   decodedYear: string; decodedMake: string; decodedModel: string;
   decodedTrim: string; decodedBodyClass: string; driveType: string; engineHP: string;
+  vehicleFinanced: string; lenderName: string;
   vinStatus: VinStatus;
 }
 
@@ -39,6 +40,8 @@ interface DriverData {
   fullName: string; dob: string; licenseNumber: string; licenseState: string;
   maritalStatus: string; education: string; occupation: string;
   accidents: string; accidentDetails: string;
+  spouseName: string; spouseDob: string; spouseLicensed: string;
+  spouseDrives: string; spouseLicenseNumber: string; spouseLicenseState: string;
 }
 
 function emptyVehicle(): VehicleData {
@@ -46,6 +49,7 @@ function emptyVehicle(): VehicleData {
     vin: "", primaryUse: "", dailyMiles: "",
     decodedYear: "", decodedMake: "", decodedModel: "",
     decodedTrim: "", decodedBodyClass: "", driveType: "", engineHP: "",
+    vehicleFinanced: "", lenderName: "",
     vinStatus: "idle",
   };
 }
@@ -55,6 +59,8 @@ function emptyDriver(): DriverData {
     fullName: "", dob: "", licenseNumber: "", licenseState: "",
     maritalStatus: "", education: "", occupation: "",
     accidents: "", accidentDetails: "",
+    spouseName: "", spouseDob: "", spouseLicensed: "",
+    spouseDrives: "", spouseLicenseNumber: "", spouseLicenseState: "",
   };
 }
 
@@ -92,7 +98,7 @@ const STEP_COUNT: Record<PID, number> = {
 };
 
 const STEP_NAME: Record<PID, string[]> = {
-  auto:       ["Vehicle", "Details", "Vehicles", "Drivers", "Contact"],
+  auto:       ["Vehicle", "Vehicles", "Drivers", "Discounts", "Contact"],
   property:   ["Property", "Coverage", "Contact"],
   renters:    ["Property", "Contact"],
   pet:        ["Pet Info", "Contact"],
@@ -169,9 +175,10 @@ function SelectField({ id, value, onChange, options, placeholder, borderColor }:
 
 // ─── Contact step (shared last step for all products) ─────────────────────────
 
-function ContactFields({ data, update, errors, borderOf }: {
+function ContactFields({ data, update, errors, borderOf, showLicenseNotice }: {
   data: Data; update: (k: string, v: string) => void;
   errors: Record<string, string>; borderOf: (k: string) => string;
+  showLicenseNotice?: boolean;
 }) {
   return (
     <>
@@ -189,6 +196,20 @@ function ContactFields({ data, update, errors, borderOf }: {
           placeholder="you@example.com" className={INPUT} style={{ borderColor: borderOf("email") }}
           autoComplete="email" />
       </Fw>
+      {showLicenseNotice && (
+        <div className="flex items-start gap-3 px-4 py-3 rounded-xl"
+          style={{ backgroundColor: "#FFFBEB", border: "1px solid #FDE68A" }}>
+          <svg viewBox="0 0 20 20" fill="#D97706" className="w-5 h-5 shrink-0 mt-0.5">
+            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"/>
+          </svg>
+          <div>
+            <p className="text-sm font-semibold" style={{ color: "#92400E" }}>Driver&apos;s License Required</p>
+            <p className="text-xs mt-0.5" style={{ color: "#B45309" }}>
+              To finalize your quote, our agent may request a copy of each driver&apos;s license. You can send it by text, email, or WhatsApp after we contact you.
+            </p>
+          </div>
+        </div>
+      )}
     </>
   );
 }
@@ -362,24 +383,49 @@ function AutoStep0({ data, update, errors, borderOf }: { data: Data; update: (k:
           borderColor={borderOf("dailyMiles")}
         />
       </Fw>
-    </>
-  );
-}
 
-function AutoStep1({ data, update, errors }: { data: Data; update: (k:string,v:string)=>void; errors: Record<string,string> }) {
-  return (
-    <>
-      <Fw label="Drivers in Household" required error={errors.driversCount}>
-        <input type="number" value={data.driversCount ?? ""} onChange={e => update("driversCount", e.target.value)}
-          placeholder="2" className={INPUT} style={{ borderColor: errors.driversCount ? "#EF4444" : "#E2E8F0" }} min="1" max="10" />
+      {/* Current home address */}
+      <Fw label="Current Home Address" required error={errors.currentHomeAddress}
+        hint="Where the primary driver lives (used for rating purposes)">
+        <AddressAutocomplete id="q-homeAddr" value={data.currentHomeAddress ?? ""}
+          onChange={v => update("currentHomeAddress", v)}
+          placeholder="Start typing your home address…" className={INPUT} />
       </Fw>
-      <Fw label="Any accidents or violations in the last 3 years?" required error={errors.accidents}>
+
+      {/* Household residents over 15 */}
+      <Fw label="Are there other residents in the household over 15 years old?" required error={errors.householdResidents}>
         <div className="flex gap-3 mt-0.5">
           {["Yes", "No"].map(o => (
-            <Radio key={o} label={o} checked={data.accidents === o} onSelect={() => update("accidents", o)} />
+            <Radio key={o} label={o} checked={data.householdResidents === o}
+              onSelect={() => { update("householdResidents", o); if (o === "No") update("additionalResidentsCount", ""); }} />
           ))}
         </div>
       </Fw>
+      {data.householdResidents === "Yes" && (
+        <Fw label="How many additional residents?" required error={errors.additionalResidentsCount}>
+          <SelectField id="q-residentsCount" value={data.additionalResidentsCount ?? ""}
+            onChange={v => update("additionalResidentsCount", v)}
+            options={["1","2","3","4","5+"]} placeholder="— Select count —"
+            borderColor={errors.additionalResidentsCount ? "#EF4444" : "#E2E8F0"} />
+        </Fw>
+      )}
+
+      {/* Vehicle financing */}
+      <Fw label="Is this vehicle financed or leased?" required error={errors.vehicleFinanced}>
+        <div className="flex flex-col gap-2 mt-0.5">
+          {["Yes — Financed", "Yes — Leased", "No"].map(o => (
+            <Radio key={o} label={o} checked={data.vehicleFinanced === o}
+              onSelect={() => { update("vehicleFinanced", o); if (o === "No") update("lenderName", ""); }} />
+          ))}
+        </div>
+      </Fw>
+      {(data.vehicleFinanced === "Yes — Financed" || data.vehicleFinanced === "Yes — Leased") && (
+        <Fw label="Lender / Lienholder Name" required error={errors.lenderName}>
+          <input type="text" value={data.lenderName ?? ""} onChange={e => update("lenderName", e.target.value)}
+            placeholder="e.g. TD Auto Finance, Ally Financial" className={INPUT}
+            style={{ borderColor: errors.lenderName ? "#EF4444" : "#E2E8F0" }} />
+        </Fw>
+      )}
     </>
   );
 }
@@ -513,6 +559,21 @@ function VehicleCard({ index, vehicle, onUpdate, errors }: {
             placeholder="— Select daily mileage —"
             borderColor={errors[`${prefix}dailyMiles`] ? "#EF4444" : "#E2E8F0"} />
         </Fw>
+        <Fw label="Financed or leased?" required error={errors[`${prefix}vehicleFinanced`]}>
+          <div className="flex flex-col gap-2 mt-0.5">
+            {["Yes — Financed","Yes — Leased","No"].map(o => (
+              <Radio key={o} label={o} checked={vehicle.vehicleFinanced === o}
+                onSelect={() => { onUpdate("vehicleFinanced", o); if (o === "No") onUpdate("lenderName", ""); }} />
+            ))}
+          </div>
+        </Fw>
+        {(vehicle.vehicleFinanced === "Yes — Financed" || vehicle.vehicleFinanced === "Yes — Leased") && (
+          <Fw label="Lender / Lienholder Name" required error={errors[`${prefix}lenderName`]}>
+            <input type="text" value={vehicle.lenderName} onChange={e => onUpdate("lenderName", e.target.value)}
+              placeholder="e.g. TD Auto Finance, Ally Financial" className={INPUT}
+              style={{ borderColor: errors[`${prefix}lenderName`] ? "#EF4444" : "#E2E8F0" }} />
+          </Fw>
+        )}
       </div>
     </div>
   );
@@ -588,6 +649,52 @@ function DriverCard({ index, driver, onUpdate, errors }: {
               style={{ borderColor: "#E2E8F0" }} />
           </Fw>
         )}
+        {driver.maritalStatus === "Married" && (
+          <div style={{ padding: "12px", borderRadius: "10px", border: "1px solid #DBEAFE", background: "#F0F4FF", marginTop: "4px" }}>
+            <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: ACCENT }}>Spouse Information</p>
+            <div className="space-y-3">
+              <Fw label="Spouse Full Name" required error={errors[`${prefix}spouseName`]}>
+                <input type="text" value={driver.spouseName} onChange={e => onUpdate("spouseName", e.target.value)}
+                  placeholder="Jane Doe" className={INPUT} style={{ borderColor: errors[`${prefix}spouseName`] ? "#EF4444" : "#E2E8F0" }} />
+              </Fw>
+              <Fw label="Spouse Date of Birth" required error={errors[`${prefix}spouseDob`]}>
+                <input type="date" value={driver.spouseDob} onChange={e => onUpdate("spouseDob", e.target.value)}
+                  className={INPUT} style={{ borderColor: errors[`${prefix}spouseDob`] ? "#EF4444" : "#E2E8F0" }} />
+              </Fw>
+              <Fw label="Does spouse have a valid driver's license?" required error={errors[`${prefix}spouseLicensed`]}>
+                <div className="flex gap-3 mt-0.5">
+                  {["Yes","No"].map(o => (
+                    <Radio key={o} label={o} checked={driver.spouseLicensed === o}
+                      onSelect={() => { onUpdate("spouseLicensed", o); if (o === "No") { onUpdate("spouseDrives", ""); onUpdate("spouseLicenseNumber", ""); onUpdate("spouseLicenseState", ""); } }} />
+                  ))}
+                </div>
+              </Fw>
+              {driver.spouseLicensed === "Yes" && (
+                <>
+                  <Fw label="Will spouse be driving this vehicle?" required error={errors[`${prefix}spouseDrives`]}>
+                    <div className="flex gap-3 mt-0.5">
+                      {["Yes","No"].map(o => (
+                        <Radio key={o} label={o} checked={driver.spouseDrives === o} onSelect={() => onUpdate("spouseDrives", o)} />
+                      ))}
+                    </div>
+                  </Fw>
+                  <Fw label="Spouse License Number" required error={errors[`${prefix}spouseLicenseNumber`]}>
+                    <input type="text" value={driver.spouseLicenseNumber}
+                      onChange={e => onUpdate("spouseLicenseNumber", e.target.value.toUpperCase())}
+                      placeholder="A12345678" className={`${INPUT} font-mono tracking-wider`}
+                      style={{ borderColor: errors[`${prefix}spouseLicenseNumber`] ? "#EF4444" : "#E2E8F0" }} />
+                  </Fw>
+                  <Fw label="Spouse License State" required error={errors[`${prefix}spouseLicenseState`]}>
+                    <SelectField id={`d-spouse-state-${index}`} value={driver.spouseLicenseState}
+                      onChange={v => onUpdate("spouseLicenseState", v)}
+                      options={US_STATES} placeholder="— Select state —"
+                      borderColor={errors[`${prefix}spouseLicenseState`] ? "#EF4444" : "#E2E8F0"} />
+                  </Fw>
+                </>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -662,6 +769,55 @@ function AutoStep3({ data, update, errors, drivers, setDrivers }: {
           }
           errors={errors} />
       ))}
+    </>
+  );
+}
+
+// ─── AutoStepDiscounts — discount eligibility ─────────────────────────────────
+
+function AutoStepDiscounts({ data, update }: { data: Data; update: (k: string, v: string) => void }) {
+  return (
+    <>
+      <p className="text-sm" style={{ color: "var(--text-muted)", marginBottom: "4px" }}>
+        Answer a few quick questions — these help us find discounts that may lower your rate.
+      </p>
+      <Fw label="Do you own your home?" required>
+        <div className="flex gap-3 mt-0.5">
+          {["Yes — I own my home", "No — I rent"].map(o => (
+            <Radio key={o} label={o} checked={data.homeOwnership === o} onSelect={() => update("homeOwnership", o)} />
+          ))}
+        </div>
+      </Fw>
+      <Fw label="Do you currently have auto insurance?" required>
+        <div className="flex gap-3 mt-0.5">
+          {["Yes", "No"].map(o => (
+            <Radio key={o} label={o} checked={data.currentAutoInsurance === o}
+              onSelect={() => { update("currentAutoInsurance", o); if (o === "No") update("currentInsuranceDuration", ""); }} />
+          ))}
+        </div>
+      </Fw>
+      {data.currentAutoInsurance === "Yes" && (
+        <Fw label="How long have you been continuously insured?" required>
+          <SelectField id="q-insDuration" value={data.currentInsuranceDuration ?? ""}
+            onChange={v => update("currentInsuranceDuration", v)}
+            options={["Less than 6 months","6–12 months","1–3 years","3–5 years","5+ years"]}
+            placeholder="— Select duration —"
+            borderColor="#E2E8F0" />
+        </Fw>
+      )}
+      <Fw label="Occupation" hint="Some occupations qualify for additional discounts">
+        <input type="text" value={data.discountOccupation ?? ""}
+          onChange={e => update("discountOccupation", e.target.value)}
+          placeholder="e.g. Teacher, Nurse, Engineer" className={INPUT}
+          style={{ borderColor: "#E2E8F0" }} />
+      </Fw>
+      <Fw label="Highest Education Level">
+        <SelectField id="q-discountEdu" value={data.discountEducation ?? ""}
+          onChange={v => update("discountEducation", v)}
+          options={["High School","Some College","Bachelor's Degree","Graduate Degree","Trade School"]}
+          placeholder="— Select —"
+          borderColor="#E2E8F0" />
+      </Fw>
     </>
   );
 }
@@ -1143,18 +1299,24 @@ export default function QuoteModal({ onClose, initialProduct, initialData }: Quo
           if (!data.vin || data.vin.length !== 17) e.vin = "Please enter a valid 17-character VIN";
           r("primaryUse");
           r("dailyMiles");
+          r("currentHomeAddress");
+          r("householdResidents");
+          if (data.householdResidents === "Yes") r("additionalResidentsCount");
+          r("vehicleFinanced");
+          if (data.vehicleFinanced === "Yes — Financed" || data.vehicleFinanced === "Yes — Leased") r("lenderName");
         }
-        if (formStep === 1) { r("driversCount"); r("accidents"); }
-        if (formStep === 2) {
+        if (formStep === 1) {
           r("vehicleCount");
           vehicles.forEach((v, i) => {
             const prefix = `v${i + 2}_`;
             if (!v.vin || v.vin.length !== 17) e[`${prefix}vin`] = "Please enter a valid 17-character VIN";
             if (!v.primaryUse) e[`${prefix}primaryUse`] = reqMsg;
             if (!v.dailyMiles) e[`${prefix}dailyMiles`] = reqMsg;
+            if (!v.vehicleFinanced) e[`${prefix}vehicleFinanced`] = reqMsg;
+            if ((v.vehicleFinanced === "Yes — Financed" || v.vehicleFinanced === "Yes — Leased") && !v.lenderName) e[`${prefix}lenderName`] = reqMsg;
           });
         }
-        if (formStep === 3) {
+        if (formStep === 2) {
           r("driverCount");
           drivers.forEach((d, i) => {
             const prefix = `d${i + 1}_`;
@@ -1167,8 +1329,19 @@ export default function QuoteModal({ onClose, initialProduct, initialData }: Quo
             if (!d.education?.trim()) e[`${prefix}education`] = reqMsg;
             if (!d.occupation?.trim()) e[`${prefix}occupation`] = reqMsg;
             if (!d.accidents?.trim()) e[`${prefix}accidents`] = reqMsg;
+            if (d.maritalStatus === "Married") {
+              if (!d.spouseName?.trim()) e[`${prefix}spouseName`] = reqMsg;
+              if (!d.spouseDob?.trim()) e[`${prefix}spouseDob`] = reqMsg;
+              if (!d.spouseLicensed?.trim()) e[`${prefix}spouseLicensed`] = reqMsg;
+              if (d.spouseLicensed === "Yes") {
+                if (!d.spouseDrives?.trim()) e[`${prefix}spouseDrives`] = reqMsg;
+                if (!d.spouseLicenseNumber?.trim()) e[`${prefix}spouseLicenseNumber`] = reqMsg;
+                if (!d.spouseLicenseState?.trim()) e[`${prefix}spouseLicenseState`] = reqMsg;
+              }
+            }
           });
         }
+        // Step 3 = Discounts — all optional, no required fields
       }
       if (product === "property") {
         if (formStep === 0) { r("propertyAddress"); r("propertyType"); r("occupancy"); }
@@ -1210,8 +1383,8 @@ export default function QuoteModal({ onClose, initialProduct, initialData }: Quo
     if (formStep === totalSteps - 1) {
       await submit();
     } else {
-      // Pre-fill fullName from Driver 1 when advancing to the contact step
-      if (product === "auto" && formStep === totalSteps - 2 && !data.fullName && drivers[0]?.fullName) {
+      // Pre-fill fullName from Driver 1 when advancing past the drivers step
+      if (product === "auto" && formStep === 2 && !data.fullName && drivers[0]?.fullName) {
         setData(p => ({ ...p, fullName: drivers[0].fullName }));
       }
       setErrors({});
@@ -1231,16 +1404,29 @@ export default function QuoteModal({ onClose, initialProduct, initialData }: Quo
     const lines = [`Product: ${product ? PRODUCT_LABEL[product] : "Unknown"}`];
     Object.entries(data).forEach(([k, v]) => { if (v) lines.push(`${k}: ${v}`); });
     if (bundleItems.length) lines.push(`Bundle items: ${bundleItems.map(i => PRODUCT_LABEL[i as PID]).join(", ")}`);
-    if (product === "auto" && vehicles.length > 0) {
-      vehicles.forEach((v, i) => {
-        lines.push(`Vehicle ${i + 2}: VIN=${v.vin}, ${v.decodedYear} ${v.decodedMake} ${v.decodedModel}${v.decodedTrim ? ` ${v.decodedTrim}` : ""}, Use=${v.primaryUse}, Miles=${v.dailyMiles}`);
-      });
-    }
-    if (product === "auto" && drivers.length > 0) {
-      drivers.forEach((d, i) => {
-        lines.push(`Driver ${i + 1}: ${d.fullName}, DOB=${d.dob}, License=${d.licenseNumber} (${d.licenseState}), ${d.maritalStatus}, Edu=${d.education}, Occ=${d.occupation}, Accidents=${d.accidents}`);
-        if (d.accidents === "Yes" && d.accidentDetails) lines.push(`  Accident details: ${d.accidentDetails}`);
-      });
+    if (product === "auto") {
+      if (data.currentHomeAddress) lines.push(`Home Address: ${data.currentHomeAddress}`);
+      if (data.householdResidents) lines.push(`Other residents over 15: ${data.householdResidents}${data.householdResidents === "Yes" ? ` (${data.additionalResidentsCount})` : ""}`);
+      const v0Fin = data.vehicleFinanced;
+      if (v0Fin) lines.push(`Vehicle 1 financing: ${v0Fin}${(v0Fin !== "No" && data.lenderName) ? ` — ${data.lenderName}` : ""}`);
+      if (vehicles.length > 0) {
+        vehicles.forEach((v, i) => {
+          lines.push(`Vehicle ${i + 2}: VIN=${v.vin}, ${v.decodedYear} ${v.decodedMake} ${v.decodedModel}${v.decodedTrim ? ` ${v.decodedTrim}` : ""}, Use=${v.primaryUse}, Miles=${v.dailyMiles}, Financing=${v.vehicleFinanced}${(v.vehicleFinanced !== "No" && v.lenderName) ? ` (${v.lenderName})` : ""}`);
+        });
+      }
+      if (drivers.length > 0) {
+        drivers.forEach((d, i) => {
+          lines.push(`Driver ${i + 1}: ${d.fullName}, DOB=${d.dob}, License=${d.licenseNumber} (${d.licenseState}), ${d.maritalStatus}, Edu=${d.education}, Occ=${d.occupation}, Accidents=${d.accidents}`);
+          if (d.accidents === "Yes" && d.accidentDetails) lines.push(`  Accident details: ${d.accidentDetails}`);
+          if (d.maritalStatus === "Married") {
+            lines.push(`  Spouse: ${d.spouseName}, DOB=${d.spouseDob}, Licensed=${d.spouseLicensed}${d.spouseLicensed === "Yes" ? `, Drives=${d.spouseDrives}, License=${d.spouseLicenseNumber} (${d.spouseLicenseState})` : ""}`);
+          }
+        });
+      }
+      if (data.homeOwnership) lines.push(`Home Ownership: ${data.homeOwnership}`);
+      if (data.currentAutoInsurance) lines.push(`Currently insured: ${data.currentAutoInsurance}${data.currentAutoInsurance === "Yes" && data.currentInsuranceDuration ? ` (${data.currentInsuranceDuration})` : ""}`);
+      if (data.discountOccupation) lines.push(`Occupation (discount): ${data.discountOccupation}`);
+      if (data.discountEducation) lines.push(`Education (discount): ${data.discountEducation}`);
     }
 
     const success = await submitToIntake({
@@ -1272,14 +1458,14 @@ export default function QuoteModal({ onClose, initialProduct, initialData }: Quo
     if (!product) return null;
     const totalSteps = STEP_COUNT[product];
     const isLast = formStep === totalSteps - 1;
-    if (isLast) return <ContactFields {...fieldProps} />;
+    if (isLast) return <ContactFields {...fieldProps} showLicenseNotice={product === "auto"} />;
 
     switch (product) {
       case "auto":
         if (formStep === 0) return <AutoStep0 {...fieldProps} />;
-        if (formStep === 1) return <AutoStep1 data={data} update={update} errors={errors} />;
-        if (formStep === 2) return <AutoStep2 data={data} update={update} errors={errors} vehicles={vehicles} setVehicles={setVehicles} />;
-        if (formStep === 3) return <AutoStep3 data={data} update={update} errors={errors} drivers={drivers} setDrivers={setDrivers} />;
+        if (formStep === 1) return <AutoStep2 data={data} update={update} errors={errors} vehicles={vehicles} setVehicles={setVehicles} />;
+        if (formStep === 2) return <AutoStep3 data={data} update={update} errors={errors} drivers={drivers} setDrivers={setDrivers} />;
+        if (formStep === 3) return <AutoStepDiscounts data={data} update={update} />;
         return null;
       case "property":   return formStep === 0 ? <PropertyStep0 {...fieldProps} /> : <PropertyStep1 {...fieldProps} />;
       case "renters":    return <RentersStep0 {...fieldProps} />;

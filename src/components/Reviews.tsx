@@ -157,7 +157,7 @@ export default function Reviews({ mode }: ReviewsProps) {
                 Carlos M.
               </p>
               <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "14px" }}>
-                Melbourne, FL
+                Stuart, FL
               </p>
             </div>
 

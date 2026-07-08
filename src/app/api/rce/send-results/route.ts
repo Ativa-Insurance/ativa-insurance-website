@@ -164,7 +164,7 @@ function buildHtml(p: {
           <td style="padding:24px 16px;text-align:center;">
             <p style="margin:0 0 4px;font-size:12px;color:#94A3B8;font-weight:600;">Ativa Insurance</p>
             <p style="margin:0 0 4px;font-size:11px;color:#CBD5E1;">
-              2412 Irwin St Ste 372, Melbourne FL 32901
+              1 SE Ocean Blvd, Stuart, FL 34994
             </p>
             <p style="margin:0;font-size:11px;color:#CBD5E1;">
               <a href="mailto:info@ativainsurance.com" style="color:#CBD5E1;text-decoration:none;">info@ativainsurance.com</a>

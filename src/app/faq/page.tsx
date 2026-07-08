@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "renters insurance",
     "commercial insurance",
     "flood insurance",
-    "independent insurance agent Melbourne FL",
+    "independent insurance agent Stuart FL",
   ],
   alternates: { canonical: "https://ativainsurance.com/faq" },
   openGraph: {

@@ -249,7 +249,7 @@ const en: FAQSection[] = [
     items: [
       {
         q: "Where is Ativa Insurance located?",
-        a: "Our office is located at 2412 Irwin St, Suite 372, Melbourne, FL 32901. We serve clients in-person, by phone, by email, and via WhatsApp — so no matter where you are in our licensed states, we can help. Call us at 561-946-8261 or message us on WhatsApp anytime.",
+        a: "Our office is located at 1 SE Ocean Blvd, Stuart, FL 34994. We serve clients in-person, by phone, by email, and via WhatsApp — so no matter where you are in our licensed states, we can help. Call us at 561-946-8261 or message us on WhatsApp anytime.",
       },
       {
         q: "What states does Ativa Insurance operate in?",
@@ -503,7 +503,7 @@ const pt: FAQSection[] = [
     items: [
       {
         q: "Onde fica a Ativa Insurance?",
-        a: "Nosso escritório está localizado na 2412 Irwin St, Suite 372, Melbourne, FL 32901. Atendemos clientes pessoalmente, por telefone, e-mail e WhatsApp — então não importa onde você esteja nos estados onde temos licença, podemos ajudar. Ligue para 561-946-8261 ou nos mande mensagem no WhatsApp a qualquer momento.",
+        a: "Nosso escritório está localizado na 1 SE Ocean Blvd, Stuart, FL 34994. Atendemos clientes pessoalmente, por telefone, e-mail e WhatsApp — então não importa onde você esteja nos estados onde temos licença, podemos ajudar. Ligue para 561-946-8261 ou nos mande mensagem no WhatsApp a qualquer momento.",
       },
       {
         q: "Em quais estados a Ativa Insurance atua?",
@@ -757,7 +757,7 @@ const es: FAQSection[] = [
     items: [
       {
         q: "¿Dónde está ubicada Ativa Insurance?",
-        a: "Nuestra oficina está ubicada en 2412 Irwin St, Suite 372, Melbourne, FL 32901. Atendemos clientes en persona, por teléfono, correo electrónico y WhatsApp — así que sin importar dónde estés en nuestros estados con licencia, podemos ayudarte. Llámanos al 561-946-8261 o escríbenos por WhatsApp en cualquier momento.",
+        a: "Nuestra oficina está ubicada en 1 SE Ocean Blvd, Stuart, FL 34994. Atendemos clientes en persona, por teléfono, correo electrónico y WhatsApp — así que sin importar dónde estés en nuestros estados con licencia, podemos ayudarte. Llámanos al 561-946-8261 o escríbenos por WhatsApp en cualquier momento.",
       },
       {
         q: "¿En qué estados opera Ativa Insurance?",

@@ -42,16 +42,16 @@ const LOCAL_BUSINESS_SCHEMA = {
   email: "info@ativainsurance.com",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "2412 Irwin St Ste 372",
-    addressLocality: "Melbourne",
+    streetAddress: "1 SE Ocean Blvd",
+    addressLocality: "Stuart",
     addressRegion: "FL",
-    postalCode: "32901",
+    postalCode: "34994",
     addressCountry: "US",
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: 28.0836,
-    longitude: -80.6081,
+    latitude: 27.1975,
+    longitude: -80.2528,
   },
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
