@@ -77,8 +77,9 @@
   "states": {
     "eyebrow": "Cobertura Licenciada",
     "heading": "Atendiendo clientes en 11 estados de los EE.UU.",
-    "sub": "3 idiomas. 11 estados. Una agencia siempre disponible para ti.",
-    "langs": "English • Português • Español"
+    "sub": "11 Estados • 3 Idiomas • Agencia Independiente",
+    "legendLicensed": "Licenciado y en Operación",
+    "legendNotAvailable": "No Disponible Actualmente"
   },
   "stats": [
     {

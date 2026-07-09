@@ -62,7 +62,7 @@ export default function LicensedStatesMap() {
     if (!svg) return;
 
     svg.classList.add("ativa-map");
-    svg.setAttribute("viewBox", "0 0 959 593");
+    svg.setAttribute("viewBox", "0 0 959 490");
     svg.removeAttribute("width");
     svg.removeAttribute("height");
     svg.style.width = "100%";

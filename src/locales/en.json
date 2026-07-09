@@ -77,8 +77,9 @@
   "states": {
     "eyebrow": "Licensed Coverage",
     "heading": "Proudly serving clients across 11 states",
-    "sub": "3 Languages. 11 States. One agency that's here for you.",
-    "langs": "English • Português • Español"
+    "sub": "11 States • 3 Languages • Independent Agency",
+    "legendLicensed": "Licensed & Serving",
+    "legendNotAvailable": "Not Currently Available"
   },
   "stats": [
     {
