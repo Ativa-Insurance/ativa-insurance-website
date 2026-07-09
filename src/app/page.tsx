@@ -356,7 +356,7 @@ function ServedStates() {
   return (
     <section style={{
       backgroundColor: "#F8F9FB",
-      padding:         "72px 24px",
+      padding:         "44px 24px",
       borderTop:       "1px solid rgba(0,0,0,0.06)",
       borderBottom:    "1px solid rgba(0,0,0,0.06)",
     }}>
@@ -375,7 +375,7 @@ function ServedStates() {
           fontSize:      "clamp(1.6rem, 3vw, 2.2rem)",
           fontWeight:    900,
           color:         "#0B1F33",
-          marginBottom:  "48px",
+          marginBottom:  "32px",
           lineHeight:    1.15,
           letterSpacing: "-0.025em",
         }}>
@@ -383,15 +383,30 @@ function ServedStates() {
         </h2>
 
         {/* Real US map — licensed states highlighted */}
-        <div style={{ marginBottom: "40px" }}>
+        <div style={{ marginBottom: "16px" }}>
           <LicensedStatesMap />
         </div>
 
-        <p style={{ fontSize: "15px", color: "#64748B", marginBottom: "6px" }}>
+        {/* Map legend */}
+        <div style={{
+          display:        "flex",
+          alignItems:     "center",
+          justifyContent: "center",
+          gap:            "24px",
+          marginBottom:   "20px",
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "7px" }}>
+            <div style={{ width: "13px", height: "13px", backgroundColor: "#1B3A6B", borderRadius: "3px", flexShrink: 0 }} />
+            <span style={{ fontSize: "12px", fontWeight: 600, color: "#0B1F33" }}>{t("states.legendLicensed")}</span>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: "7px" }}>
+            <div style={{ width: "13px", height: "13px", backgroundColor: "#E2E8F0", borderRadius: "3px", border: "1px solid #CBD5E1", flexShrink: 0 }} />
+            <span style={{ fontSize: "12px", color: "#64748B" }}>{t("states.legendNotAvailable")}</span>
+          </div>
+        </div>
+
+        <p style={{ fontSize: "14px", color: "#64748B", fontWeight: 500 }}>
           {t("states.sub")}
-        </p>
-        <p style={{ fontSize: "15px", color: "#1B3A6B", fontWeight: 700 }}>
-          {t("states.langs")}
         </p>
       </div>
     </section>
@@ -1786,7 +1801,7 @@ function AtivaSite() {
                 <div style={{
                   position: "absolute",
                   inset:    0,
-                  background: "linear-gradient(to right, transparent 55%, rgba(244,248,255,0.85) 100%)",
+                  background: "linear-gradient(to right, transparent 55%, rgba(255,255,255,0.85) 100%)",
                 }} />
               </div>
 
@@ -1796,7 +1811,7 @@ function AtivaSite() {
                 flexDirection:   "column",
                 justifyContent:  "center",
                 padding:         "64px clamp(24px, 5vw, 64px)",
-                backgroundColor: "#F4F8FF",
+                backgroundColor: "#FFFFFF",
               }}>
                 <h1 style={{
                   fontSize:      "clamp(2rem, 3vw, 2.8rem)",
@@ -2201,12 +2216,7 @@ function AtivaSite() {
         id="products"
         style={{
           backgroundColor: "#FFFFFF",
-          borderTop:    "1px solid rgba(0,0,0,0.06)",
-          borderBottom: "1px solid rgba(0,0,0,0.06)",
-          padding:      "48px 0",
-          marginTop:    "-80px",
-          position:     "relative",
-          zIndex:       10,
+          padding:         "48px 0",
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
