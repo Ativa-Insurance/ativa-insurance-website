@@ -20,6 +20,7 @@ import ContactCTA from "@/components/ContactCTA";
 import Footer from "@/components/Footer";
 import ProductBottomSheet from "@/components/ProductBottomSheet";
 import MobileFAB from "@/components/MobileFAB";
+import LicensedStatesMap from "@/components/LicensedStatesMap";
 import type { Mode } from "@/types";
 import type { Language } from "@/types";
 
@@ -407,64 +408,9 @@ function ServedStates() {
           {t("states.heading")}
         </h2>
 
-        {/* Inline SVG map of eastern US — 11 highlighted states */}
-        <div style={{ display: "flex", justifyContent: "center", marginBottom: "40px" }}>
-          <svg viewBox="0 0 520 360" fill="none" xmlns="http://www.w3.org/2000/svg"
-            style={{ maxWidth: "480px", width: "100%", height: "auto" }}
-            role="img" aria-label="Map showing the 11 states Ativa Insurance serves"
-          >
-            {/* Non-highlighted context states (light gray) */}
-            {/* ME */}  <polygon points="414,42 468,42 468,82 414,82" fill="#CBD5E1" />
-            {/* NH */}  <polygon points="388,68 420,68 420,95 388,95" fill="#CBD5E1" />
-            {/* VT */}  <polygon points="360,65 388,65 388,92 360,92" fill="#CBD5E1" />
-            {/* RI */}  <polygon points="386,95 400,95 400,110 386,110" fill="#CBD5E1" />
-            {/* NY */}  <polygon points="210,68 350,68 350,92 308,92 308,104 210,92" fill="#CBD5E1" />
-            {/* DE */}  <polygon points="340,128 358,128 358,153 340,153" fill="#CBD5E1" />
-            {/* WV */}  <polygon points="210,128 230,128 230,172 210,172" fill="#CBD5E1" />
-            {/* VA */}  <polygon points="134,153 322,153 322,172 134,172" fill="#CBD5E1" />
-            {/* KY */}  <polygon points="58,146 124,146 124,170 58,170" fill="#CBD5E1" />
-            {/* AL */}  <polygon points="56,194 108,194 108,262 56,262" fill="#CBD5E1" />
-            {/* MS */}  <polygon points="20,194 56,194 56,262 20,262" fill="#CBD5E1" />
-
-            {/* ── Highlighted states ── */}
-            {/* OH */}  <polygon points="124,92 210,92 210,146 124,146" fill="#1B3A6B" />
-            {/* PA */}  <polygon points="210,92 326,92 326,128 210,128" fill="#1B3A6B" />
-            {/* NJ */}  <polygon points="308,104 340,104 340,139 308,139" fill="#1B3A6B" />
-            {/* MD */}  <polygon points="230,128 322,128 322,153 230,153" fill="#1B3A6B" />
-            {/* CT */}  <polygon points="346,95 386,95 386,110 346,110" fill="#1B3A6B" />
-            {/* MA */}  <polygon points="350,83 422,83 422,107 350,107" fill="#1B3A6B" />
-            {/* TN */}  <polygon points="58,170 188,170 188,195 58,195" fill="#1B3A6B" />
-            {/* NC */}  <polygon points="134,172 310,172 310,210 134,210" fill="#1B3A6B" />
-            {/* SC */}  <polygon points="152,191 250,191 250,238 152,238" fill="#1B3A6B" />
-            {/* GA */}  <polygon points="108,194 204,194 204,260 108,260" fill="#1B3A6B" />
-            {/* FL */}  <path d="M68,252 L220,252 L218,282 L194,324 L170,348 L150,342 L124,304 L80,266 Z" fill="#1B3A6B" />
-
-            {/* White grid lines between all state polygons */}
-            <polygon points="124,92 210,92 210,146 124,146" fill="none" stroke="#FFFFFF" strokeWidth="1.5" />
-            <polygon points="210,92 326,92 326,128 210,128" fill="none" stroke="#FFFFFF" strokeWidth="1.5" />
-            <polygon points="308,104 340,104 340,139 308,139" fill="none" stroke="#FFFFFF" strokeWidth="1.5" />
-            <polygon points="230,128 322,128 322,153 230,153" fill="none" stroke="#FFFFFF" strokeWidth="1.5" />
-            <polygon points="346,95 386,95 386,110 346,110" fill="none" stroke="#FFFFFF" strokeWidth="1.5" />
-            <polygon points="350,83 422,83 422,107 350,107" fill="none" stroke="#FFFFFF" strokeWidth="1.5" />
-            <polygon points="58,170 188,170 188,195 58,195" fill="none" stroke="#FFFFFF" strokeWidth="1.5" />
-            <polygon points="134,172 310,172 310,210 134,210" fill="none" stroke="#FFFFFF" strokeWidth="1.5" />
-            <polygon points="152,191 250,191 250,238 152,238" fill="none" stroke="#FFFFFF" strokeWidth="1.5" />
-            <polygon points="108,194 204,194 204,260 108,260" fill="none" stroke="#FFFFFF" strokeWidth="1.5" />
-            <path d="M68,252 L220,252 L218,282 L194,324 L170,348 L150,342 L124,304 L80,266 Z" fill="none" stroke="#FFFFFF" strokeWidth="1.5" />
-
-            {/* State labels — highlighted states only */}
-            <text x="167" y="123" textAnchor="middle" fontSize="9" fill="white" fontWeight="700">OH</text>
-            <text x="268" y="113" textAnchor="middle" fontSize="9" fill="white" fontWeight="700">PA</text>
-            <text x="324" y="123" textAnchor="middle" fontSize="7" fill="white" fontWeight="700">NJ</text>
-            <text x="276" y="143" textAnchor="middle" fontSize="7" fill="white" fontWeight="700">MD</text>
-            <text x="366" y="104" textAnchor="middle" fontSize="7" fill="white" fontWeight="700">CT</text>
-            <text x="386" y="97" textAnchor="middle" fontSize="7" fill="white" fontWeight="700">MA</text>
-            <text x="123" y="184" textAnchor="middle" fontSize="8" fill="white" fontWeight="700">TN</text>
-            <text x="222" y="194" textAnchor="middle" fontSize="8" fill="white" fontWeight="700">NC</text>
-            <text x="201" y="218" textAnchor="middle" fontSize="8" fill="white" fontWeight="700">SC</text>
-            <text x="156" y="230" textAnchor="middle" fontSize="9" fill="white" fontWeight="700">GA</text>
-            <text x="148" y="296" textAnchor="middle" fontSize="10" fill="white" fontWeight="700">FL</text>
-          </svg>
+        {/* Real US map — licensed states highlighted */}
+        <div style={{ marginBottom: "40px" }}>
+          <LicensedStatesMap />
         </div>
 
         <p style={{ fontSize: "15px", color: "#64748B", marginBottom: "6px" }}>
@@ -2329,8 +2275,8 @@ function AtivaSite() {
             </div>
           </div>}
 
-          {/* ── Commercial Insurance row ── */}
-          <div>
+          {/* ── Commercial Insurance row (commercial mode only) ── */}
+          {!isPersonal && <div>
             <div style={{ textAlign: "center", marginBottom: "28px" }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "16px" }}>
                 <div style={{ flex: 1, height: "1px", backgroundColor: "rgba(180,83,9,0.2)", maxWidth: "100px" }} />
@@ -2369,7 +2315,7 @@ function AtivaSite() {
                 onCardHoverLeave={handleCardHoverLeave}
               />
             </div>
-          </div>
+          </div>}
 
         </div>
       </section>
