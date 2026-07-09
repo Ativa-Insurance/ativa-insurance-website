@@ -6,7 +6,19 @@
       "Bash(npx next:*)",
       "Bash(xargs sed *)",
       "Bash(npx tsc *)",
-      "Bash(node -e ' *)"
+      "Bash(node -e ' *)",
+      "Bash(npx next *)",
+      "Bash(Start-Process -NoNewWindow -FilePath \"npx\" -ArgumentList \"next\",\"dev\",\"--port\",\"3001\")",
+      "PowerShell(Start-Process -NoNewWindow -FilePath \"cmd.exe\" -ArgumentList \"/c\",\"cd `\"c:\\\\Users\\\\ana\\\\Claude Cowork\\\\Website`\" && npx next dev --port 3001 > `\"$env:TEMP\\\\nextdev3001.log`\" 2>&1\")",
+      "PowerShell(Start-Sleep -Seconds 8; $content = Get-Content \"$env:TEMP\\\\nextdev3001.log\" -ErrorAction SilentlyContinue; $content | Select-Object -Last 10)",
+      "Bash(git commit -m ' *)",
+      "Bash(curl -L -o \"c:\\\\Users\\\\ana\\\\Claude Cowork\\\\Website\\\\public\\\\us-states-map.svg\" \"https://upload.wikimedia.org/wikipedia/commons/1/1a/Blank_US_Map_%28states_only%29.svg\")",
+      "PowerShell(ls \"c:\\\\Users\\\\ana\\\\Claude Cowork\\\\Website\\\\src\\\\components\\\\home\\\\\" -ErrorAction SilentlyContinue; if \\(-not \\(Test-Path \"c:\\\\Users\\\\ana\\\\Claude Cowork\\\\Website\\\\src\\\\components\\\\home\\\\\"\\)\\) { \"DIRECTORY NOT FOUND\" })",
+      "Bash(node scripts/screenshot.mjs --port 3001)",
+      "PowerShell($proc = Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty OwningProcess; if \\($proc\\) { Stop-Process -Id $proc -Force; \"Killed PID $proc\" } else { \"No process on 3000\" })",
+      "PowerShell($proc = Get-NetTCPConnection -LocalPort 3001 -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty OwningProcess; if \\($proc\\) { Stop-Process -Id $proc -Force; \"Killed 3001 PID $proc\" } else { \"No process on 3001\" }; netstat -ano | findstr \":300\")",
+      "PowerShell(Stop-Process -Id 56300 -Force)",
+      "PowerShell(\"Killed 56300\")"
     ]
   }
 }
