@@ -156,7 +156,37 @@ function ArticleCard({ post, accent }: { post: HeroArticle; accent: "blue" | "or
 
 export default function Blog({ mode }: { mode: Mode }) {
   const { t } = useLanguage();
+  const isPersonal = mode === "personal";
 
+  // ── Commercial-only mode: single full-width section ──────────────────────
+  if (!isPersonal) {
+    return (
+      <section style={{ backgroundColor: "#F8F9FB", borderTop: "1px solid rgba(0,0,0,0.06)", padding: "80px 24px" }}>
+        <div style={{ maxWidth: "1120px", margin: "0 auto" }}>
+          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: "28px", flexWrap: "wrap", gap: "12px" }}>
+            <div>
+              <p style={{ fontSize: "11px", letterSpacing: "2.5px", fontWeight: 700, textTransform: "uppercase", color: "var(--eyebrow)", marginBottom: "8px" }}>
+                {t("blog.eyebrow")}
+              </p>
+              <h2 style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)", fontWeight: 900, color: "#0B1F33", margin: 0, letterSpacing: "-0.02em" }}>
+                {t("blog.commercialLabel")}
+              </h2>
+            </div>
+            <Link href="/blog" style={{ fontSize: "13px", fontWeight: 700, color: "#B45309", textDecoration: "none" }}>
+              {t("blog.viewAllCommercial")} →
+            </Link>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }}>
+            {COMMERCIAL_ARTICLES.map((post, i) => (
+              <ArticleCard key={i} post={post} accent="orange" />
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // ── Personal mode: 2-col split ────────────────────────────────────────────
   return (
     <section
       style={{

@@ -32,6 +32,7 @@ interface ReviewItem {
   location?: string;
   stars: number;
   text: string;
+  mode?: "personal" | "commercial" | "both";
 }
 
 function ReviewCard({ review, featured = false }: { review: ReviewItem; featured?: boolean }) {
@@ -101,9 +102,17 @@ function ReviewCard({ review, featured = false }: { review: ReviewItem; featured
 
 export default function Reviews({ mode }: { mode: Mode }) {
   const { t, tRaw } = useLanguage();
-  const items = (tRaw("reviews.items") as ReviewItem[] | undefined) ?? [];
-  const featured = items.slice(0, 3);
-  const rest = items.slice(3);
+  const isPersonal = mode === "personal";
+  const allItems        = (tRaw("reviews.items")          as ReviewItem[] | undefined) ?? [];
+  const commercialItems = (tRaw("reviews.commercialItems") as ReviewItem[] | undefined) ?? [];
+
+  // Personal: show personal + both tagged items
+  // Commercial: show dedicated commercial items as featured, plus "both" items as secondary
+  const personalItems = allItems.filter(r => !r.mode || r.mode === "personal" || r.mode === "both");
+  const bothItems     = allItems.filter(r => r.mode === "both");
+
+  const featured = isPersonal ? personalItems.slice(0, 3) : commercialItems.slice(0, 3);
+  const rest     = isPersonal ? personalItems.slice(3)    : bothItems;
 
   return (
     <section

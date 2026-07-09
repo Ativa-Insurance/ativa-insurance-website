@@ -299,55 +299,87 @@
         "name": "Carlos M.",
         "location": "Stuart, FL",
         "stars": 5,
-        "text": "They saved me over $800 on my auto policy. Ana helped me compare multiple options and found me a much better rate the same day. Fast, easy, and they actually speak Portuguese — which made everything so much easier for my family."
+        "text": "They saved me over $800 on my auto policy. Ana helped me compare multiple options and found me a much better rate the same day. Fast, easy, and they actually speak Portuguese — which made everything so much easier for my family.",
+        "mode": "personal"
       },
       {
         "name": "Juliana R.",
         "location": "Melbourne, FL",
         "stars": 5,
-        "text": "Best insurance experience I've had. They explained everything clearly and helped me get the right coverage for my home and flood. Great service!"
+        "text": "Best insurance experience I've had. They explained everything clearly and helped me get the right coverage for my home and flood. Great service!",
+        "mode": "personal"
       },
       {
         "name": "Ana P.",
         "location": "Palm Bay, FL",
         "stars": 5,
-        "text": "Professional, attentive, and truly care. They are always available when I need them and make the process simple."
+        "text": "Professional, attentive, and truly care. They are always available when I need them and make the process simple.",
+        "mode": "both"
       },
       {
         "name": "Maria S.",
         "location": "Melbourne, FL",
         "stars": 5,
-        "text": "Got my auto insurance sorted in minutes. Found me a great rate I could not believe."
+        "text": "Got my auto insurance sorted in minutes. Found me a great rate I could not believe.",
+        "mode": "personal"
       },
       {
         "name": "James R.",
         "location": "Stuart, FL",
         "stars": 5,
-        "text": "Best commercial insurance experience I have had. They truly understand Florida businesses."
+        "text": "Best commercial insurance experience I have had. They truly understand Florida businesses.",
+        "mode": "commercial"
       },
       {
         "name": "Ana Costa",
         "location": "Viera, FL",
         "stars": 5,
-        "text": "Atendimento excelente! Conseguiram um seguro incrível para meu negócio em Melbourne."
+        "text": "Atendimento excelente! Conseguiram um seguro incrível para meu negócio em Melbourne.",
+        "mode": "commercial"
       },
       {
         "name": "Carlos G.",
         "location": "Palm Bay, FL",
         "stars": 5,
-        "text": "Helped me bundle home and auto. Saved a lot and the process was super smooth."
+        "text": "Helped me bundle home and auto. Saved a lot and the process was super smooth.",
+        "mode": "personal"
       },
       {
         "name": "Jennifer L.",
         "location": "Cocoa, FL",
         "stars": 5,
-        "text": "They respond fast and actually explain the coverage. Highly recommend Ativa!"
+        "text": "They respond fast and actually explain the coverage. Highly recommend Ativa!",
+        "mode": "both"
       },
       {
         "name": "Roberto P.",
         "location": "Melbourne, FL",
         "stars": 5,
-        "text": "Excelente servicio! Me ayudaron con el seguro de mi empresa rápidamente."
+        "text": "Excelente servicio! Me ayudaron con el seguro de mi empresa rápidamente.",
+        "mode": "commercial"
+      }
+    ],
+    "commercialItems": [
+      {
+        "name": "Rafael T.",
+        "location": "Orlando, FL",
+        "stars": 5,
+        "mode": "commercial",
+        "text": "Rápidos, profissionais e economizaram nosso dinheiro. A Ativa ajudou minha empresa a economizar mais de R$6.000 por ano em responsabilidade civil e seguro de trabalhadores."
+      },
+      {
+        "name": "Juliana R.",
+        "location": "Miami, FL",
+        "stars": 5,
+        "mode": "commercial",
+        "text": "Eles entendem os donos de negócios. Finalmente uma agência que explica tudo claramente e realmente compara o mercado. Altamente recomendada para pequenas empresas."
+      },
+      {
+        "name": "Marcos V.",
+        "location": "Atlanta, GA",
+        "stars": 5,
+        "mode": "commercial",
+        "text": "Ótimo serviço e sempre disponíveis. Precisamos de COIs rapidamente para um novo contrato e eles entregaram no mesmo dia. Pessoas reais que se importam com o seu negócio."
       }
     ]
   },

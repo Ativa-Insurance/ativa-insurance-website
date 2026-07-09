@@ -2257,8 +2257,8 @@ function AtivaSite() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
-          {/* ── Personal Insurance row ── */}
-          <div style={{ marginBottom: "48px" }}>
+          {/* ── Personal Insurance row (personal mode only) ── */}
+          {isPersonal && <div style={{ marginBottom: "48px" }}>
             <div style={{ textAlign: "center", marginBottom: "28px" }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "16px" }}>
                 <div style={{ flex: 1, height: "1px", backgroundColor: "rgba(27,58,107,0.15)", maxWidth: "100px" }} />
@@ -2300,7 +2300,7 @@ function AtivaSite() {
                 onCardHoverLeave={handleCardHoverLeave}
               />
             </div>
-          </div>
+          </div>}
 
           {/* ── Commercial Insurance row ── */}
           <div>
