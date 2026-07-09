@@ -20,7 +20,7 @@ import ContactCTA from "@/components/ContactCTA";
 import Footer from "@/components/Footer";
 import ProductBottomSheet from "@/components/ProductBottomSheet";
 import MobileFAB from "@/components/MobileFAB";
-import LicensedStatesMap from "@/components/LicensedStatesMap";
+import LicensedStatesMap from "@/components/home/LicensedStatesMap";
 import type { Mode } from "@/types";
 import type { Language } from "@/types";
 
@@ -382,30 +382,12 @@ function ServedStates() {
           {t("states.heading")}
         </h2>
 
-        {/* Real US map — licensed states highlighted */}
-        <div style={{ marginBottom: "16px" }}>
-          <LicensedStatesMap />
-        </div>
+        <LicensedStatesMap
+          legendLicensed={t("map.legendLicensed")}
+          legendUnavailable={t("map.legendUnavailable")}
+        />
 
-        {/* Map legend */}
-        <div style={{
-          display:        "flex",
-          alignItems:     "center",
-          justifyContent: "center",
-          gap:            "24px",
-          marginBottom:   "20px",
-        }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "7px" }}>
-            <div style={{ width: "13px", height: "13px", backgroundColor: "#1B3A6B", borderRadius: "3px", flexShrink: 0 }} />
-            <span style={{ fontSize: "12px", fontWeight: 600, color: "#0B1F33" }}>{t("states.legendLicensed")}</span>
-          </div>
-          <div style={{ display: "flex", alignItems: "center", gap: "7px" }}>
-            <div style={{ width: "13px", height: "13px", backgroundColor: "#E2E8F0", borderRadius: "3px", border: "1px solid #CBD5E1", flexShrink: 0 }} />
-            <span style={{ fontSize: "12px", color: "#64748B" }}>{t("states.legendNotAvailable")}</span>
-          </div>
-        </div>
-
-        <p style={{ fontSize: "14px", color: "#64748B", fontWeight: 500 }}>
+        <p style={{ fontSize: "14px", color: "#64748B", fontWeight: 500, marginTop: "20px" }}>
           {t("states.sub")}
         </p>
       </div>
@@ -2129,87 +2111,6 @@ function AtivaSite() {
 
       </div>{/* end hero wrapper */}
 
-      {/* ── Commercial credibility bar ────────────────────────────────────── */}
-      {!isPersonal && (
-        <div
-          style={{
-            background: "#0F2A44",
-            padding:    "20px 0",
-            width:      "100%",
-          }}
-        >
-          <div
-            className="max-w-7xl mx-auto px-6"
-            style={{
-              display:     "flex",
-              alignItems:  "center",
-              gap:         "24px",
-              flexWrap:    "wrap",
-            }}
-          >
-            {/* Left — trust statement */}
-            <p
-              style={{
-                fontSize:   "14px",
-                color:      "rgba(255,255,255,0.85)",
-                fontWeight: 500,
-                whiteSpace: "nowrap",
-                flexShrink: 0,
-                flex:       "0 0 auto",
-              }}
-            >
-              {t("trust.carriers")} · Licensed in 11 States
-            </p>
-
-            {/* Divider */}
-            <div
-              className="hidden sm:block"
-              style={{
-                width:      "1px",
-                height:     "28px",
-                background: "rgba(255,255,255,0.15)",
-                flexShrink: 0,
-              }}
-            />
-
-            {/* Right — badge pills */}
-            <div
-              style={{
-                display:    "flex",
-                alignItems: "center",
-                gap:        "10px",
-                flexWrap:   "wrap",
-              }}
-            >
-              {[
-                { label: "A+ Rated Carriers",      mobileHide: false },
-                { label: "Licensed in 11 States",  mobileHide: false },
-                { label: "Independent Agent",       mobileHide: true  },
-                { label: "Same-Day Certificates",   mobileHide: true  },
-              ].map(badge => (
-                <span
-                  key={badge.label}
-                  className={badge.mobileHide ? "hidden sm:inline-flex" : "inline-flex"}
-                  style={{
-                    alignItems:      "center",
-                    background:      "rgba(255,255,255,0.08)",
-                    border:          "1px solid rgba(255,255,255,0.15)",
-                    borderRadius:    "8px",
-                    padding:         "6px 14px",
-                    fontSize:        "12px",
-                    color:           "rgba(255,255,255,0.90)",
-                    fontWeight:      500,
-                    whiteSpace:      "nowrap",
-                  }}
-                >
-                  {badge.label}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* ── Product Marketplace ───────────────────────────────────────────── */}
       <section
         data-reveal
@@ -2217,6 +2118,11 @@ function AtivaSite() {
         style={{
           backgroundColor: "#FFFFFF",
           padding:         "48px 0",
+          marginTop:       "-56px",
+          position:        "relative",
+          zIndex:          2,
+          borderRadius:    "28px 28px 0 0",
+          boxShadow:       "0 -8px 28px rgba(15,23,42,0.07)",
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -2311,20 +2217,20 @@ function AtivaSite() {
         </div>
       </section>
 
-      {/* ── Why Choose Ativa ──────────────────────────────────────────────── */}
-      <div data-reveal><WhyChooseAtiva onGetQuote={openQuote} /></div>
-
-      {/* ── Served States ─────────────────────────────────────────────────── */}
-      <div data-reveal><ServedStates /></div>
+      {/* ── Carriers ──────────────────────────────────────────────────────── */}
+      <div data-reveal><CarrierMarquee mode={mode} /></div>
 
       {/* ── How It Works ──────────────────────────────────────────────────── */}
       <div data-reveal><HowItWorks mode={mode} /></div>
 
-      {/* ── Carriers ──────────────────────────────────────────────────────── */}
-      <div data-reveal><CarrierMarquee mode={mode} /></div>
+      {/* ── Why Choose Ativa ──────────────────────────────────────────────── */}
+      <div data-reveal><WhyChooseAtiva onGetQuote={openQuote} /></div>
 
       {/* ── Reviews ───────────────────────────────────────────────────────── */}
       <div data-reveal><Reviews mode={mode} /></div>
+
+      {/* ── Served States ─────────────────────────────────────────────────── */}
+      <div data-reveal><ServedStates /></div>
 
       {/* ── Blog ──────────────────────────────────────────────────────────── */}
       <div data-reveal><Blog mode={mode} /></div>
