@@ -1,4 +1,8 @@
 {
+  "map": {
+    "legendLicensed": "Licensed & Serving",
+    "legendUnavailable": "Not Currently Available"
+  },
   "nav": {
     "personal": "Personal",
     "commercial": "Commercial",
