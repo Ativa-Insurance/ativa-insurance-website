@@ -68,10 +68,22 @@
     "langs": "English • Português • Español"
   },
   "stats": [
-    { "value": "500+", "label": "Families Covered" },
-    { "value": "5★",      "label": "Google Rating" },
-    { "value": "11",      "label": "States Licensed" },
-    { "value": "Same-Day","label": "Quote Turnaround" }
+    {
+      "value": "500+",
+      "label": "Families Covered"
+    },
+    {
+      "value": "5★",
+      "label": "Google Rating"
+    },
+    {
+      "value": "11",
+      "label": "States Licensed"
+    },
+    {
+      "value": "Same-Day",
+      "label": "Quote Turnaround"
+    }
   ],
   "products": {
     "personalHeading": "All Personal Coverage Options",
@@ -81,20 +93,68 @@
     "personalRowLabel": "Personal Insurance",
     "commercialRowLabel": "Commercial Insurance",
     "personal": [
-      { "id": "auto",     "title": "Auto Insurance",      "description": "Get covered today — even if you just bought your car." },
-      { "id": "home",     "title": "Property Insurance",  "description": "Compare rates before your renewal hits." },
-      { "id": "flood",    "title": "Flood Insurance",     "description": "Required for most Florida flood zones — get covered fast." },
-      { "id": "bundle",   "title": "Bundle & Save",       "description": "Most clients save 18% combining two or more policies." },
-      { "id": "umbrella", "title": "Umbrella Insurance",  "description": "Extra protection above your home and auto policies." },
-      { "id": "pet",      "title": "Pet Insurance",       "description": "One vet bill can cost more than a year of coverage." }
+      {
+        "id": "auto",
+        "title": "Auto Insurance",
+        "description": "Get covered today — even if you just bought your car."
+      },
+      {
+        "id": "home",
+        "title": "Property Insurance",
+        "description": "Compare rates before your renewal hits."
+      },
+      {
+        "id": "flood",
+        "title": "Flood Insurance",
+        "description": "Required for most Florida flood zones — get covered fast."
+      },
+      {
+        "id": "bundle",
+        "title": "Bundle & Save",
+        "description": "Most clients save 18% combining two or more policies."
+      },
+      {
+        "id": "umbrella",
+        "title": "Umbrella Insurance",
+        "description": "Extra protection above your home and auto policies."
+      },
+      {
+        "id": "pet",
+        "title": "Pet Insurance",
+        "description": "One vet bill can cost more than a year of coverage."
+      }
     ],
     "commercial": [
-      { "id": "gl",              "title": "General Liability",    "description": "Required by most clients before you can start work." },
-      { "id": "workers-comp",    "title": "Workers' Comp",        "description": "Required in Florida — get compliant today." },
-      { "id": "commercial-auto", "title": "Commercial Auto",      "description": "One accident without coverage can close a business." },
-      { "id": "trucking",        "title": "Trucking / Fleet",     "description": "Owner-operators and fleets — liability, physical damage & more." },
-      { "id": "cargo",           "title": "Cargo Insurance",      "description": "Protect your freight and inventory while in transit." },
-      { "id": "umbrella",        "title": "Commercial Umbrella",  "description": "Excess liability coverage when a standard policy isn't enough." }
+      {
+        "id": "gl",
+        "title": "General Liability",
+        "description": "Required by most clients before you can start work."
+      },
+      {
+        "id": "workers-comp",
+        "title": "Workers' Comp",
+        "description": "Required in Florida — get compliant today."
+      },
+      {
+        "id": "commercial-auto",
+        "title": "Commercial Auto",
+        "description": "One accident without coverage can close a business."
+      },
+      {
+        "id": "trucking",
+        "title": "Trucking / Fleet",
+        "description": "Owner-operators and fleets — liability, physical damage & more."
+      },
+      {
+        "id": "cargo",
+        "title": "Cargo Insurance",
+        "description": "Protect your freight and inventory while in transit."
+      },
+      {
+        "id": "umbrella",
+        "title": "Commercial Umbrella",
+        "description": "Excess liability coverage when a standard policy isn't enough."
+      }
     ]
   },
   "why": {
@@ -117,88 +177,170 @@
       "contact": "Your Info",
       "details": "Details",
       "coverage": "Coverage",
-      "confirm":  "Confirm"
+      "confirm": "Confirm"
     },
     "labels": {
-      "firstName":       "First Name",
-      "lastName":        "Last Name",
-      "email":           "Email",
-      "phone":           "Phone",
-      "address":         "Property Address",
-      "zipCode":         "ZIP Code",
-      "dob":             "Date of Birth",
-      "vin":             "VIN Number",
-      "year":            "Year",
-      "make":            "Make",
-      "model":           "Model",
-      "yearBuilt":       "Year Built",
-      "squareFeet":      "Square Feet",
-      "roofType":        "Roof Type",
-      "businessName":    "Business Name",
-      "industry":        "Industry",
-      "employees":       "Number of Employees",
-      "revenue":         "Annual Revenue",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Property Address",
+      "zipCode": "ZIP Code",
+      "dob": "Date of Birth",
+      "vin": "VIN Number",
+      "year": "Year",
+      "make": "Make",
+      "model": "Model",
+      "yearBuilt": "Year Built",
+      "squareFeet": "Square Feet",
+      "roofType": "Roof Type",
+      "businessName": "Business Name",
+      "industry": "Industry",
+      "employees": "Number of Employees",
+      "revenue": "Annual Revenue",
       "yearsInBusiness": "Years in Business",
-      "coverageAmount":  "Coverage Amount",
-      "currentInsurer":  "Current Insurer (optional)"
+      "coverageAmount": "Coverage Amount",
+      "currentInsurer": "Current Insurer (optional)"
     },
     "placeholders": {
-      "firstName":    "Ana",
-      "lastName":     "Silva",
-      "email":        "ana@example.com",
-      "phone":        "(305) 555-0100",
-      "address":      "Start typing your address…",
-      "zipCode":      "33101",
-      "vin":          "Enter 17-digit VIN",
+      "firstName": "Ana",
+      "lastName": "Silva",
+      "email": "ana@example.com",
+      "phone": "(305) 555-0100",
+      "address": "Start typing your address…",
+      "zipCode": "33101",
+      "vin": "Enter 17-digit VIN",
       "businessName": "My Business LLC"
     },
     "options": {
-      "roofType":       ["Shingle", "Metal", "Tile", "Flat", "Other"],
-      "coverageAmount": ["$100,000", "$200,000", "$300,000", "$500,000", "$1,000,000+"],
-      "industry":       ["Retail", "Restaurant / Food Service", "Construction", "Healthcare", "Professional Services", "Transportation", "Technology", "Other"],
-      "employees":      ["1–5", "6–20", "21–50", "51–100", "100+"],
-      "revenue":        ["Under $250K", "$250K–$500K", "$500K–$1M", "$1M–$5M", "$5M+"]
+      "roofType": [
+        "Shingle",
+        "Metal",
+        "Tile",
+        "Flat",
+        "Other"
+      ],
+      "coverageAmount": [
+        "$100,000",
+        "$200,000",
+        "$300,000",
+        "$500,000",
+        "$1,000,000+"
+      ],
+      "industry": [
+        "Retail",
+        "Restaurant / Food Service",
+        "Construction",
+        "Healthcare",
+        "Professional Services",
+        "Transportation",
+        "Technology",
+        "Other"
+      ],
+      "employees": [
+        "1–5",
+        "6–20",
+        "21–50",
+        "51–100",
+        "100+"
+      ],
+      "revenue": [
+        "Under $250K",
+        "$250K–$500K",
+        "$500K–$1M",
+        "$1M–$5M",
+        "$5M+"
+      ]
     },
     "buttons": {
-      "next":       "Next",
-      "back":       "Back",
-      "submit":     "Request My Quote",
+      "next": "Next",
+      "back": "Back",
+      "submit": "Request My Quote",
       "submitting": "Sending…",
-      "close":      "Close",
-      "getQuote":   "Find My Best Rate →"
+      "close": "Close",
+      "getQuote": "Find My Best Rate →"
     },
     "progress": "Step {current} of {total}",
     "success": {
       "title": "We've got your request!",
-      "body":  "An Ativa agent will contact you within 1 business day with your personalized quote.",
-      "cta":   "Done"
+      "body": "An Ativa agent will contact you within 1 business day with your personalized quote.",
+      "cta": "Done"
     },
     "errors": {
       "required": "This field is required.",
-      "email":    "Please enter a valid email.",
-      "phone":    "Please enter a valid phone number.",
-      "zipCode":  "Please enter a valid ZIP code"
+      "email": "Please enter a valid email.",
+      "phone": "Please enter a valid phone number.",
+      "zipCode": "Please enter a valid ZIP code"
     }
   },
   "carriers": {
     "heading": "Trusted Carriers",
-    "sub":     "We shop multiple top-rated carriers to find you the best rate."
+    "sub": "We shop multiple top-rated carriers to find you the best rate."
   },
   "reviews": {
-    "heading": "What Our Clients Say",
-    "sub":     "Real people, real coverage, real savings.",
+    "eyebrow": "WHAT OUR CLIENTS SAY",
+    "heading": "What our clients are saying",
+    "readMore": "Read more reviews on Google",
     "items": [
-      { "name": "Maria S.",    "stars": 5, "text": "Got my auto insurance sorted in minutes. Found me a great rate I couldn't believe." },
-      { "name": "James R.",    "stars": 5, "text": "Best commercial insurance experience I've had. They truly understand Florida businesses." },
-      { "name": "Ana Costa",   "stars": 5, "text": "Atendimento excelente! Conseguiram um seguro incrível para meu negócio em Melbourne." },
-      { "name": "Carlos M.",   "stars": 5, "text": "Helped me bundle home and auto. Saved a lot and the process was super smooth." },
-      { "name": "Jennifer L.", "stars": 5, "text": "They respond fast and actually explain the coverage. Highly recommend Ativa!" },
-      { "name": "Roberto P.",  "stars": 5, "text": "¡Excelente servicio! Me ayudaron con el seguro de mi empresa rápidamente." }
+      {
+        "name": "Carlos M.",
+        "location": "Stuart, FL",
+        "stars": 5,
+        "text": "They saved me over $800 on my auto policy. Ana helped me compare multiple options and found me a much better rate the same day. Fast, easy, and they actually speak Portuguese — which made everything so much easier for my family."
+      },
+      {
+        "name": "Juliana R.",
+        "location": "Melbourne, FL",
+        "stars": 5,
+        "text": "Best insurance experience I've had. They explained everything clearly and helped me get the right coverage for my home and flood. Great service!"
+      },
+      {
+        "name": "Ana P.",
+        "location": "Palm Bay, FL",
+        "stars": 5,
+        "text": "Professional, attentive, and truly care. They are always available when I need them and make the process simple."
+      },
+      {
+        "name": "Maria S.",
+        "location": "Melbourne, FL",
+        "stars": 5,
+        "text": "Got my auto insurance sorted in minutes. Found me a great rate I could not believe."
+      },
+      {
+        "name": "James R.",
+        "location": "Stuart, FL",
+        "stars": 5,
+        "text": "Best commercial insurance experience I have had. They truly understand Florida businesses."
+      },
+      {
+        "name": "Ana Costa",
+        "location": "Viera, FL",
+        "stars": 5,
+        "text": "Atendimento excelente! Conseguiram um seguro incrível para meu negócio em Melbourne."
+      },
+      {
+        "name": "Carlos G.",
+        "location": "Palm Bay, FL",
+        "stars": 5,
+        "text": "Helped me bundle home and auto. Saved a lot and the process was super smooth."
+      },
+      {
+        "name": "Jennifer L.",
+        "location": "Cocoa, FL",
+        "stars": 5,
+        "text": "They respond fast and actually explain the coverage. Highly recommend Ativa!"
+      },
+      {
+        "name": "Roberto P.",
+        "location": "Melbourne, FL",
+        "stars": 5,
+        "text": "Excelente servicio! Me ayudaron con el seguro de mi empresa rápidamente."
+      }
     ]
   },
   "faq": {
     "heading": "Frequently Asked Questions",
-    "sub":     "Everything you need to know before getting a quote.",
+    "sub": "Everything you need to know before getting a quote.",
     "items": [
       {
         "q": "What states are you licensed in?",
@@ -228,9 +370,9 @@
   },
   "blog": {
     "heading": "Insurance Tips & Guides",
-    "sub":     "Quick reads to help you make smarter coverage decisions.",
+    "sub": "Quick reads to help you make smarter coverage decisions.",
     "readMore": "Read more →",
-    "viewAll":  "View All Articles →",
+    "viewAll": "View All Articles →",
     "posts": [
       {
         "title": "5 Things Florida Homeowners Must Know About Flood Insurance",
@@ -282,79 +424,148 @@
       ]
     },
     "steps": {
-      "state":        "Your State",
+      "state": "Your State",
       "propertyType": "Property Type",
-      "details":      "Property Details",
-      "finishes":     "Finishes & Features",
-      "leadGate":     "Get My Results"
+      "details": "Property Details",
+      "finishes": "Finishes & Features",
+      "leadGate": "Get My Results"
     },
     "labels": {
-      "selectState":   "Select your state",
-      "selectType":    "Select property type",
-      "sqft":          "Living Area (sq ft)",
-      "address":       "Property Address",
-      "yearBuilt":     "Year Built",
-      "finishLevel":   "Interior Finish Level",
-      "roofType":      "Roof Type",
-      "garage":        "Garage",
-      "pool":          "Pool / Spa",
-      "firstName":     "First Name",
-      "email":         "Email Address",
-      "phone":         "Phone Number"
+      "selectState": "Select your state",
+      "selectType": "Select property type",
+      "sqft": "Living Area (sq ft)",
+      "address": "Property Address",
+      "yearBuilt": "Year Built",
+      "finishLevel": "Interior Finish Level",
+      "roofType": "Roof Type",
+      "garage": "Garage",
+      "pool": "Pool / Spa",
+      "firstName": "First Name",
+      "email": "Email Address",
+      "phone": "Phone Number"
     },
     "options": {
-      "states": ["CT","FL","GA","MA","MD","NC","NJ","OH","PA","SC","TN"],
+      "states": [
+        "CT",
+        "FL",
+        "GA",
+        "MA",
+        "MD",
+        "NC",
+        "NJ",
+        "OH",
+        "PA",
+        "SC",
+        "TN"
+      ],
       "propertyTypes": [
-        { "value": "single_family", "label": "Single Family Home" },
-        { "value": "townhouse",     "label": "Townhouse" },
-        { "value": "condo",         "label": "Condo" },
-        { "value": "mobile_home",   "label": "Mobile Home" },
-        { "value": "duplex",        "label": "Duplex" }
+        {
+          "value": "single_family",
+          "label": "Single Family Home"
+        },
+        {
+          "value": "townhouse",
+          "label": "Townhouse"
+        },
+        {
+          "value": "condo",
+          "label": "Condo"
+        },
+        {
+          "value": "mobile_home",
+          "label": "Mobile Home"
+        },
+        {
+          "value": "duplex",
+          "label": "Duplex"
+        }
       ],
       "finishLevels": [
-        { "value": "basic", "label": "Basic / Builder Grade" },
-        { "value": "mid",   "label": "Mid-Range" },
-        { "value": "high",  "label": "High-End / Custom" }
+        {
+          "value": "basic",
+          "label": "Basic / Builder Grade"
+        },
+        {
+          "value": "mid",
+          "label": "Mid-Range"
+        },
+        {
+          "value": "high",
+          "label": "High-End / Custom"
+        }
       ],
       "roofTypes": [
-        { "value": "shingle", "label": "Asphalt Shingle" },
-        { "value": "metal",   "label": "Metal" },
-        { "value": "tile",    "label": "Tile / Clay" },
-        { "value": "flat",    "label": "Flat / Modified Bitumen" }
+        {
+          "value": "shingle",
+          "label": "Asphalt Shingle"
+        },
+        {
+          "value": "metal",
+          "label": "Metal"
+        },
+        {
+          "value": "tile",
+          "label": "Tile / Clay"
+        },
+        {
+          "value": "flat",
+          "label": "Flat / Modified Bitumen"
+        }
       ],
       "garageTypes": [
-        { "value": "none",   "label": "No Garage" },
-        { "value": "single", "label": "Single Car Garage" },
-        { "value": "double", "label": "Double Car Garage" }
+        {
+          "value": "none",
+          "label": "No Garage"
+        },
+        {
+          "value": "single",
+          "label": "Single Car Garage"
+        },
+        {
+          "value": "double",
+          "label": "Double Car Garage"
+        }
       ],
       "poolOptions": [
-        { "value": "none", "label": "None" },
-        { "value": "pool", "label": "Pool" },
-        { "value": "spa",  "label": "Spa / Hot Tub" },
-        { "value": "both", "label": "Pool + Spa" }
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "pool",
+          "label": "Pool"
+        },
+        {
+          "value": "spa",
+          "label": "Spa / Hot Tub"
+        },
+        {
+          "value": "both",
+          "label": "Pool + Spa"
+        }
       ]
     },
     "buttons": {
-      "next":      "Next Step →",
-      "back":      "Back",
+      "next": "Next Step →",
+      "back": "Back",
       "calculate": "Reveal My Estimate →",
-      "getQuote":  "Get a Free Quote from Ativa →",
-      "whatsapp":  "Text Us on WhatsApp"
+      "getQuote": "Get a Free Quote from Ativa →",
+      "whatsapp": "Text Us on WhatsApp"
     },
     "results": {
-      "title":       "Your Estimated Replacement Cost",
-      "subtitle":    "Based on your property details and current construction costs in your state",
-      "rangeLabel":  "Estimated Range",
+      "title": "Your Estimated Replacement Cost",
+      "subtitle": "Based on your property details and current construction costs in your state",
+      "rangeLabel": "Estimated Range",
       "recommended": "Recommended Coverage Amount",
-      "disclaimer":  "This estimate is for insurance planning purposes. Actual replacement cost should be confirmed by a licensed appraiser or your insurance carrier."
+      "disclaimer": "This estimate is for insurance planning purposes. Actual replacement cost should be confirmed by a licensed appraiser or your insurance carrier."
     },
     "lead": {
-      "title":    "Your estimate is ready!",
+      "title": "Your estimate is ready!",
       "subtitle": "Enter your contact info to unlock your personalized replacement cost.",
-      "consent":  "We'll send your results + a free quote comparison to your inbox."
+      "consent": "We'll send your results + a free quote comparison to your inbox."
     },
     "emailSuccess": {
-      "title":    "Results sent to your inbox!",
+      "title": "Results sent to your inbox!",
       "subtitle": "An Ativa agent will reach out with a personalized coverage quote.",
       "whatsapp": "Want faster service? Send us a text →"
     },
@@ -385,57 +596,57 @@
     },
     "cta": {
       "headline": "Ready for a Real Quote?",
-      "sub":      "Our agents shop multiple carriers to get you the best rate for your replacement cost.",
-      "button":   "See My Price →"
+      "sub": "Our agents shop multiple carriers to get you the best rate for your replacement cost.",
+      "button": "See My Price →"
     }
   },
   "trust": {
-    "states":          "✓ 11 Licensed States",
-    "statesShort":     "✓ 11 States",
-    "sameDay":         "⚡ Same-Day",
+    "states": "✓ 11 Licensed States",
+    "statesShort": "✓ 11 States",
+    "sameDay": "⚡ Same-Day",
     "sameDayResponse": "⚡ Same-Day Response",
     "sameDayCoverage": "⚡ Same-Day Coverage",
-    "noSpam":          "🔒 No Spam · No Calls",
-    "quickQuote":      "⚡ Quick quote · No commitment · Licensed local agents",
-    "googleRating":    "⭐ 5.0 Google Rating",
-    "reviewsShort":    "5.0 · 74 Reviews",
-    "reviewsFull":     "5.0 · 74 Google Reviews",
-    "reviewsStates":   "5.0 · 74 Reviews · ✓ 11 States",
-    "carriers":        "Multiple Top-Rated Carriers"
+    "noSpam": "🔒 No Spam · No Calls",
+    "quickQuote": "⚡ Quick quote · No commitment · Licensed local agents",
+    "googleRating": "⭐ 5.0 Google Rating",
+    "reviewsShort": "5.0 · 74 Reviews",
+    "reviewsFull": "5.0 · 74 Google Reviews",
+    "reviewsStates": "5.0 · 74 Reviews · ✓ 11 States",
+    "carriers": "Multiple Top-Rated Carriers"
   },
   "sticky": {
-    "cta":    "See My Price — Free & Fast",
-    "sub":    "Free · No spam · No obligation",
+    "cta": "See My Price — Free & Fast",
+    "sub": "Free · No spam · No obligation",
     "textUs": "Text Us"
   },
   "langHint": "🌐 Available in English, Portuguese & Spanish",
   "contactCta": {
-    "eyebrow":         "Get Started Today",
-    "personalHeadline":"Get Your Best Rate — In Minutes",
-    "commercialHeadline":"Protect Your Business — Fast",
-    "personalSub":     "No calls required. No spam. Just a fast, free quote from a licensed agent.",
-    "commercialSub":   "Same-day certificates. No pressure. Licensed commercial specialists.",
-    "personalCta":     "Get My Free Quote →",
-    "commercialCta":   "Get Business Coverage →",
-    "microcopy":       "Free · No obligation · Licensed in CT, FL, GA, NC, SC, NJ, TN, MD, MA, OH, PA"
+    "eyebrow": "Get Started Today",
+    "personalHeadline": "Get Your Best Rate — In Minutes",
+    "commercialHeadline": "Protect Your Business — Fast",
+    "personalSub": "No calls required. No spam. Just a fast, free quote from a licensed agent.",
+    "commercialSub": "Same-day certificates. No pressure. Licensed commercial specialists.",
+    "personalCta": "Get My Free Quote →",
+    "commercialCta": "Get Business Coverage →",
+    "microcopy": "Free · No obligation · Licensed in CT, FL, GA, NC, SC, NJ, TN, MD, MA, OH, PA"
   },
   "footer": {
-    "tagline":    "Independent Insurance Agency",
-    "agent":      "Licensed in CT, FL, GA, MA, MD, NC, NJ, OH, PA, SC, TN",
-    "licensed":   "Licensed in CT · FL · GA · MA · MD · NC · NJ · OH · PA · SC · TN",
-    "rights":     "© {year} Ativa Insurance LLC. All rights reserved.",
+    "tagline": "Independent Insurance Agency",
+    "agent": "Licensed in CT, FL, GA, MA, MD, NC, NJ, OH, PA, SC, TN",
+    "licensed": "Licensed in CT · FL · GA · MA · MD · NC · NJ · OH · PA · SC · TN",
+    "rights": "© {year} Ativa Insurance LLC. All rights reserved.",
     "disclaimer": "Ativa Insurance LLC is an independent insurance agency. Producer: Ana Leticia Zuany, FL #L125673. Coverage is subject to policy terms and conditions. Not all products available in all states.",
-    "phone":      "561-946-8261",
-    "address":    "1 SE Ocean Blvd, Stuart, FL 34994",
-    "whatsapp":   "WhatsApp Us",
-    "privacy":    "Privacy Policy",
+    "phone": "561-946-8261",
+    "address": "1 SE Ocean Blvd, Stuart, FL 34994",
+    "whatsapp": "WhatsApp Us",
+    "privacy": "Privacy Policy",
     "smsPrivacy": "SMS Privacy Policy",
-    "terms":      "Terms of Use",
-    "licenses":   "Licenses",
+    "terms": "Terms of Use",
+    "licenses": "Licenses",
     "links": {
-      "tools":   "Tools",
-      "rce":     "RCE Calculator",
-      "blog":    "Blog",
+      "tools": "Tools",
+      "rce": "RCE Calculator",
+      "blog": "Blog",
       "contact": "Contact"
     }
   }

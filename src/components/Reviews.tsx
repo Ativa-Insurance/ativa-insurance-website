@@ -4,8 +4,6 @@ import { useState } from "react";
 import type { Mode } from "@/types";
 import { useLanguage } from "@/context/LanguageContext";
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
-
 function GoogleG({ size = 16 }: { size?: number }) {
   return (
     <svg viewBox="0 0 24 24" width={size} height={size} style={{ flexShrink: 0 }}>
@@ -17,7 +15,7 @@ function GoogleG({ size = 16 }: { size?: number }) {
   );
 }
 
-function StarRow({ count = 5, color = "#F59E0B", size = 16 }: { count?: number; color?: string; size?: number }) {
+function StarRow({ count = 5, color = "#F59E0B", size = 14 }: { count?: number; color?: string; size?: number }) {
   return (
     <div style={{ display: "flex", gap: "2px" }}>
       {Array.from({ length: count }).map((_, i) => (
@@ -29,45 +27,14 @@ function StarRow({ count = 5, color = "#F59E0B", size = 16 }: { count?: number; 
   );
 }
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 interface ReviewItem {
   name: string;
+  location?: string;
   stars: number;
   text: string;
 }
 
-// ─── Google aggregate badge ────────────────────────────────────────────────────
-
-function GoogleAggregateBadge() {
-  return (
-    <div
-      style={{
-        display:         "inline-flex",
-        alignItems:      "center",
-        gap:             "10px",
-        backgroundColor: "#FFFFFF",
-        border:          "1px solid #E2E8F0",
-        borderRadius:    "40px",
-        padding:         "10px 20px",
-        boxShadow:       "0 2px 12px rgba(0,0,0,0.06)",
-      }}
-    >
-      <GoogleG size={20} />
-      <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.2 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-          <StarRow count={5} color="#F59E0B" size={14} />
-          <span style={{ fontSize: "14px", fontWeight: 800, color: "#0B1F33" }}>5.0</span>
-        </div>
-        <span style={{ fontSize: "12px", color: "#64748B", marginTop: "1px" }}>74 Google Reviews</span>
-      </div>
-    </div>
-  );
-}
-
-// ─── Regular review card ──────────────────────────────────────────────────────
-
-function ReviewCard({ review }: { review: ReviewItem }) {
+function ReviewCard({ review, featured = false }: { review: ReviewItem; featured?: boolean }) {
   const [hovered, setHovered] = useState(false);
   const initial = review.name.charAt(0).toUpperCase();
 
@@ -77,7 +44,7 @@ function ReviewCard({ review }: { review: ReviewItem }) {
         backgroundColor: "#FFFFFF",
         border:          "1px solid #E8EDF5",
         borderRadius:    "16px",
-        padding:         "24px",
+        padding:         featured ? "28px" : "22px",
         boxShadow:       hovered ? "0 10px 32px rgba(0,0,0,0.10)" : "0 2px 8px rgba(0,0,0,0.04)",
         transform:       hovered ? "translateY(-4px)" : "translateY(0)",
         transition:      "box-shadow 250ms ease, transform 250ms ease",
@@ -89,38 +56,27 @@ function ReviewCard({ review }: { review: ReviewItem }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Stars + Google */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <StarRow count={review.stars} color="#F59E0B" size={15} />
+        <StarRow count={review.stars} color="#F59E0B" size={featured ? 15 : 13} />
         <GoogleG size={15} />
       </div>
 
-      {/* Text */}
-      <p
-        style={{
-          color:      "#374151",
-          fontSize:   "14px",
-          lineHeight: 1.7,
-          margin:     0,
-          flex:       1,
-        }}
-      >
+      <p style={{ color: "#374151", fontSize: featured ? "14px" : "13px", lineHeight: 1.7, margin: 0, flex: 1 }}>
         &ldquo;{review.text}&rdquo;
       </p>
 
-      {/* Author row */}
-      <div style={{ display: "flex", alignItems: "center", gap: "10px", paddingTop: "4px", borderTop: "1px solid #F1F5F9" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "10px", paddingTop: "8px", borderTop: "1px solid #F1F5F9" }}>
         <div
           style={{
-            width:           "36px",
-            height:          "36px",
+            width:           featured ? "36px" : "32px",
+            height:          featured ? "36px" : "32px",
             borderRadius:    "50%",
             backgroundColor: "#EEF4FF",
             border:          "1.5px solid #C7D7FD",
             display:         "flex",
             alignItems:      "center",
             justifyContent:  "center",
-            fontSize:        "14px",
+            fontSize:        featured ? "14px" : "12px",
             fontWeight:      700,
             color:           "#1B3A6B",
             flexShrink:      0,
@@ -129,159 +85,25 @@ function ReviewCard({ review }: { review: ReviewItem }) {
           {initial}
         </div>
         <div>
-          <p style={{ margin: 0, fontSize: "14px", fontWeight: 700, color: "#0B1F33", lineHeight: 1.2 }}>
+          <p style={{ margin: 0, fontSize: featured ? "14px" : "13px", fontWeight: 700, color: "#0B1F33", lineHeight: 1.2 }}>
             {review.name}
           </p>
-          <p style={{ margin: 0, fontSize: "11px", color: "#22C55E", fontWeight: 600, letterSpacing: "0.02em" }}>
-            ✓ Verified Review
-          </p>
+          {review.location && (
+            <p style={{ margin: 0, fontSize: "11px", color: "#64748B", lineHeight: 1.3 }}>
+              {review.location}
+            </p>
+          )}
         </div>
       </div>
     </div>
   );
 }
-
-// ─── Featured review card ─────────────────────────────────────────────────────
-
-function FeaturedReview() {
-  return (
-    <div
-      style={{
-        backgroundColor: "#0B1F33",
-        borderRadius:    "20px",
-        padding:         "40px 44px",
-        marginBottom:    "24px",
-        position:        "relative",
-        overflow:        "hidden",
-      }}
-    >
-      {/* Decorative quote mark */}
-      <div
-        aria-hidden
-        style={{
-          position:   "absolute",
-          top:        "-10px",
-          left:       "32px",
-          fontSize:   "120px",
-          lineHeight: 1,
-          color:      "rgba(245,166,35,0.12)",
-          fontFamily: "Georgia, serif",
-          fontWeight: 900,
-          userSelect: "none",
-        }}
-      >
-        &ldquo;
-      </div>
-
-      {/* Stars */}
-      <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "18px", position: "relative" }}>
-        <StarRow count={5} color="#F5A623" size={20} />
-        <span
-          style={{
-            fontSize:        "11px",
-            fontWeight:      600,
-            color:           "rgba(255,255,255,0.55)",
-            letterSpacing:   "0.05em",
-            textTransform:   "uppercase",
-          }}
-        >
-          Featured Review
-        </span>
-      </div>
-
-      {/* Quote */}
-      <p
-        style={{
-          color:         "#FFFFFF",
-          fontSize:      "clamp(16px, 2vw, 19px)",
-          fontWeight:    700,
-          lineHeight:    1.65,
-          marginBottom:  "10px",
-          position:      "relative",
-        }}
-      >
-        &ldquo;They saved me over $800 on my auto policy&rdquo;
-      </p>
-      <p
-        style={{
-          color:        "rgba(255,255,255,0.80)",
-          fontSize:     "15px",
-          lineHeight:   1.75,
-          marginBottom: "28px",
-          position:     "relative",
-        }}
-      >
-        I was paying way too much with my old insurance. Ana helped me compare multiple options and found me a much better rate the same day. The process was fast, easy, and they actually speak Portuguese — which made everything so much easier for my family.
-      </p>
-
-      {/* Attribution */}
-      <div
-        style={{
-          display:        "flex",
-          alignItems:     "center",
-          justifyContent: "space-between",
-          flexWrap:       "wrap",
-          gap:            "12px",
-          position:       "relative",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <div
-            style={{
-              width:           "44px",
-              height:          "44px",
-              borderRadius:    "50%",
-              backgroundColor: "rgba(245,166,35,0.15)",
-              border:          "1.5px solid rgba(245,166,35,0.35)",
-              display:         "flex",
-              alignItems:      "center",
-              justifyContent:  "center",
-              fontSize:        "17px",
-              fontWeight:      800,
-              color:           "#F5A623",
-              flexShrink:      0,
-            }}
-          >
-            C
-          </div>
-          <div>
-            <p style={{ color: "#FFFFFF", fontWeight: 700, fontSize: "15px", margin: 0, lineHeight: 1.2 }}>
-              Carlos M.
-            </p>
-            <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "13px", margin: 0 }}>
-              Stuart, FL · Auto Insurance
-            </p>
-          </div>
-        </div>
-
-        {/* Verified badge */}
-        <div
-          style={{
-            display:         "flex",
-            alignItems:      "center",
-            gap:             "6px",
-            backgroundColor: "rgba(255,255,255,0.06)",
-            border:          "1px solid rgba(255,255,255,0.12)",
-            borderRadius:    "20px",
-            padding:         "6px 12px",
-          }}
-        >
-          <GoogleG size={14} />
-          <span style={{ color: "rgba(255,255,255,0.65)", fontSize: "12px", fontWeight: 500 }}>
-            Verified Google Review
-          </span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ─── Main component ───────────────────────────────────────────────────────────
 
 export default function Reviews({ mode }: { mode: Mode }) {
   const { t, tRaw } = useLanguage();
-
   const items = (tRaw("reviews.items") as ReviewItem[] | undefined) ?? [];
+  const featured = items.slice(0, 3);
+  const rest = items.slice(3);
 
   return (
     <section
@@ -290,30 +112,32 @@ export default function Reviews({ mode }: { mode: Mode }) {
         borderTop:       "1px solid rgba(0,0,0,0.06)",
         borderBottom:    "1px solid rgba(0,0,0,0.06)",
         padding:         "80px 24px",
-        position:        "relative",
-        overflow:        "hidden",
       }}
     >
-      {/* Subtle decorative circle */}
-      <svg
-        aria-hidden
-        viewBox="0 0 1 1"
-        style={{
-          position:      "absolute",
-          top:           "-80px",
-          right:         "-80px",
-          width:         "320px",
-          height:        "320px",
-          opacity:       0.04,
-          pointerEvents: "none",
-        }}
-      >
-        <circle cx="0.5" cy="0.5" r="0.5" fill="#1B3A6B" />
-      </svg>
+      <style>{`
+        .reviews-featured-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 20px;
+          margin-bottom: 20px;
+        }
+        .reviews-rest-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 16px;
+        }
+        @media (max-width: 900px) {
+          .reviews-featured-grid { grid-template-columns: 1fr; }
+          .reviews-rest-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+          .reviews-rest-grid { grid-template-columns: 1fr; }
+        }
+      `}</style>
 
-      <div style={{ maxWidth: "960px", margin: "0 auto", position: "relative" }}>
+      <div style={{ maxWidth: "1120px", margin: "0 auto" }}>
 
-        {/* ── Section header ── */}
+        {/* Header */}
         <div style={{ textAlign: "center", marginBottom: "48px" }}>
           <p
             style={{
@@ -322,52 +146,82 @@ export default function Reviews({ mode }: { mode: Mode }) {
               fontWeight:    700,
               textTransform: "uppercase",
               color:         "var(--eyebrow)",
-              marginBottom:  "10px",
+              marginBottom:  "14px",
             }}
           >
-            Client Stories
+            {t("reviews.eyebrow")}
           </p>
+
+          {/* Google aggregate badge */}
+          <div
+            style={{
+              display:         "inline-flex",
+              alignItems:      "center",
+              gap:             "10px",
+              backgroundColor: "#FFFFFF",
+              border:          "1px solid #E2E8F0",
+              borderRadius:    "40px",
+              padding:         "10px 20px",
+              boxShadow:       "0 2px 12px rgba(0,0,0,0.06)",
+              marginBottom:    "20px",
+            }}
+          >
+            <GoogleG size={20} />
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <StarRow count={5} color="#F59E0B" size={14} />
+              <span style={{ fontSize: "14px", fontWeight: 800, color: "#0B1F33" }}>5.0</span>
+              <span style={{ fontSize: "13px", color: "#64748B" }}>· 74 Google Reviews</span>
+            </div>
+          </div>
+
           <h2
             style={{
               fontSize:      "clamp(1.8rem, 3vw, 2.4rem)",
               fontWeight:    900,
               color:         "#0B1F33",
-              margin:        "0 0 10px",
+              margin:        0,
               lineHeight:    1.1,
               letterSpacing: "-0.025em",
             }}
           >
             {t("reviews.heading")}
           </h2>
-          <p
-            style={{
-              fontSize:     "16px",
-              color:        "#64748B",
-              margin:       "0 0 20px",
-              lineHeight:   1.5,
-            }}
-          >
-            {t("reviews.sub")}
-          </p>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <GoogleAggregateBadge />
-          </div>
         </div>
 
-        {/* ── Featured review ── */}
-        <FeaturedReview />
-
-        {/* ── Regular review grid ── */}
-        <div
-          style={{
-            display:             "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-            gap:                 "20px",
-          }}
-        >
-          {items.map((review, i) => (
-            <ReviewCard key={i} review={review} />
+        {/* Featured 3 cards */}
+        <div className="reviews-featured-grid">
+          {featured.map((review, i) => (
+            <ReviewCard key={i} review={review} featured />
           ))}
+        </div>
+
+        {/* Rest of cards */}
+        {rest.length > 0 && (
+          <div className="reviews-rest-grid">
+            {rest.map((review, i) => (
+              <ReviewCard key={i} review={review} />
+            ))}
+          </div>
+        )}
+
+        {/* Read more link */}
+        <div style={{ textAlign: "center", marginTop: "36px" }}>
+          <a
+            href="https://www.google.com/search?q=Ativa+Insurance+reviews"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display:        "inline-flex",
+              alignItems:     "center",
+              gap:            "6px",
+              color:          "#1B3A6B",
+              fontWeight:     700,
+              fontSize:       "14px",
+              textDecoration: "none",
+            }}
+          >
+            {t("reviews.readMore")} →
+          </a>
         </div>
 
       </div>

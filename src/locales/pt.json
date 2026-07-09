@@ -68,10 +68,22 @@
     "langs": "English • Português • Español"
   },
   "stats": [
-    { "value": "500+",  "label": "Famílias Cobertas" },
-    { "value": "5★",       "label": "Avaliação Google" },
-    { "value": "11",       "label": "Estados Licenciados" },
-    { "value": "Mesmo Dia","label": "Prazo de Cotação" }
+    {
+      "value": "500+",
+      "label": "Famílias Cobertas"
+    },
+    {
+      "value": "5★",
+      "label": "Avaliação Google"
+    },
+    {
+      "value": "11",
+      "label": "Estados Licenciados"
+    },
+    {
+      "value": "Mesmo Dia",
+      "label": "Prazo de Cotação"
+    }
   ],
   "products": {
     "personalHeading": "Todas as Coberturas Pessoais",
@@ -81,20 +93,68 @@
     "personalRowLabel": "Seguro Pessoal",
     "commercialRowLabel": "Seguro Comercial",
     "personal": [
-      { "id": "auto",     "title": "Seguro Auto",              "description": "Cubra seu veículo hoje — mesmo que você acabou de comprar." },
-      { "id": "home",     "title": "Seguro Residencial",       "description": "Compare preços antes da sua renovação chegar." },
-      { "id": "flood",    "title": "Seguro contra Inundação",  "description": "Obrigatório na maioria das zonas de risco — cubra-se rápido." },
-      { "id": "bundle",   "title": "Combine e Economize",      "description": "A maioria dos clientes economiza 18% combinando duas apólices." },
-      { "id": "umbrella", "title": "Seguro Guarda-Chuva",      "description": "Proteção extra além do seu seguro residencial e auto." },
-      { "id": "pet",      "title": "Seguro Pet",               "description": "Uma consulta pode custar mais do que um ano de cobertura." }
+      {
+        "id": "auto",
+        "title": "Seguro Auto",
+        "description": "Cubra seu veículo hoje — mesmo que você acabou de comprar."
+      },
+      {
+        "id": "home",
+        "title": "Seguro Residencial",
+        "description": "Compare preços antes da sua renovação chegar."
+      },
+      {
+        "id": "flood",
+        "title": "Seguro contra Inundação",
+        "description": "Obrigatório na maioria das zonas de risco — cubra-se rápido."
+      },
+      {
+        "id": "bundle",
+        "title": "Combine e Economize",
+        "description": "A maioria dos clientes economiza 18% combinando duas apólices."
+      },
+      {
+        "id": "umbrella",
+        "title": "Seguro Guarda-Chuva",
+        "description": "Proteção extra além do seu seguro residencial e auto."
+      },
+      {
+        "id": "pet",
+        "title": "Seguro Pet",
+        "description": "Uma consulta pode custar mais do que um ano de cobertura."
+      }
     ],
     "commercial": [
-      { "id": "gl",              "title": "Responsabilidade Geral",        "description": "Exigido pela maioria dos clientes antes de você começar." },
-      { "id": "workers-comp",    "title": "Compensação de Trabalhadores",  "description": "Obrigatório na Flórida — regularize-se hoje." },
-      { "id": "commercial-auto", "title": "Auto Comercial",                "description": "Um acidente sem cobertura pode fechar seu negócio." },
-      { "id": "trucking",        "title": "Frota / Transporte",            "description": "Operadores e frotas — responsabilidade, danos físicos e mais." },
-      { "id": "cargo",           "title": "Seguro de Carga",               "description": "Proteja sua mercadoria e estoque durante o transporte." },
-      { "id": "umbrella",        "title": "Guarda-Chuva Comercial",        "description": "Cobertura de excesso de responsabilidade quando a apólice padrão não é suficiente." }
+      {
+        "id": "gl",
+        "title": "Responsabilidade Geral",
+        "description": "Exigido pela maioria dos clientes antes de você começar."
+      },
+      {
+        "id": "workers-comp",
+        "title": "Compensação de Trabalhadores",
+        "description": "Obrigatório na Flórida — regularize-se hoje."
+      },
+      {
+        "id": "commercial-auto",
+        "title": "Auto Comercial",
+        "description": "Um acidente sem cobertura pode fechar seu negócio."
+      },
+      {
+        "id": "trucking",
+        "title": "Frota / Transporte",
+        "description": "Operadores e frotas — responsabilidade, danos físicos e mais."
+      },
+      {
+        "id": "cargo",
+        "title": "Seguro de Carga",
+        "description": "Proteja sua mercadoria e estoque durante o transporte."
+      },
+      {
+        "id": "umbrella",
+        "title": "Guarda-Chuva Comercial",
+        "description": "Cobertura de excesso de responsabilidade quando a apólice padrão não é suficiente."
+      }
     ]
   },
   "why": {
@@ -117,88 +177,170 @@
       "contact": "Seus Dados",
       "details": "Detalhes",
       "coverage": "Cobertura",
-      "confirm":  "Confirmar"
+      "confirm": "Confirmar"
     },
     "labels": {
-      "firstName":       "Nome",
-      "lastName":        "Sobrenome",
-      "email":           "E-mail",
-      "phone":           "Telefone",
-      "address":         "Endereço do Imóvel",
-      "zipCode":         "CEP",
-      "dob":             "Data de Nascimento",
-      "vin":             "VIN do Veículo",
-      "year":            "Ano",
-      "make":            "Marca",
-      "model":           "Modelo",
-      "yearBuilt":       "Ano de Construção",
-      "squareFeet":      "Metragem",
-      "roofType":        "Tipo de Telhado",
-      "businessName":    "Nome da Empresa",
-      "industry":        "Setor",
-      "employees":       "Número de Funcionários",
-      "revenue":         "Receita Anual",
+      "firstName": "Nome",
+      "lastName": "Sobrenome",
+      "email": "E-mail",
+      "phone": "Telefone",
+      "address": "Endereço do Imóvel",
+      "zipCode": "CEP",
+      "dob": "Data de Nascimento",
+      "vin": "VIN do Veículo",
+      "year": "Ano",
+      "make": "Marca",
+      "model": "Modelo",
+      "yearBuilt": "Ano de Construção",
+      "squareFeet": "Metragem",
+      "roofType": "Tipo de Telhado",
+      "businessName": "Nome da Empresa",
+      "industry": "Setor",
+      "employees": "Número de Funcionários",
+      "revenue": "Receita Anual",
       "yearsInBusiness": "Anos em Operação",
-      "coverageAmount":  "Valor da Cobertura",
-      "currentInsurer":  "Seguradora Atual (opcional)"
+      "coverageAmount": "Valor da Cobertura",
+      "currentInsurer": "Seguradora Atual (opcional)"
     },
     "placeholders": {
-      "firstName":    "Ana",
-      "lastName":     "Silva",
-      "email":        "ana@exemplo.com",
-      "phone":        "(305) 555-0100",
-      "address":      "Digite seu endereço…",
-      "zipCode":      "33101",
-      "vin":          "Digite o VIN de 17 dígitos",
+      "firstName": "Ana",
+      "lastName": "Silva",
+      "email": "ana@exemplo.com",
+      "phone": "(305) 555-0100",
+      "address": "Digite seu endereço…",
+      "zipCode": "33101",
+      "vin": "Digite o VIN de 17 dígitos",
       "businessName": "Minha Empresa Ltda"
     },
     "options": {
-      "roofType":       ["Telha", "Metal", "Cerâmica", "Plano", "Outro"],
-      "coverageAmount": ["$100.000", "$200.000", "$300.000", "$500.000", "$1.000.000+"],
-      "industry":       ["Varejo", "Restaurante / Alimentação", "Construção", "Saúde", "Serviços Profissionais", "Transporte", "Tecnologia", "Outro"],
-      "employees":      ["1–5", "6–20", "21–50", "51–100", "100+"],
-      "revenue":        ["Menos de $250K", "$250K–$500K", "$500K–$1M", "$1M–$5M", "$5M+"]
+      "roofType": [
+        "Telha",
+        "Metal",
+        "Cerâmica",
+        "Plano",
+        "Outro"
+      ],
+      "coverageAmount": [
+        "$100.000",
+        "$200.000",
+        "$300.000",
+        "$500.000",
+        "$1.000.000+"
+      ],
+      "industry": [
+        "Varejo",
+        "Restaurante / Alimentação",
+        "Construção",
+        "Saúde",
+        "Serviços Profissionais",
+        "Transporte",
+        "Tecnologia",
+        "Outro"
+      ],
+      "employees": [
+        "1–5",
+        "6–20",
+        "21–50",
+        "51–100",
+        "100+"
+      ],
+      "revenue": [
+        "Menos de $250K",
+        "$250K–$500K",
+        "$500K–$1M",
+        "$1M–$5M",
+        "$5M+"
+      ]
     },
     "buttons": {
-      "next":       "Próximo",
-      "back":       "Voltar",
-      "submit":     "Solicitar Cotação",
+      "next": "Próximo",
+      "back": "Voltar",
+      "submit": "Solicitar Cotação",
       "submitting": "Enviando…",
-      "close":      "Fechar",
-      "getQuote":   "Ver Cotação →"
+      "close": "Fechar",
+      "getQuote": "Ver Cotação →"
     },
     "progress": "Etapa {current} de {total}",
     "success": {
       "title": "Recebemos sua solicitação!",
-      "body":  "Um agente da Ativa entrará em contato em até 1 dia útil com sua cotação personalizada.",
-      "cta":   "Concluído"
+      "body": "Um agente da Ativa entrará em contato em até 1 dia útil com sua cotação personalizada.",
+      "cta": "Concluído"
     },
     "errors": {
       "required": "Este campo é obrigatório.",
-      "email":    "Por favor, insira um e-mail válido.",
-      "phone":    "Por favor, insira um telefone válido.",
-      "zipCode":  "Por favor, insira um CEP válido"
+      "email": "Por favor, insira um e-mail válido.",
+      "phone": "Por favor, insira um telefone válido.",
+      "zipCode": "Por favor, insira um CEP válido"
     }
   },
   "carriers": {
     "heading": "Seguradoras Parceiras",
-    "sub":     "Trabalhamos com várias seguradoras de alto nível para encontrar a melhor tarifa."
+    "sub": "Trabalhamos com várias seguradoras de alto nível para encontrar a melhor tarifa."
   },
   "reviews": {
-    "heading": "O que Nossos Clientes Dizem",
-    "sub":     "Pessoas reais, cobertura real, economia real.",
+    "eyebrow": "O QUE NOSSOS CLIENTES DIZEM",
+    "heading": "O que nossos clientes dizem",
+    "readMore": "Ver mais avaliações no Google",
     "items": [
-      { "name": "Maria S.",    "stars": 5, "text": "Resolvi meu seguro auto em minutos. Conseguiram uma taxa incrível que eu não esperava." },
-      { "name": "James R.",    "stars": 5, "text": "Melhor experiência com seguro comercial. Eles entendem muito de negócios na Flórida." },
-      { "name": "Ana Costa",   "stars": 5, "text": "Atendimento excelente! Conseguiram um seguro incrível para meu negócio em Melbourne." },
-      { "name": "Carlos M.",   "stars": 5, "text": "Me ajudaram a combinar casa e auto. Economizei muito e o processo foi super fácil." },
-      { "name": "Jennifer L.", "stars": 5, "text": "Respondem rápido e explicam tudo direitinho. Recomendo muito a Ativa!" },
-      { "name": "Roberto P.",  "stars": 5, "text": "¡Excelente servicio! Me ayudaron con el seguro de mi empresa rápidamente." }
+      {
+        "name": "Carlos M.",
+        "location": "Stuart, FL",
+        "stars": 5,
+        "text": "They saved me over $800 on my auto policy. Ana helped me compare multiple options and found me a much better rate the same day. Fast, easy, and they actually speak Portuguese — which made everything so much easier for my family."
+      },
+      {
+        "name": "Juliana R.",
+        "location": "Melbourne, FL",
+        "stars": 5,
+        "text": "Best insurance experience I've had. They explained everything clearly and helped me get the right coverage for my home and flood. Great service!"
+      },
+      {
+        "name": "Ana P.",
+        "location": "Palm Bay, FL",
+        "stars": 5,
+        "text": "Professional, attentive, and truly care. They are always available when I need them and make the process simple."
+      },
+      {
+        "name": "Maria S.",
+        "location": "Melbourne, FL",
+        "stars": 5,
+        "text": "Got my auto insurance sorted in minutes. Found me a great rate I could not believe."
+      },
+      {
+        "name": "James R.",
+        "location": "Stuart, FL",
+        "stars": 5,
+        "text": "Best commercial insurance experience I have had. They truly understand Florida businesses."
+      },
+      {
+        "name": "Ana Costa",
+        "location": "Viera, FL",
+        "stars": 5,
+        "text": "Atendimento excelente! Conseguiram um seguro incrível para meu negócio em Melbourne."
+      },
+      {
+        "name": "Carlos G.",
+        "location": "Palm Bay, FL",
+        "stars": 5,
+        "text": "Helped me bundle home and auto. Saved a lot and the process was super smooth."
+      },
+      {
+        "name": "Jennifer L.",
+        "location": "Cocoa, FL",
+        "stars": 5,
+        "text": "They respond fast and actually explain the coverage. Highly recommend Ativa!"
+      },
+      {
+        "name": "Roberto P.",
+        "location": "Melbourne, FL",
+        "stars": 5,
+        "text": "Excelente servicio! Me ayudaron con el seguro de mi empresa rápidamente."
+      }
     ]
   },
   "faq": {
     "heading": "Perguntas Frequentes",
-    "sub":     "Tudo que você precisa saber antes de pedir uma cotação.",
+    "sub": "Tudo que você precisa saber antes de pedir uma cotação.",
     "items": [
       {
         "q": "Em quais estados vocês têm licença?",
@@ -228,9 +370,9 @@
   },
   "blog": {
     "heading": "Dicas e Guias de Seguro",
-    "sub":     "Leituras rápidas para decisões mais inteligentes sobre cobertura.",
+    "sub": "Leituras rápidas para decisões mais inteligentes sobre cobertura.",
     "readMore": "Ler mais →",
-    "viewAll":  "Ver Todos os Artigos →",
+    "viewAll": "Ver Todos os Artigos →",
     "posts": [
       {
         "title": "5 Coisas que Proprietários na Flórida Devem Saber sobre Seguro contra Inundação",
@@ -282,79 +424,148 @@
       ]
     },
     "steps": {
-      "state":        "Seu Estado",
+      "state": "Seu Estado",
       "propertyType": "Tipo de Imóvel",
-      "details":      "Detalhes do Imóvel",
-      "finishes":     "Acabamentos e Extras",
-      "leadGate":     "Ver Meus Resultados"
+      "details": "Detalhes do Imóvel",
+      "finishes": "Acabamentos e Extras",
+      "leadGate": "Ver Meus Resultados"
     },
     "labels": {
-      "selectState":   "Selecione seu estado",
-      "selectType":    "Selecione o tipo de imóvel",
-      "sqft":          "Área útil (pés quadrados)",
-      "address":       "Endereço do Imóvel",
-      "yearBuilt":     "Ano de Construção",
-      "finishLevel":   "Nível de Acabamento Interior",
-      "roofType":      "Tipo de Telhado",
-      "garage":        "Garagem",
-      "pool":          "Piscina / Spa",
-      "firstName":     "Nome",
-      "email":         "E-mail",
-      "phone":         "Telefone"
+      "selectState": "Selecione seu estado",
+      "selectType": "Selecione o tipo de imóvel",
+      "sqft": "Área útil (pés quadrados)",
+      "address": "Endereço do Imóvel",
+      "yearBuilt": "Ano de Construção",
+      "finishLevel": "Nível de Acabamento Interior",
+      "roofType": "Tipo de Telhado",
+      "garage": "Garagem",
+      "pool": "Piscina / Spa",
+      "firstName": "Nome",
+      "email": "E-mail",
+      "phone": "Telefone"
     },
     "options": {
-      "states": ["CT","FL","GA","MA","MD","NC","NJ","OH","PA","SC","TN"],
+      "states": [
+        "CT",
+        "FL",
+        "GA",
+        "MA",
+        "MD",
+        "NC",
+        "NJ",
+        "OH",
+        "PA",
+        "SC",
+        "TN"
+      ],
       "propertyTypes": [
-        { "value": "single_family", "label": "Casa Unifamiliar" },
-        { "value": "townhouse",     "label": "Townhouse" },
-        { "value": "condo",         "label": "Condomínio" },
-        { "value": "mobile_home",   "label": "Casa Móvel" },
-        { "value": "duplex",        "label": "Duplex" }
+        {
+          "value": "single_family",
+          "label": "Casa Unifamiliar"
+        },
+        {
+          "value": "townhouse",
+          "label": "Townhouse"
+        },
+        {
+          "value": "condo",
+          "label": "Condomínio"
+        },
+        {
+          "value": "mobile_home",
+          "label": "Casa Móvel"
+        },
+        {
+          "value": "duplex",
+          "label": "Duplex"
+        }
       ],
       "finishLevels": [
-        { "value": "basic", "label": "Básico / Padrão Construtora" },
-        { "value": "mid",   "label": "Intermediário" },
-        { "value": "high",  "label": "Alto Padrão / Personalizado" }
+        {
+          "value": "basic",
+          "label": "Básico / Padrão Construtora"
+        },
+        {
+          "value": "mid",
+          "label": "Intermediário"
+        },
+        {
+          "value": "high",
+          "label": "Alto Padrão / Personalizado"
+        }
       ],
       "roofTypes": [
-        { "value": "shingle", "label": "Telha Asfáltica" },
-        { "value": "metal",   "label": "Metal" },
-        { "value": "tile",    "label": "Telha / Cerâmica" },
-        { "value": "flat",    "label": "Plano / Manta Asfáltica" }
+        {
+          "value": "shingle",
+          "label": "Telha Asfáltica"
+        },
+        {
+          "value": "metal",
+          "label": "Metal"
+        },
+        {
+          "value": "tile",
+          "label": "Telha / Cerâmica"
+        },
+        {
+          "value": "flat",
+          "label": "Plano / Manta Asfáltica"
+        }
       ],
       "garageTypes": [
-        { "value": "none",   "label": "Sem Garagem" },
-        { "value": "single", "label": "Garagem 1 Carro" },
-        { "value": "double", "label": "Garagem 2 Carros" }
+        {
+          "value": "none",
+          "label": "Sem Garagem"
+        },
+        {
+          "value": "single",
+          "label": "Garagem 1 Carro"
+        },
+        {
+          "value": "double",
+          "label": "Garagem 2 Carros"
+        }
       ],
       "poolOptions": [
-        { "value": "none", "label": "Nenhum" },
-        { "value": "pool", "label": "Piscina" },
-        { "value": "spa",  "label": "Spa / Banheira" },
-        { "value": "both", "label": "Piscina + Spa" }
+        {
+          "value": "none",
+          "label": "Nenhum"
+        },
+        {
+          "value": "pool",
+          "label": "Piscina"
+        },
+        {
+          "value": "spa",
+          "label": "Spa / Banheira"
+        },
+        {
+          "value": "both",
+          "label": "Piscina + Spa"
+        }
       ]
     },
     "buttons": {
-      "next":      "Próximo →",
-      "back":      "Voltar",
+      "next": "Próximo →",
+      "back": "Voltar",
       "calculate": "Revelar Meu Resultado →",
-      "getQuote":  "Quero Cotação Gratuita da Ativa →",
-      "whatsapp":  "Falar no WhatsApp"
+      "getQuote": "Quero Cotação Gratuita da Ativa →",
+      "whatsapp": "Falar no WhatsApp"
     },
     "results": {
-      "title":       "Seu Custo de Reposição Estimado",
-      "subtitle":    "Com base nos dados do seu imóvel e custos de construção atuais no seu estado",
-      "rangeLabel":  "Faixa Estimada",
+      "title": "Seu Custo de Reposição Estimado",
+      "subtitle": "Com base nos dados do seu imóvel e custos de construção atuais no seu estado",
+      "rangeLabel": "Faixa Estimada",
       "recommended": "Cobertura Recomendada",
-      "disclaimer":  "Este valor é uma estimativa para planejamento de seguro. O custo real de reposição deve ser confirmado por um avaliador licenciado."
+      "disclaimer": "Este valor é uma estimativa para planejamento de seguro. O custo real de reposição deve ser confirmado por um avaliador licenciado."
     },
     "lead": {
-      "title":    "Seu resultado está pronto!",
+      "title": "Seu resultado está pronto!",
       "subtitle": "Informe seus dados para visualizar o custo de reposição personalizado.",
-      "consent":  "Enviaremos os resultados + uma comparação de cotações grátis para seu e-mail."
+      "consent": "Enviaremos os resultados + uma comparação de cotações grátis para seu e-mail."
     },
     "emailSuccess": {
-      "title":    "Resultados enviados para seu e-mail!",
+      "title": "Resultados enviados para seu e-mail!",
       "subtitle": "Um agente da Ativa entrará em contato com uma cotação personalizada.",
       "whatsapp": "Quer atendimento mais rápido? Fale no WhatsApp →"
     },
@@ -385,57 +596,57 @@
     },
     "cta": {
       "headline": "Pronto para uma Cotação Real?",
-      "sub":      "Nossos agentes cotam em várias seguradoras para conseguir a melhor taxa para o seu imóvel.",
-      "button":   "Quero Minha Cotação Gratuita →"
+      "sub": "Nossos agentes cotam em várias seguradoras para conseguir a melhor taxa para o seu imóvel.",
+      "button": "Quero Minha Cotação Gratuita →"
     }
   },
   "trust": {
-    "states":          "✓ 11 Estados Licenciados",
-    "statesShort":     "✓ 11 Estados",
-    "sameDay":         "⚡ Mesmo Dia",
+    "states": "✓ 11 Estados Licenciados",
+    "statesShort": "✓ 11 Estados",
+    "sameDay": "⚡ Mesmo Dia",
     "sameDayResponse": "⚡ Resposta no Mesmo Dia",
     "sameDayCoverage": "⚡ Cobertura no Mesmo Dia",
-    "noSpam":          "🔒 Sem Spam · Sem Ligações",
-    "quickQuote":      "⚡ Cotação rápida · Sem compromisso · Agentes locais licenciados",
-    "googleRating":    "⭐ Avaliação Google 5.0",
-    "reviewsShort":    "5.0 · 74 Avaliações",
-    "reviewsFull":     "5.0 · 74 Avaliações Google",
-    "reviewsStates":   "5.0 · 74 Avaliações · ✓ 11 Estados",
-    "carriers":        "Várias Seguradoras Líderes"
+    "noSpam": "🔒 Sem Spam · Sem Ligações",
+    "quickQuote": "⚡ Cotação rápida · Sem compromisso · Agentes locais licenciados",
+    "googleRating": "⭐ Avaliação Google 5.0",
+    "reviewsShort": "5.0 · 74 Avaliações",
+    "reviewsFull": "5.0 · 74 Avaliações Google",
+    "reviewsStates": "5.0 · 74 Avaliações · ✓ 11 Estados",
+    "carriers": "Várias Seguradoras Líderes"
   },
   "sticky": {
-    "cta":    "Ver Meu Preço — Grátis e Rápido",
-    "sub":    "Grátis · Sem spam · Sem compromisso",
+    "cta": "Ver Meu Preço — Grátis e Rápido",
+    "sub": "Grátis · Sem spam · Sem compromisso",
     "textUs": "Enviar Mensagem"
   },
   "langHint": "🌐 Disponível em Inglês, Português e Espanhol",
   "contactCta": {
-    "eyebrow":          "Comece Agora",
+    "eyebrow": "Comece Agora",
     "personalHeadline": "Obtenha a Melhor Tarifa — em Minutos",
-    "commercialHeadline":"Proteja Seu Negócio — Rápido",
-    "personalSub":      "Sem ligações. Sem spam. Uma cotação rápida e gratuita com um agente licenciado.",
-    "commercialSub":    "Certificados no mesmo dia. Sem pressão. Especialistas comerciais licenciados.",
-    "personalCta":      "Quero Minha Cotação Grátis →",
-    "commercialCta":    "Cobertura para Minha Empresa →",
-    "microcopy":        "Grátis · Sem compromisso · Licenciada em CT, FL, GA, NC, SC, NJ, TN, MD, MA, OH, PA"
+    "commercialHeadline": "Proteja Seu Negócio — Rápido",
+    "personalSub": "Sem ligações. Sem spam. Uma cotação rápida e gratuita com um agente licenciado.",
+    "commercialSub": "Certificados no mesmo dia. Sem pressão. Especialistas comerciais licenciados.",
+    "personalCta": "Quero Minha Cotação Grátis →",
+    "commercialCta": "Cobertura para Minha Empresa →",
+    "microcopy": "Grátis · Sem compromisso · Licenciada em CT, FL, GA, NC, SC, NJ, TN, MD, MA, OH, PA"
   },
   "footer": {
-    "tagline":    "Agência de Seguros Independente",
-    "agent":      "Licenciada em CT, FL, GA, MA, MD, NC, NJ, OH, PA, SC, TN",
-    "licensed":   "Licenciada em CT · FL · GA · MA · MD · NC · NJ · OH · PA · SC · TN",
-    "rights":     "© {year} Ativa Insurance LLC. Todos os direitos reservados.",
+    "tagline": "Agência de Seguros Independente",
+    "agent": "Licenciada em CT, FL, GA, MA, MD, NC, NJ, OH, PA, SC, TN",
+    "licensed": "Licenciada em CT · FL · GA · MA · MD · NC · NJ · OH · PA · SC · TN",
+    "rights": "© {year} Ativa Insurance LLC. Todos os direitos reservados.",
     "disclaimer": "Ativa Insurance LLC é uma agência de seguros independente. Produtora: Ana Leticia Zuany, FL #L125673. A cobertura está sujeita aos termos e condições da apólice. Nem todos os produtos estão disponíveis em todos os estados.",
-    "phone":      "561-946-8261",
-    "address":    "1 SE Ocean Blvd, Stuart, FL 34994",
-    "whatsapp":   "WhatsApp",
-    "privacy":    "Política de Privacidade",
+    "phone": "561-946-8261",
+    "address": "1 SE Ocean Blvd, Stuart, FL 34994",
+    "whatsapp": "WhatsApp",
+    "privacy": "Política de Privacidade",
     "smsPrivacy": "Política de Privacidade SMS",
-    "terms":      "Termos de Uso",
-    "licenses":   "Licenças",
+    "terms": "Termos de Uso",
+    "licenses": "Licenças",
     "links": {
-      "tools":   "Ferramentas",
-      "rce":     "Calculadora RCE",
-      "blog":    "Blog",
+      "tools": "Ferramentas",
+      "rce": "Calculadora RCE",
+      "blog": "Blog",
       "contact": "Contato"
     }
   }
