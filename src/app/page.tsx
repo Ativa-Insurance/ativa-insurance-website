@@ -1259,6 +1259,18 @@ function AtivaSite() {
     }
   }, [heroZip]);
 
+  const handleCommercialZipSubmit = useCallback(() => {
+    if (/^\d{5}$/.test(heroZip)) {
+      setZipErrMsg("");
+      setCommercialQuoteProduct(undefined);
+      setCommercialQuoteOpen(true);
+    } else {
+      setZipErrMsg(t("form.errors.zipCode"));
+      setZipShake(true);
+      setTimeout(() => setZipShake(false), 500);
+    }
+  }, [heroZip]);
+
   // Reactively sync tab + quote modals from URL search params.
   // Runs on mount AND whenever the URL changes (e.g. clicking nav Home/Commercial links).
   useEffect(() => {
@@ -1946,82 +1958,197 @@ function AtivaSite() {
 
           ) : (
 
-            /* ── COMMERCIAL: Split layout ── */
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            /* ── COMMERCIAL HERO v3: Full-bleed 2-col ── */
+            <div
+              key="commercial-hero-v3"
+              className="mode-fade-in"
+              style={{
+                marginLeft:          "calc(-50vw + 50%)",
+                marginRight:         "calc(-50vw + 50%)",
+                width:               "100vw",
+                display:             "grid",
+                gridTemplateColumns: "1fr 1fr",
+                minHeight:           "580px",
+              }}
+            >
+              {/* LEFT: headline + sub + trust badges */}
+              <div
+                style={{
+                  backgroundColor: "#0B1F33",
+                  display:         "flex",
+                  flexDirection:   "column",
+                  justifyContent:  "center",
+                  padding:         "56px clamp(24px, 5vw, 72px)",
+                }}
+              >
+                <p style={{
+                  fontSize:      "11px",
+                  fontWeight:    700,
+                  letterSpacing: "2.5px",
+                  textTransform: "uppercase",
+                  color:         "#F5A623",
+                  marginBottom:  "18px",
+                }}>
+                  {t("hero.commercial.eyebrow")}
+                </p>
 
-              {/* Split row: headline left + widget right */}
-              <div className="flex flex-col lg:flex-row lg:gap-8 lg:items-center">
+                <h1 style={{
+                  fontSize:      "clamp(2.2rem, 3.5vw, 3.2rem)",
+                  fontWeight:    900,
+                  color:         "#FFFFFF",
+                  lineHeight:    1.05,
+                  letterSpacing: "-0.03em",
+                  marginBottom:  "4px",
+                }}>
+                  {t("hero.commercial.protect")}
+                </h1>
+                <h1 style={{
+                  fontSize:      "clamp(2.2rem, 3.5vw, 3.2rem)",
+                  fontWeight:    900,
+                  color:         "#F5A623",
+                  lineHeight:    1.05,
+                  letterSpacing: "-0.03em",
+                  marginBottom:  "22px",
+                }}>
+                  {t("hero.commercial.weShop")}
+                </h1>
 
-                {/* LEFT — headline, sub */}
-                <div className="lg:w-[50%] text-center lg:text-left">
-                  <div key={mode} className="mode-fade-in">
-                    <span style={{
-                      display: "inline-block",
-                      fontSize: "11px", fontWeight: 700, letterSpacing: "2.5px",
-                      color: "#F5A623", textTransform: "uppercase",
-                      marginBottom: "14px",
-                    }}>
-                      Business Insurance
-                    </span>
-                    <h1
-                      className="font-black tracking-[-0.03em] mb-4"
-                      style={{ color: "#FFFFFF", fontSize: "clamp(2.4rem, 4.5vw, 3.4rem)", fontWeight: 900, lineHeight: 1.08 }}
-                    >
-                      {t(`hero.${mode}.headline`)}
-                    </h1>
-                    <p className="leading-relaxed mb-6 max-w-md mx-auto lg:mx-0"
-                      style={{ color: "rgba(255,255,255,0.70)", fontSize: "17px", lineHeight: 1.65 }}>
-                      {heroSub[mode]}
-                    </p>
+                <p style={{
+                  fontSize:     "15px",
+                  color:        "rgba(255,255,255,0.65)",
+                  lineHeight:   1.65,
+                  marginBottom: "36px",
+                  maxWidth:     "440px",
+                }}>
+                  {t("hero.commercial.heroSub")}
+                </p>
 
-                    {/* Credential pills — dark-mode styled */}
-                    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", justifyContent: "center", marginBottom: "20px" }}
-                      className="lg:justify-start">
-                      {[t("trust.states"), t("trust.sameDayCoverage"), t("trust.noSpam")].map(pill => (
-                        <span key={pill} style={{
-                          background: "rgba(245,166,35,0.10)",
-                          border: "1px solid rgba(245,166,35,0.25)",
-                          borderRadius: "20px", padding: "5px 14px",
-                          fontSize: "13px", color: "rgba(255,255,255,0.80)",
-                          fontWeight: 500, whiteSpace: "nowrap",
-                        }}>
-                          {pill}
-                        </span>
-                      ))}
+                {/* Trust badges */}
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
+                  {[
+                    t("hero.commercial.badge1"),
+                    t("hero.commercial.badge2"),
+                    t("hero.commercial.badge3"),
+                    t("hero.commercial.badge4"),
+                    t("hero.commercial.badge5"),
+                  ].map((badge) => (
+                    <div key={badge} style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "4px" }}>
+                      <div style={{
+                        width:           "28px",
+                        height:          "28px",
+                        borderRadius:    "8px",
+                        backgroundColor: "rgba(245,166,35,0.15)",
+                        border:          "1px solid rgba(245,166,35,0.30)",
+                        display:         "flex",
+                        alignItems:      "center",
+                        justifyContent:  "center",
+                      }}>
+                        <svg viewBox="0 0 16 16" fill="#F5A623" width="12" height="12">
+                          <path fillRule="evenodd" d="M10.97 4.97a.75.75 0 011.07 1.05l-3.99 4.99a.75.75 0 01-1.08.02L4.324 8.384a.75.75 0 111.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 01.02-.022z" clipRule="evenodd"/>
+                        </svg>
+                      </div>
+                      <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.60)", fontWeight: 500, lineHeight: 1.3, maxWidth: "90px" }}>
+                        {badge}
+                      </span>
                     </div>
-                  </div>
+                  ))}
                 </div>
+              </div>
 
-                {/* RIGHT — commercial widget */}
-                <div id="products" className="lg:w-[50%]" style={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
-                  <CommercialQuoteWidget
-                    key="comm-widget"
-                    onOpen={(productId) => {
-                      setCommercialQuoteProduct(productId);
-                      setCommercialQuoteOpen(true);
-                    }}
-                  />
+              {/* RIGHT: truck photo + white card overlay */}
+              <div style={{ position: "relative", overflow: "hidden" }}>
+                <Image
+                  src="/images/commercial-hero-bg.jpg"
+                  alt=""
+                  fill
+                  style={{ objectFit: "cover", objectPosition: "center center" }}
+                  priority
+                />
+                {/* Gradient fade left edge */}
+                <div style={{
+                  position:   "absolute",
+                  inset:      0,
+                  background: "linear-gradient(to right, #0B1F33 0%, transparent 30%)",
+                }} />
+
+                {/* White card */}
+                <div style={{
+                  position:        "absolute",
+                  bottom:          "32px",
+                  right:           "32px",
+                  backgroundColor: "#FFFFFF",
+                  borderRadius:    "16px",
+                  padding:         "28px 28px 22px",
+                  boxShadow:       "0 24px 60px rgba(0,0,0,0.30)",
+                  width:           "clamp(240px, 28vw, 320px)",
+                }}>
+                  <p style={{ fontSize: "15px", fontWeight: 800, color: "#0B1F33", marginBottom: "16px" }}>
+                    {t("hero.commercial.getStarted")}
+                  </p>
+
+                  <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "12px" }}>
+                    <div style={{ position: "relative" }}>
+                      <svg viewBox="0 0 20 20" fill="#94A3B8" width="16" height="16"
+                        style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none" }}>
+                        <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
+                      </svg>
+                      <input
+                        className={zipShake ? "zip-shake" : ""}
+                        type="text"
+                        inputMode="numeric"
+                        pattern="[0-9]*"
+                        placeholder={t("hero.commercial.enterZip")}
+                        value={heroZip}
+                        onChange={e => setHeroZip(e.target.value.replace(/\D/g, "").slice(0, 5))}
+                        onKeyDown={e => e.key === "Enter" && handleCommercialZipSubmit()}
+                        style={{
+                          width:           "100%",
+                          padding:         "12px 12px 12px 36px",
+                          borderRadius:    "10px",
+                          border:          `1.5px solid ${zipErrMsg ? "#EF4444" : "#E2E8F0"}`,
+                          fontSize:        "14px",
+                          color:           "#0B1F33",
+                          backgroundColor: "#F8FAFE",
+                          outline:         "none",
+                        }}
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleCommercialZipSubmit}
+                      style={{
+                        width:           "100%",
+                        padding:         "13px",
+                        borderRadius:    "10px",
+                        backgroundColor: "#F5A623",
+                        color:           "#0B1F33",
+                        fontSize:        "15px",
+                        fontWeight:      800,
+                        border:          "none",
+                        cursor:          "pointer",
+                        transition:      "opacity 200ms ease",
+                      }}
+                      onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.opacity = "0.90"; }}
+                      onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.opacity = "1"; }}
+                    >
+                      {t("hero.commercial.seeMyRate")} →
+                    </button>
+                  </div>
+
+                  {zipErrMsg && (
+                    <p style={{ color: "#EF4444", fontSize: "12px", marginBottom: "8px" }}>{zipErrMsg}</p>
+                  )}
+
+                  <p style={{ fontSize: "12px", color: "#94A3B8", marginBottom: "4px" }}>
+                    {t("hero.commercial.preferTalk")}
+                  </p>
                   <a
                     href="sms:5619468261"
-                    style={{ display: "block", fontSize: "14px", color: "rgba(255,255,255,0.45)", textDecoration: "none", textAlign: "center", marginTop: "16px", width: "100%", maxWidth: "420px", transition: "color 150ms ease" }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.75)"; }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.45)"; }}
+                    style={{ fontSize: "13px", color: "#F5A623", fontWeight: 600, textDecoration: "none" }}
                   >
-                    {t("hero.commercial.notSure")}
+                    {t("hero.commercial.speakAgent")} →
                   </a>
                 </div>
-
-              </div>{/* end split row */}
-
-              {/* Toggle block — full width, centered, below split row */}
-              <div style={{ marginTop: "32px", display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}>
-                <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.50)", fontWeight: 500 }}>
-                  {t("toggle.headline")}
-                </p>
-                <Toggle mode={mode} onChange={handleModeChange} />
-                <span style={{ fontSize: "12px", color: "rgba(255,255,255,0.40)", whiteSpace: "nowrap" }}>
-                  {t("toggle.switchToPersonal")}
-                </span>
               </div>
 
             </div>

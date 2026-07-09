@@ -58,7 +58,20 @@
       "mobileSub": "Business coverage tailored to your industry.",
       "mobileMicro": "⚡ Quick quote · No commitment · Licensed local agents",
       "notSure": "Not sure? Talk to an agent →",
-      "reassurance": "Free · No spam · Licensed agents · Same-day response"
+      "reassurance": "Free · No spam · Licensed agents · Same-day response",
+      "protect": "Protect your business.",
+      "weShop": "We shop. You grow.",
+      "heroSub": "From small businesses to large fleets, we compare top-rated insurance carriers to find the right coverage at the right price. More options. Better protection. Real advisors.",
+      "getStarted": "Get started fast",
+      "enterZip": "Enter ZIP Code",
+      "seeMyRate": "See My Rate",
+      "preferTalk": "Prefer to talk to an advisor?",
+      "speakAgent": "Speak with a licensed agent",
+      "badge1": "Licensed in 11 States",
+      "badge2": "Independent Agency",
+      "badge3": "Dozens of Top Carriers",
+      "badge4": "Same-Day Quotes",
+      "badge5": "Bilingual Service EN · PT · ES"
     }
   },
   "states": {
