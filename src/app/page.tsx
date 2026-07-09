@@ -1420,17 +1420,18 @@ function AtivaSite() {
                 fontWeight: 900,
                 textAlign: "center",
                 color: "#0B1F33",
-                lineHeight: 1.08,
+                lineHeight: 1.1,
                 letterSpacing: "-0.025em",
                 padding: "0 12px",
                 marginBottom: "8px",
               }}>
-                {t("hero.personal.shopHeadline")}
+                {t("hero.personal.findCoverage")}{" "}
+                <span style={{ color: "#1B3A6B" }}>{t("hero.personal.shopMarket")}</span>
               </h1>
 
               {/* 3 · Subheadline */}
               <p style={{ textAlign: "center", fontSize: "13px", color: "#4A5568", padding: "0 16px", marginBottom: "14px", lineHeight: 1.5 }}>
-                {t("hero.personal.shopSub")}
+                {t("hero.personal.heroSub")}
               </p>
 
               {/* 4 · Auto Insurance widget — compact */}
