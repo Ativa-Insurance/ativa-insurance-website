@@ -253,39 +253,13 @@ function CommercialHeroBg() {
     <div className="absolute inset-0 pointer-events-none" aria-hidden>
       <style>{`
         .comm-hero-section {
-          min-height: 640px;
-          padding: 60px 24px;
+          min-height: 0;
+          padding: 0;
         }
         @media (max-width: 768px) {
-          .comm-hero-section { min-height: 480px; padding: 40px 16px; }
+          .comm-hero-section { min-height: 0; padding: 0; }
         }
       `}</style>
-
-      {/* Base gradient */}
-      <div style={{
-        position: "absolute",
-        inset: 0,
-        background: "linear-gradient(135deg, #F4F6F8 0%, #EDF2F7 50%, #E8EDF5 100%)",
-      }} />
-
-      {/* Dot pattern overlay */}
-      <div style={{
-        position: "absolute",
-        inset: 0,
-        backgroundImage: "radial-gradient(circle at 1px 1px, rgba(15,42,68,0.035) 1px, transparent 0)",
-        backgroundSize: "28px 28px",
-      }} />
-
-      {/* Subtle warm accent top-right */}
-      <div style={{
-        position: "absolute",
-        top: "-80px",
-        right: "-80px",
-        width: "480px",
-        height: "480px",
-        borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(245,166,35,0.06) 0%, transparent 65%)",
-      }} />
     </div>
   );
 }
@@ -1932,130 +1906,134 @@ function AtivaSite() {
 
           ) : (
 
-            /* ── COMMERCIAL HERO v3: Full-bleed 2-col ── */
+            /* ── COMMERCIAL HERO v4: Full-bleed image + in-flow 2-col grid ── */
             <div
               key="commercial-hero-v3"
               className="mode-fade-in"
               style={{
-                marginLeft:          "calc(-50vw + 50%)",
-                marginRight:         "calc(-50vw + 50%)",
-                width:               "100vw",
-                display:             "grid",
-                gridTemplateColumns: "1fr 1fr",
-                minHeight:           "480px",
+                marginLeft:  "calc(-50vw + 50%)",
+                marginRight: "calc(-50vw + 50%)",
+                width:       "100vw",
+                position:    "relative",
+                minHeight:   "500px",
+                overflow:    "hidden",
+                display:     "flex",
+                alignItems:  "center",
               }}
             >
-              {/* LEFT: headline + sub + trust badges */}
-              <div
-                style={{
-                  backgroundColor: "#0B1F33",
-                  display:         "flex",
-                  flexDirection:   "column",
-                  justifyContent:  "center",
-                  padding:         "56px clamp(24px, 5vw, 72px)",
-                }}
-              >
-                <p style={{
-                  fontSize:      "11px",
-                  fontWeight:    700,
-                  letterSpacing: "2.5px",
-                  textTransform: "uppercase",
-                  color:         "#F5A623",
-                  marginBottom:  "18px",
-                }}>
-                  {t("hero.commercial.eyebrow")}
-                </p>
+              {/* Full-bleed background image */}
+              <Image
+                src="/images/commercial-hero-bg.jpg"
+                alt=""
+                fill
+                style={{ objectFit: "cover", objectPosition: "center center" }}
+                priority
+              />
 
-                <h1 style={{
-                  fontSize:      "clamp(2.2rem, 3.5vw, 3.2rem)",
-                  fontWeight:    900,
-                  color:         "#FFFFFF",
-                  lineHeight:    1.05,
-                  letterSpacing: "-0.03em",
-                  marginBottom:  "4px",
-                }}>
-                  {t("hero.commercial.protect")}
-                </h1>
-                <h1 style={{
-                  fontSize:      "clamp(2.2rem, 3.5vw, 3.2rem)",
-                  fontWeight:    900,
-                  color:         "#F5A623",
-                  lineHeight:    1.05,
-                  letterSpacing: "-0.03em",
-                  marginBottom:  "22px",
-                }}>
-                  {t("hero.commercial.weShop")}
-                </h1>
+              {/* Dark gradient: dense left → translucent right, image visible in center */}
+              <div style={{
+                position:   "absolute",
+                inset:      0,
+                background: "linear-gradient(105deg, rgba(11,31,51,0.96) 0%, rgba(11,31,51,0.84) 35%, rgba(11,31,51,0.52) 58%, rgba(11,31,51,0.22) 100%)",
+              }} />
 
-                <p style={{
-                  fontSize:     "15px",
-                  color:        "rgba(255,255,255,0.65)",
-                  lineHeight:   1.65,
-                  marginBottom: "36px",
-                  maxWidth:     "440px",
-                }}>
-                  {t("hero.commercial.heroSub")}
-                </p>
+              {/* Content grid: text left (~55%) · card right (~340px fixed) */}
+              <div style={{
+                position:            "relative",
+                zIndex:              1,
+                width:               "100%",
+                maxWidth:            "1280px",
+                margin:              "0 auto",
+                padding:             "64px clamp(24px, 5vw, 64px)",
+                display:             "grid",
+                gridTemplateColumns: "1fr 340px",
+                gap:                 "52px",
+                alignItems:          "center",
+              }}>
 
-                {/* Trust badges */}
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
-                  {[
-                    t("hero.commercial.badge1"),
-                    t("hero.commercial.badge2"),
-                    t("hero.commercial.badge3"),
-                    t("hero.commercial.badge4"),
-                    t("hero.commercial.badge5"),
-                  ].map((badge) => (
-                    <div key={badge} style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "4px" }}>
-                      <div style={{
-                        width:           "28px",
-                        height:          "28px",
-                        borderRadius:    "8px",
-                        backgroundColor: "rgba(245,166,35,0.15)",
-                        border:          "1px solid rgba(245,166,35,0.30)",
-                        display:         "flex",
-                        alignItems:      "center",
-                        justifyContent:  "center",
-                      }}>
-                        <svg viewBox="0 0 16 16" fill="#F5A623" width="12" height="12">
-                          <path fillRule="evenodd" d="M10.97 4.97a.75.75 0 011.07 1.05l-3.99 4.99a.75.75 0 01-1.08.02L4.324 8.384a.75.75 0 111.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 01.02-.022z" clipRule="evenodd"/>
-                        </svg>
+                {/* LEFT: eyebrow · headline · sub · trust badges */}
+                <div>
+                  <p style={{
+                    fontSize:      "11px",
+                    fontWeight:    700,
+                    letterSpacing: "2.5px",
+                    textTransform: "uppercase",
+                    color:         "#F5A623",
+                    marginBottom:  "18px",
+                  }}>
+                    {t("hero.commercial.eyebrow")}
+                  </p>
+
+                  <h1 style={{
+                    fontSize:      "clamp(2.2rem, 3.5vw, 3.2rem)",
+                    fontWeight:    900,
+                    color:         "#FFFFFF",
+                    lineHeight:    1.05,
+                    letterSpacing: "-0.03em",
+                    marginBottom:  "4px",
+                  }}>
+                    {t("hero.commercial.protect")}
+                  </h1>
+                  <h1 style={{
+                    fontSize:      "clamp(2.2rem, 3.5vw, 3.2rem)",
+                    fontWeight:    900,
+                    color:         "#F5A623",
+                    lineHeight:    1.05,
+                    letterSpacing: "-0.03em",
+                    marginBottom:  "22px",
+                  }}>
+                    {t("hero.commercial.weShop")}
+                  </h1>
+
+                  <p style={{
+                    fontSize:     "15px",
+                    color:        "rgba(255,255,255,0.65)",
+                    lineHeight:   1.65,
+                    marginBottom: "36px",
+                    maxWidth:     "460px",
+                  }}>
+                    {t("hero.commercial.heroSub")}
+                  </p>
+
+                  {/* Trust badges */}
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
+                    {[
+                      t("hero.commercial.badge1"),
+                      t("hero.commercial.badge2"),
+                      t("hero.commercial.badge3"),
+                      t("hero.commercial.badge4"),
+                      t("hero.commercial.badge5"),
+                    ].map((badge) => (
+                      <div key={badge} style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "4px" }}>
+                        <div style={{
+                          width:           "28px",
+                          height:          "28px",
+                          borderRadius:    "8px",
+                          backgroundColor: "rgba(245,166,35,0.15)",
+                          border:          "1px solid rgba(245,166,35,0.30)",
+                          display:         "flex",
+                          alignItems:      "center",
+                          justifyContent:  "center",
+                        }}>
+                          <svg viewBox="0 0 16 16" fill="#F5A623" width="12" height="12">
+                            <path fillRule="evenodd" d="M10.97 4.97a.75.75 0 011.07 1.05l-3.99 4.99a.75.75 0 01-1.08.02L4.324 8.384a.75.75 0 111.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 01.02-.022z" clipRule="evenodd"/>
+                          </svg>
+                        </div>
+                        <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.60)", fontWeight: 500, lineHeight: 1.3, maxWidth: "90px" }}>
+                          {badge}
+                        </span>
                       </div>
-                      <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.60)", fontWeight: 500, lineHeight: 1.3, maxWidth: "90px" }}>
-                        {badge}
-                      </span>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-              {/* RIGHT: truck photo + white card overlay */}
-              <div style={{ position: "relative", overflow: "hidden" }}>
-                <Image
-                  src="/images/commercial-hero-bg.jpg"
-                  alt=""
-                  fill
-                  style={{ objectFit: "cover", objectPosition: "center center" }}
-                  priority
-                />
-                {/* Gradient fade left edge */}
+                {/* RIGHT: in-flow white quote card */}
                 <div style={{
-                  position:   "absolute",
-                  inset:      0,
-                  background: "linear-gradient(to right, #0B1F33 0%, transparent 30%)",
-                }} />
-
-                {/* White card — vertically centered in the right column */}
-                <div style={{
-                  position:        "absolute",
-                  top:             "50%",
-                  transform:       "translateY(-50%)",
-                  right:           "32px",
                   backgroundColor: "#FFFFFF",
                   borderRadius:    "16px",
                   padding:         "28px 28px 22px",
-                  boxShadow:       "0 24px 60px rgba(0,0,0,0.30)",
-                  width:           "clamp(240px, 28vw, 320px)",
+                  boxShadow:       "0 24px 60px rgba(0,0,0,0.35)",
+                  flexShrink:      0,
                 }}>
                   <p style={{ fontSize: "15px", fontWeight: 800, color: "#0B1F33", marginBottom: "16px" }}>
                     {t("hero.commercial.getStarted")}
@@ -2124,8 +2102,8 @@ function AtivaSite() {
                     {t("hero.commercial.speakAgent")} →
                   </a>
                 </div>
-              </div>
 
+              </div>
             </div>
           )}
 
@@ -2226,6 +2204,9 @@ function AtivaSite() {
           borderTop:    "1px solid rgba(0,0,0,0.06)",
           borderBottom: "1px solid rgba(0,0,0,0.06)",
           padding:      "48px 0",
+          marginTop:    "-80px",
+          position:     "relative",
+          zIndex:       10,
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">

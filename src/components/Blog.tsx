@@ -186,150 +186,27 @@ export default function Blog({ mode }: { mode: Mode }) {
     );
   }
 
-  // ── Personal mode: 2-col split ────────────────────────────────────────────
+  // ── Personal mode: personal articles only (3-col) ──────────────────────
   return (
-    <section
-      style={{
-        backgroundColor: "#F8F9FB",
-        borderTop:       "1px solid rgba(0,0,0,0.06)",
-        padding:         "80px 24px",
-      }}
-    >
-      <style>{`
-        .blog-split-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 40px;
-        }
-        .blog-cards-grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 14px;
-        }
-        @media (max-width: 900px) {
-          .blog-split-grid { grid-template-columns: 1fr; gap: 48px; }
-        }
-      `}</style>
-
+    <section style={{ backgroundColor: "#F8F9FB", borderTop: "1px solid rgba(0,0,0,0.06)", padding: "80px 24px" }}>
       <div style={{ maxWidth: "1120px", margin: "0 auto" }}>
-
-        {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: "48px" }}>
-          <p
-            style={{
-              fontSize:      "11px",
-              letterSpacing: "2.5px",
-              fontWeight:    700,
-              textTransform: "uppercase",
-              color:         "var(--eyebrow)",
-              marginBottom:  "10px",
-            }}
-          >
-            {t("blog.eyebrow")}
-          </p>
-          <h2
-            style={{
-              fontSize:      "clamp(1.8rem, 3vw, 2.4rem)",
-              fontWeight:    900,
-              color:         "#0B1F33",
-              margin:        0,
-              lineHeight:    1.1,
-              letterSpacing: "-0.025em",
-            }}
-          >
-            {t("blog.heading")}
-          </h2>
+        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: "28px", flexWrap: "wrap", gap: "12px" }}>
+          <div>
+            <p style={{ fontSize: "11px", letterSpacing: "2.5px", fontWeight: 700, textTransform: "uppercase", color: "var(--eyebrow)", marginBottom: "8px" }}>
+              {t("blog.eyebrow")}
+            </p>
+            <h2 style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)", fontWeight: 900, color: "#0B1F33", margin: 0, letterSpacing: "-0.02em" }}>
+              {t("blog.personalLabel")}
+            </h2>
+          </div>
+          <Link href="/blog" style={{ fontSize: "13px", fontWeight: 700, color: "#1B3A6B", textDecoration: "none" }}>
+            {t("blog.viewAllPersonal")} →
+          </Link>
         </div>
-
-        {/* 2-col split */}
-        <div className="blog-split-grid">
-
-          {/* Personal column */}
-          <div>
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "20px" }}>
-              <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#0B1F33", margin: 0 }}>
-                {t("blog.personalLabel")}
-              </h3>
-              <span
-                style={{
-                  fontSize:        "11px",
-                  fontWeight:      700,
-                  letterSpacing:   "0.8px",
-                  padding:         "4px 10px",
-                  borderRadius:    "20px",
-                  backgroundColor: "#EEF4FF",
-                  color:           "#1B3A6B",
-                  whiteSpace:      "nowrap",
-                }}
-              >
-                {t("blog.personalBadge")}
-              </span>
-            </div>
-
-            <div className="blog-cards-grid">
-              {PERSONAL_ARTICLES.map((post, i) => (
-                <ArticleCard key={i} post={post} accent="blue" />
-              ))}
-            </div>
-
-            <div style={{ marginTop: "20px" }}>
-              <Link
-                href="/blog"
-                style={{
-                  fontSize:       "13px",
-                  fontWeight:     700,
-                  color:          "#1B3A6B",
-                  textDecoration: "none",
-                }}
-              >
-                {t("blog.viewAllPersonal")} →
-              </Link>
-            </div>
-          </div>
-
-          {/* Commercial column */}
-          <div>
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "20px" }}>
-              <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#0B1F33", margin: 0 }}>
-                {t("blog.commercialLabel")}
-              </h3>
-              <span
-                style={{
-                  fontSize:        "11px",
-                  fontWeight:      700,
-                  letterSpacing:   "0.8px",
-                  padding:         "4px 10px",
-                  borderRadius:    "20px",
-                  backgroundColor: "rgba(245,166,35,0.12)",
-                  color:           "#B45309",
-                  whiteSpace:      "nowrap",
-                }}
-              >
-                {t("blog.commercialBadge")}
-              </span>
-            </div>
-
-            <div className="blog-cards-grid">
-              {COMMERCIAL_ARTICLES.map((post, i) => (
-                <ArticleCard key={i} post={post} accent="orange" />
-              ))}
-            </div>
-
-            <div style={{ marginTop: "20px" }}>
-              <Link
-                href="/blog"
-                style={{
-                  fontSize:       "13px",
-                  fontWeight:     700,
-                  color:          "#B45309",
-                  textDecoration: "none",
-                }}
-              >
-                {t("blog.viewAllCommercial")} →
-              </Link>
-            </div>
-          </div>
-
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }}>
+          {PERSONAL_ARTICLES.map((post, i) => (
+            <ArticleCard key={i} post={post} accent="blue" />
+          ))}
         </div>
       </div>
     </section>
