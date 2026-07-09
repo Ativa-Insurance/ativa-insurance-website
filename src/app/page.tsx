@@ -1934,6 +1934,18 @@ function AtivaSite() {
                 background: "linear-gradient(105deg, rgba(11,31,51,0.96) 0%, rgba(11,31,51,0.84) 35%, rgba(11,31,51,0.52) 58%, rgba(11,31,51,0.22) 100%)",
               }} />
 
+              {/* Bottom-to-white fade: hero stays dark through 70%, fades to marketplace bg in bottom third */}
+              <div style={{
+                position:      "absolute",
+                left:          0,
+                right:         0,
+                bottom:        0,
+                height:        "220px",
+                background:    "linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 25%, rgba(255,255,255,0.72) 78%, rgba(255,255,255,1) 100%)",
+                zIndex:        0,
+                pointerEvents: "none",
+              }} />
+
               {/* Content grid: text left (~55%) · card right (~340px fixed) */}
               <div style={{
                 position:            "relative",
@@ -2129,21 +2141,6 @@ function AtivaSite() {
 
           {/* ── Personal Insurance row (personal mode only) ── */}
           {isPersonal && <div style={{ marginBottom: "48px" }}>
-            <div style={{ textAlign: "center", marginBottom: "28px" }}>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "16px" }}>
-                <div style={{ flex: 1, height: "1px", backgroundColor: "rgba(27,58,107,0.15)", maxWidth: "100px" }} />
-                <p style={{
-                  fontSize: "11px", fontWeight: 700, letterSpacing: "2.5px",
-                  textTransform: "uppercase", color: "#1B3A6B",
-                }}>
-                  {t("products.personalRowLabel")}
-                </p>
-                <div style={{ flex: 1, height: "1px", backgroundColor: "rgba(27,58,107,0.15)", maxWidth: "100px" }} />
-              </div>
-              <p style={{ fontSize: "13px", color: "#94A3B8", marginTop: "6px" }}>
-                {t("products.personalSub")}
-              </p>
-            </div>
             <div
               className="hidden md:grid"
               style={{ gridTemplateColumns: "repeat(6, 1fr)", gap: "14px" }}
@@ -2174,18 +2171,6 @@ function AtivaSite() {
 
           {/* ── Commercial Insurance row (commercial mode only) ── */}
           {!isPersonal && <div>
-            <div style={{ textAlign: "center", marginBottom: "28px" }}>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "16px" }}>
-                <div style={{ flex: 1, height: "1px", backgroundColor: "rgba(180,83,9,0.2)", maxWidth: "100px" }} />
-                <p style={{
-                  fontSize: "11px", fontWeight: 700, letterSpacing: "2.5px",
-                  textTransform: "uppercase", color: "#B45309",
-                }}>
-                  {t("products.commercialRowLabel")}
-                </p>
-                <div style={{ flex: 1, height: "1px", backgroundColor: "rgba(180,83,9,0.2)", maxWidth: "100px" }} />
-              </div>
-            </div>
             <div
               className="hidden md:grid"
               style={{ gridTemplateColumns: "repeat(6, 1fr)", gap: "14px" }}
