@@ -366,12 +366,56 @@
         "q": "Is flood insurance required in Florida?",
         "a": "If your property is in a designated flood zone and you have a federally-backed mortgage, flood insurance is required. We make it easy to get covered."
       }
+    ],
+    "eyebrow": "COMMON QUESTIONS",
+    "personalHeading": "Personal insurance FAQs",
+    "commercialHeading": "Commercial insurance FAQs",
+    "viewAllPersonal": "View all personal FAQs",
+    "viewAllCommercial": "View all commercial FAQs",
+    "stillHave": "Still have questions?",
+    "stillSub": "Talk to a licensed agent — free, no obligation.",
+    "textUs": "Text Us Now",
+    "personalItems": [
+      {
+        "q": "How do I get a car insurance quote?",
+        "a": "Submit your info through our form or call 561-946-8261. We compare options from multiple top-rated carriers and contact you with personalized rates — usually the same day."
+      },
+      {
+        "q": "What factors affect my home insurance rate?",
+        "a": "Location, property age, roof condition, square footage, and claims history all affect your rate. As an independent agency we shop multiple carriers to find you the best price."
+      },
+      {
+        "q": "Is flood insurance required in Florida?",
+        "a": "If your property is in a designated flood zone and you have a federally-backed mortgage, flood insurance is required. Even outside flood zones, we strongly recommend it."
+      },
+      {
+        "q": "Can I bundle multiple policies?",
+        "a": "Absolutely. Bundling home and auto (or other policies) often saves 10–25%. We handle all your personal insurance needs in one place."
+      }
+    ],
+    "commercialItems": [
+      {
+        "q": "What is General Liability insurance?",
+        "a": "GL protects your business from third-party claims of bodily injury, property damage, and advertising injury. Most clients, landlords, and contracts require it."
+      },
+      {
+        "q": "How does Workers Comp insurance work?",
+        "a": "Workers Comp covers medical expenses and lost wages if an employee is injured on the job. In Florida, most businesses with 4+ employees are required to carry it."
+      },
+      {
+        "q": "Do I need Commercial Auto if I use my personal vehicle?",
+        "a": "If you use your vehicle for business purposes — deliveries, client visits, hauling equipment — your personal policy likely will not cover accidents. Commercial Auto fills that gap."
+      },
+      {
+        "q": "What is a BOP policy?",
+        "a": "A Business Owner Policy bundles general liability and commercial property coverage into one affordable policy. It is ideal for small to mid-size businesses and often costs less than buying each policy separately."
+      }
     ]
   },
   "blog": {
     "heading": "Insurance Tips & Guides",
     "sub": "Quick reads to help you make smarter coverage decisions.",
-    "readMore": "Read more →",
+    "readMore": "Read more",
     "viewAll": "View All Articles →",
     "posts": [
       {
@@ -392,7 +436,14 @@
         "category": "Auto",
         "readTime": "3 min read"
       }
-    ]
+    ],
+    "eyebrow": "INSURANCE TIPS & GUIDES",
+    "personalLabel": "Helpful tips for you",
+    "personalBadge": "Personal Insurance Articles",
+    "commercialLabel": "Business resources",
+    "commercialBadge": "Commercial Insurance Articles",
+    "viewAllPersonal": "View all personal insurance articles",
+    "viewAllCommercial": "View all commercial insurance articles"
   },
   "rce": {
     "meta": {

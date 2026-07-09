@@ -366,12 +366,56 @@
         "q": "¿Es obligatorio el seguro contra inundaciones en Florida?",
         "a": "Si tu propiedad está en zona de riesgo y tiene hipoteca federal, el seguro es obligatorio. Nosotros simplificamos el proceso."
       }
+    ],
+    "eyebrow": "PREGUNTAS FRECUENTES",
+    "personalHeading": "Preguntas sobre seguro personal",
+    "commercialHeading": "Preguntas sobre seguro comercial",
+    "viewAllPersonal": "Ver todas las preguntas personales",
+    "viewAllCommercial": "Ver todas las preguntas comerciales",
+    "stillHave": "¿Aún tienes preguntas?",
+    "stillSub": "Habla con un agente licenciado — gratis, sin compromiso.",
+    "textUs": "Envíanos un mensaje",
+    "personalItems": [
+      {
+        "q": "How do I get a car insurance quote?",
+        "a": "Submit your info through our form or call 561-946-8261. We compare options from multiple top-rated carriers and contact you with personalized rates — usually the same day."
+      },
+      {
+        "q": "What factors affect my home insurance rate?",
+        "a": "Location, property age, roof condition, square footage, and claims history all affect your rate. As an independent agency we shop multiple carriers to find you the best price."
+      },
+      {
+        "q": "Is flood insurance required in Florida?",
+        "a": "If your property is in a designated flood zone and you have a federally-backed mortgage, flood insurance is required. Even outside flood zones, we strongly recommend it."
+      },
+      {
+        "q": "Can I bundle multiple policies?",
+        "a": "Absolutely. Bundling home and auto (or other policies) often saves 10–25%. We handle all your personal insurance needs in one place."
+      }
+    ],
+    "commercialItems": [
+      {
+        "q": "What is General Liability insurance?",
+        "a": "GL protects your business from third-party claims of bodily injury, property damage, and advertising injury. Most clients, landlords, and contracts require it."
+      },
+      {
+        "q": "How does Workers Comp insurance work?",
+        "a": "Workers Comp covers medical expenses and lost wages if an employee is injured on the job. In Florida, most businesses with 4+ employees are required to carry it."
+      },
+      {
+        "q": "Do I need Commercial Auto if I use my personal vehicle?",
+        "a": "If you use your vehicle for business purposes — deliveries, client visits, hauling equipment — your personal policy likely will not cover accidents. Commercial Auto fills that gap."
+      },
+      {
+        "q": "What is a BOP policy?",
+        "a": "A Business Owner Policy bundles general liability and commercial property coverage into one affordable policy. It is ideal for small to mid-size businesses and often costs less than buying each policy separately."
+      }
     ]
   },
   "blog": {
     "heading": "Consejos y Guías de Seguros",
     "sub": "Lecturas rápidas para tomar mejores decisiones sobre tu cobertura.",
-    "readMore": "Leer más →",
+    "readMore": "Leer más",
     "viewAll": "Ver Todos los Artículos →",
     "posts": [
       {
@@ -392,7 +436,14 @@
         "category": "Auto",
         "readTime": "3 min de lectura"
       }
-    ]
+    ],
+    "eyebrow": "CONSEJOS Y GUÍAS DE SEGUROS",
+    "personalLabel": "Consejos útiles para ti",
+    "personalBadge": "Artículos de Seguro Personal",
+    "commercialLabel": "Recursos para negocios",
+    "commercialBadge": "Artículos de Seguro Comercial",
+    "viewAllPersonal": "Ver todos los artículos personales",
+    "viewAllCommercial": "Ver todos los artículos comerciales"
   },
   "rce": {
     "meta": {
