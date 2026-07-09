@@ -4,33 +4,161 @@ import type { Mode } from "@/types";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface Props {
-  mode: Mode;
-  onGetQuote: () => void;
+  mode:           Mode;
+  onGetQuote:     () => void;
+  onSwitchMode?:  () => void;
 }
 
-export default function ContactCTA({ mode, onGetQuote }: Props) {
+export default function ContactCTA({ mode, onGetQuote, onSwitchMode }: Props) {
   const { t } = useLanguage();
   const isPersonal = mode === "personal";
 
-  const bg       = isPersonal ? "#1B3A6B" : "#0B1F33";
-  const gridLine = isPersonal
-    ? "rgba(255,255,255,0.04)"
-    : "rgba(245,166,35,0.05)";
+  if (isPersonal) {
+    return (
+      <section
+        style={{
+          backgroundColor: "#0B1F33",
+          padding:         "0",
+          position:        "relative",
+          overflow:        "hidden",
+        }}
+      >
+        {/* Building silhouette illustration */}
+        <svg
+          aria-hidden
+          viewBox="0 0 400 160"
+          style={{
+            position:      "absolute",
+            right:         0,
+            bottom:        0,
+            height:        "100%",
+            width:         "auto",
+            opacity:       0.07,
+            pointerEvents: "none",
+          }}
+        >
+          {/* Buildings */}
+          <rect x="20"  y="60"  width="40" height="100" fill="white"/>
+          <rect x="30"  y="40"  width="20" height="20"  fill="white"/>
+          <rect x="70"  y="30"  width="50" height="130" fill="white"/>
+          <rect x="80"  y="10"  width="30" height="22"  fill="white"/>
+          <rect x="130" y="50"  width="35" height="110" fill="white"/>
+          <rect x="175" y="20"  width="60" height="140" fill="white"/>
+          <rect x="185" y="0"   width="40" height="22"  fill="white"/>
+          <rect x="245" y="40"  width="45" height="120" fill="white"/>
+          <rect x="300" y="55"  width="30" height="105" fill="white"/>
+          <rect x="340" y="35"  width="50" height="125" fill="white"/>
+          {/* Windows */}
+          <rect x="35"  y="70"  width="8"  height="8"   fill="#0B1F33" opacity="0.5"/>
+          <rect x="50"  y="70"  width="8"  height="8"   fill="#0B1F33" opacity="0.5"/>
+          <rect x="80"  y="40"  width="8"  height="8"   fill="#0B1F33" opacity="0.5"/>
+          <rect x="100" y="40"  width="8"  height="8"   fill="#0B1F33" opacity="0.5"/>
+          <rect x="182" y="30"  width="10" height="10"  fill="#0B1F33" opacity="0.5"/>
+          <rect x="205" y="30"  width="10" height="10"  fill="#0B1F33" opacity="0.5"/>
+        </svg>
 
+        {/* Truck silhouette */}
+        <svg
+          aria-hidden
+          viewBox="0 0 200 80"
+          style={{
+            position:      "absolute",
+            left:          "28%",
+            bottom:        "0",
+            height:        "60%",
+            width:         "auto",
+            opacity:       0.06,
+            pointerEvents: "none",
+          }}
+        >
+          <rect x="10"  y="20" width="120" height="50" rx="4" fill="white"/>
+          <rect x="130" y="30" width="55"  height="40" rx="4" fill="white"/>
+          <circle cx="35"  cy="72" r="12" fill="white"/>
+          <circle cx="115" cy="72" r="12" fill="white"/>
+          <circle cx="165" cy="72" r="12" fill="white"/>
+        </svg>
+
+        <div
+          style={{
+            maxWidth: "1120px",
+            margin:   "0 auto",
+            padding:  "40px 24px",
+            display:  "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: "24px",
+            flexWrap: "wrap",
+            position: "relative",
+          }}
+        >
+          <div>
+            <p
+              style={{
+                fontSize:      "10px",
+                letterSpacing: "2.5px",
+                fontWeight:    700,
+                textTransform: "uppercase",
+                color:         "#F5A623",
+                marginBottom:  "6px",
+              }}
+            >
+              {t("switchBanner.eyebrow")}
+            </p>
+            <p
+              style={{
+                fontSize:   "clamp(1.2rem, 2.5vw, 1.6rem)",
+                fontWeight: 900,
+                color:      "#FFFFFF",
+                margin:     "0 0 6px",
+                lineHeight: 1.1,
+              }}
+            >
+              {t("switchBanner.headline")}
+            </p>
+            <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.45)", margin: 0, lineHeight: 1.4 }}>
+              {t("switchBanner.sub")}
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={onSwitchMode ?? onGetQuote}
+            style={{
+              display:         "inline-flex",
+              alignItems:      "center",
+              gap:             "8px",
+              padding:         "14px 28px",
+              borderRadius:    "10px",
+              backgroundColor: "#F5A623",
+              color:           "#0B1F33",
+              fontSize:        "15px",
+              fontWeight:      800,
+              border:          "none",
+              cursor:          "pointer",
+              whiteSpace:      "nowrap",
+              letterSpacing:   "-0.01em",
+              flexShrink:      0,
+            }}
+          >
+            {t("switchBanner.cta")} →
+          </button>
+        </div>
+      </section>
+    );
+  }
+
+  // Commercial mode — slim conversion bar
   return (
     <section
-      className="section-mobile-pad"
       style={{
-        backgroundColor: bg,
-        backgroundImage: `linear-gradient(${gridLine} 1px, transparent 1px), linear-gradient(90deg, ${gridLine} 1px, transparent 1px)`,
-        backgroundSize:  "48px 48px",
-        padding:         "88px 24px",
+        backgroundColor: "#0B1F33",
+        borderTop:       "1px solid rgba(245,166,35,0.2)",
+        padding:         "40px 24px",
+        textAlign:       "center",
         position:        "relative",
         overflow:        "hidden",
-        textAlign:       "center",
       }}
     >
-      {/* Glow blob */}
       <div
         aria-hidden
         style={{
@@ -38,18 +166,14 @@ export default function ContactCTA({ mode, onGetQuote }: Props) {
           top:           "50%",
           left:          "50%",
           transform:     "translate(-50%, -50%)",
-          width:         "600px",
-          height:        "600px",
+          width:         "500px",
+          height:        "500px",
           borderRadius:  "50%",
-          background:    isPersonal
-            ? "radial-gradient(circle, rgba(30,77,140,0.6) 0%, transparent 70%)"
-            : "radial-gradient(circle, rgba(245,166,35,0.08) 0%, transparent 70%)",
+          background:    "radial-gradient(circle, rgba(245,166,35,0.06) 0%, transparent 70%)",
           pointerEvents: "none",
         }}
       />
-
       <div style={{ maxWidth: "640px", margin: "0 auto", position: "relative" }}>
-        {/* Eyebrow */}
         <p
           style={{
             fontSize:      "11px",
@@ -57,105 +181,47 @@ export default function ContactCTA({ mode, onGetQuote }: Props) {
             fontWeight:    700,
             textTransform: "uppercase",
             color:         "#F5A623",
-            marginBottom:  "14px",
+            marginBottom:  "12px",
           }}
         >
           {t("contactCta.eyebrow")}
         </p>
-
-        {/* Headline */}
         <h2
           style={{
-            fontSize:      "clamp(2rem, 4vw, 3rem)",
+            fontSize:      "clamp(1.8rem, 3.5vw, 2.6rem)",
             fontWeight:    900,
             color:         "#FFFFFF",
-            margin:        "0 0 16px",
+            margin:        "0 0 14px",
             lineHeight:    1.05,
             letterSpacing: "-0.03em",
           }}
         >
-          {isPersonal ? t("contactCta.personalHeadline") : t("contactCta.commercialHeadline")}
+          {t("contactCta.commercialHeadline")}
         </h2>
-
-        {/* Sub */}
-        <p
-          style={{
-            fontSize:   "17px",
-            color:      "rgba(255,255,255,0.70)",
-            margin:     "0 0 36px",
-            lineHeight: 1.6,
-          }}
-        >
-          {isPersonal ? t("contactCta.personalSub") : t("contactCta.commercialSub")}
+        <p style={{ fontSize: "16px", color: "rgba(255,255,255,0.65)", margin: "0 0 28px" }}>
+          {t("contactCta.commercialSub")}
         </p>
-
-        {/* CTAs */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "16px", flexWrap: "wrap" }}>
           <button
             type="button"
             onClick={onGetQuote}
-            className="focus-ring-light"
             style={{
-              display:         "inline-flex",
-              alignItems:      "center",
-              gap:             "8px",
-              padding:         "16px 32px",
-              borderRadius:    "12px",
+              padding:         "14px 28px",
+              borderRadius:    "10px",
               backgroundColor: "#F5A623",
               color:           "#0B1F33",
-              fontSize:        "16px",
+              fontSize:        "15px",
               fontWeight:      800,
               border:          "none",
               cursor:          "pointer",
-              transition:      "opacity 200ms ease, transform 200ms ease",
-              letterSpacing:   "-0.01em",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.opacity   = "0.92";
-              (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.opacity   = "1";
-              (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
             }}
           >
-            {isPersonal ? t("contactCta.personalCta") : t("contactCta.commercialCta")}
+            {t("contactCta.commercialCta")}
           </button>
-
-          <a
-            href="tel:5619468261"
-            className="focus-ring-light"
-            style={{
-              display:        "inline-flex",
-              alignItems:     "center",
-              gap:            "8px",
-              fontSize:       "15px",
-              fontWeight:     600,
-              color:          "rgba(255,255,255,0.75)",
-              textDecoration: "none",
-              transition:     "color 200ms ease",
-            }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#FFFFFF"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.75)"; }}
-          >
-            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" style={{ flexShrink: 0 }}>
-              <path fillRule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clipRule="evenodd"/>
-            </svg>
+          <a href="tel:5619468261" style={{ color: "rgba(255,255,255,0.70)", fontSize: "14px", fontWeight: 600, textDecoration: "none" }}>
             561-946-8261
           </a>
         </div>
-
-        {/* Trust microcopy */}
-        <p
-          style={{
-            marginTop:     "24px",
-            fontSize:      "13px",
-            color:         "rgba(255,255,255,0.40)",
-            letterSpacing: "0.02em",
-          }}
-        >
-          {t("contactCta.microcopy")}
-        </p>
       </div>
     </section>
   );

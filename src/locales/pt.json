@@ -700,5 +700,11 @@
       "blog": "Blog",
       "contact": "Contato"
     }
+  },
+  "switchBanner": {
+    "eyebrow": "PARA EMPRESAS",
+    "headline": "Tem um negócio ou frota?",
+    "cta": "Ver Seguros Comerciais",
+    "sub": "Responsabilidade Civil · Comp. Trabalhadores · Auto Comercial · Transporte · Carga"
   }
 }

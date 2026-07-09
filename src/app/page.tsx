@@ -2241,7 +2241,7 @@ function AtivaSite() {
       <div data-reveal><FAQ mode={mode} /></div>
 
       {/* ── Contact CTA ───────────────────────────────────────────────────── */}
-      <div data-reveal><ContactCTA mode={mode} onGetQuote={openQuote} /></div>
+      <div data-reveal><ContactCTA mode={mode} onGetQuote={openQuote} onSwitchMode={() => setMode("commercial")} /></div>
 
       {/* ── Footer ────────────────────────────────────────────────────────── */}
       {/* Spacer so FAB doesn't overlap footer content on mobile */}

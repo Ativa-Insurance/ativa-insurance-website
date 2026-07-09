@@ -700,5 +700,11 @@
       "blog": "Blog",
       "contact": "Contact"
     }
+  },
+  "switchBanner": {
+    "eyebrow": "FOR BUSINESSES",
+    "headline": "Own a business or fleet?",
+    "cta": "Switch to Commercial Insurance",
+    "sub": "General Liability · Workers Comp · Commercial Auto · Trucking · Cargo"
   }
 }
