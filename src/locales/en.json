@@ -61,6 +61,12 @@
       "reassurance": "Free · No spam · Licensed agents · Same-day response"
     }
   },
+  "states": {
+    "eyebrow": "Licensed Coverage",
+    "heading": "Proudly serving clients across 11 states",
+    "sub": "3 Languages. 11 States. One agency that's here for you.",
+    "langs": "English • Português • Español"
+  },
   "stats": [
     { "value": "500+", "label": "Families Covered" },
     { "value": "5★",      "label": "Google Rating" },

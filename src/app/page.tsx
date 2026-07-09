@@ -360,7 +360,104 @@ function StatsBar({ mode }: { mode: Mode }) {
   );
 }
 
-// ─── Comparison section ───────────────────────────────────────────────────────
+// ─── Served States ────────────────────────────────────────────────────────────
+
+const SERVED_STATES = [
+  { code: "FL", name: "Florida" },
+  { code: "GA", name: "Georgia" },
+  { code: "SC", name: "South Carolina" },
+  { code: "NC", name: "North Carolina" },
+  { code: "TN", name: "Tennessee" },
+  { code: "OH", name: "Ohio" },
+  { code: "PA", name: "Pennsylvania" },
+  { code: "MD", name: "Maryland" },
+  { code: "NJ", name: "New Jersey" },
+  { code: "CT", name: "Connecticut" },
+  { code: "MA", name: "Massachusetts" },
+];
+
+function ServedStates() {
+  const { t } = useLanguage();
+  return (
+    <section style={{
+      backgroundColor: "#F8F9FB",
+      padding:         "72px 24px",
+      borderTop:       "1px solid rgba(0,0,0,0.06)",
+      borderBottom:    "1px solid rgba(0,0,0,0.06)",
+    }}>
+      <div style={{ maxWidth: "900px", margin: "0 auto", textAlign: "center" }}>
+        <p style={{
+          fontSize:      "11px",
+          fontWeight:    700,
+          letterSpacing: "2.5px",
+          textTransform: "uppercase",
+          color:         "var(--eyebrow)",
+          marginBottom:  "12px",
+        }}>
+          {t("states.eyebrow")}
+        </p>
+        <h2 style={{
+          fontSize:      "clamp(1.6rem, 3vw, 2.2rem)",
+          fontWeight:    900,
+          color:         "#0B1F33",
+          marginBottom:  "48px",
+          lineHeight:    1.15,
+          letterSpacing: "-0.025em",
+        }}>
+          {t("states.heading")}
+        </h2>
+
+        <div style={{
+          display:        "flex",
+          flexWrap:       "wrap",
+          justifyContent: "center",
+          gap:            "20px",
+          marginBottom:   "40px",
+        }}>
+          {SERVED_STATES.map(s => (
+            <div key={s.code} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
+              <div style={{
+                width:           "56px",
+                height:          "56px",
+                borderRadius:    "14px",
+                backgroundColor: "#EEF4FF",
+                border:          "1px solid rgba(27,58,107,0.12)",
+                display:         "flex",
+                alignItems:      "center",
+                justifyContent:  "center",
+                color:           "#1B3A6B",
+                fontWeight:      800,
+                fontSize:        "13px",
+                letterSpacing:   "0.5px",
+              }}>
+                {s.code}
+              </div>
+              <span style={{
+                fontSize:   "12px",
+                color:      "#64748B",
+                fontWeight: 500,
+                textAlign:  "center",
+                maxWidth:   "72px",
+                lineHeight: 1.3,
+              }}>
+                {s.name}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        <p style={{ fontSize: "15px", color: "#64748B", marginBottom: "6px" }}>
+          {t("states.sub")}
+        </p>
+        <p style={{ fontSize: "15px", color: "#1B3A6B", fontWeight: 700 }}>
+          {t("states.langs")}
+        </p>
+      </div>
+    </section>
+  );
+}
+
+// ─── Why Choose Ativa ─────────────────────────────────────────────────────────
 
 // ─── Why Choose Ativa ─────────────────────────────────────────────────────────
 
@@ -2122,26 +2219,26 @@ function AtivaSite() {
         </div>
       </section>
 
-      {/* ── Carriers ──────────────────────────────────────────────────────── */}
-      <div data-reveal><CarrierMarquee mode={mode} /></div>
+      {/* ── Why Choose Ativa ──────────────────────────────────────────────── */}
+      <div data-reveal><WhyChooseAtiva onGetQuote={openQuote} /></div>
+
+      {/* ── Served States ─────────────────────────────────────────────────── */}
+      <div data-reveal><ServedStates /></div>
 
       {/* ── How It Works ──────────────────────────────────────────────────── */}
       <div data-reveal><HowItWorks mode={mode} /></div>
 
-      {/* ── Why Choose Ativa ──────────────────────────────────────────────── */}
-      <div data-reveal><WhyChooseAtiva onGetQuote={openQuote} /></div>
-
-      {/* ── Stats bar ─────────────────────────────────────────────────────── */}
-      <div data-reveal><StatsBar mode={mode} /></div>
+      {/* ── Carriers ──────────────────────────────────────────────────────── */}
+      <div data-reveal><CarrierMarquee mode={mode} /></div>
 
       {/* ── Reviews ───────────────────────────────────────────────────────── */}
       <div data-reveal><Reviews mode={mode} /></div>
 
-      {/* ── FAQ ───────────────────────────────────────────────────────────── */}
-      <div data-reveal><FAQ mode={mode} /></div>
-
       {/* ── Blog ──────────────────────────────────────────────────────────── */}
       <div data-reveal><Blog mode={mode} /></div>
+
+      {/* ── FAQ ───────────────────────────────────────────────────────────── */}
+      <div data-reveal><FAQ mode={mode} /></div>
 
       {/* ── Contact CTA ───────────────────────────────────────────────────── */}
       <div data-reveal><ContactCTA mode={mode} onGetQuote={openQuote} /></div>

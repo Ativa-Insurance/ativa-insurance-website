@@ -61,6 +61,12 @@
       "reassurance": "Grátis · Sem spam · Agentes licenciados · Resposta no mesmo dia"
     }
   },
+  "states": {
+    "eyebrow": "Cobertura Licenciada",
+    "heading": "Atendendo clientes em 11 estados dos EUA",
+    "sub": "3 idiomas. 11 estados. Uma agência sempre ao seu lado.",
+    "langs": "English • Português • Español"
+  },
   "stats": [
     { "value": "500+",  "label": "Famílias Cobertas" },
     { "value": "5★",       "label": "Avaliação Google" },
