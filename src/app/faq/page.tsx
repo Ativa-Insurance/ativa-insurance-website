@@ -5,7 +5,7 @@ import { FAQ_DATA } from "@/data/faqData";
 export const metadata: Metadata = {
   title: "Insurance FAQ | Ativa Insurance",
   description:
-    "Common questions about insurance in Florida. Learn about coverage options, quotes, and working with an independent insurance agent. Licensed in CT, FL, GA, MA, MD, NC, NJ, OH, PA, SC, TN.",
+    "Common questions about insurance in Florida. Learn about coverage options, quotes, and working with an independent insurance agent. Licensed in CT, FL, GA, MD, NC, NJ, OH, PA, SC, TN.",
   keywords: [
     "insurance FAQ",
     "insurance questions Florida",

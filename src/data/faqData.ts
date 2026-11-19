@@ -253,7 +253,7 @@ const en: FAQSection[] = [
       },
       {
         q: "What states does Ativa Insurance operate in?",
-        a: "We are currently licensed and operating in Connecticut, Florida, Georgia, Maryland, Massachusetts, New Jersey, North Carolina, Ohio, Pennsylvania, South Carolina, and Tennessee. Florida is our primary and most active market, where we specialize in home, auto, flood, and commercial insurance. If you're in one of those states and looking for coverage, we'd love to help.",
+        a: "We are currently licensed and operating in Connecticut, Florida, Georgia, Maryland, New Jersey, North Carolina, Ohio, Pennsylvania, South Carolina, and Tennessee. Florida is our primary and most active market, where we specialize in home, auto, flood, and commercial insurance. If you're in one of those states and looking for coverage, we'd love to help.",
       },
       {
         q: "What languages does Ativa Insurance serve clients in?",
@@ -507,7 +507,7 @@ const pt: FAQSection[] = [
       },
       {
         q: "Em quais estados a Ativa Insurance atua?",
-        a: "Estamos licenciados e atuando na Flórida, Geórgia, Carolina do Norte, Carolina do Sul, Nova Jersey, Pensilvânia, Connecticut, Massachusetts, Maryland, Ohio e Tennessee. A Flórida é nosso mercado principal e mais ativo, onde nos especializamos em seguro residencial, auto, inundação e comercial. Se você está em um desses estados e procura cobertura, adoraríamos ajudar.",
+        a: "Estamos licenciados e atuando na Flórida, Geórgia, Carolina do Norte, Carolina do Sul, Nova Jersey, Pensilvânia, Connecticut, Maryland, Ohio e Tennessee. A Flórida é nosso mercado principal e mais ativo, onde nos especializamos em seguro residencial, auto, inundação e comercial. Se você está em um desses estados e procura cobertura, adoraríamos ajudar.",
       },
       {
         q: "Em quais idiomas a Ativa Insurance atende seus clientes?",
@@ -761,7 +761,7 @@ const es: FAQSection[] = [
       },
       {
         q: "¿En qué estados opera Ativa Insurance?",
-        a: "Estamos licenciados y operando en Florida, Georgia, Carolina del Norte, Carolina del Sur, Nueva Jersey, Pensilvania, Connecticut, Massachusetts, Maryland, Ohio y Tennessee. Florida es nuestro mercado principal y más activo, donde nos especializamos en seguro de hogar, auto, inundaciones y comercial. Si estás en uno de esos estados y buscas cobertura, nos encantaría ayudarte.",
+        a: "Estamos licenciados y operando en Florida, Georgia, Carolina del Norte, Carolina del Sur, Nueva Jersey, Pensilvania, Connecticut, Maryland, Ohio y Tennessee. Florida es nuestro mercado principal y más activo, donde nos especializamos en seguro de hogar, auto, inundaciones y comercial. Si estás en uno de esos estados y buscas cobertura, nos encantaría ayudarte.",
       },
       {
         q: "¿En qué idiomas atiende Ativa Insurance a sus clientes?",

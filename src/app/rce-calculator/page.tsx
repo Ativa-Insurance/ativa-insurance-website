@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Home Replacement Cost Calculator | Ativa Insurance",
   description:
-    "Free replacement cost estimator for homeowners in CT, FL, GA, MA, MD, NC, NJ, OH, PA, SC, and TN. Find out if you're underinsured in under 2 minutes.",
+    "Free replacement cost estimator for homeowners in CT, FL, GA, MD, NC, NJ, OH, PA, SC, and TN. Find out if you're underinsured in under 2 minutes.",
   alternates: { canonical: "https://ativainsurance.com/rce-calculator" },
   openGraph: {
     title: "Home Replacement Cost Calculator | Ativa Insurance",

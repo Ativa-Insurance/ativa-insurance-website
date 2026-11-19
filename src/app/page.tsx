@@ -348,7 +348,6 @@ const SERVED_STATES = [
   { code: "MD", name: "Maryland" },
   { code: "NJ", name: "New Jersey" },
   { code: "CT", name: "Connecticut" },
-  { code: "MA", name: "Massachusetts" },
 ];
 
 function ServedStates() {
@@ -1113,7 +1112,6 @@ function AtivaSite() {
     "Florida",
     "Georgia",
     "Maryland",
-    "Massachusetts",
     "New Jersey",
     "North Carolina",
     "Ohio",

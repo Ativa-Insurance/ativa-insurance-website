@@ -1560,7 +1560,7 @@ export default function QuoteModal({ onClose, initialProduct, initialData }: Quo
                 We&apos;ll be in touch within minutes. Check your phone — a licensed agent will reach out shortly.
               </p>
             </div>
-            <a href="https://wa.me/13213448474" target="_blank" rel="noopener noreferrer"
+            <a href="https://wa.me/15619468261" target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm text-white"
               style={{ backgroundColor: "#25D366" }}>
               <svg viewBox="0 0 24 24" fill="white" className="w-4 h-4">

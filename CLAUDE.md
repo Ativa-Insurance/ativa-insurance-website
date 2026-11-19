@@ -189,10 +189,10 @@ BTIS
 ## CONTACT / FOOTER INFO
 
 Phone: 561-946-8261  
-Address: 2412 Irwin St Ste 372 Melbourne FL 32901  
+Address: 1 SE Ocean Blvd, Stuart, FL 34994  
 
 Licensed States:
-CT, FL, GA, NC, SC, NJ, TN, MD, MA, OH, PA  
+CT, FL, GA, MD, NC, NJ, OH, PA, SC, TN (10 states; Massachusetts removed Nov 2026)  
 
 ---
 
@@ -200,7 +200,7 @@ CT, FL, GA, NC, SC, NJ, TN, MD, MA, OH, PA
 
 - Floating button (bottom right)
 - Link:
-https://wa.me/13213448474
+https://wa.me/15619468261
 
 ---
 
@@ -461,3 +461,21 @@ User should feel:
 “I clicked what I need, answered a few simple questions, and I’m done.”
 
 If it feels complex → it is wrong.
+
+---
+
+## COPY & VOICE — STANDING RULE (added Nov 2026)
+
+- Do NOT rewrite, "improve", or re-voice any existing website copy. A full-site voice rewrite was tried and rejected.
+- Do NOT apply ATIVA_WEB_LANGUAGE.md or any voice/persuasion doc to the site, even if such a file appears in the repo.
+- Change a visible string ONLY when the user names that exact string or section in the current request. Change only that string, in EN/PT/ES.
+- Fixing factual data (phone, states, links) is not a copy rewrite: change the fact, leave the sentence around it as is.
+
+## BUSINESS FACTS (source of truth — overrides any older value in this file or the code)
+
+- Phone (display, tel: and WhatsApp): 561-946-8261 · tel:+15619468261 · https://wa.me/15619468261
+- 321-344-8474 must not appear anywhere on the public site.
+- Licensed states (10): CT, FL, GA, MD, NC, NJ, OH, PA, SC, TN. Massachusetts removed Nov 2026. Say "10 states", never "11".
+- Address: 1 SE Ocean Blvd, Stuart, FL 34994.
+- Google reviews: never hardcode a review count or rating. Link to the Google listing; show a count only if fetched live from the Google Places API (/api/google-rating).
+- Never invent reviews, numbers, stories, or testimonials. Never add aggregateRating schema for Ativa's own reviews.

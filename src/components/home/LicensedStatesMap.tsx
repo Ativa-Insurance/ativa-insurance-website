@@ -3,7 +3,7 @@
 /**
  * LicensedStatesMap — drop-in interactive US map.
  * Geometry: public-domain Wikimedia "Blank US Map (states only)" (pre-processed).
- * - 11 licensed states filled Ativa navy (#1B3A6B), hover -> gold (#F5A623)
+ * - 10 licensed states (FL GA SC NC TN OH PA MD NJ CT; MA removed Nov 2026) filled Ativa navy (#1B3A6B), hover -> gold (#F5A623)
  * - All other states light gray (#E2E8F0), no interaction
  * - Native browser tooltips via each state's built-in <title> element
  * - No dependencies. Do NOT regenerate or edit the SVG geometry.
@@ -16,15 +16,15 @@
  */
 
 const US_MAP_SVG = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="125 0 834 520" role="img" aria-label="Map of the United States highlighting the 11 states where Ativa Insurance is licensed" preserveAspectRatio="xMidYMid meet">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="125 0 834 520" role="img" aria-label="Map of the United States highlighting the 10 states where Ativa Insurance is licensed" preserveAspectRatio="xMidYMid meet">
   <title>Blank map of the United States, territories not included</title>
 <defs>
 <style type="text/css">
 .state {fill:#E2E8F0; transition: fill 0.2s ease;}
 .borders {stroke:#FFFFFF; stroke-width:1.2}
 .dccircle {display:none}
-.fl,.ga,.sc,.nc,.tn,.oh,.pa,.md,.nj,.ct,.ma {fill:#1B3A6B; cursor:pointer;}
-.fl:hover,.ga:hover,.sc:hover,.nc:hover,.tn:hover,.oh:hover,.pa:hover,.md:hover,.nj:hover,.ct:hover,.ma:hover {fill:#F5A623;}
+.fl,.ga,.sc,.nc,.tn,.oh,.pa,.md,.nj,.ct {fill:#1B3A6B; cursor:pointer;}
+.fl:hover,.ga:hover,.sc:hover,.nc:hover,.tn:hover,.oh:hover,.pa:hover,.md:hover,.nj:hover,.ct:hover {fill:#F5A623;}
 </style>
 </defs>
 

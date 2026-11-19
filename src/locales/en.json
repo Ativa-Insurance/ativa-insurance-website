@@ -71,7 +71,7 @@
       "seeMyRate": "See My Rate",
       "preferTalk": "Prefer to talk to an advisor?",
       "speakAgent": "Speak with a licensed agent",
-      "badge1": "Licensed in 11 States",
+      "badge1": "Licensed in 10 States",
       "badge2": "Independent Agency",
       "badge3": "Dozens of Top Carriers",
       "badge4": "Same-Day Quotes",
@@ -80,8 +80,8 @@
   },
   "states": {
     "eyebrow": "Licensed Coverage",
-    "heading": "Proudly serving clients across 11 states",
-    "sub": "11 States • 3 Languages • Independent Agency",
+    "heading": "Proudly serving clients across 10 states",
+    "sub": "10 States • 3 Languages • Independent Agency",
     "legendLicensed": "Licensed & Serving",
     "legendNotAvailable": "Not Currently Available"
   },
@@ -95,7 +95,7 @@
       "label": "Google Rating"
     },
     {
-      "value": "11",
+      "value": "10",
       "label": "States Licensed"
     },
     {
@@ -394,7 +394,7 @@
     "items": [
       {
         "q": "What states are you licensed in?",
-        "a": "We are licensed in CT, FL, GA, MA, MD, NC, NJ, OH, PA, SC, and TN — with Florida as our primary market."
+        "a": "We are licensed in CT, FL, GA, MD, NC, NJ, OH, PA, SC, and TN — with Florida as our primary market."
       },
       {
         "q": "How long does it take to get a quote?",
@@ -498,7 +498,7 @@
   "rce": {
     "meta": {
       "title": "Home Replacement Cost Estimator | Ativa Insurance",
-      "description": "Find out how much coverage your home really needs. Free replacement cost calculator for CT, FL, GA, MA, MD, NC, NJ, OH, PA, SC, and TN homeowners."
+      "description": "Find out how much coverage your home really needs. Free replacement cost calculator for CT, FL, GA, MD, NC, NJ, OH, PA, SC, and TN homeowners."
     },
     "hero": {
       "headline": "What Would It Cost to Rebuild Your Home?",
@@ -550,7 +550,6 @@
         "CT",
         "FL",
         "GA",
-        "MA",
         "MD",
         "NC",
         "NJ",
@@ -702,8 +701,8 @@
     }
   },
   "trust": {
-    "states": "✓ 11 Licensed States",
-    "statesShort": "✓ 11 States",
+    "states": "✓ 10 Licensed States",
+    "statesShort": "✓ 10 States",
     "sameDay": "⚡ Same-Day",
     "sameDayResponse": "⚡ Same-Day Response",
     "sameDayCoverage": "⚡ Same-Day Coverage",
@@ -712,7 +711,7 @@
     "googleRating": "⭐ 5.0 Google Rating",
     "reviewsShort": "5.0 · 74 Reviews",
     "reviewsFull": "5.0 · 74 Google Reviews",
-    "reviewsStates": "5.0 · 74 Reviews · ✓ 11 States",
+    "reviewsStates": "5.0 · 74 Reviews · ✓ 10 States",
     "carriers": "Multiple Top-Rated Carriers"
   },
   "sticky": {
@@ -729,12 +728,12 @@
     "commercialSub": "Same-day certificates. No pressure. Licensed commercial specialists.",
     "personalCta": "Get My Free Quote →",
     "commercialCta": "Get Business Coverage →",
-    "microcopy": "Free · No obligation · Licensed in CT, FL, GA, NC, SC, NJ, TN, MD, MA, OH, PA"
+    "microcopy": "Free · No obligation · Licensed in CT, FL, GA, NC, SC, NJ, TN, MD, OH, PA"
   },
   "footer": {
     "tagline": "Independent Insurance Agency",
-    "agent": "Licensed in CT, FL, GA, MA, MD, NC, NJ, OH, PA, SC, TN",
-    "licensed": "Licensed in CT · FL · GA · MA · MD · NC · NJ · OH · PA · SC · TN",
+    "agent": "Licensed in CT, FL, GA, MD, NC, NJ, OH, PA, SC, TN",
+    "licensed": "Licensed in CT · FL · GA · MD · NC · NJ · OH · PA · SC · TN",
     "rights": "© {year} Ativa Insurance LLC. All rights reserved.",
     "disclaimer": "Ativa Insurance LLC is an independent insurance agency. Producer: Ana Leticia Zuany, FL #L125673. Coverage is subject to policy terms and conditions. Not all products available in all states.",
     "phone": "561-946-8261",

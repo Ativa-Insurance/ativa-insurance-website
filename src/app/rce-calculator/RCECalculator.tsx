@@ -287,7 +287,7 @@ export default function RCECalculator() {
   }, [data, lang, result]);
 
   const rawStates  = tRaw("rce.options.states")  as string[] | undefined;
-  const stateOpts  = (rawStates ?? ["FL","GA","NC","SC","NJ","PA","CT","MA","MD","OH","TN"])
+  const stateOpts  = (rawStates ?? ["FL","GA","NC","SC","NJ","PA","CT","MD","OH","TN"])
     .map((s) => ({ value: s, label: s }));
   const propOpts   = (tRaw("rce.options.propertyTypes")  as Array<{ value: string; label: string }> | undefined) ?? [];
   const finishOpts = (tRaw("rce.options.finishLevels")   as Array<{ value: string; label: string }> | undefined) ?? [];
@@ -420,7 +420,7 @@ export default function RCECalculator() {
               <div>
                 <StepHeader step={0} title={t("rce.steps.state")} />
                 <SelectGrid
-                  options={(stateOpts.length ? stateOpts : ["FL","GA","NC","SC","NJ","PA","CT","MA","MD","OH","TN"].map(s => ({ value: s, label: s })))}
+                  options={(stateOpts.length ? stateOpts : ["FL","GA","NC","SC","NJ","PA","CT","MD","OH","TN"].map(s => ({ value: s, label: s })))}
                   value={data.state}
                   onChange={(v) => { set("state", v); setErrors({}); }}
                 />

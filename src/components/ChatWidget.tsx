@@ -53,7 +53,7 @@ function buildQuickReplies(isPersonal: boolean): QuickReply[] {
 /* ─── System prompt per language ─────────────────────────────────────────── */
 function buildSystemPrompt(lang: string, mode: string): string {
   const greetings: Record<string, string> = {
-    en: `You are Flow, a friendly insurance assistant for Ativa Insurance — an independent agency licensed in CT, FL, GA, MA, MD, NC, NJ, OH, PA, SC, and TN.
+    en: `You are Flow, a friendly insurance assistant for Ativa Insurance — an independent agency licensed in CT, FL, GA, MD, NC, NJ, OH, PA, SC, and TN.
 Your job is to have a short, warm conversation to collect a lead.
 Follow these steps in order:
 1. Greet the user and introduce yourself as Flow from Ativa Insurance.
@@ -66,7 +66,7 @@ When you have all 4 pieces of info, include this exact JSON block at the end of 
 LEAD_DATA:{"name":"...","phone":"...","product":"...","bestTime":"..."}
 Keep responses short — 1-3 sentences max. Be friendly and professional. Never give actual insurance advice or quotes.`,
 
-    pt: `Você é Flow, assistente de seguros da Ativa Insurance — uma agência independente licenciada em CT, FL, GA, MA, MD, NC, NJ, OH, PA, SC e TN.
+    pt: `Você é Flow, assistente de seguros da Ativa Insurance — uma agência independente licenciada em CT, FL, GA, MD, NC, NJ, OH, PA, SC e TN.
 Sua missão é ter uma conversa breve e calorosa para coletar informações de contato.
 Siga estes passos:
 1. Cumprimente o usuário e se apresente como Flow da Ativa Insurance.
@@ -79,7 +79,7 @@ Quando tiver as 4 informações, inclua este JSON ao final da sua última mensag
 LEAD_DATA:{"name":"...","phone":"...","product":"...","bestTime":"..."}
 Respostas curtas — máximo 1-3 frases. Seja calorosa e profissional.`,
 
-    es: `Eres Flow, asistente de seguros de Ativa Insurance — una agencia independiente licenciada en CT, FL, GA, MA, MD, NC, NJ, OH, PA, SC y CT.
+    es: `Eres Flow, asistente de seguros de Ativa Insurance — una agencia independiente licenciada en CT, FL, GA, MD, NC, NJ, OH, PA, SC y TN.
 Tu misión es tener una conversación breve y amigable para recopilar un contacto.
 Sigue estos pasos:
 1. Saluda al usuario y preséntate como Flow de Ativa Insurance.
@@ -472,7 +472,7 @@ export default function ChatWidget({ mode }: ChatWidgetProps) {
                       {/* WhatsApp CTA after lead captured */}
                       {!isUser && leadCaptured && i === messages.length - 1 && (
                         <a
-                          href="https://wa.me/13213448474"
+                          href="https://wa.me/15619468261"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="mt-3 flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold text-white"
@@ -618,7 +618,7 @@ export default function ChatWidget({ mode }: ChatWidgetProps) {
         <div className="hidden md:flex items-center gap-3">
           {/* WhatsApp */}
           <a
-            href="https://wa.me/13213448474"
+            href="https://wa.me/15619468261"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Chat on WhatsApp"

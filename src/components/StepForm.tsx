@@ -170,7 +170,7 @@ export default function StepForm({ steps, mode, productTitle, onClose }: StepFor
         </div>
         {/* WhatsApp CTA */}
         <a
-          href="https://wa.me/13213448474"
+          href="https://wa.me/15619468261"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm text-white"

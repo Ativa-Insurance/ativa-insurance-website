@@ -71,7 +71,7 @@
       "seeMyRate": "Ver mi cotización",
       "preferTalk": "¿Prefieres hablar con un agente?",
       "speakAgent": "Hablar con un agente licenciado",
-      "badge1": "Licenciados en 11 Estados",
+      "badge1": "Licenciados en 10 Estados",
       "badge2": "Agencia Independiente",
       "badge3": "Decenas de Aseguradoras",
       "badge4": "Cotizaciones el Mismo Día",
@@ -80,8 +80,8 @@
   },
   "states": {
     "eyebrow": "Cobertura Licenciada",
-    "heading": "Atendiendo clientes en 11 estados de los EE.UU.",
-    "sub": "11 Estados • 3 Idiomas • Agencia Independiente",
+    "heading": "Atendiendo clientes en 10 estados de los EE.UU.",
+    "sub": "10 Estados • 3 Idiomas • Agencia Independiente",
     "legendLicensed": "Licenciado y en Operación",
     "legendNotAvailable": "No Disponible Actualmente"
   },
@@ -95,7 +95,7 @@
       "label": "Calificación Google"
     },
     {
-      "value": "11",
+      "value": "10",
       "label": "Estados con Licencia"
     },
     {
@@ -394,7 +394,7 @@
     "items": [
       {
         "q": "¿En qué estados tienen licencia?",
-        "a": "Operamos en CT, FL, GA, MA, MD, NC, NJ, OH, PA, SC y TN — con Florida como mercado principal."
+        "a": "Operamos en CT, FL, GA, MD, NC, NJ, OH, PA, SC y TN — con Florida como mercado principal."
       },
       {
         "q": "¿Cuánto tarda en llegar una cotización?",
@@ -498,7 +498,7 @@
   "rce": {
     "meta": {
       "title": "Calculadora de Costo de Reposición | Ativa Insurance",
-      "description": "Descubre cuánta cobertura realmente necesita tu hogar. Calculadora gratuita para propietarios en CT, FL, GA, MA, MD, NC, NJ, OH, PA, SC y TN."
+      "description": "Descubre cuánta cobertura realmente necesita tu hogar. Calculadora gratuita para propietarios en CT, FL, GA, MD, NC, NJ, OH, PA, SC y TN."
     },
     "hero": {
       "headline": "¿Cuánto Costaría Reconstruir Tu Casa?",
@@ -550,7 +550,6 @@
         "CT",
         "FL",
         "GA",
-        "MA",
         "MD",
         "NC",
         "NJ",
@@ -702,8 +701,8 @@
     }
   },
   "trust": {
-    "states": "✓ 11 Estados Licenciados",
-    "statesShort": "✓ 11 Estados",
+    "states": "✓ 10 Estados Licenciados",
+    "statesShort": "✓ 10 Estados",
     "sameDay": "⚡ Mismo Día",
     "sameDayResponse": "⚡ Respuesta el Mismo Día",
     "sameDayCoverage": "⚡ Cobertura el Mismo Día",
@@ -712,7 +711,7 @@
     "googleRating": "⭐ Calificación Google 5.0",
     "reviewsShort": "5.0 · 74 Reseñas",
     "reviewsFull": "5.0 · 74 Reseñas Google",
-    "reviewsStates": "5.0 · 74 Reseñas · ✓ 11 Estados",
+    "reviewsStates": "5.0 · 74 Reseñas · ✓ 10 Estados",
     "carriers": "Múltiples Aseguradoras Líderes"
   },
   "sticky": {
@@ -729,12 +728,12 @@
     "commercialSub": "Certificados el mismo día. Sin presión. Especialistas comerciales licenciados.",
     "personalCta": "Quiero Mi Cotización Gratis →",
     "commercialCta": "Cobertura para Mi Empresa →",
-    "microcopy": "Gratis · Sin compromiso · Licenciada en CT, FL, GA, NC, SC, NJ, TN, MD, MA, OH, PA"
+    "microcopy": "Gratis · Sin compromiso · Licenciada en CT, FL, GA, NC, SC, NJ, TN, MD, OH, PA"
   },
   "footer": {
     "tagline": "Agencia de Seguros Independiente",
-    "agent": "Licenciada en CT, FL, GA, MA, MD, NC, NJ, OH, PA, SC, TN",
-    "licensed": "Licenciada en CT · FL · GA · MA · MD · NC · NJ · OH · PA · SC · TN",
+    "agent": "Licenciada en CT, FL, GA, MD, NC, NJ, OH, PA, SC, TN",
+    "licensed": "Licenciada en CT · FL · GA · MD · NC · NJ · OH · PA · SC · TN",
     "rights": "© {year} Ativa Insurance LLC. Todos los derechos reservados.",
     "disclaimer": "Ativa Insurance LLC es una agencia de seguros independiente. Productora: Ana Leticia Zuany, FL #L125673. La cobertura está sujeta a los términos y condiciones de la póliza. No todos los productos están disponibles en todos los estados.",
     "phone": "561-946-8261",

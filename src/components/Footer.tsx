@@ -37,7 +37,7 @@ const SOCIAL_LINKS = [
   },
 ];
 
-const LICENSED_STATES = ["CT","FL","GA","SC","TN","OH","NC","PA","MD","NJ","MA"];
+const LICENSED_STATES = ["CT","FL","GA","SC","TN","OH","NC","PA","MD","NJ"];
 
 export default function Footer({ mode }: { mode: Mode }) {
   const { t } = useLanguage();
@@ -100,7 +100,7 @@ export default function Footer({ mode }: { mode: Mode }) {
 
           {/* WhatsApp */}
           <a
-            href="https://wa.me/13213448474"
+            href="https://wa.me/15619468261"
             target="_blank"
             rel="noopener noreferrer"
             style={{
