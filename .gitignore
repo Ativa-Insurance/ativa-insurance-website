@@ -14,3 +14,5 @@ node_modules/
 *.log
 
 screenshots/
+
+.claude/settings.local.json
