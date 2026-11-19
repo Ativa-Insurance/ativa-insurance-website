@@ -60,11 +60,6 @@ const LOCAL_BUSINESS_SCHEMA = {
     closes: "18:00",
   },
   priceRange: "$$",
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5.0",
-    reviewCount: "74",
-  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

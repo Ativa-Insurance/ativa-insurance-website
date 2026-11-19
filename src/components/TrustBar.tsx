@@ -1,6 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/context/LanguageContext";
+import { useGoogleRating, GOOGLE_REVIEWS_URL } from "@/lib/useGoogleRating";
 
 type Mode = "personal" | "commercial";
 
@@ -15,6 +16,7 @@ function Sep({ color }: { color: string }) {
 
 export default function TrustBar({ mode }: { mode: Mode }) {
   const { t } = useLanguage();
+  const google = useGoogleRating();
   const isPersonal = mode === "personal";
 
   const bg      = isPersonal ? "#1B3A6B" : "#0B1F33";
@@ -57,16 +59,22 @@ export default function TrustBar({ mode }: { mode: Mode }) {
 
           {/* ── Google Rating ─────────────────────────────────────────────── */}
           <a
-            href="https://maps.app.goo.gl/Zd8AptfZe46v9ntj8"
+            href={GOOGLE_REVIEWS_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="tb-google"
             style={itemStyle}
           >
-            <span className="tb-stars" style={{ color: starClr, fontSize: "13px", letterSpacing: "-0.5px" }}>
-              ★★★★★
-            </span>
-            <span>{t("trust.reviewsFull")}</span>
+            {google ? (
+              <>
+                <span className="tb-stars" style={{ color: starClr, fontSize: "13px", letterSpacing: "-0.5px" }}>
+                  {"★".repeat(Math.round(google.rating))}
+                </span>
+                <span>{google.rating.toFixed(1)} · {google.count} {t("trust.googleReviewsWord")}</span>
+              </>
+            ) : (
+              <span>{t("trust.reviewsFallback")}</span>
+            )}
           </a>
 
           <Sep color={sepClr} />

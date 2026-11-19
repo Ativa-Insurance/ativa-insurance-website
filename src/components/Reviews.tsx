@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { Mode } from "@/types";
 import { useLanguage } from "@/context/LanguageContext";
+import { useGoogleRating, GOOGLE_REVIEWS_URL, type GoogleReview } from "@/lib/useGoogleRating";
 
 function GoogleG({ size = 16 }: { size?: number }) {
   return (
@@ -27,17 +28,11 @@ function StarRow({ count = 5, color = "#F59E0B", size = 14 }: { count?: number; 
   );
 }
 
-interface ReviewItem {
-  name: string;
-  location?: string;
-  stars: number;
-  text: string;
-  mode?: "personal" | "commercial" | "both";
-}
-
-function ReviewCard({ review, featured = false }: { review: ReviewItem; featured?: boolean }) {
+// Reviews come live from Google (see /api/google-rating). Text is shown exactly as
+// written, with the author's name, photo and a link back to Google, per Google's rules.
+function ReviewCard({ review, featured = false, postedLabel }: { review: GoogleReview; featured?: boolean; postedLabel: string }) {
   const [hovered, setHovered] = useState(false);
-  const initial = review.name.charAt(0).toUpperCase();
+  const initial = review.author.charAt(0).toUpperCase();
 
   return (
     <div
@@ -58,7 +53,7 @@ function ReviewCard({ review, featured = false }: { review: ReviewItem; featured
       onMouseLeave={() => setHovered(false)}
     >
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <StarRow count={review.stars} color="#F59E0B" size={featured ? 15 : 13} />
+        <StarRow count={Math.round(review.rating)} color="#F59E0B" size={featured ? 15 : 13} />
         <GoogleG size={15} />
       </div>
 
@@ -67,6 +62,17 @@ function ReviewCard({ review, featured = false }: { review: ReviewItem; featured
       </p>
 
       <div style={{ display: "flex", alignItems: "center", gap: "10px", paddingTop: "8px", borderTop: "1px solid #F1F5F9" }}>
+        {review.photo ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={review.photo}
+            alt=""
+            width={featured ? 36 : 32}
+            height={featured ? 36 : 32}
+            referrerPolicy="no-referrer"
+            style={{ borderRadius: "50%", flexShrink: 0 }}
+          />
+        ) : (
         <div
           style={{
             width:           featured ? "36px" : "32px",
@@ -85,15 +91,21 @@ function ReviewCard({ review, featured = false }: { review: ReviewItem; featured
         >
           {initial}
         </div>
+        )}
         <div>
           <p style={{ margin: 0, fontSize: featured ? "14px" : "13px", fontWeight: 700, color: "#0B1F33", lineHeight: 1.2 }}>
-            {review.name}
+            {review.authorUri ? (
+              <a href={review.authorUri} target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none" }}>
+                {review.author}
+              </a>
+            ) : review.author}
           </p>
-          {review.location && (
-            <p style={{ margin: 0, fontSize: "11px", color: "#64748B", lineHeight: 1.3 }}>
-              {review.location}
-            </p>
-          )}
+          <p style={{ margin: 0, fontSize: "11px", color: "#64748B", lineHeight: 1.3 }}>
+            {review.relativeTime}{review.relativeTime ? " · " : ""}
+            <a href={review.reviewUri || GOOGLE_REVIEWS_URL} target="_blank" rel="noopener noreferrer" style={{ color: "#64748B" }}>
+              {postedLabel}
+            </a>
+          </p>
         </div>
       </div>
     </div>
@@ -101,18 +113,13 @@ function ReviewCard({ review, featured = false }: { review: ReviewItem; featured
 }
 
 export default function Reviews({ mode }: { mode: Mode }) {
-  const { t, tRaw } = useLanguage();
-  const isPersonal = mode === "personal";
-  const allItems        = (tRaw("reviews.items")          as ReviewItem[] | undefined) ?? [];
-  const commercialItems = (tRaw("reviews.commercialItems") as ReviewItem[] | undefined) ?? [];
-
-  // Personal: show personal + both tagged items
-  // Commercial: show dedicated commercial items as featured, plus "both" items as secondary
-  const personalItems = allItems.filter(r => !r.mode || r.mode === "personal" || r.mode === "both");
-  const bothItems     = allItems.filter(r => r.mode === "both");
-
-  const featured = isPersonal ? personalItems.slice(0, 3) : commercialItems.slice(0, 3);
-  const rest     = isPersonal ? personalItems.slice(3)    : bothItems;
+  const { t } = useLanguage();
+  void mode; // same live Google reviews on both tabs; Google decides which ones it returns
+  const google = useGoogleRating();
+  const reviews = google?.reviews ?? [];
+  const featured = reviews.slice(0, 3);
+  const rest     = reviews.slice(3);
+  const postedLabel = t("reviews.postedOnGoogle");
 
   return (
     <section
@@ -162,8 +169,12 @@ export default function Reviews({ mode }: { mode: Mode }) {
           </p>
 
           {/* Google aggregate badge */}
-          <div
+          <a
+            href={GOOGLE_REVIEWS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
+              textDecoration:  "none",
               display:         "inline-flex",
               alignItems:      "center",
               gap:             "10px",
@@ -176,12 +187,16 @@ export default function Reviews({ mode }: { mode: Mode }) {
             }}
           >
             <GoogleG size={20} />
-            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-              <StarRow count={5} color="#F59E0B" size={14} />
-              <span style={{ fontSize: "14px", fontWeight: 800, color: "#0B1F33" }}>5.0</span>
-              <span style={{ fontSize: "13px", color: "#64748B" }}>· 74 Google Reviews</span>
-            </div>
-          </div>
+            {google ? (
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <StarRow count={Math.round(google.rating)} color="#F59E0B" size={14} />
+                <span style={{ fontSize: "14px", fontWeight: 800, color: "#0B1F33" }}>{google.rating.toFixed(1)}</span>
+                <span style={{ fontSize: "13px", color: "#64748B" }}>· {google.count} {t("trust.googleReviewsWord")}</span>
+              </div>
+            ) : (
+              <span style={{ fontSize: "14px", fontWeight: 700, color: "#0B1F33" }}>{t("trust.reviewsFallback")} →</span>
+            )}
+          </a>
 
           <h2
             style={{
@@ -197,18 +212,20 @@ export default function Reviews({ mode }: { mode: Mode }) {
           </h2>
         </div>
 
-        {/* Featured 3 cards */}
-        <div className="reviews-featured-grid">
-          {featured.map((review, i) => (
-            <ReviewCard key={i} review={review} featured />
-          ))}
-        </div>
+        {/* Featured 3 cards (only when Google returned reviews) */}
+        {featured.length > 0 && (
+          <div className="reviews-featured-grid">
+            {featured.map((review, i) => (
+              <ReviewCard key={i} review={review} featured postedLabel={postedLabel} />
+            ))}
+          </div>
+        )}
 
         {/* Rest of cards */}
         {rest.length > 0 && (
           <div className="reviews-rest-grid">
             {rest.map((review, i) => (
-              <ReviewCard key={i} review={review} />
+              <ReviewCard key={i} review={review} postedLabel={postedLabel} />
             ))}
           </div>
         )}
@@ -216,7 +233,7 @@ export default function Reviews({ mode }: { mode: Mode }) {
         {/* Read more link */}
         <div style={{ textAlign: "center", marginTop: "36px" }}>
           <a
-            href="https://www.google.com/search?q=Ativa+Insurance+reviews"
+            href={GOOGLE_REVIEWS_URL}
             target="_blank"
             rel="noopener noreferrer"
             style={{
