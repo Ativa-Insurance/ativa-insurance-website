@@ -2,7 +2,8 @@
 
 import { useState, useCallback, useEffect } from "react";
 import AddressAutocomplete from "./AddressAutocomplete";
-import { submitToIntake } from "@/lib/submitToIntake";
+import { submitQuote } from "@/lib/submitToIntake";
+import { COMMERCIAL_AMS_LINE, amsApplyUrl, findZip } from "@/config/quote";
 import { useLanguage } from "@/context/LanguageContext";
 import type { Mode } from "@/types";
 
@@ -756,7 +757,8 @@ export default function CommercialQuoteModal({ onClose, initialProduct }: Commer
     Object.entries(data).forEach(([k, v]) => { if (v) lines.push(`${k}: ${v}`); });
     Object.entries(multi).forEach(([k, v]) => { if (v?.length) lines.push(`${k}: ${v.join(", ")}`); });
 
-    const success = await submitToIntake({
+    const amsLine = product ? COMMERCIAL_AMS_LINE[product] : undefined;
+    const { success, applyUrl } = await submitQuote({
       name:            data.fullName        ?? "",
       phone:           data.phone           ?? "",
       email:           data.email           ?? "",
@@ -765,7 +767,17 @@ export default function CommercialQuoteModal({ onClose, initialProduct }: Commer
       insuranceType:   product ? PRODUCT_LABEL[product] : "Commercial Quote",
       additionalNotes: lines.join("\n"),
       mode:            "Commercial",
+      startApplication: !!amsLine,
+      line:            amsLine,
+      lang,
+      zip:             findZip(data.zip, data.zipCode, data.businessAddress, data.projectAddress),
     });
+
+    // Hand-off to the full AMS application, same tab (plain link if no apply_url).
+    if (success && amsLine) {
+      window.location.assign(applyUrl ?? amsApplyUrl(amsLine, lang));
+      return;
+    }
 
     setSubmit(false);
     setSubmitFailed(!success);

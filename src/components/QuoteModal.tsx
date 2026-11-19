@@ -2,7 +2,8 @@
 
 import { useState, useCallback, useEffect } from "react";
 import AddressAutocomplete from "./AddressAutocomplete";
-import { submitToIntake } from "@/lib/submitToIntake";
+import { submitQuote } from "@/lib/submitToIntake";
+import { PERSONAL_AMS_LINE, amsApplyUrl, findZip } from "@/config/quote";
 import { validateDOB, validatePetDOB } from "@/lib/validateDOB";
 import { useLanguage } from "@/context/LanguageContext";
 import type { Mode } from "@/types";
@@ -1429,7 +1430,8 @@ export default function QuoteModal({ onClose, initialProduct, initialData }: Quo
       if (data.discountEducation) lines.push(`Education (discount): ${data.discountEducation}`);
     }
 
-    const success = await submitToIntake({
+    const amsLine = product ? PERSONAL_AMS_LINE[product] : undefined;
+    const { success, applyUrl } = await submitQuote({
       name:            data.fullName ?? "",
       phone:           data.phone    ?? "",
       email:           data.email    ?? "",
@@ -1438,7 +1440,18 @@ export default function QuoteModal({ onClose, initialProduct, initialData }: Quo
       insuranceType:   product ? PRODUCT_LABEL[product] : "Personal Quote",
       additionalNotes: lines.join("\n"),
       mode:            "Personal",
+      startApplication: !!amsLine,
+      line:            amsLine,
+      lang,
+      zip:             findZip(data.garageZip, data.propertyAddress, data.rentalAddress),
     });
+
+    // Hand-off to the full AMS application, same tab. If the intake gave no
+    // apply link, fall back to the plain link with the product and language.
+    if (success && amsLine) {
+      window.location.assign(applyUrl ?? amsApplyUrl(amsLine, lang));
+      return;
+    }
 
     setSubmitting(false);
     setPhase(success ? "success" : "error");

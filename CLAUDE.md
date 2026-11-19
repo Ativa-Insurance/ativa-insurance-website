@@ -479,3 +479,4 @@ If it feels complex → it is wrong.
 - Address: 1 SE Ocean Blvd, Stuart, FL 34994.
 - Google reviews: never hardcode a review count or rating. Link to the Google listing; show a count only if fetched live from the Google Places API (/api/google-rating).
 - Never invent reviews, numbers, stories, or testimonials. Never add aggregateRating schema for Ativa's own reviews.
+- Quote hand-off: pop-ups stay; on submit the server route (/api/submit-quote) sends start_application to the AMS intake and the browser opens the returned apply_url in the SAME tab. Fallback: https://quote.ativainsurance.com/apply/s/website?line=<line>&lang=<en|pt|es>. Mapping lives in src/config/quote.ts. Never put personal data in a URL.

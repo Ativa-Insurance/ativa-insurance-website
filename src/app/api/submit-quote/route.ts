@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isAmsApplyUrl } from "@/config/quote";
 import { Resend } from "resend";
 
 const INTAKE_URL = "https://ativa-internal-production.up.railway.app/api/intake/quote-submission";
@@ -22,7 +23,12 @@ export async function POST(req: NextRequest) {
       insuranceType,
       additionalNotes,
       mode,
+      startApplication,
+      line,
+      lang,
+      zip,
     } = body;
+    const handOff = startApplication === true && typeof line === "string" && line.length > 0;
 
     const timestamp = new Date().toLocaleString("en-US", {
       timeZone: "America/New_York",
@@ -144,6 +150,9 @@ export async function POST(req: NextRequest) {
             product:   insuranceType   ?? "",
             notes:     additionalNotes ?? "",
             timestamp: new Date().toISOString(),
+            ...(handOff
+              ? { start_application: true, line, lang: lang ?? "en", zip: zip ?? "" }
+              : {}),
           }),
         });
         if (!res.ok) throw new Error(`Intake API ${res.status}`);
@@ -184,9 +193,14 @@ export async function POST(req: NextRequest) {
       intakeResult.status  === "fulfilled" ||
       smsResult.status     === "fulfilled";
 
+    // AMS hand-off: the intake returns apply_url (a token link, no personal data in it)
+    const intakeData = intakeResult.status === "fulfilled" ? (intakeResult.value as { apply_url?: unknown }) : null;
+    const applyUrl = handOff && isAmsApplyUrl(intakeData?.apply_url) ? intakeData!.apply_url : undefined;
+
     return NextResponse.json({
       success: true,
       agentNotified,
+      ...(applyUrl ? { applyUrl } : {}),
       details: {
         agentEmail:    emailToAgent.status,
         prospectEmail: emailToProspect.status,
