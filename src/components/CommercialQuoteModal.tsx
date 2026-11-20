@@ -771,6 +771,10 @@ export default function CommercialQuoteModal({ onClose, initialProduct }: Commer
       line:            amsLine,
       lang,
       zip:             findZip(data.zip, data.zipCode, data.businessAddress, data.projectAddress),
+      businessName:    data.businessName,
+      businessType:    data.industry ?? data.profession ?? data.establishmentType,
+      vehiclesCount:   data.numVehicles,
+      utmMedium:       "commercial-card",
     });
 
     // Hand-off to the full AMS application, same tab (plain link if no apply_url).

@@ -1444,6 +1444,7 @@ export default function QuoteModal({ onClose, initialProduct, initialData }: Quo
       line:            amsLine,
       lang,
       zip:             findZip(data.garageZip, data.propertyAddress, data.rentalAddress),
+      utmMedium:       product ? `${product}-card` : "personal-card",
     });
 
     // Hand-off to the full AMS application, same tab. If the intake gave no

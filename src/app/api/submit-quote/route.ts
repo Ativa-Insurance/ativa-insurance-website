@@ -27,8 +27,26 @@ export async function POST(req: NextRequest) {
       line,
       lang,
       zip,
+      businessName,
+      businessType,
+      vehiclesCount,
+      utmMedium,
     } = body;
     const handOff = startApplication === true && typeof line === "string" && line.length > 0;
+
+    // Fields the AMS intake understands (ativa-internal docs/website-handoff.md).
+    // Only well-formed values are sent: a malformed one makes the intake reject the whole lead (422).
+    const handOffFields = () => {
+      const f: Record<string, unknown> = { start_application: true, line };
+      if (["en", "pt", "es"].includes(lang)) f.language = lang;
+      if (typeof zip === "string" && /^\d{5}(-\d{4})?$/.test(zip)) f.zip = zip;
+      if (typeof businessName === "string" && businessName.trim()) f.business_name = businessName.trim().slice(0, 200);
+      if (typeof businessType === "string" && businessType.trim()) f.business_type = businessType.trim().slice(0, 500);
+      const vc = Number(vehiclesCount);
+      if (vehiclesCount !== undefined && vehiclesCount !== "" && Number.isInteger(vc) && vc >= 0 && vc <= 500) f.vehicles_count = vc;
+      f.utm = { utm_source: "website", ...(typeof utmMedium === "string" ? { utm_medium: utmMedium.slice(0, 80) } : {}) };
+      return f;
+    };
 
     const timestamp = new Date().toLocaleString("en-US", {
       timeZone: "America/New_York",
@@ -148,11 +166,9 @@ export async function POST(req: NextRequest) {
             city:      city      ?? "",
             source:    "website",
             product:   insuranceType   ?? "",
-            notes:     additionalNotes ?? "",
+            notes:     String(additionalNotes ?? "").slice(0, 2000),
             timestamp: new Date().toISOString(),
-            ...(handOff
-              ? { start_application: true, line, lang: lang ?? "en", zip: zip ?? "" }
-              : {}),
+            ...(handOff ? handOffFields() : {}),
           }),
         });
         if (!res.ok) throw new Error(`Intake API ${res.status}`);

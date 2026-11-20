@@ -22,6 +22,16 @@ export const COMMERCIAL_AMS_LINE: Record<string, AmsLine> = {
   "workers-comp": "wc",
   "commercial-auto": "commercial_auto",
   trucking: "commercial_auto",
+  cargo: "commercial_auto",
+  // Everything else the commercial pop-up offers is "other business insurance"
+  umbrella: "business",
+  professional: "business",
+  cyber: "business",
+  "builders-risk": "business",
+  "inland-marine": "business",
+  surety: "business",
+  do: "business",
+  "liquor-liability": "business",
 };
 
 export function amsApplyUrl(line: AmsLine, lang: string): string {

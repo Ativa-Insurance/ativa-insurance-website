@@ -26,6 +26,10 @@ export interface QuoteSubmission {
   line?:           string;
   lang?:           string;
   zip?:            string;
+  businessName?:   string;
+  businessType?:   string;
+  vehiclesCount?:  string;
+  utmMedium?:      string;
 }
 
 /** Sends the pop-up to our server route. applyUrl is set when the AMS created an application link. */
