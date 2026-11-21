@@ -176,9 +176,7 @@ function AtivaSite() {
       </main>
 
       {/* ── Footer ────────────────────────────────────────────────────────── */}
-      {/* Spacer so FAB doesn't overlap footer content on mobile */}
-      <div className="md:hidden" style={{ height: "96px" }} />
-      <Footer mode={mode} />
+      <Footer mode={mode} onGetQuote={openQuote} onOpenProduct={openProduct} />
 
       {/* ── Chat widget (desktop floating buttons live here) ─────────────── */}
       <ChatWidget mode={mode} />

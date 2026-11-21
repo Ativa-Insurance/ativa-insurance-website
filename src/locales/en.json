@@ -865,6 +865,18 @@
       "title": "Protecting your family too?",
       "body": "Auto, home, renters, condo, flood and pet, with the same agency.",
       "cta": "See personal coverage"
+    },
+    "footer": {
+      "label": "Footer",
+      "company": "Company",
+      "aboutLink": "About Ativa",
+      "learnLink": "Coverage explained",
+      "contact": "Talk to Ativa",
+      "whatsappLabel": "WhatsApp",
+      "phoneLabel": "Phone",
+      "addressLabel": "Office",
+      "statesTitle": "Licensed in",
+      "social": "Ativa on social media"
     }
   }
 }

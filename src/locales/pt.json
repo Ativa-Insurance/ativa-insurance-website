@@ -865,6 +865,18 @@
       "title": "Quer proteger a família também?",
       "body": "Auto, residencial, inquilino, condomínio, enchente e pet, com a mesma agência.",
       "cta": "Ver seguros pessoais"
+    },
+    "footer": {
+      "label": "Rodapé",
+      "company": "Empresa",
+      "aboutLink": "Sobre a Ativa",
+      "learnLink": "Coberturas explicadas",
+      "contact": "Fale com a Ativa",
+      "whatsappLabel": "WhatsApp",
+      "phoneLabel": "Telefone",
+      "addressLabel": "Escritório",
+      "statesTitle": "Licenciada em",
+      "social": "Ativa nas redes sociais"
     }
   }
 }

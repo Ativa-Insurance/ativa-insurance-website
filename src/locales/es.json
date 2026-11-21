@@ -865,6 +865,18 @@
       "title": "¿También quiere proteger a su familia?",
       "body": "Auto, vivienda, inquilinos, condominio, inundación y mascotas, con la misma agencia.",
       "cta": "Ver seguros personales"
+    },
+    "footer": {
+      "label": "Pie de página",
+      "company": "Empresa",
+      "aboutLink": "Sobre Ativa",
+      "learnLink": "Coberturas explicadas",
+      "contact": "Hable con Ativa",
+      "whatsappLabel": "WhatsApp",
+      "phoneLabel": "Teléfono",
+      "addressLabel": "Oficina",
+      "statesTitle": "Con licencia en",
+      "social": "Ativa en redes sociales"
     }
   }
 }
