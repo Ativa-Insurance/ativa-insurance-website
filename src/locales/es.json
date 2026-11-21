@@ -802,6 +802,45 @@
           "d": "Recibe una cotización comercial a tu medida y contrata la cobertura — a menudo el mismo día."
         }
       ]
+    },
+    "compare": {
+      "cols": [
+        "Aseguradora directa",
+        "Agente cautivo",
+        "Ativa, agencia independiente"
+      ],
+      "rows": [
+        {
+          "label": "A quién representa",
+          "a": "A su propia compañía",
+          "b": "A una sola compañía",
+          "c": "A varias aseguradoras"
+        },
+        {
+          "label": "Qué se compara",
+          "a": "Las pólizas de esa compañía",
+          "b": "Las pólizas de esa compañía",
+          "c": "Pólizas de varias aseguradoras"
+        },
+        {
+          "label": "Cuando sus necesidades cambian",
+          "a": "Vuelve a buscar por su cuenta",
+          "b": "Las opciones quedan en la misma compañía",
+          "c": "Podemos comparar de nuevo entre aseguradoras"
+        },
+        {
+          "label": "Cuando hay un reclamo",
+          "a": "Lo presenta con la compañía",
+          "b": "Lo presenta con la compañía. El agente puede ayudar",
+          "c": "Lo presenta con su aseguradora. Le explicamos los pasos y le ayudamos a darle seguimiento"
+        },
+        {
+          "label": "Idioma",
+          "a": "Varía",
+          "b": "Varía",
+          "c": "English, Português, Español"
+        }
+      ]
     }
   }
 }

@@ -802,6 +802,45 @@
           "d": "Receive a tailored business quote and bind coverage — often the same day."
         }
       ]
+    },
+    "compare": {
+      "cols": [
+        "Direct carrier",
+        "Captive agent",
+        "Ativa, independent agency"
+      ],
+      "rows": [
+        {
+          "label": "Who they represent",
+          "a": "Their own company",
+          "b": "One company",
+          "c": "Multiple carriers"
+        },
+        {
+          "label": "What gets compared",
+          "a": "That company's policies",
+          "b": "That company's policies",
+          "c": "Policies from several carriers"
+        },
+        {
+          "label": "When your needs change",
+          "a": "You shop again on your own",
+          "b": "Options stay within one company",
+          "c": "We can compare again across carriers"
+        },
+        {
+          "label": "When there's a claim",
+          "a": "You file with the company",
+          "b": "You file with the company. The agent may help",
+          "c": "You file with your carrier. We explain the steps and help you follow up"
+        },
+        {
+          "label": "Language",
+          "a": "Varies",
+          "b": "Varies",
+          "c": "English, Português, Español"
+        }
+      ]
     }
   }
 }

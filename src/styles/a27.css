@@ -414,3 +414,38 @@
 .a27-reviews__more a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14.5px; font-weight: 700; color: var(--c-midnight-2) !important; }
 .a27-reviews__more a:hover { color: var(--c-midnight) !important; }
 .a27-reviews__more img { display: block; width: 14px; height: 14px; }
+
+/* ═══ 8. Why an independent agency (comparison) ══════════════════════════ */
+.a27-split { display: grid; grid-template-columns: minmax(0,1fr); gap: 16px 48px; }
+@media (min-width: 768px) { .a27-split { grid-template-columns: minmax(0,1fr) minmax(0,1fr); } }
+.a27-cmp__head { align-items: end; margin-bottom: clamp(24px, 3vw, 36px); }
+.a27-cmp__title { max-width: 20ch; }
+.a27-cmp__lead { max-width: 60ch; }
+.a27-cmp__table {
+  position: relative; display: none; grid-template-columns: minmax(0,1.1fr) repeat(3, minmax(0,1fr));
+  padding: 8px 8px 8px 26px; border-radius: var(--r); background: var(--c-white); box-shadow: var(--sh-panel);
+}
+.a27-cmp__block { grid-column: 4; border-radius: var(--r); background: var(--g-midnight-col); box-shadow: var(--sh-midnight-col); }
+.a27-cmp__row { display: contents; }
+.a27-cmp__ch { padding: 20px 16px 14px; font-size: 14px; font-weight: 700; color: var(--c-slate); }
+.a27-cmp__ch--ativa { position: relative; padding: 20px 20px 14px; font-size: 14.5px; font-weight: 800; color: var(--c-white); }
+.a27-cmp__label { padding: 16px 16px 16px 0; font-size: 15px; font-weight: 700; color: var(--c-midnight); }
+.a27-cmp__cell { padding: 16px; font-family: var(--f-body); font-size: 14.5px; line-height: 1.5; font-weight: 500; color: var(--c-slate); }
+.a27-cmp__line { box-shadow: inset 0 1px 0 var(--c-border-hairline); }
+.a27-cmp__ativa {
+  position: relative; display: flex; gap: 10px; align-items: flex-start; padding: 16px 20px;
+  font-size: 14.5px; line-height: 1.5; font-weight: 600; color: var(--c-white);
+}
+.a27-cmp__ativa img { display: block; width: 16px; height: 16px; margin-top: 3px; flex-shrink: 0; }
+.a27-cmp__cards { display: flex; flex-direction: column; gap: 10px; }
+.a27-cmp__card { padding: 16px; border-radius: var(--r); background: var(--c-white); box-shadow: var(--sh-row-card); }
+.a27-cmp__cardlabel { margin: 0 0 10px; font-size: 15px; font-weight: 700; color: var(--c-midnight); }
+.a27-cmp__dl { margin: 0; display: grid; grid-template-columns: minmax(0,0.9fr) minmax(0,1.1fr); gap: 8px 12px; font-size: 14px; line-height: 1.45; }
+.a27-cmp__dl dt { font-weight: 600; color: var(--c-slate); }
+.a27-cmp__dl dd { margin: 0; font-family: var(--f-body); font-weight: 500; color: var(--c-midnight-2); }
+.a27-cmp__dl .a27-cmp__dt-ativa { font-weight: 800; color: var(--c-midnight); }
+.a27-cmp__dl .a27-cmp__dd-ativa { font-family: var(--f-head); font-weight: 700; color: var(--c-midnight); }
+@media (min-width: 768px) {
+  .a27-cmp__table { display: grid; }
+  .a27-cmp__cards { display: none; }
+}

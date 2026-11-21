@@ -802,6 +802,45 @@
           "d": "Receba uma cotação empresarial sob medida e contrate a cobertura — muitas vezes no mesmo dia."
         }
       ]
+    },
+    "compare": {
+      "cols": [
+        "Seguradora direta",
+        "Agente cativo",
+        "Ativa, agência independente"
+      ],
+      "rows": [
+        {
+          "label": "Quem representa",
+          "a": "A própria empresa",
+          "b": "Uma única empresa",
+          "c": "Várias seguradoras"
+        },
+        {
+          "label": "O que é comparado",
+          "a": "As apólices dessa empresa",
+          "b": "As apólices dessa empresa",
+          "c": "Apólices de várias seguradoras"
+        },
+        {
+          "label": "Quando sua vida muda",
+          "a": "Você pesquisa tudo de novo sozinho",
+          "b": "As opções ficam na mesma empresa",
+          "c": "Podemos comparar de novo entre seguradoras"
+        },
+        {
+          "label": "Quando há um sinistro",
+          "a": "Você abre com a empresa",
+          "b": "Você abre com a empresa. O agente pode ajudar",
+          "c": "Você abre com a sua seguradora. Explicamos as etapas e ajudamos a acompanhar"
+        },
+        {
+          "label": "Idioma",
+          "a": "Depende",
+          "b": "Depende",
+          "c": "English, Português, Español"
+        }
+      ]
     }
   }
 }
