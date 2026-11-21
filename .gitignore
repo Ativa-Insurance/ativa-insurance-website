@@ -18,3 +18,5 @@ screenshots/
 .claude/settings.local.json
 ATIVA_WEB_LANGUAGE.md
 design/ATIVA_WEB_LANGUAGE.md
+# Claude Design handoff packages (large; kept locally for Claude Code)
+design/claude-design/
