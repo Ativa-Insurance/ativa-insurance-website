@@ -116,23 +116,6 @@ function AtivaSite() {
     return () => window.removeEventListener("ativa:openQuote", handleChatQuote);
   }, []);
 
-  // Scroll-reveal for the sections not yet on the 2027 design
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            (e.target as HTMLElement).classList.add("reveal-visible");
-            obs.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.08 }
-    );
-    document.querySelectorAll("[data-reveal],[data-row-reveal]").forEach((el) => obs.observe(el));
-    return () => obs.disconnect();
-  }, [mode]);
-
   return (
     <div id="top" data-mode={mode} data-line={mode} className="a27 a27-page">
       <div aria-hidden className="a27-wash"><span className="a27-wash__glow" /><span className="a27-wash__l" /><span className="a27-wash__r" /></div>
@@ -168,7 +151,7 @@ function AtivaSite() {
       <FAQ mode={mode} />
 
       {/* ── Blog ──────────────────────────────────────────────────────────── */}
-      <div data-reveal><Blog mode={mode} /></div>
+      <Blog mode={mode} />
 
       {/* ── Cross-line band ───────────────────────────────────────────────── */}
       <ContactCTA mode={mode} onSwitchMode={(m) => { handleModeChange(m); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
