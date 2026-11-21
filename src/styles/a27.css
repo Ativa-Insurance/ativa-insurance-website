@@ -596,3 +596,31 @@
 .a27-footer__social { list-style: none; margin: 0; padding: 0; display: flex; gap: 4px; }
 .a27-footer__social a { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: var(--c-soft-blue) !important; }
 .a27-footer__social a:hover { color: var(--c-white) !important; background: rgba(182,223,237,0.07); }
+
+/* ═══ Floating WhatsApp button (+ phone chat button) ══════════════════════ */
+.a27-fabs {
+  --fab-off: clamp(16px, 2vw, 28px);
+  position: fixed; right: var(--fab-off); bottom: var(--fab-off); z-index: 39;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+}
+.a27-fab {
+  width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.7)); box-shadow: var(--sh-fab);
+}
+.a27-fab__dot { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--c-whatsapp); }
+.a27-fab:hover .a27-fab__dot { background: var(--c-whatsapp-hover); }
+.a27-fab__dot img { display: block; width: 24px; height: 24px; }
+.a27-fab-chat {
+  width: 48px; height: 48px; border: none; border-radius: 50%; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; color: var(--c-midnight);
+  background: var(--c-white); box-shadow: var(--sh-fab);
+}
+@media (min-width: 768px) { .a27-fab-chat { display: none; } }
+
+/* ChatWidget (protected file) coexistence: drop its duplicate WhatsApp button
+   and stack its chat button / panel above the 2027 floating button. */
+.a27-page ~ .chat-cluster, .chat-cluster { right: clamp(16px, 2vw, 28px) !important; bottom: calc(clamp(16px, 2vw, 28px) + 58px + 12px + 60px) !important; }
+@media (min-width: 768px) {
+  .chat-cluster { bottom: calc(clamp(16px, 2vw, 28px) + 58px + 12px) !important; right: calc(clamp(16px, 2vw, 28px) + 1px) !important; }
+}
+.chat-cluster a[aria-label="Chat on WhatsApp"] { display: none !important; }

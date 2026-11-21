@@ -19,7 +19,7 @@ import ChatWidget from "@/components/ChatWidget";
 import HowItWorks from "@/components/HowItWorks";
 import ContactCTA from "@/components/ContactCTA";
 import Footer from "@/components/Footer";
-import MobileFAB from "@/components/MobileFAB";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import type { Mode } from "@/types";
 
 // ─── Main site ────────────────────────────────────────────────────────────────
@@ -178,15 +178,11 @@ function AtivaSite() {
       {/* ── Footer ────────────────────────────────────────────────────────── */}
       <Footer mode={mode} onGetQuote={openQuote} onOpenProduct={openProduct} />
 
-      {/* ── Chat widget (desktop floating buttons live here) ─────────────── */}
+      {/* ── Flow chat widget (protected; its chat button stacks above the FAB) ── */}
       <ChatWidget mode={mode} />
 
-      {/* ── Mobile FAB (replaces sticky bar + floating buttons on mobile) ── */}
-      <MobileFAB
-        mode={mode}
-        onGetQuote={openQuote}
-        anyModalOpen={quoteOpen || commercialQuoteOpen}
-      />
+      {/* ── Floating WhatsApp (+ phone chat button) ─────────────────────── */}
+      <WhatsAppButton hidden={quoteOpen || commercialQuoteOpen} />
 
       {/* ── Personal quote modal ─────────────────────────────────────────── */}
       {quoteOpen && isPersonal && (
