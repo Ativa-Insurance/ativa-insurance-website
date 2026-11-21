@@ -841,6 +841,25 @@
           "c": "English, Português, Español"
         }
       ]
+    },
+    "states": {
+      "lead": "De Florida a Connecticut, es la misma agencia y las mismas personas en cada estado que atendemos.",
+      "outside": "¿Vive fuera de estos estados? Pregúntenos. Le diremos con claridad si podemos ayudarle.",
+      "hint": "Seleccione un estado en el mapa o en la lista.",
+      "licensedIn": "Con licencia en {state}",
+      "mapAlt": "Mapa del este de Estados Unidos con los 10 estados donde Ativa tiene licencia resaltados: Florida, Georgia, Carolina del Sur, Carolina del Norte, Tennessee, Ohio, Pensilvania, Maryland, Nueva Jersey y Connecticut.",
+      "names": {
+        "FL": "Florida",
+        "GA": "Georgia",
+        "SC": "Carolina del Sur",
+        "NC": "Carolina del Norte",
+        "TN": "Tennessee",
+        "OH": "Ohio",
+        "PA": "Pensilvania",
+        "MD": "Maryland",
+        "NJ": "Nueva Jersey",
+        "CT": "Connecticut"
+      }
     }
   }
 }

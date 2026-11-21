@@ -8,6 +8,7 @@ import TrustBar from "@/components/TrustBar";
 import Hero from "@/components/home/Hero";
 import ProductSelection from "@/components/home/ProductSelection";
 import Comparison from "@/components/home/Comparison";
+import LicensedStates from "@/components/home/LicensedStates";
 import QuoteModal from "@/components/QuoteModal";
 import CommercialQuoteModal from "@/components/CommercialQuoteModal";
 import CarrierMarquee from "@/components/CarrierMarquee";
@@ -19,67 +20,7 @@ import HowItWorks from "@/components/HowItWorks";
 import ContactCTA from "@/components/ContactCTA";
 import Footer from "@/components/Footer";
 import MobileFAB from "@/components/MobileFAB";
-import LicensedStatesMap from "@/components/home/LicensedStatesMap";
 import type { Mode } from "@/types";
-
-// ─── Served States ────────────────────────────────────────────────────────────
-
-const SERVED_STATES = [
-  { code: "FL", name: "Florida" },
-  { code: "GA", name: "Georgia" },
-  { code: "SC", name: "South Carolina" },
-  { code: "NC", name: "North Carolina" },
-  { code: "TN", name: "Tennessee" },
-  { code: "OH", name: "Ohio" },
-  { code: "PA", name: "Pennsylvania" },
-  { code: "MD", name: "Maryland" },
-  { code: "NJ", name: "New Jersey" },
-  { code: "CT", name: "Connecticut" },
-];
-
-function ServedStates() {
-  const { t } = useLanguage();
-  return (
-    <section style={{
-      backgroundColor: "#F8F9FB",
-      padding:         "44px 24px",
-      borderTop:       "1px solid rgba(0,0,0,0.06)",
-      borderBottom:    "1px solid rgba(0,0,0,0.06)",
-    }}>
-      <div style={{ maxWidth: "900px", margin: "0 auto", textAlign: "center" }}>
-        <p style={{
-          fontSize:      "11px",
-          fontWeight:    700,
-          letterSpacing: "2.5px",
-          textTransform: "uppercase",
-          color:         "var(--eyebrow)",
-          marginBottom:  "12px",
-        }}>
-          {t("states.eyebrow")}
-        </p>
-        <h2 style={{
-          fontSize:      "clamp(1.6rem, 3vw, 2.2rem)",
-          fontWeight:    900,
-          color:         "#0B1F33",
-          marginBottom:  "32px",
-          lineHeight:    1.15,
-          letterSpacing: "-0.025em",
-        }}>
-          {t("states.heading")}
-        </h2>
-
-        <LicensedStatesMap
-          legendLicensed={t("map.legendLicensed")}
-          legendUnavailable={t("map.legendUnavailable")}
-        />
-
-        <p style={{ fontSize: "14px", color: "#64748B", fontWeight: 500, marginTop: "20px" }}>
-          {t("states.sub")}
-        </p>
-      </div>
-    </section>
-  );
-}
 
 // ─── Main site ────────────────────────────────────────────────────────────────
 
@@ -220,8 +161,8 @@ function AtivaSite() {
       {/* ── Why an independent agency (comparison) ───────────────────────── */}
       <Comparison />
 
-      {/* ── Served States ─────────────────────────────────────────────────── */}
-      <div data-reveal><ServedStates /></div>
+      {/* ── Licensed states (map) ─────────────────────────────────────────── */}
+      <LicensedStates onGetQuote={openQuote} />
 
       {/* ── Blog ──────────────────────────────────────────────────────────── */}
       <div data-reveal><Blog mode={mode} /></div>

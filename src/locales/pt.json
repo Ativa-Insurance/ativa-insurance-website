@@ -841,6 +841,25 @@
           "c": "English, Português, Español"
         }
       ]
+    },
+    "states": {
+      "lead": "Da Flórida a Connecticut, é a mesma agência e as mesmas pessoas em todos os estados que atendemos.",
+      "outside": "Mora fora desses estados? Pergunte. Dizemos com clareza se podemos ajudar.",
+      "hint": "Selecione um estado no mapa ou na lista.",
+      "licensedIn": "Licenciada em {state}",
+      "mapAlt": "Mapa do leste dos Estados Unidos com os 10 estados em que a Ativa é licenciada destacados: Flórida, Geórgia, Carolina do Sul, Carolina do Norte, Tennessee, Ohio, Pensilvânia, Maryland, Nova Jersey e Connecticut.",
+      "names": {
+        "FL": "Flórida",
+        "GA": "Geórgia",
+        "SC": "Carolina do Sul",
+        "NC": "Carolina do Norte",
+        "TN": "Tennessee",
+        "OH": "Ohio",
+        "PA": "Pensilvânia",
+        "MD": "Maryland",
+        "NJ": "Nova Jersey",
+        "CT": "Connecticut"
+      }
     }
   }
 }

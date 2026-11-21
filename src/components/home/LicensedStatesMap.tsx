@@ -3,8 +3,8 @@
 /**
  * LicensedStatesMap — drop-in interactive US map.
  * Geometry: public-domain Wikimedia "Blank US Map (states only)" (pre-processed).
- * - 10 licensed states (FL GA SC NC TN OH PA MD NJ CT; MA removed Nov 2026) filled Ativa navy (#1B3A6B), hover -> gold (#F5A623)
- * - All other states light gray (#E2E8F0), no interaction
+ * - 10 licensed states (FL GA SC NC TN OH PA MD NJ CT; MA removed Nov 2026) filled midnight (#002941), hover/selected -> orange (#FF9900)
+ * - All other states unlit soft blue (#D3EBF3), no interaction (2027 palette)
  * - Native browser tooltips via each state's built-in <title> element
  * - No dependencies. Do NOT regenerate or edit the SVG geometry.
  *
@@ -20,11 +20,12 @@ const US_MAP_SVG = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
   <title>Blank map of the United States, territories not included</title>
 <defs>
 <style type="text/css">
-.state {fill:#E2E8F0; transition: fill 0.2s ease;}
-.borders {stroke:#FFFFFF; stroke-width:1.2}
+.state {fill:#D3EBF3; transition: fill 0.2s ease;}
+.borders {stroke:#FFFFFF; stroke-width:1.1}
 .dccircle {display:none}
-.fl,.ga,.sc,.nc,.tn,.oh,.pa,.md,.nj,.ct {fill:#1B3A6B; cursor:pointer;}
-.fl:hover,.ga:hover,.sc:hover,.nc:hover,.tn:hover,.oh:hover,.pa:hover,.md:hover,.nj:hover,.ct:hover {fill:#F5A623;}
+.fl,.ga,.sc,.nc,.tn,.oh,.pa,.md,.nj,.ct {fill:#002941; cursor:pointer; outline:none;}
+.fl:hover,.ga:hover,.sc:hover,.nc:hover,.tn:hover,.oh:hover,.pa:hover,.md:hover,.nj:hover,.ct:hover {fill:#FF9900;}
+.state .is-selected {fill:#FF9900;}
 </style>
 </defs>
 
@@ -299,11 +300,14 @@ const US_MAP_SVG = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 interface LicensedStatesMapProps {
   legendLicensed?: string;
   legendUnavailable?: string;
+  /** The 2027 homepage shows state chips instead of a legend */
+  showLegend?: boolean;
 }
 
 export default function LicensedStatesMap({
   legendLicensed = "Licensed & Serving",
   legendUnavailable = "Not Currently Available",
+  showLegend = true,
 }: LicensedStatesMapProps) {
   return (
     <div style={{ width: "100%", maxWidth: 820, margin: "0 auto" }}>
@@ -311,7 +315,7 @@ export default function LicensedStatesMap({
         aria-hidden={false}
         dangerouslySetInnerHTML={{ __html: US_MAP_SVG }}
       />
-      <div
+      {showLegend && <div
         style={{
           display: "flex",
           justifyContent: "center",
@@ -323,14 +327,14 @@ export default function LicensedStatesMap({
         }}
       >
         <span style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-          <span style={{ width: 14, height: 14, borderRadius: 3, background: "#1B3A6B", display: "inline-block" }} />
+          <span style={{ width: 14, height: 14, borderRadius: 3, background: "#002941", display: "inline-block" }} />
           {legendLicensed}
         </span>
         <span style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-          <span style={{ width: 14, height: 14, borderRadius: 3, background: "#E2E8F0", display: "inline-block" }} />
+          <span style={{ width: 14, height: 14, borderRadius: 3, background: "#D3EBF3", display: "inline-block" }} />
           {legendUnavailable}
         </span>
-      </div>
+      </div>}
     </div>
   );
 }

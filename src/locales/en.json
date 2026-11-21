@@ -841,6 +841,25 @@
           "c": "English, Português, Español"
         }
       ]
+    },
+    "states": {
+      "lead": "From Florida to Connecticut, it's the same agency and the same people in every state we serve.",
+      "outside": "Outside these states? Ask us. We'll tell you plainly whether we can help.",
+      "hint": "Select a state on the map or in the list.",
+      "licensedIn": "Licensed in {state}",
+      "mapAlt": "Map of the eastern United States with Ativa's 10 licensed states highlighted: Florida, Georgia, South Carolina, North Carolina, Tennessee, Ohio, Pennsylvania, Maryland, New Jersey and Connecticut.",
+      "names": {
+        "FL": "Florida",
+        "GA": "Georgia",
+        "SC": "South Carolina",
+        "NC": "North Carolina",
+        "TN": "Tennessee",
+        "OH": "Ohio",
+        "PA": "Pennsylvania",
+        "MD": "Maryland",
+        "NJ": "New Jersey",
+        "CT": "Connecticut"
+      }
     }
   }
 }
