@@ -25,6 +25,110 @@
   --eyebrow: #B45309;
 }
 
+/* ─── 2027 design tokens (design/claude-design/home/README.md) ──────────────── */
+:root {
+  /* Colors */
+  --c-white: #FFFFFF;
+  --c-midnight: #002941;
+  --c-midnight-2: #0A3F5C;
+  --c-slate: #45626F;
+  --c-soft-blue: #B6DFED;
+  --c-soft-blue-50: #EEF7FA;
+  --c-soft-blue-100: #DDEFF5;
+  --c-footer-muted: #8FBFD0;
+  --c-orange: #FF9900;
+  --c-orange-light: #FFB84D;
+  --c-arc-blue: #5FA9C4;
+  --c-map-unlit: #D3EBF3;
+  --c-whatsapp: #25D366;
+  --c-whatsapp-hover: #3BE07A;
+  --c-black: #000000;
+  --c-border-hairline: rgba(0,41,65,0.10);
+  --c-border-soft: rgba(0,41,65,0.14);
+  --c-ring-card: rgba(0,41,65,0.05);
+  --c-overlay: rgba(0,41,65,0.45);
+  --c-focus: #002941;
+
+  /* Fonts (loaded with next/font in layout.tsx) */
+  --f-head: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --f-body: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+
+  /* Type scale */
+  --fs-h1: clamp(1.9rem, calc(1rem + 2vw), 2.6rem);
+  --fs-h2: clamp(1.55rem, calc(1rem + 1.6vw), 2.4rem);
+  --fs-h2-map: clamp(1.8rem, calc(1rem + 2.2vw), 3rem);
+  --fs-h2-band: clamp(1.5rem, calc(1rem + 1.6vw), 2.3rem);
+  --fs-featured: clamp(1.4rem, calc(1rem + 1vw), 1.9rem);
+  --fs-h3-faq: clamp(15px, calc(13px + 0.3vw), 16.5px);
+  --fs-h3-tile: clamp(14.5px, calc(12px + 0.3vw), 16px);
+  --fs-footer-tag: clamp(18px, calc(14px + 0.6vw), 22px);
+
+  /* Layout */
+  --gutter: clamp(16px, 3vw, 32px);
+  --section-y: clamp(48px, 5vw, 80px);
+  --w-content: 1180px;
+  --w-chrome: 1280px;
+  --w-faq: 860px;
+  --w-intro: 780px;
+  --header-h: clamp(64px, calc(44px + 5vw), 76px);
+  --grid-gap: clamp(10px, 1.2vw, 16px);
+  --bp-md: 768px;  /* reference only — media queries use literal values */
+  --bp-lg: 1024px;
+
+  /* Radius */
+  --r: 26px;               /* card radius: 26px Personal, 14px Commercial */
+  --r-pill: 999px;
+  --r-menu: 24px;
+  --r-menu-biz: 16px;
+  --r-popup-tile: 18px;
+  --r-item: 12px;
+  --r-item-biz: 10px;
+  --r-chip-sm: 8px;
+
+  /* Motion */
+  --ease: cubic-bezier(.2,.8,.2,1);
+
+  /* Shadows */
+  --sh-card: inset 0 1.5px 0 #FFFFFF, inset 0 0 0 1px rgba(255,255,255,0.95), 0 0 0 1px rgba(0,41,65,0.05), 0 22px 40px -26px rgba(0,41,65,0.32);
+  --sh-card-hover: inset 0 1.5px 0 #FFFFFF, inset 0 0 0 1px rgba(255,255,255,0.95), 0 0 0 1px rgba(0,41,65,0.22), 0 28px 46px -24px rgba(0,41,65,0.38);
+  --sh-card-featured: inset 0 1.5px 0 #FFFFFF, inset 0 0 0 1px rgba(255,255,255,0.95), inset 0 -24px 40px -30px rgba(160,170,255,0.5), 0 0 0 1px rgba(0,41,65,0.05), 0 2px 4px rgba(0,41,65,0.04), 0 34px 60px -30px rgba(0,41,65,0.35);
+  --sh-panel: inset 0 1.5px 0 #FFFFFF, inset 0 0 0 1px rgba(255,255,255,0.95), 0 0 0 1px rgba(0,41,65,0.05), 0 30px 56px -34px rgba(0,41,65,0.35);
+  --sh-panel-faq: inset 0 1.5px 0 #FFFFFF, inset 0 0 0 1px rgba(255,255,255,0.95), 0 0 0 1px rgba(0,41,65,0.05), 0 28px 50px -34px rgba(0,41,65,0.32);
+  --sh-panel-carriers: inset 0 1.5px 0 #FFFFFF, inset 0 0 0 1px rgba(255,255,255,0.95), 0 0 0 1px rgba(0,41,65,0.05), 0 24px 44px -30px rgba(0,41,65,0.3);
+  --sh-step: inset 0 1.5px 0 #FFFFFF, inset 0 0 0 1px rgba(255,255,255,0.95), 0 0 0 1px rgba(0,41,65,0.05), 0 22px 40px -28px rgba(0,41,65,0.3);
+  --sh-row-card: inset 0 1.5px 0 #FFFFFF, 0 0 0 1px rgba(0,41,65,0.05), 0 18px 32px -24px rgba(0,41,65,0.3);
+  --sh-btn: inset 0 1px 0 rgba(255,255,255,0.45), 0 10px 22px -12px rgba(0,41,65,0.45);
+  --sh-btn-header: inset 0 1px 0 rgba(255,255,255,0.25), 0 10px 24px -14px rgba(0,41,65,0.6);
+  --sh-btn-header-hover: inset 0 1px 0 rgba(255,255,255,0.35), 0 14px 30px -12px rgba(0,41,65,0.7);
+  --sh-btn-footer: inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(0,41,65,0.25), 0 10px 24px -14px rgba(182,223,237,0.6);
+  --sh-btn-white: inset 0 1px 0 #FFFFFF, 0 12px 28px -14px rgba(0,0,0,0.4);
+  --sh-btn-outline: inset 0 0 0 1px rgba(0,41,65,0.1);
+  --sh-whatsapp: 0 10px 22px -12px rgba(37,211,102,0.7);
+  --sh-input-well: inset 0 1px 2px rgba(0,41,65,0.08), inset 0 0 0 1px rgba(0,41,65,0.06), 0 1px 0 #FFFFFF;
+  --sh-midnight-block: inset 0 1px 0 rgba(255,255,255,0.25), 0 30px 60px -30px rgba(0,41,65,0.7);
+  --sh-midnight-col: inset 0 1px 0 rgba(255,255,255,0.25), 0 18px 36px -18px rgba(0,41,65,0.6);
+  --sh-menu: inset 0 1px 0 #FFFFFF, inset 0 0 0 1px rgba(0,41,65,0.14), 0 0 0 1px rgba(0,41,65,0.06), 0 28px 56px -28px rgba(0,41,65,0.4);
+  --sh-popup: inset 0 1.5px 0 #FFFFFF, 0 0 0 1px rgba(0,41,65,0.08), 0 40px 80px -30px rgba(0,41,65,0.6);
+  --sh-fab: inset 0 1.5px 0 #FFFFFF, 0 0 0 1px rgba(0,41,65,0.06), 0 16px 32px -12px rgba(0,41,65,0.4);
+  --sh-header-scrolled: inset 0 -1px 0 rgba(0,41,65,0.10), 0 12px 32px -22px rgba(0,41,65,0.35);
+
+  /* Gradients */
+  --g-page-wash: linear-gradient(180deg, #B6DFED 0%, rgba(182,223,237,0.45) 40%, rgba(182,223,237,0) 100%);
+  --g-page-glow: radial-gradient(closest-side, #FFFFFF 0%, rgba(255,255,255,0.7) 45%, rgba(255,255,255,0) 100%);
+  --g-midnight: radial-gradient(120% 70% at 50% -20%, rgba(182,223,237,0.35), rgba(182,223,237,0) 60%), linear-gradient(180deg, #0A3F5C 0%, #002941 100%);
+  --g-midnight-col: radial-gradient(130% 40% at 50% -10%, rgba(182,223,237,0.35) 0%, rgba(182,223,237,0) 60%), linear-gradient(180deg, #0A3F5C 0%, #002941 100%);
+  --g-badge: linear-gradient(180deg, #0A3F5C, #002941);
+  --g-btn-white: radial-gradient(120% 90% at 50% -30%, #FFFFFF 0%, rgba(255,255,255,0) 62%), linear-gradient(180deg, #FFFFFF 0%, #DDEFF5 100%);
+  --g-whatsapp-tile: radial-gradient(120% 60% at 50% -12%, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0) 60%), linear-gradient(180deg, rgba(182,223,237,0.78) 0%, rgba(140,203,226,0.62) 100%);
+  --g-featured: radial-gradient(30% 20% at 14% 104%, rgba(255,158,158,0.45), rgba(255,158,158,0) 70%), radial-gradient(30% 20% at 34% 106%, rgba(255,226,140,0.45), rgba(255,226,140,0) 70%), radial-gradient(30% 22% at 56% 106%, rgba(166,236,196,0.5), rgba(166,236,196,0) 70%), radial-gradient(28% 24% at 78% 102%, rgba(156,208,255,0.5), rgba(156,208,255,0) 70%), radial-gradient(24% 26% at 96% 92%, rgba(206,176,255,0.45), rgba(206,176,255,0) 70%), radial-gradient(120% 60% at 50% -12%, #FFFFFF 0%, rgba(255,255,255,0) 60%), linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(248,250,253,0.78) 100%);
+  --g-menu: url(/2027/brand/noise-128.png), radial-gradient(120% 70% at 50% -18%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 58%), linear-gradient(180deg, rgba(255,255,255,0.86) 0%, rgba(238,247,250,0.78) 100%);
+  --arc-midnight: url(/2027/brand/horizon-midnight.svg);
+  --arc-orange: url(/2027/brand/horizon-orange.svg);
+}
+
+/* Commercial view of the 2027 homepage: tighter card radius */
+.a27[data-line="commercial"] { --r: 14px; }
+
 [data-mode="commercial"] {
   --bg: #F4F6F8;
   --bg-alt: #E9EEF3;
@@ -322,3 +426,78 @@ select option { background-color: #ffffff; color: #111827; }
 .pac-item { padding: 10px 16px !important; font-size: 14px !important; cursor: pointer; color: #111827 !important; }
 .pac-item:hover, .pac-item-selected { background: #EEF2FF !important; }
 .pac-item-query { color: #1B3A6B !important; font-weight: 600; }
+
+/* ─── 2027 runtime (design/claude-design/home/source/lib/ativa-runtime.css) ─── */
+.a27, .a27-chrome {
+  font-family: var(--f-head);
+  color: var(--c-midnight);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.a27 { background: var(--c-white); overflow-x: clip; }
+.a27 a, .a27-chrome a { color: inherit; text-decoration: none; }
+.a27 button, .a27-chrome button { font-family: inherit; }
+.a27 h1, .a27 h2, .a27 h3, .a27-chrome h2 { text-wrap: balance; }
+.a27 .a27-lead { text-wrap: pretty; }
+
+/* Keyboard focus: 2px solid, 3px offset, on every interactive element */
+.a27 :focus-visible, .a27-chrome :focus-visible {
+  outline: 2px solid var(--c-focus);
+  outline-offset: 3px;
+  border-radius: inherit;
+}
+.a27 .a27-on-dark :focus-visible, .a27-chrome .a27-on-dark :focus-visible,
+.a27-chrome.a27-on-dark :focus-visible { outline-color: var(--c-soft-blue); }
+
+/* Response motion — highlight travels along the canopy arc (primary buttons) */
+@keyframes av-arc {
+  0%   { left: -6%; top: 70%; opacity: 0; }
+  20%  { opacity: 1; }
+  50%  { left: 50%; top: -6%; opacity: 1; }
+  80%  { opacity: 1; }
+  100% { left: 106%; top: 70%; opacity: 0; }
+}
+[data-arc] { position: relative; overflow: hidden; isolation: isolate; }
+[data-arc] > [data-glint] {
+  position: absolute; left: -6%; top: 70%; width: 46%; aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%); border-radius: 50%; pointer-events: none; opacity: 0; z-index: 0;
+  background: radial-gradient(closest-side, rgba(255,255,255,.95), rgba(255,255,255,0));
+}
+[data-arc] > :not([data-glint]) { position: relative; z-index: 1; }
+[data-arc]:hover > [data-glint], [data-arc]:focus-visible > [data-glint] { animation: av-arc 620ms var(--ease) both; }
+
+/* Signature motion — slow light sweep across the featured card (on load, then every 10s) */
+@keyframes av-sweep {
+  0%       { transform: translateX(-120%) skewX(-16deg); opacity: 0; }
+  3%       { opacity: 1; }
+  22%      { transform: translateX(120%) skewX(-16deg); opacity: 1; }
+  25%,100% { transform: translateX(120%) skewX(-16deg); opacity: 0; }
+}
+[data-sweep] { animation: av-sweep 10s cubic-bezier(.45,.05,.25,1) .6s infinite both; }
+
+/* Carrier marquee (WCAG 2.2.2: has a pause control) */
+@keyframes av-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+[data-marquee] { animation: av-marquee 70s linear infinite; }
+[data-marquee][data-paused="true"] { animation-play-state: paused; }
+
+/* Accordion */
+[data-acc] { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 300ms var(--ease); }
+[data-acc][data-open="true"] { grid-template-rows: 1fr; }
+[data-acc] > * { overflow: hidden; min-height: 0; }
+
+/* Entrances */
+@keyframes av-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes av-fade { from { opacity: 0; } to { opacity: 1; } }
+[data-enter="rise"] { animation: av-rise 280ms var(--ease) both; }
+[data-enter="fade"] { animation: av-fade 200ms var(--ease) both; }
+
+/* Brand arc ("half moon") */
+.a27-arc { display: block; flex-shrink: 0; background: var(--arc-midnight) center / 100% 100% no-repeat; }
+.a27-arc--orange { background-image: var(--arc-orange); }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-arc] > [data-glint], [data-sweep] { animation: none !important; opacity: 0 !important; }
+  [data-enter] { animation: none !important; }
+  [data-marquee] { animation: none !important; }
+  .a27 *, .a27-chrome * { transition-duration: 0ms !important; }
+}

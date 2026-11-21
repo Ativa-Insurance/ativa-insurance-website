@@ -1,8 +1,24 @@
 import type { Metadata } from "next";
+import { Montserrat, DM_Sans } from "next/font/google";
 import "./globals.css";
+import "@/styles/a27.css";
 import GoogleMapsScript from "@/components/GoogleMapsScript";
 
 const BASE_URL = "https://ativainsurance.com";
+
+// 2027 type system: Montserrat (headings, buttons, labels) + DM Sans (body)
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["500", "600", "700", "800"],
+  display: "swap",
+  variable: "--font-montserrat",
+});
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
+  variable: "--font-dm-sans",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -64,7 +80,7 @@ const LOCAL_BUSINESS_SCHEMA = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${montserrat.variable} ${dmSans.variable}`}>
       <body>
         <script
           type="application/ld+json"

@@ -23,9 +23,26 @@ const config: Config = {
           "gold-dark":"#D4A800",
           "gold-light":"#FFF9D6",
         },
+        // 2027 palette (mirrors the CSS variables in globals.css)
+        a27: {
+          midnight:   "#002941",
+          "midnight-2": "#0A3F5C",
+          slate:      "#45626F",
+          soft:       "#B6DFED",
+          "soft-50":  "#EEF7FA",
+          "soft-100": "#DDEFF5",
+          muted:      "#8FBFD0",
+          orange:     "#FF9900",
+          whatsapp:   "#25D366",
+        },
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
+        head: ["var(--font-montserrat)", "ui-sans-serif", "system-ui", "sans-serif"],
+        body: ["var(--font-dm-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
+      },
+      borderRadius: {
+        card: "var(--r)",
       },
       boxShadow: {
         card: "0 2px 12px rgba(27,58,107,0.08)",
