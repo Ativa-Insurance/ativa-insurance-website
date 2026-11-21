@@ -727,6 +727,11 @@
       "coi": "Olá, Ativa. Preciso de um certificado de seguro (COI). Titular do certificado: ",
       "changes": "Olá, Ativa. Preciso alterar minha apólice: "
     },
-    "fab": "Falar com a Ativa no WhatsApp"
+    "fab": "Falar com a Ativa no WhatsApp",
+    "trust": {
+      "label": "Por que a Ativa",
+      "independent": "Agência independente",
+      "agents": "Agentes licenciados"
+    }
   }
 }

@@ -727,6 +727,11 @@
       "coi": "Hi Ativa, I need a certificate of insurance (COI). Certificate holder: ",
       "changes": "Hi Ativa, I need to change my policy: "
     },
-    "fab": "Talk to Ativa on WhatsApp"
+    "fab": "Talk to Ativa on WhatsApp",
+    "trust": {
+      "label": "Why Ativa",
+      "independent": "Independent agency",
+      "agents": "Licensed agents"
+    }
   }
 }

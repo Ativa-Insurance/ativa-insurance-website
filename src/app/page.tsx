@@ -1337,7 +1337,7 @@ function AtivaSite() {
       <Header mode={mode} onGetQuote={openQuote} onModeChange={handleModeChange} onOpenProduct={openProduct} />
 
       {/* ── Trust credentials strip ──────────────────────────────────────── */}
-      <TrustBar mode={mode} />
+      <TrustBar />
 
       {/* ── Hero — everything above the fold ────────────────────────────── */}
       <div style={{ position: "relative", overflow: "hidden" }}>

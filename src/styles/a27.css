@@ -168,3 +168,19 @@
 }
 .a27-mmenu__wa { background: var(--c-whatsapp); }
 .a27-mmenu__call { background: var(--c-white); box-shadow: inset 0 0 0 1px rgba(0,41,65,0.2), 0 6px 16px -10px rgba(0,41,65,0.35); }
+
+/* ═══ 2. Trust bar ════════════════════════════════════════════════════════ */
+.a27-trust { position: relative; background: var(--c-midnight); }
+.a27-trust__list {
+  list-style: none; margin: 0 auto; max-width: var(--w-content); padding: 9px var(--gutter);
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 22px;
+}
+.a27-trust__item {
+  display: flex; align-items: center; gap: 7px;
+  font-family: var(--f-head); font-size: 13px; line-height: 1.3; font-weight: 600; color: var(--c-white);
+}
+.a27-trust__item img { display: block; width: 13px; height: 13px; }
+.a27-trust__rating { display: inline-flex; align-items: center; gap: 7px; color: var(--c-white) !important; }
+.a27-trust__rating:hover { text-decoration: underline; text-underline-offset: 3px; }
+.a27-trust__stars { color: var(--c-orange); letter-spacing: 1px; }
+@media (max-width: 767px) { .a27-trust__item[data-wide] { display: none; } }

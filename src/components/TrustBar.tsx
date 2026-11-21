@@ -1,101 +1,46 @@
 "use client";
 
+// 2027 trust bar: full-width midnight strip under the header.
+// Rating text is always live Google data (useGoogleRating) — never typed.
+// Phone: rating + 2 facts. Tablet and desktop: rating + 4 facts.
+
 import { useLanguage } from "@/context/LanguageContext";
 import { useGoogleRating, GOOGLE_REVIEWS_URL } from "@/lib/useGoogleRating";
+import { formatRating, stripGlyph } from "@/components/home/catalog";
 
-type Mode = "personal" | "commercial";
-
-function Sep({ color }: { color: string }) {
-  return (
-    <span
-      aria-hidden
-      style={{ width: "1px", height: "16px", backgroundColor: color, flexShrink: 0, display: "block" }}
-    />
-  );
-}
-
-export default function TrustBar({ mode }: { mode: Mode }) {
-  const { t } = useLanguage();
+export default function TrustBar() {
+  const { t, lang } = useLanguage();
   const google = useGoogleRating();
-  const isPersonal = mode === "personal";
 
-  const bg      = isPersonal ? "#1B3A6B" : "#0B1F33";
-  const textClr = "rgba(255,255,255,0.88)";
-  const starClr = isPersonal ? "#FCD34D" : "#F5A623";
-  const sepClr  = "rgba(255,255,255,0.16)";
-
-  const itemStyle: React.CSSProperties = {
-    display:    "flex",
-    alignItems: "center",
-    gap:        "5px",
-    padding:    "0 18px",
-    whiteSpace: "nowrap",
-    fontSize:   "12px",
-    fontWeight: 500,
-    color:      textClr,
-    lineHeight: 1,
-  };
+  const facts = [
+    t("a27.trust.independent"),
+    stripGlyph(t("trust.states")),
+    stripGlyph(t("trust.carriers")),
+    t("a27.trust.agents"),
+  ];
 
   return (
-    <div
-      role="complementary"
-      aria-label="Trust credentials"
-      style={{ backgroundColor: bg, borderBottom: `1px solid ${sepClr}` }}
-    >
-      <style>{`
-        @keyframes tb-star-sweep {
-          0%,100% { opacity:1; filter:brightness(1); }
-          45%      { opacity:0.65; filter:brightness(0.75); }
-          55%      { opacity:1; filter:brightness(1.3); }
-        }
-        .tb-stars { animation: tb-star-sweep 4s ease-in-out infinite; }
-        .tb-google { text-decoration:none; transition:opacity 0.15s; }
-        .tb-google:hover { opacity:0.75; }
-        @media(prefers-reduced-motion:reduce){.tb-stars{animation:none;}}
-      `}</style>
-
-      <div className="max-w-6xl mx-auto px-4">
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "42px" }}>
-
-          {/* ── Google Rating ─────────────────────────────────────────────── */}
-          <a
-            href={GOOGLE_REVIEWS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="tb-google"
-            style={itemStyle}
-          >
+    <div className="a27-trust a27-on-dark">
+      <ul className="a27-trust__list" aria-label={t("a27.trust.label")}>
+        <li className="a27-trust__item">
+          <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener noreferrer" className="a27-trust__rating">
             {google ? (
               <>
-                <span className="tb-stars" style={{ color: starClr, fontSize: "13px", letterSpacing: "-0.5px" }}>
-                  {"★".repeat(Math.round(google.rating))}
-                </span>
-                <span>{google.rating.toFixed(1)} · {google.count} {t("trust.googleReviewsWord")}</span>
+                <span aria-hidden className="a27-trust__stars">{"★".repeat(Math.round(google.rating))}</span>
+                {formatRating(google.rating, lang)} · {google.count} {t("trust.googleReviewsWord")}
               </>
             ) : (
-              <span>{t("trust.reviewsFallback")}</span>
+              t("trust.reviewsFallback")
             )}
           </a>
-
-          <Sep color={sepClr} />
-
-          {/* ── Licensed States ────────────────────────────────────────────── */}
-          <span style={itemStyle}>{t("trust.states")}</span>
-
-          {/* ── Same-Day + Carriers — hidden on mobile ─────────────────────── */}
-          <span className="hidden sm:contents">
-            <Sep color={sepClr} />
-            <span style={itemStyle}>{t("trust.sameDayCoverage")}</span>
-
-            <Sep color={sepClr} />
-            <span style={itemStyle}>
-              <span style={{ color: starClr }}>🛡</span>
-              {t("trust.carriers")}
-            </span>
-          </span>
-
-        </div>
-      </div>
+        </li>
+        {facts.map((f, i) => (
+          <li key={i} className="a27-trust__item" data-wide={i >= 2 ? "true" : undefined}>
+            <img src="/2027/icons/ice/check.svg" alt="" width={13} height={13} />
+            {f}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
