@@ -732,6 +732,39 @@
       "label": "Por que a Ativa",
       "independent": "Agência independente",
       "agents": "Agentes licenciados"
+    },
+    "pick": {
+      "personal": "O que você quer proteger?",
+      "commercial": "O que a sua empresa precisa proteger?",
+      "popular": "Mais procurado",
+      "morePersonal": "Também: pacote casa e auto, ou seguro umbrella",
+      "moreCommercial": "Também: responsabilidade civil geral, imóvel comercial, restaurantes, empresas de limpeza, frotas"
+    },
+    "tiles": {
+      "personal": {
+        "renters": {
+          "t": "Inquilino",
+          "d": "Seus pertences no imóvel que você aluga"
+        },
+        "condo": {
+          "t": "Condomínio",
+          "d": "A sua unidade, das paredes para dentro"
+        }
+      },
+      "commercial": {
+        "bop": {
+          "t": "BOP (pacote empresarial)",
+          "d": "Responsabilidade civil e imóvel em uma apólice"
+        },
+        "contractors": {
+          "t": "Construção e reformas",
+          "d": "Cobertura pensada para quem trabalha em obra"
+        },
+        "eo": {
+          "t": "Erros e omissões (E&O)",
+          "d": "Reclamações por erros profissionais"
+        }
+      }
     }
   }
 }

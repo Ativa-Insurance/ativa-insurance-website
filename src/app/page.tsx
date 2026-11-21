@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useCallback, useEffect, Suspense } from "react";
+import { useState, useCallback, useEffect, useLayoutEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { LanguageProvider, useLanguage } from "@/context/LanguageContext";
 import Header from "@/components/Header";
 import TrustBar from "@/components/TrustBar";
 import Hero from "@/components/home/Hero";
+import ProductSelection from "@/components/home/ProductSelection";
 import QuoteModal from "@/components/QuoteModal";
 import CommercialQuoteModal from "@/components/CommercialQuoteModal";
 import CarrierMarquee from "@/components/CarrierMarquee";
@@ -285,14 +286,13 @@ function WhyChooseAtiva({ onGetQuote }: { onGetQuote: () => void }) {
 function AtivaSite() {
   const { lang } = useLanguage();
   const searchParams = useSearchParams();
-  const [mode, setMode]                             = useState<Mode>(() => {
-    // SSR-safe: initialise from URL if available
-    if (typeof window !== "undefined") {
-      const p = new URLSearchParams(window.location.search);
-      if (p.get("tab") === "commercial") return "commercial";
-    }
-    return "personal";
-  });
+  // Server and first client render agree on "personal"; ?tab= is applied
+  // before the first paint (layout effect), so there is no hydration mismatch.
+  const [mode, setMode]                             = useState<Mode>("personal");
+  useLayoutEffect(() => {
+    const p = new URLSearchParams(window.location.search);
+    if (p.get("tab") === "commercial" || p.get("openQuote") === "commercial") setMode("commercial");
+  }, []);
   const [quoteOpen, setQuoteOpen]                   = useState(false);
   const [quoteProduct, setQuoteProduct]             = useState<string | undefined>(undefined);
   const [quoteInitialData, setQuoteInitialData]     = useState<Record<string, string>>({});
@@ -404,7 +404,9 @@ function AtivaSite() {
 
       <main id="main" className="a27-main">
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <Hero mode={mode} />
+      <Hero mode={mode}>
+        <ProductSelection mode={mode} onOpen={openProduct} onGetQuote={openQuote} />
+      </Hero>
 
       {/* ── Carriers ──────────────────────────────────────────────────────── */}
       <div data-reveal><CarrierMarquee mode={mode} /></div>

@@ -732,6 +732,39 @@
       "label": "Why Ativa",
       "independent": "Independent agency",
       "agents": "Licensed agents"
+    },
+    "pick": {
+      "personal": "What do you want to protect?",
+      "commercial": "What does your business need covered?",
+      "popular": "Most requested",
+      "morePersonal": "Also: bundle home and auto, or umbrella coverage",
+      "moreCommercial": "Also: general liability, commercial property, restaurants, cleaning businesses, fleets"
+    },
+    "tiles": {
+      "personal": {
+        "renters": {
+          "t": "Renters",
+          "d": "Your belongings in a place you rent"
+        },
+        "condo": {
+          "t": "Condo",
+          "d": "Your unit, from the walls in"
+        }
+      },
+      "commercial": {
+        "bop": {
+          "t": "Business owner's policy",
+          "d": "Liability and property in one policy"
+        },
+        "contractors": {
+          "t": "Contractors",
+          "d": "Coverage built around trade work"
+        },
+        "eo": {
+          "t": "Errors & omissions",
+          "d": "Claims over professional mistakes"
+        }
+      }
     }
   }
 }
