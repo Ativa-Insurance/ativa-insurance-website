@@ -860,6 +860,11 @@
         "NJ": "Nueva Jersey",
         "CT": "Connecticut"
       }
+    },
+    "band": {
+      "title": "¿También quiere proteger a su familia?",
+      "body": "Auto, vivienda, inquilinos, condominio, inundación y mascotas, con la misma agencia.",
+      "cta": "Ver seguros personales"
     }
   }
 }

@@ -508,3 +508,26 @@
 .a27-btn-wa:hover { background: var(--c-whatsapp-hover); }
 .a27-btn-phone { background: rgba(255,255,255,0.9); box-shadow: var(--sh-btn-outline); }
 .a27-btn-wa img, .a27-btn-phone img { display: block; }
+
+/* ═══ 11. Cross-line band ═════════════════════════════════════════════════ */
+.a27-band { position: relative; padding: clamp(24px, 3vw, 40px) 0 clamp(96px, 10vw, 140px); }
+.a27-band__block {
+  position: relative; overflow: hidden; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px;
+  min-height: clamp(180px, 16vw, 240px); padding: clamp(24px, 3.5vw, 48px); border-radius: var(--r);
+  color: var(--c-white); background: var(--g-midnight); box-shadow: var(--sh-midnight-block);
+}
+.a27-band__photo { position: absolute; inset: 0; }
+.a27-band__photo img { object-fit: cover; object-position: right 62%; }
+[data-line="commercial"] .a27-band__photo img { object-position: left 68%; transform: scaleX(-1); }
+.a27-band__veil { position: absolute; inset: 0; background: linear-gradient(90deg, #002941 0%, rgba(0,41,65,0.88) 45%, rgba(0,41,65,0.4) 100%); }
+[data-line="commercial"] .a27-band__veil { background: linear-gradient(90deg, rgba(0,41,65,0.95) 0%, rgba(0,41,65,0.88) 50%, rgba(0,41,65,0.45) 100%); }
+.a27-band__text { position: relative; display: flex; flex-direction: column; gap: 10px; max-width: 56ch; }
+.a27-band__title { margin: 0; font-size: var(--fs-h2-band); line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; color: var(--c-white); }
+.a27-band__body { margin: 0; font-family: var(--f-body); font-size: 15.5px; line-height: 1.6; font-weight: 500; color: var(--c-white); }
+.a27-band__cta { position: relative; display: inline-flex; }
+.a27-btn-white {
+  height: 54px; padding: 0 28px; border: none; border-radius: var(--r-pill); cursor: pointer; white-space: nowrap;
+  color: var(--c-midnight); font-size: 16px; font-weight: 700; background: var(--g-btn-white); box-shadow: var(--sh-btn-white);
+}
+.a27-btn-white:active { transform: translateY(1px); }
+.a27 .a27-band__title { text-wrap: wrap; }

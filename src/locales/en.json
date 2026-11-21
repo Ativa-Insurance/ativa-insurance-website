@@ -860,6 +860,11 @@
         "NJ": "New Jersey",
         "CT": "Connecticut"
       }
+    },
+    "band": {
+      "title": "Protecting your family too?",
+      "body": "Auto, home, renters, condo, flood and pet, with the same agency.",
+      "cta": "See personal coverage"
     }
   }
 }

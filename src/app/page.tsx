@@ -170,8 +170,8 @@ function AtivaSite() {
       {/* ── Blog ──────────────────────────────────────────────────────────── */}
       <div data-reveal><Blog mode={mode} /></div>
 
-      {/* ── Contact CTA ───────────────────────────────────────────────────── */}
-      <div data-reveal><ContactCTA mode={mode} onGetQuote={openQuote} onSwitchMode={() => handleModeChange("commercial")} /></div>
+      {/* ── Cross-line band ───────────────────────────────────────────────── */}
+      <ContactCTA mode={mode} onSwitchMode={(m) => { handleModeChange(m); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
 
       </main>
 
