@@ -164,11 +164,11 @@ function AtivaSite() {
       {/* ── Licensed states (map) ─────────────────────────────────────────── */}
       <LicensedStates onGetQuote={openQuote} />
 
+      {/* ── FAQ ───────────────────────────────────────────────────────────── */}
+      <FAQ mode={mode} />
+
       {/* ── Blog ──────────────────────────────────────────────────────────── */}
       <div data-reveal><Blog mode={mode} /></div>
-
-      {/* ── FAQ ───────────────────────────────────────────────────────────── */}
-      <div data-reveal><FAQ mode={mode} /></div>
 
       {/* ── Contact CTA ───────────────────────────────────────────────────── */}
       <div data-reveal><ContactCTA mode={mode} onGetQuote={openQuote} onSwitchMode={() => handleModeChange("commercial")} /></div>
