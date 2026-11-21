@@ -412,7 +412,7 @@ function AtivaSite() {
       <CarrierMarquee mode={mode} />
 
       {/* ── How It Works ──────────────────────────────────────────────────── */}
-      <div data-reveal><HowItWorks mode={mode} /></div>
+      <HowItWorks mode={mode} />
 
       {/* ── Why Choose Ativa ──────────────────────────────────────────────── */}
       <div data-reveal><WhyChooseAtiva onGetQuote={openQuote} /></div>

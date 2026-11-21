@@ -770,6 +770,38 @@
       "note": "No todas las aseguradoras están disponibles en todos los estados ni para todo tipo de cobertura.",
       "pause": "Pausar logotipos",
       "play": "Mostrar logotipos"
+    },
+    "how": {
+      "heading": "Cómo Funciona",
+      "lead": "Sin llamadas obligatorias. Sin spam. Solo tu mejor tarifa.",
+      "personal": [
+        {
+          "t": "Cuéntanos sobre ti",
+          "d": "Responde unas preguntas rápidas sobre lo que necesitas — toma menos de 2 minutos."
+        },
+        {
+          "t": "Cotizamos con múltiples aseguradoras de primer nivel",
+          "d": "Nuestros agentes con licencia comparan aseguradoras de primer nivel para encontrar tu mejor tarifa y la cobertura adecuada."
+        },
+        {
+          "t": "Obtén tu mejor tarifa",
+          "d": "Recibe tu cotización personalizada y quedas cubierto — el mismo día, sin presión."
+        }
+      ],
+      "commercial": [
+        {
+          "t": "Describe tu negocio",
+          "d": "Cuéntanos tu industria, tamaño y necesidades de cobertura — nosotros nos encargamos del resto."
+        },
+        {
+          "t": "Comparamos aseguradoras comerciales",
+          "d": "Nuestros agentes buscan en mercados comerciales especializados para encontrar la opción adecuada para tu operación."
+        },
+        {
+          "t": "Cobertura rápida",
+          "d": "Recibe una cotización comercial a tu medida y contrata la cobertura — a menudo el mismo día."
+        }
+      ]
     }
   }
 }

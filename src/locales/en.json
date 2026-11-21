@@ -770,6 +770,38 @@
       "note": "Not every carrier is available in every state or for every type of coverage.",
       "pause": "Pause logos",
       "play": "Play logos"
+    },
+    "how": {
+      "heading": "How It Works",
+      "lead": "No calls required. No spam. Just your best rate.",
+      "personal": [
+        {
+          "t": "Tell us about you",
+          "d": "Answer a few quick questions about what you need — takes less than 2 minutes."
+        },
+        {
+          "t": "We shop multiple top-rated carriers",
+          "d": "Our licensed agents compare top-rated carriers to find your best rate and coverage match."
+        },
+        {
+          "t": "Get your best rate",
+          "d": "Receive your personalized quote and get covered — same day, no pressure."
+        }
+      ],
+      "commercial": [
+        {
+          "t": "Describe your business",
+          "d": "Tell us your industry, size, and coverage needs — we'll take it from there."
+        },
+        {
+          "t": "We compare business carriers",
+          "d": "Our agents shop specialized commercial markets to find the right fit for your operation."
+        },
+        {
+          "t": "Get covered fast",
+          "d": "Receive a tailored business quote and bind coverage — often the same day."
+        }
+      ]
     }
   }
 }

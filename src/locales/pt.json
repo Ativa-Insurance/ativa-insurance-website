@@ -770,6 +770,38 @@
       "note": "Nem toda seguradora está disponível em todos os estados ou para todo tipo de cobertura.",
       "pause": "Pausar logos",
       "play": "Mostrar logos"
+    },
+    "how": {
+      "heading": "Como Funciona",
+      "lead": "Sem ligações obrigatórias. Sem spam. Só a sua melhor tarifa.",
+      "personal": [
+        {
+          "t": "Conte sobre você",
+          "d": "Responda a algumas perguntas rápidas sobre o que você precisa — leva menos de 2 minutos."
+        },
+        {
+          "t": "Cotamos com várias seguradoras de alto nível",
+          "d": "Nossos agentes licenciados comparam seguradoras de alto nível para encontrar a melhor tarifa e a cobertura certa para você."
+        },
+        {
+          "t": "Receba a sua melhor tarifa",
+          "d": "Receba a sua cotação personalizada e fique protegido — no mesmo dia, sem pressão."
+        }
+      ],
+      "commercial": [
+        {
+          "t": "Descreva a sua empresa",
+          "d": "Conte o seu setor, o porte e as coberturas de que precisa — a partir daí, cuidamos do resto."
+        },
+        {
+          "t": "Comparamos seguradoras empresariais",
+          "d": "Nossos agentes pesquisam mercados comerciais especializados para encontrar a opção certa para a sua operação."
+        },
+        {
+          "t": "Proteção rápida",
+          "d": "Receba uma cotação empresarial sob medida e contrate a cobertura — muitas vezes no mesmo dia."
+        }
+      ]
     }
   }
 }
