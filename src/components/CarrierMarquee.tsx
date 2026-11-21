@@ -1,10 +1,14 @@
 "use client";
 
+// 2027 carrier strip: one row of logos in a white panel, scrolling right to
+// left (70s loop) with a Pause/Play control (WCAG 2.2.2). The list is rendered
+// twice for a seamless loop; the copy is hidden from screen readers.
+// Reduced motion: no scrolling, a centred wrapping grid without the copy.
+// Carrier lists are the live site's lists.
+
 import { useState } from "react";
 import type { Mode } from "@/types";
 import { useLanguage } from "@/context/LanguageContext";
-
-// ─── Carrier definitions ─────────────────────────────────────────────────────
 
 interface Carrier {
   name: string;
@@ -67,164 +71,37 @@ function logoSrc(file: string): string {
   return `/carriers/${file.replace(/ /g, "%20")}`;
 }
 
-// ─── Single carrier logo ──────────────────────────────────────────────────────
-
-function CarrierItem({ carrier }: { carrier: Carrier }) {
-  const [failed, setFailed]   = useState(false);
-  const [hovered, setHovered] = useState(false);
-
-  if (failed) {
-    return (
-      <span
-        style={{
-          display:         "inline-block",
-          fontSize:        "12px",
-          fontWeight:      600,
-          whiteSpace:      "nowrap",
-          padding:         "6px 14px",
-          borderRadius:    "20px",
-          border:          "1px solid #C7D7FD",
-          backgroundColor: "#EEF2FF",
-          color:           "#1B3A6B",
-        }}
-      >
-        {carrier.name}
-      </span>
-    );
-  }
-
-  return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={logoSrc(carrier.file)}
-      alt={carrier.name}
-      height={52}
-      style={{
-        height:     "52px",
-        width:      "auto",
-        maxWidth:   "156px",
-        objectFit:  "contain",
-        display:    "block",
-        filter:     hovered ? "grayscale(0%) opacity(1)" : "grayscale(100%) opacity(0.50)",
-        transition: "filter 300ms ease",
-        userSelect: "none",
-        cursor:     "pointer",
-      }}
-      onError={() => setFailed(true)}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      draggable={false}
-    />
-  );
-}
-
-// ─── Main component ───────────────────────────────────────────────────────────
-
 export default function CarrierMarquee({ mode }: { mode: Mode }) {
   const { t } = useLanguage();
-  const isPersonal = mode === "personal";
-  const carriers   = isPersonal ? PERSONAL_CARRIERS : COMMERCIAL_CARRIERS;
-  const doubled    = [...carriers, ...carriers];
-
-  // Section always white — logos need neutral bg to display correctly
-  const bgColor      = "#FFFFFF";
-  const headingColor = isPersonal ? "#1B3A6B" : "#0B1F33";
+  const [paused, setPaused] = useState(false);
+  const carriers = mode === "personal" ? PERSONAL_CARRIERS : COMMERCIAL_CARRIERS;
 
   return (
-    <section
-      style={{
-        backgroundColor: bgColor,
-        borderTop:       "1px solid rgba(0,0,0,0.06)",
-        borderBottom:    "1px solid rgba(0,0,0,0.06)",
-        padding:         "56px 0 48px",
-        overflow:        "hidden",
-      }}
-    >
-      {/* ── Heading ── */}
-      <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 24px", textAlign: "center", marginBottom: "36px" }}>
-        <p
-          style={{
-            fontSize:      "11px",
-            letterSpacing: "2.5px",
-            fontWeight:    700,
-            textTransform: "uppercase",
-            color:         "var(--eyebrow)",
-            marginBottom:  "10px",
-          }}
-        >
-          Our Carrier Partners
-        </p>
-        <h2
-          style={{
-            fontSize:      "clamp(1.6rem, 2.5vw, 2rem)",
-            fontWeight:    900,
-            color:         headingColor,
-            margin:        "0 0 8px",
-            lineHeight:    1.1,
-            letterSpacing: "-0.025em",
-          }}
-        >
-          {t("carriers.heading")}
-        </h2>
-        <p
-          style={{
-            fontSize:  "15px",
-            color:     "#64748B",
-            margin:    0,
-            lineHeight: 1.5,
-          }}
-        >
-          {t("carriers.sub")}
-        </p>
+    <section className="a27-carriers" aria-labelledby="carriers-title" data-section="carriers">
+      <div className="a27-intro">
+        <h2 id="carriers-title" className="a27-h2">{t("carriers.heading")}</h2>
+        <span aria-hidden className="a27-arc a27-h2-arc" />
+        <p className="a27-lead">{t("carriers.sub")}</p>
       </div>
-
-      {/* ── Scrolling track ── */}
-      <div style={{ position: "relative" }}>
-        {/* Left fade */}
-        <div
-          style={{
-            position:      "absolute",
-            left:          0,
-            top:           0,
-            bottom:        0,
-            width:         "96px",
-            zIndex:        10,
-            pointerEvents: "none",
-            background:    `linear-gradient(to right, ${bgColor}, transparent)`,
-          }}
-        />
-        {/* Right fade */}
-        <div
-          style={{
-            position:      "absolute",
-            right:         0,
-            top:           0,
-            bottom:        0,
-            width:         "96px",
-            zIndex:        10,
-            pointerEvents: "none",
-            background:    `linear-gradient(to left, ${bgColor}, transparent)`,
-          }}
-        />
-
-        <div style={{ display: "flex", overflow: "hidden" }}>
-          <div className="flex items-center shrink-0 animate-marquee">
-            {doubled.map((carrier, i) => (
-              <div
-                key={`${carrier.file}-${i}`}
-                style={{
-                  display:        "flex",
-                  alignItems:     "center",
-                  justifyContent: "center",
-                  flexShrink:     0,
-                  margin:         "0 32px",
-                  height:         "72px",
-                }}
-              >
-                <CarrierItem carrier={carrier} />
-              </div>
-            ))}
+      <div className="a27-carriers__wrap">
+        <div className="a27-carriers__panel">
+          <div className="a27-carriers__mask">
+            <div className="a27-carriers__track" data-marquee="" data-paused={paused ? "true" : "false"}>
+              {carriers.map((c) => (
+                <img key={c.name} src={logoSrc(c.file)} alt={c.name} loading="lazy" className="a27-carriers__logo" />
+              ))}
+              {carriers.map((c) => (
+                <img key={`dup-${c.name}`} src={logoSrc(c.file)} alt="" aria-hidden="true" loading="lazy" className="a27-carriers__logo a27-carriers__dup" />
+              ))}
+            </div>
           </div>
+        </div>
+        <div className="a27-carriers__foot">
+          <p className="a27-carriers__note">{t("a27.carriers.note")}</p>
+          <button type="button" className="a27-carriers__pause" aria-pressed={paused} onClick={() => setPaused((p) => !p)}>
+            <img src={`/2027/icons/navy/${paused ? "play" : "pause"}.svg`} alt="" width={13} height={13} />
+            {paused ? t("a27.carriers.play") : t("a27.carriers.pause")}
+          </button>
         </div>
       </div>
     </section>

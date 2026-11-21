@@ -765,6 +765,11 @@
           "d": "Claims over professional mistakes"
         }
       }
+    },
+    "carriers": {
+      "note": "Not every carrier is available in every state or for every type of coverage.",
+      "pause": "Pause logos",
+      "play": "Play logos"
     }
   }
 }

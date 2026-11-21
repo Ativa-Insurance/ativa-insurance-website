@@ -765,6 +765,11 @@
           "d": "Reclamações por erros profissionais"
         }
       }
+    },
+    "carriers": {
+      "note": "Nem toda seguradora está disponível em todos os estados ou para todo tipo de cobertura.",
+      "pause": "Pausar logos",
+      "play": "Mostrar logos"
     }
   }
 }

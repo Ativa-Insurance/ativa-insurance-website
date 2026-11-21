@@ -409,7 +409,7 @@ function AtivaSite() {
       </Hero>
 
       {/* ── Carriers ──────────────────────────────────────────────────────── */}
-      <div data-reveal><CarrierMarquee mode={mode} /></div>
+      <CarrierMarquee mode={mode} />
 
       {/* ── How It Works ──────────────────────────────────────────────────── */}
       <div data-reveal><HowItWorks mode={mode} /></div>
