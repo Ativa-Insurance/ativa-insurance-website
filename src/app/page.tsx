@@ -1144,9 +1144,31 @@ function AtivaSite() {
   const heroProductIds = isPersonal ? HERO_PERSONAL_IDS : HERO_COMMERCIAL_IDS;
   const heroProducts   = products.filter(p => heroProductIds.includes(p.id));
 
+  // Switch the Personal / Commercial view and keep the existing ?tab= URL in sync
   const handleModeChange = useCallback((newMode: Mode) => {
     setMode(newMode);
+    window.history.replaceState(null, "", `?tab=${newMode}`);
   }, []);
+
+  // Open the EXISTING quote pop-up for one line (+ optional product id)
+  const openProduct = useCallback((line: Mode, product?: string) => {
+    setMode(line);
+    if (line === "personal") {
+      setCommercialQuoteOpen(false);
+      setQuoteInitialData({});
+      setQuoteProduct(product);
+      setQuoteOpen(true);
+    } else {
+      setQuoteOpen(false);
+      setCommercialQuoteProduct(product);
+      setCommercialQuoteOpen(true);
+    }
+  }, []);
+
+  // <html lang> follows the page language
+  useEffect(() => {
+    document.documentElement.lang = lang === "pt" ? "pt-BR" : lang;
+  }, [lang]);
 
   const handleProductClick = useCallback((id: string) => {
     if (isPersonal) {
@@ -1212,11 +1234,14 @@ function AtivaSite() {
   useEffect(() => {
     const openQuote = searchParams.get("openQuote");
     const tab       = searchParams.get("tab");
+    const product   = searchParams.get("product") ?? undefined;
     if (openQuote === "personal") {
       setMode("personal");
+      setQuoteProduct(product);
       setQuoteOpen(true);
     } else if (openQuote === "commercial") {
       setMode("commercial");
+      setCommercialQuoteProduct(product);
       setCommercialQuoteOpen(true);
     } else if (tab === "commercial") {
       setMode("commercial");
@@ -1309,7 +1334,7 @@ function AtivaSite() {
       style={{ backgroundColor: "var(--bg)", transition: "background-color 0.35s ease" }}>
 
       {/* ── Header ──────────────────────────────────────────────────────── */}
-      <Header mode={mode} onGetQuote={openQuote} />
+      <Header mode={mode} onGetQuote={openQuote} onModeChange={handleModeChange} onOpenProduct={openProduct} />
 
       {/* ── Trust credentials strip ──────────────────────────────────────── */}
       <TrustBar mode={mode} />

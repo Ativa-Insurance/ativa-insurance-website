@@ -670,5 +670,63 @@
     "headline": "¿Tienes un negocio o flota?",
     "cta": "Ver Seguros Comerciales",
     "sub": "Responsabilidad Civil · Comp. Trabajadores · Auto Comercial · Transporte · Carga"
+  },
+  "a27": {
+    "skip": "Saltar al contenido",
+    "nav": {
+      "service": "Servicio",
+      "learn": "Aprende",
+      "about": "Nosotros",
+      "menu": "Menú",
+      "close": "Cerrar menú",
+      "language": "Idioma",
+      "main": "Principal",
+      "mobile": "Móvil",
+      "personalBlurb": "Protección para usted, su familia y lo que es suyo.",
+      "businessBlurb": "Protección para su trabajo y los vehículos de su negocio.",
+      "serviceBlurb": "Ayuda después de que empieza la póliza."
+    },
+    "items": {
+      "personal": {
+        "auto": "Auto",
+        "home": "Vivienda",
+        "renters": "Inquilinos",
+        "condo": "Condominio",
+        "flood": "Inundación",
+        "umbrella": "Umbrella"
+      },
+      "business": {
+        "commercial-auto": "Auto comercial",
+        "trucking": "Camiones (trucking)",
+        "cargo": "Carga",
+        "gl": "Responsabilidad general",
+        "bop": "BOP (póliza para negocios)",
+        "property": "Propiedad comercial",
+        "contractors": "Contratistas",
+        "workers-comp": "Compensación laboral",
+        "commercial-umbrella": "Umbrella comercial",
+        "eo": "Errores y omisiones (E&O)",
+        "restaurants": "Restaurantes",
+        "cleaning": "Empresas de limpieza",
+        "fleet": "Flota"
+      },
+      "service": {
+        "claims": "Ayuda con reclamos",
+        "idcards": "Tarjetas de seguro (ID)",
+        "coi": "Certificado de seguro (COI)",
+        "changes": "Cambios en la póliza"
+      }
+    },
+    "cta": {
+      "whatsapp": "WhatsApp",
+      "call": "Llamar"
+    },
+    "wa": {
+      "hello": "Hola, Ativa. Tengo una pregunta sobre seguros.",
+      "idcards": "Hola, Ativa. Necesito mis tarjetas de seguro (ID cards).",
+      "coi": "Hola, Ativa. Necesito un certificado de seguro (COI). Titular del certificado: ",
+      "changes": "Hola, Ativa. Necesito cambiar mi póliza: "
+    },
+    "fab": "Hablar con Ativa por WhatsApp"
   }
 }

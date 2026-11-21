@@ -670,5 +670,63 @@
     "headline": "Own a business or fleet?",
     "cta": "Switch to Commercial Insurance",
     "sub": "General Liability · Workers Comp · Commercial Auto · Trucking · Cargo"
+  },
+  "a27": {
+    "skip": "Skip to content",
+    "nav": {
+      "service": "Service",
+      "learn": "Learn",
+      "about": "About",
+      "menu": "Menu",
+      "close": "Close menu",
+      "language": "Language",
+      "main": "Main",
+      "mobile": "Mobile",
+      "personalBlurb": "Coverage for you, your family and what you own.",
+      "businessBlurb": "Coverage for the work you do and the vehicles you run.",
+      "serviceBlurb": "Help after the policy starts."
+    },
+    "items": {
+      "personal": {
+        "auto": "Auto",
+        "home": "Home",
+        "renters": "Renters",
+        "condo": "Condo",
+        "flood": "Flood",
+        "umbrella": "Umbrella"
+      },
+      "business": {
+        "commercial-auto": "Commercial auto",
+        "trucking": "Trucking",
+        "cargo": "Cargo",
+        "gl": "General liability",
+        "bop": "Business owner's policy",
+        "property": "Commercial property",
+        "contractors": "Contractors",
+        "workers-comp": "Workers' comp",
+        "commercial-umbrella": "Commercial umbrella",
+        "eo": "Errors & omissions",
+        "restaurants": "Restaurants",
+        "cleaning": "Cleaning businesses",
+        "fleet": "Fleet"
+      },
+      "service": {
+        "claims": "Claims help",
+        "idcards": "ID cards",
+        "coi": "Certificates of insurance (COI)",
+        "changes": "Policy changes"
+      }
+    },
+    "cta": {
+      "whatsapp": "WhatsApp",
+      "call": "Call"
+    },
+    "wa": {
+      "hello": "Hi Ativa, I have a question about insurance.",
+      "idcards": "Hi Ativa, I need my insurance ID cards.",
+      "coi": "Hi Ativa, I need a certificate of insurance (COI). Certificate holder: ",
+      "changes": "Hi Ativa, I need to change my policy: "
+    },
+    "fab": "Talk to Ativa on WhatsApp"
   }
 }
