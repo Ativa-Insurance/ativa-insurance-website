@@ -418,7 +418,7 @@ function AtivaSite() {
       <div data-reveal><WhyChooseAtiva onGetQuote={openQuote} /></div>
 
       {/* ── Reviews ───────────────────────────────────────────────────────── */}
-      <div data-reveal><Reviews mode={mode} /></div>
+      <Reviews mode={mode} />
 
       {/* ── Served States ─────────────────────────────────────────────────── */}
       <div data-reveal><ServedStates /></div>
