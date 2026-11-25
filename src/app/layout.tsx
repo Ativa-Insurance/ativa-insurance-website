@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat, DM_Sans } from "next/font/google";
 import "./globals.css";
 import "@/styles/a27.css";
+import "@/styles/a27-v2.css";
 import GoogleMapsScript from "@/components/GoogleMapsScript";
 
 const BASE_URL = "https://ativainsurance.com";

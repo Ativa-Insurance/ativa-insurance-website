@@ -124,7 +124,43 @@
   --g-menu: url(/2027/brand/noise-128.png), radial-gradient(120% 70% at 50% -18%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 58%), linear-gradient(180deg, rgba(255,255,255,0.86) 0%, rgba(238,247,250,0.78) 100%);
   --arc-midnight: url(/2027/brand/horizon-midnight.svg);
   --arc-orange: url(/2027/brand/horizon-orange.svg);
+
+  /* ── v2 additions (site-v2 README 4.2 / 4.3) ───────────────────────────── */
+  /* Colors */
+  --c-text-strong: #1A3B4E;              /* landing hero description on the light hero */
+  --c-hero-sub-dark: #DDEFF5;            /* landing hero description on midnight */
+  --c-scene-line: rgba(143,191,208,0.45);
+  --c-explorer-sel: #FF9900;
+  --c-explorer-sel-fill: rgba(255,153,0,0.18);
+  --c-explorer-idle: rgba(182,223,237,0.65);
+  --c-explorer-idle-fill: rgba(182,223,237,0.05);
+  --c-water: rgba(182,223,237,0.24);
+  /* Type */
+  --fs-h1-landing: clamp(2rem, calc(1rem + 2.6vw), 3.1rem);
+  --fs-h2-cta: clamp(1.9rem, calc(1rem + 2.4vw), 3rem);
+  --fs-h3-explorer: clamp(1.35rem, calc(1rem + 0.8vw), 1.75rem);
+  --fs-h2-card: clamp(1.3rem, calc(1rem + 0.8vw), 1.7rem);
+  --fs-h2-hub: clamp(1.4rem, calc(1rem + 1vw), 1.9rem);
+  --fs-popup-title: clamp(1.25rem, calc(1rem + 0.8vw), 1.6rem);
+  --fs-hero-lead: clamp(16px, calc(14px + 0.3vw), 18px);
+  --fs-scenario: clamp(1.05rem, calc(0.95rem + 0.3vw), 1.2rem);
+  /* Layout */
+  --section-y-page: clamp(32px, 4vw, 60px);
+  --scallop-h: clamp(28px, 4vw, 56px);
+  /* Shadows */
+  --sh-explorer: inset 0 1px 0 rgba(255,255,255,0.4), inset 0 0 0 1.5px rgba(182,223,237,0.34), 0 40px 80px -36px rgba(0,20,33,0.9);
+  --sh-explorer-detail: inset 0 0 0 1px rgba(182,223,237,0.14);
+  --sh-btn-outline-dark: inset 0 0 0 1.5px rgba(255,255,255,0.85);
+  --sh-btn-outline-dark-soft: inset 0 0 0 1px rgba(182,223,237,0.45);
+  --sh-tinted: inset 0 0 0 1px rgba(0,41,65,0.08);
+  --sh-sticky: inset 0 1px 0 rgba(0,41,65,0.10), 0 -12px 28px -18px rgba(0,41,65,0.35);
+  /* Gradients */
+  --g-hero-tint: linear-gradient(180deg, #DDEFF5 0%, #EEF7FA 70%, #FFFFFF 100%);
+  --g-explorer: radial-gradient(110% 60% at 50% -12%, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0) 60%), linear-gradient(180deg, rgba(182,223,237,0.12) 0%, rgba(0,41,65,0.3) 100%);
 }
+
+/* Landing pages: Personal and service pages 26px, Business and industry 14px */
+.a27[data-line="business"] { --r: 14px; }
 
 /* Commercial view of the 2027 homepage: tighter card radius */
 .a27[data-line="commercial"] { --r: 14px; }
