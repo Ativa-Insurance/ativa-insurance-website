@@ -11,6 +11,13 @@ import renters from "./renters";
 import condo from "./condo";
 import flood from "./flood";
 import pet from "./pet";
+import commercialAuto from "./commercial-auto";
+import gl from "./gl";
+import workersComp from "./workers-comp";
+import trucking from "./trucking";
+import bop from "./bop";
+import commercialUmbrella from "./commercial-umbrella";
+import eo from "./eo";
 
 export const CONTENT: Partial<Record<PageId, LandingContent>> = {
   auto,
@@ -19,6 +26,13 @@ export const CONTENT: Partial<Record<PageId, LandingContent>> = {
   condo,
   flood,
   pet,
+  "commercial-auto": commercialAuto,
+  gl,
+  "workers-comp": workersComp,
+  trucking,
+  bop,
+  "commercial-umbrella": commercialUmbrella,
+  eo,
 };
 
 // built.ts (used by client menus) must list exactly the pages that have content

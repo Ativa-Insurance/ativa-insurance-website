@@ -110,7 +110,8 @@ export default function Explorer({ scene, title, lead, legend, items, labels }: 
                   {m.i + 1}
                 </button>
               ))}
-              {sc?.type === "orbit" && <img src={sc.img} alt="" className="lp-x__orbit" loading="lazy" />}
+              {sc?.type === "orbit" && !sc.icon && <img src={sc.img} alt="" className="lp-x__orbit" loading="lazy" />}
+              {sc?.type === "orbit" && sc.icon && <span aria-hidden className="lp-x__orbit lp-x__orbit--icon"><img src={sc.img} alt="" /></span>}
             </div>
             <div role="group" aria-label={labels.group} className="lp-x__chips">
               {items.map((it, i) => (
