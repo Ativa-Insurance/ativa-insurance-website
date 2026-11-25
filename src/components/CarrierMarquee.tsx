@@ -4,7 +4,8 @@
 // left (70s loop) with a Pause/Play control (WCAG 2.2.2). The list is rendered
 // twice for a seamless loop; the copy is hidden from screen readers.
 // Reduced motion: no scrolling, a centred wrapping grid without the copy.
-// Carrier lists are the live site's lists.
+// Carrier lists are the live site's lists. Site v2: the intro paragraph under
+// the heading is removed; the heading keeps the live wording.
 
 import { useState } from "react";
 import type { Mode } from "@/types";
@@ -81,7 +82,6 @@ export default function CarrierMarquee({ mode }: { mode: Mode }) {
       <div className="a27-intro">
         <h2 id="carriers-title" className="a27-h2">{t("carriers.heading")}</h2>
         <span aria-hidden className="a27-arc a27-h2-arc" />
-        <p className="a27-lead">{t("carriers.sub")}</p>
       </div>
       <div className="a27-carriers__wrap">
         <div className="a27-carriers__panel">
