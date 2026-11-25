@@ -5,7 +5,7 @@
 import type { Language } from "@/types";
 import { pathFor, type PageId } from "./registry";
 
-export const BUILT: readonly PageId[] = ["auto"];
+export const BUILT: readonly PageId[] = ["auto", "home", "renters", "condo", "flood", "pet"];
 
 export function isBuilt(id: string): id is PageId {
   return (BUILT as readonly string[]).includes(id);

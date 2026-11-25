@@ -123,7 +123,7 @@ export default function Explorer({ scene, title, lead, legend, items, labels }: 
           </div>
           <div id="x-detail" aria-live="polite" className="lp-x__detail">
             <p className="lp-x__count">{labels.count.replace("{n}", String(sel + 1)).replace("{total}", String(items.length))}</p>
-            <h3 className="lp-x__h3">{cur?.t}</h3>
+            <h3 className="lp-x__h3">{cur?.t}{cur?.term && <span className="lp-x__term" lang="en"> ({cur.term})</span>}</h3>
             <p className="lp-x__d">{cur?.d}</p>
             {cur?.rows.length ? (
               <dl className="lp-x__rows">

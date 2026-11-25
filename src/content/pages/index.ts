@@ -6,9 +6,19 @@ import { REGISTRY, pathFor, type PageId } from "./registry";
 import type { LandingContent } from "./types";
 import { BUILT } from "./built";
 import auto from "./auto";
+import home from "./home";
+import renters from "./renters";
+import condo from "./condo";
+import flood from "./flood";
+import pet from "./pet";
 
 export const CONTENT: Partial<Record<PageId, LandingContent>> = {
   auto,
+  home,
+  renters,
+  condo,
+  flood,
+  pet,
 };
 
 // built.ts (used by client menus) must list exactly the pages that have content

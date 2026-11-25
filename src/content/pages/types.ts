@@ -24,6 +24,8 @@ export interface Source {
 
 export interface ExplorerItem {
   t: string;
+  /** PT/ES: the US policy term in English, shown beside the title in the detail panel */
+  term?: string;
   d: string;
   rows: Array<{ k: string; v: string }>;
   sources?: Source[];
