@@ -14,6 +14,13 @@ export function isBuilt(id: string): id is PageId {
   return (BUILT as readonly string[]).includes(id);
 }
 
+/** A site path (not an inner page) that keeps the language: /faq → /faq?lang=pt (hash kept) */
+export function withLang(path: string, lang: Language): string {
+  if (lang === "en") return path;
+  const [base, hash] = path.split("#");
+  return `${base}${base.includes("?") ? "&" : "?"}lang=${lang}${hash ? `#${hash}` : ""}`;
+}
+
 /** Link to a built page in a language, or null when the page doesn't exist yet */
 export function pageHref(id: string, lang: Language): string | null {
   return isBuilt(id) ? pathFor(id, lang) : null;

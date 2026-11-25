@@ -5,6 +5,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { LanguageProvider, useLanguage } from "@/context/LanguageContext";
+import LangFromQuery from "@/components/v2/LangFromQuery";
 import { FAQ_DATA, type FAQLang, type FAQSection } from "@/data/faqData";
 
 // ─── Accordion item ───────────────────────────────────────────────────────────
@@ -474,6 +475,7 @@ export default function FAQClient() {
   return (
     <LanguageProvider>
       <FAQContent />
+      <LangFromQuery />
     </LanguageProvider>
   );
 }

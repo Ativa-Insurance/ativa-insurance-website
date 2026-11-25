@@ -61,7 +61,7 @@ export const CONTENT: Partial<Record<PageId, AnyContent>> = {
 
 export const LANGS: Language[] = ["en", "pt", "es"];
 
-export { pageHref, isBuilt } from "./built";
+export { pageHref, isBuilt, withLang } from "./built";
 
 /** The same page in every language (for the language switch and hreflang) */
 export function alternatesFor(id: PageId): Record<Language, string> {

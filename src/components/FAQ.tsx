@@ -8,11 +8,12 @@ import { useEffect, useState } from "react";
 import type { Mode } from "@/types";
 import { useLanguage } from "@/context/LanguageContext";
 import { PHONE_DISPLAY, PHONE_HREF, whatsappHref } from "@/components/home/catalog";
+import { withLang } from "@/content/pages/built";
 
 interface FAQItem { q: string; a: string }
 
 export default function FAQ({ mode }: { mode: Mode }) {
-  const { t, tRaw } = useLanguage();
+  const { t, tRaw, lang } = useLanguage();
   const personal = mode === "personal";
   const items = ((tRaw(personal ? "faq.personalItems" : "faq.commercialItems") as FAQItem[] | undefined) ?? []);
   const [open, setOpen] = useState<number>(0);
@@ -49,7 +50,7 @@ export default function FAQ({ mode }: { mode: Mode }) {
           })}
         </div>
         <div className="a27-faq__more">
-          <a href={personal ? "/faq#personal" : "/faq#commercial"} className="a27-faq__all">
+          <a href={withLang(personal ? "/faq#personal" : "/faq#commercial", lang)} className="a27-faq__all">
             {t(personal ? "faq.viewAllPersonal" : "faq.viewAllCommercial")}
           </a>
         </div>

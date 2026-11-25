@@ -3,6 +3,7 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import RCECalculator from "./RCECalculator";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import LangFromQuery from "@/components/v2/LangFromQuery";
 
 export const metadata: Metadata = {
   title: "Home Replacement Cost Calculator | Ativa Insurance",
@@ -31,6 +32,7 @@ export default function RCEPage() {
         </main>
         <Footer mode="personal" />
       </div>
+      <LangFromQuery />
     </LanguageProvider>
   );
 }

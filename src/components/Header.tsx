@@ -13,7 +13,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useSiteI18n } from "@/i18n/PageLang";
-import { pageHref } from "@/content/pages/built";
+import { pageHref, withLang } from "@/content/pages/built";
 import { homeHref } from "@/content/pages/registry";
 import Toggle from "@/components/Toggle";
 import {
@@ -129,11 +129,11 @@ export default function Header({ mode, onGetQuote, onModeChange, onOpenProduct, 
 
   const togglePanel = (p: Exclude<Panel, null>) => setPanel((cur) => (cur === p ? null : p));
   // Service items: their page when built; until then claims → FAQ, others → WhatsApp with a pre-filled message
-  const serviceHref = (id: ServiceId) => pageHref(SERVICE_PAGE[id], lang) ?? (id === "claims" ? "/faq" : whatsappHref(t(`a27.wa.${id}`)));
+  const serviceHref = (id: ServiceId) => pageHref(SERVICE_PAGE[id], lang) ?? (id === "claims" ? withLang("/faq", lang) : whatsappHref(t(`a27.wa.${id}`)));
   const serviceExternal = (id: ServiceId) => !pageHref(SERVICE_PAGE[id], lang) && id !== "claims";
-  const learnHref = pageHref("coverages", lang) ?? "/blog";
-  const aboutHref = pageHref("about", lang) ?? "/faq";
-  const logoHref = isHome ? "/?tab=personal" : homeHref(lang);
+  const learnHref = pageHref("coverages", lang) ?? withLang("/blog", lang);
+  const aboutHref = pageHref("about", lang) ?? withLang("/faq", lang);
+  const logoHref = homeHref(lang, isHome ? "personal" : undefined);
   const langIndex = Math.max(0, LANGS.findIndex((l) => l.code === lang));
   const frosted = scrolled || menuOpen;
 

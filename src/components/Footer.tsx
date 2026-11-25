@@ -11,7 +11,7 @@
 
 import Link from "next/link";
 import { useSiteI18n } from "@/i18n/PageLang";
-import { pageHref } from "@/content/pages/built";
+import { pageHref, withLang } from "@/content/pages/built";
 import {
   BUSINESS_MENU,
   LICENSED_STATES,
@@ -81,7 +81,7 @@ export default function Footer({ mode, onGetQuote, onOpenProduct }: FooterProps)
     else window.location.href = `/?openQuote=${mode}${lang !== "en" ? `&lang=${lang}` : ""}`;
   };
   const SERVICE_PAGE: Record<string, string> = { claims: "claims-help", idcards: "id-cards", coi: "coi", changes: "policy-changes" };
-  const serviceHref = (id: string) => pageHref(SERVICE_PAGE[id], lang) ?? (id === "claims" ? "/faq" : whatsappHref(t(`a27.wa.${id}`)));
+  const serviceHref = (id: string) => pageHref(SERVICE_PAGE[id], lang) ?? (id === "claims" ? withLang("/faq", lang) : whatsappHref(t(`a27.wa.${id}`)));
   const serviceExternal = (id: string) => !pageHref(SERVICE_PAGE[id], lang) && id !== "claims";
   const productLink = (id: string, group: "personal" | "business", target: QuoteTarget) => {
     const href = pageHref(id, lang);
@@ -101,11 +101,11 @@ export default function Footer({ mode, onGetQuote, onOpenProduct }: FooterProps)
   };
 
   const company = [
-    { label: t("a27.footer.aboutLink"), href: pageHref("about", lang) ?? "/faq" },
-    { label: t("a27.footer.learnLink"), href: pageHref("coverages", lang) ?? "/blog" },
-    { label: t("nav.faq"), href: "/faq" },
-    { label: t("nav.blog"), href: "/blog" },
-    { label: t("nav.rceCalculator"), href: "/rce-calculator" },
+    { label: t("a27.footer.aboutLink"), href: pageHref("about", lang) ?? withLang("/faq", lang) },
+    { label: t("a27.footer.learnLink"), href: pageHref("coverages", lang) ?? withLang("/blog", lang) },
+    { label: t("nav.faq"), href: withLang("/faq", lang) },
+    { label: t("nav.blog"), href: withLang("/blog", lang) },
+    { label: t("nav.rceCalculator"), href: withLang("/rce-calculator", lang) },
   ];
 
   return (
