@@ -737,8 +737,9 @@
       "personal": "O que você quer proteger?",
       "commercial": "O que a sua empresa precisa proteger?",
       "popular": "Mais procurado",
-      "morePersonal": "Também: pacote casa e auto, ou seguro umbrella",
-      "moreCommercial": "Também: responsabilidade civil geral, imóvel comercial, restaurantes, empresas de limpeza, frotas"
+      "morePersonal": "Não achou o que precisa? Comece a cotação e conte para a gente.",
+      "moreCommercial": "Também: responsabilidade civil geral, imóvel comercial, restaurantes, empresas de limpeza, frotas",
+      "talkLink": "Falar com um agente comercial"
     },
     "tiles": {
       "personal": {

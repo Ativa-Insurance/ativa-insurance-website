@@ -326,7 +326,11 @@
 .a27-talk__icon img { display: block; width: 24px; height: 24px; }
 .a27-talk__title { font-size: 15px; line-height: 1.25; font-weight: 700; }
 .a27-talk__body { display: none; font-family: var(--f-body); font-size: 12.5px; line-height: 1.4; font-weight: 500; color: var(--c-midnight); max-width: 22ch; }
-[data-line="commercial"] .a27-talk { grid-column: span 2; flex-direction: row; min-height: 84px; }
+[data-line="commercial"] .a27-talk { grid-column: span 2; flex-direction: column; flex-wrap: nowrap; min-height: 84px; padding: 18px 20px; }
+.a27-talk__row { display: flex; align-items: center; justify-content: center; gap: 14px; }
+[data-line="commercial"] .a27-talk__body { display: block; max-width: 46ch; font-size: 13.5px; }
+.a27-talk__link { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 14px; font-weight: 700; color: var(--c-midnight); text-decoration: underline; text-underline-offset: 4px; }
+.a27-talk__link img { display: block; width: 14px; height: 14px; }
 
 .a27-pick__more { display: flex; justify-content: center; margin-top: 14px; }
 .a27-pick__more button {

@@ -2,7 +2,7 @@
 
 // 2027 product selection, overlapping the bottom of the hero.
 // Featured card (Auto / Commercial auto) with ZIP row, product tiles, a
-// WhatsApp tile and the "Also:" link. All triggers open the EXISTING pop-ups.
+// WhatsApp tile (Commercial: a band with a text link) and the link under the grid. All triggers open the EXISTING pop-ups.
 // ZIP: the personal pop-up already accepts a pre-filled garaging ZIP
 // (initialData.garageZip), so a valid ZIP is passed through; the commercial
 // pop-up has no ZIP input prop, so there the box just opens the pop-up (DECISIONS B9).
@@ -132,9 +132,25 @@ export default function ProductSelection({ mode, onOpen, onGetQuote }: ProductSe
         })}
 
         <a href={whatsappHref(t("a27.wa.hello"))} target="_blank" rel="noopener noreferrer" className="a27-talk">
-          <span className="a27-talk__icon"><img src="/2027/icons/deep/whatsapp.svg" alt="" width={24} height={24} /></span>
-          <span className="a27-talk__title">{talkTitle}</span>
-          <span className="a27-talk__body">{talkBody}</span>
+          {personal ? (
+            <>
+              <span className="a27-talk__icon"><img src="/2027/icons/deep/whatsapp.svg" alt="" width={24} height={24} /></span>
+              <span className="a27-talk__title">{talkTitle}</span>
+              <span className="a27-talk__body">{talkBody}</span>
+            </>
+          ) : (
+            <>
+              <span className="a27-talk__row">
+                <span className="a27-talk__icon"><img src="/2027/icons/deep/whatsapp.svg" alt="" width={24} height={24} /></span>
+                <span className="a27-talk__title">{talkTitle}</span>
+              </span>
+              <span className="a27-talk__body">{talkBody}</span>
+              <span className="a27-talk__link">
+                {t("a27.pick.talkLink")}
+                <img src="/2027/icons/navy/arrow.svg" alt="" width={14} height={14} />
+              </span>
+            </>
+          )}
         </a>
       </div>
       <div className="a27-pick__more">

@@ -737,8 +737,9 @@
       "personal": "What do you want to protect?",
       "commercial": "What does your business need covered?",
       "popular": "Most requested",
-      "morePersonal": "Also: bundle home and auto, or umbrella coverage",
-      "moreCommercial": "Also: general liability, commercial property, restaurants, cleaning businesses, fleets"
+      "morePersonal": "Don't see what you need? Start a quote and tell us.",
+      "moreCommercial": "Also: general liability, commercial property, restaurants, cleaning businesses, fleets",
+      "talkLink": "Talk to a commercial agent"
     },
     "tiles": {
       "personal": {

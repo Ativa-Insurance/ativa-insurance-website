@@ -74,11 +74,14 @@ export interface TileItem {
 
 export const PERSONAL_TILES: TileItem[] = [
   { id: "auto",    copy: { source: "live", liveId: "auto" },  globe: "auto",    target: popup("personal", "auto") },
-  { id: "home",    copy: { source: "live", liveId: "home" },  globe: "home",    target: popup("personal", "home") },
+  { id: "home",    copy: { source: "live", liveId: "home" },  globe: "home",    target: popup("personal", "property") },
   { id: "renters", copy: { source: "new" },                   globe: "renters", target: popup("personal", "renters") },
   { id: "condo",   copy: { source: "new" },                   globe: "condo",   target: popup("personal", "property") },
   { id: "flood",   copy: { source: "live", liveId: "flood" }, globe: "flood",   target: popup("personal", "flood") },
   { id: "pet",     copy: { source: "live", liveId: "pet" },   globe: "pet",     target: popup("personal", "pet") },
+  // site v2: Umbrella and Home + auto bundle tiles (DECISIONS-v2 B9; existing pop-up ids)
+  { id: "umbrella", copy: { source: "live", liveId: "umbrella" }, globe: "umbrella", target: popup("personal", "umbrella") },
+  { id: "bundle",   copy: { source: "live", liveId: "bundle" },   globe: "bundle",   target: popup("personal", "bundle") },
 ];
 
 export const COMMERCIAL_TILES: TileItem[] = [
