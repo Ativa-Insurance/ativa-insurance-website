@@ -890,6 +890,22 @@
           "d": "Estamos aqui para ajudar com dúvidas de seguro e necessidades da apólice."
         }
       ]
+    },
+    "tips": {
+      "cat": {
+        "flood": "Enchente",
+        "home": "Residencial",
+        "auto": "Auto",
+        "renters": "Inquilino",
+        "pet": "Pet",
+        "umbrella": "Umbrella",
+        "commercialAuto": "Auto comercial",
+        "gl": "Responsabilidade civil",
+        "workersComp": "Workers' comp",
+        "contractors": "Construção",
+        "cyber": "Cibernético",
+        "commercial": "Empresas"
+      }
     }
   }
 }

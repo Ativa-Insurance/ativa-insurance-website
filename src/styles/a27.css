@@ -612,26 +612,6 @@
 }
 .chat-cluster a[aria-label="Chat on WhatsApp"] { display: none !important; }
 
-/* ═══ Blog (live section, 2027 tokens) ════════════════════════════════════ */
-.a27-blog__head { text-align: center; display: flex; flex-direction: column; gap: 10px; margin-bottom: clamp(24px, 3vw, 40px); }
-.a27-blog__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0,1fr); gap: var(--grid-gap); }
-@media (min-width: 768px) { .a27-blog__grid { grid-template-columns: repeat(3, minmax(0,1fr)); } }
-.a27-post {
-  height: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
-  padding: clamp(18px, 2vw, 24px); border-radius: var(--r); background: var(--c-white); box-shadow: var(--sh-card);
-  color: var(--c-midnight) !important; transition: transform 200ms var(--ease), box-shadow 200ms var(--ease);
-}
-.a27-post:hover { transform: translateY(-2px); box-shadow: var(--sh-card-hover); }
-.a27-post:active { transform: translateY(0); }
-.a27-post__cat {
-  display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: var(--r-pill);
-  font-size: 12px; font-weight: 700; color: var(--c-midnight); background: var(--c-soft-blue-50);
-  box-shadow: inset 0 0 0 1px rgba(0,41,65,0.06);
-}
-.a27 .a27-post__title { margin: 4px 0 0; font-size: var(--fs-h3-tile); line-height: 1.3; font-weight: 700; color: var(--c-midnight); text-wrap: pretty; }
-.a27-post__excerpt { margin: 0; flex: 1; font-family: var(--f-body); font-size: 14px; line-height: 1.6; font-weight: 500; color: var(--c-slate); }
-.a27-post__meta { font-family: var(--f-body); font-size: 13px; font-weight: 600; color: var(--c-midnight-2); }
-
 /* ═══ Touch targets: 44px minimum on touch devices (design sizes kept for mouse) ═══ */
 @media (pointer: coarse) {
   .a27-footer__link, .a27-chip, .a27-pick__more button, .a27-carriers__pause, .a27-footer__lang, .a27-footer__social a { min-height: 44px; }

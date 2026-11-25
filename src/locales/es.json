@@ -890,6 +890,22 @@
           "d": "Estamos aquí para ayudarle con preguntas de seguros y necesidades de su póliza."
         }
       ]
+    },
+    "tips": {
+      "cat": {
+        "flood": "Inundación",
+        "home": "Vivienda",
+        "auto": "Auto",
+        "renters": "Inquilinos",
+        "pet": "Mascotas",
+        "umbrella": "Umbrella",
+        "commercialAuto": "Auto comercial",
+        "gl": "Responsabilidad civil",
+        "workersComp": "Compensación laboral",
+        "contractors": "Contratistas",
+        "cyber": "Cibernético",
+        "commercial": "Negocios"
+      }
     }
   }
 }

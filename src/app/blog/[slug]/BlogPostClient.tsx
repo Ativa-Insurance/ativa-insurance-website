@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { LanguageProvider, useLanguage } from "@/context/LanguageContext";
+import LangFromQuery from "@/components/v2/LangFromQuery";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import type { BlogPost } from "../page";
@@ -165,6 +166,7 @@ function PostContent({ post }: { post: BlogPost }) {
 export default function BlogPostClient({ post }: { post: BlogPost }) {
   return (
     <LanguageProvider>
+      <LangFromQuery />
       <PostContent post={post} />
     </LanguageProvider>
   );

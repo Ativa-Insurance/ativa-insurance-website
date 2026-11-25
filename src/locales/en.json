@@ -890,6 +890,22 @@
           "d": "We're here to assist with insurance questions and policy-related needs."
         }
       ]
+    },
+    "tips": {
+      "cat": {
+        "flood": "Flood",
+        "home": "Home",
+        "auto": "Auto",
+        "renters": "Renters",
+        "pet": "Pet",
+        "umbrella": "Umbrella",
+        "commercialAuto": "Commercial auto",
+        "gl": "Liability",
+        "workersComp": "Workers comp",
+        "contractors": "Contractors",
+        "cyber": "Cyber",
+        "commercial": "Business"
+      }
     }
   }
 }

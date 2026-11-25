@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { LanguageProvider, useLanguage } from "@/context/LanguageContext";
+import LangFromQuery from "@/components/v2/LangFromQuery";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import type { BlogPost } from "./page";
@@ -188,6 +189,7 @@ function BlogContent({ initialPosts }: { initialPosts: BlogPost[] }) {
 export default function BlogClient({ initialPosts }: { initialPosts: BlogPost[] }) {
   return (
     <LanguageProvider>
+      <LangFromQuery />
       <BlogContent initialPosts={initialPosts} />
     </LanguageProvider>
   );
