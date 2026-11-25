@@ -804,45 +804,6 @@
         }
       ]
     },
-    "compare": {
-      "cols": [
-        "Direct carrier",
-        "Captive agent",
-        "Ativa, independent agency"
-      ],
-      "rows": [
-        {
-          "label": "Who they represent",
-          "a": "Their own company",
-          "b": "One company",
-          "c": "Multiple carriers"
-        },
-        {
-          "label": "What gets compared",
-          "a": "That company's policies",
-          "b": "That company's policies",
-          "c": "Policies from several carriers"
-        },
-        {
-          "label": "When your needs change",
-          "a": "You shop again on your own",
-          "b": "Options stay within one company",
-          "c": "We can compare again across carriers"
-        },
-        {
-          "label": "When there's a claim",
-          "a": "You file with the company",
-          "b": "You file with the company. The agent may help",
-          "c": "You file with your carrier. We explain the steps and help you follow up"
-        },
-        {
-          "label": "Language",
-          "a": "Varies",
-          "b": "Varies",
-          "c": "English, Português, Español"
-        }
-      ]
-    },
     "states": {
       "lead": "From Florida to Connecticut, it's the same agency and the same people in every state we serve.",
       "outside": "Outside these states? Ask us. We'll tell you plainly whether we can help.",
@@ -879,6 +840,56 @@
       "statesTitle": "Licensed in",
       "social": "Ativa on social media"
     },
-    "chat": "Chat with Flow"
+    "chat": "Chat with Flow",
+    "benefits": {
+      "personal": [
+        {
+          "t": "As an independent agency",
+          "d": "You get our expertise, special savings, industry knowledge built up over the years, and a team driven by customer satisfaction."
+        },
+        {
+          "icon": "book",
+          "t": "Plain-language guidance",
+          "d": "We explain what each option covers before you choose."
+        },
+        {
+          "icon": "changes",
+          "t": "Help when your needs change",
+          "d": "We can compare again across carriers."
+        },
+        {
+          "icon": "claims",
+          "t": "Support at claim time",
+          "d": "You file with your carrier. We explain the steps and help you follow up."
+        },
+        {
+          "icon": "users",
+          "t": "English, Português, Español",
+          "d": "Talk to a licensed agent in the language you prefer."
+        }
+      ],
+      "commercial": [
+        {
+          "icon": "bop",
+          "t": "Understand your business",
+          "d": "We take the time to understand your operations, industry, and coverage needs."
+        },
+        {
+          "icon": "bundle",
+          "t": "Multiple insurance markets",
+          "d": "We explore available insurance options through multiple markets."
+        },
+        {
+          "icon": "book",
+          "t": "Personalized guidance",
+          "d": "Get help understanding your coverage, requirements, and options."
+        },
+        {
+          "icon": "changes",
+          "t": "Support beyond the quote",
+          "d": "We're here to assist with insurance questions and policy-related needs."
+        }
+      ]
+    }
   }
 }

@@ -7,7 +7,7 @@ import Header from "@/components/Header";
 import TrustBar from "@/components/TrustBar";
 import Hero from "@/components/home/Hero";
 import ProductSelection from "@/components/home/ProductSelection";
-import Comparison from "@/components/home/Comparison";
+import Benefits from "@/components/home/Benefits";
 import LicensedStates from "@/components/home/LicensedStates";
 import QuoteModal from "@/components/QuoteModal";
 import CommercialQuoteModal from "@/components/CommercialQuoteModal";
@@ -141,8 +141,8 @@ function AtivaSite() {
       {/* ── Reviews ───────────────────────────────────────────────────────── */}
       <Reviews mode={mode} />
 
-      {/* ── Why an independent agency (comparison) ───────────────────────── */}
-      <Comparison />
+      {/* ── Why an independent agency (benefit cards) ────────────────────── */}
+      <Benefits mode={mode} />
 
       {/* ── Licensed states (map) ─────────────────────────────────────────── */}
       <LicensedStates onGetQuote={openQuote} />

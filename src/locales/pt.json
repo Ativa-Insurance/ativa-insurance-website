@@ -804,45 +804,6 @@
         }
       ]
     },
-    "compare": {
-      "cols": [
-        "Seguradora direta",
-        "Agente cativo",
-        "Ativa, agência independente"
-      ],
-      "rows": [
-        {
-          "label": "Quem representa",
-          "a": "A própria empresa",
-          "b": "Uma única empresa",
-          "c": "Várias seguradoras"
-        },
-        {
-          "label": "O que é comparado",
-          "a": "As apólices dessa empresa",
-          "b": "As apólices dessa empresa",
-          "c": "Apólices de várias seguradoras"
-        },
-        {
-          "label": "Quando sua vida muda",
-          "a": "Você pesquisa tudo de novo sozinho",
-          "b": "As opções ficam na mesma empresa",
-          "c": "Podemos comparar de novo entre seguradoras"
-        },
-        {
-          "label": "Quando há um sinistro",
-          "a": "Você abre com a empresa",
-          "b": "Você abre com a empresa. O agente pode ajudar",
-          "c": "Você abre com a sua seguradora. Explicamos as etapas e ajudamos a acompanhar"
-        },
-        {
-          "label": "Idioma",
-          "a": "Depende",
-          "b": "Depende",
-          "c": "English, Português, Español"
-        }
-      ]
-    },
     "states": {
       "lead": "Da Flórida a Connecticut, é a mesma agência e as mesmas pessoas em todos os estados que atendemos.",
       "outside": "Mora fora desses estados? Pergunte. Dizemos com clareza se podemos ajudar.",
@@ -879,6 +840,56 @@
       "statesTitle": "Licenciada em",
       "social": "Ativa nas redes sociais"
     },
-    "chat": "Conversar com a Flow"
+    "chat": "Conversar com a Flow",
+    "benefits": {
+      "personal": [
+        {
+          "t": "Como agência independente",
+          "d": "Você conta com nossa experiência, descontos especiais, conhecimento do setor acumulado ao longo dos anos e uma equipe movida pela satisfação dos clientes."
+        },
+        {
+          "icon": "book",
+          "t": "Explicação em linguagem simples",
+          "d": "Explicamos o que cada opção cobre antes de você escolher."
+        },
+        {
+          "icon": "changes",
+          "t": "Ajuda quando sua vida muda",
+          "d": "Podemos comparar de novo entre seguradoras."
+        },
+        {
+          "icon": "claims",
+          "t": "Apoio na hora do sinistro",
+          "d": "Você abre com a sua seguradora. Explicamos as etapas e ajudamos a acompanhar."
+        },
+        {
+          "icon": "users",
+          "t": "English, Português, Español",
+          "d": "Fale com um agente licenciado no idioma que preferir."
+        }
+      ],
+      "commercial": [
+        {
+          "icon": "bop",
+          "t": "Entendemos a sua empresa",
+          "d": "Dedicamos tempo para entender sua operação, seu setor e suas necessidades de cobertura."
+        },
+        {
+          "icon": "bundle",
+          "t": "Vários mercados de seguros",
+          "d": "Buscamos as opções de seguro disponíveis em vários mercados."
+        },
+        {
+          "icon": "book",
+          "t": "Orientação personalizada",
+          "d": "Ajuda para entender sua cobertura, as exigências e as opções."
+        },
+        {
+          "icon": "changes",
+          "t": "Apoio além da cotação",
+          "d": "Estamos aqui para ajudar com dúvidas de seguro e necessidades da apólice."
+        }
+      ]
+    }
   }
 }
