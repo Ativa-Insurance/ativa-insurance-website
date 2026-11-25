@@ -15,6 +15,7 @@ import { CONTENT, alternatesFor, pageHref } from "@/content/pages/index";
 import { breadcrumbs, pageJsonLd } from "@/content/pages/seo";
 import { PERSONAL_TILES, COMMERCIAL_TILES, PHONE_DISPLAY, PHONE_HREF, whatsappHref } from "@/components/home/catalog";
 import { REVIEWER_NAME, REVIEWER_ROLE } from "@/content/reviewer";
+import { EMAIL } from "@/content/site";
 import SectionHead from "@/components/v2/SectionHead";
 import Scallop from "@/components/v2/Scallop";
 import CarrierMarquee from "@/components/CarrierMarquee";
@@ -27,6 +28,14 @@ import StickyBar from "./StickyBar";
 
 const lower = (s: string) => s.charAt(0).toLowerCase() + s.slice(1);
 
+// Service page ids → their key in a27.items.service and their navy icon
+const SVC: Partial<Record<PageId, { key: string; icon: string }>> = {
+  coi: { key: "coi", icon: "coi" },
+  "claims-help": { key: "claims", icon: "claims" },
+  "id-cards": { key: "idcards", icon: "idcards" },
+  "policy-changes": { key: "changes", icon: "changes" },
+};
+
 export default function LandingPage({ id, lang }: { id: PageId; lang: Language }) {
   const c = CONTENT[id]!;
   const e = REGISTRY[id];
@@ -35,7 +44,10 @@ export default function LandingPage({ id, lang }: { id: PageId; lang: Language }
   const t = tr.t;
   const biz = e.line === "business";
   const mode: Mode = biz ? "commercial" : "personal";
-  const target = e.quote!;
+  const isService = e.template === "service";
+  const target = e.quote;
+  const waMsg = t(`a27.wa.${c.waKey ?? "hello"}`);
+  const svc = copy.service;
   const crumbs = breadcrumbs(id, lang);
   const hero = c.hero;
   const arcCls = biz ? "a27-arc a27-arc--orange" : "a27-arc";
@@ -46,6 +58,8 @@ export default function LandingPage({ id, lang }: { id: PageId; lang: Language }
       const href = pageHref(rid, lang);
       if (!href) return null;
       const r = REGISTRY[rid];
+      const sv = SVC[rid];
+      if (sv) return { id: rid, href, t: t(`a27.items.service.${sv.key}`), d: "", globe: undefined, icon: sv.icon };
       const group = r.line === "business" ? "business" : "personal";
       const tile = (group === "personal" ? PERSONAL_TILES : COMMERCIAL_TILES).find((x) => x.id === rid);
       const liveSet = tr.tProducts(group === "personal" ? "personal" : "commercial");
@@ -57,15 +71,48 @@ export default function LandingPage({ id, lang }: { id: PageId; lang: Language }
     .filter((x): x is NonNullable<typeof x> => !!x);
 
   const reviewer = REVIEWER_NAME && REVIEWER_ROLE;
-  const heroStyle = {
-    "--pos-lg": hero.pos.lg,
-    "--pos-md": hero.pos.md,
-    "--pos-sm": hero.pos.sm,
-    "--lp-band-md": `${hero.mdH ?? 330}px`,
-    ...(hero.imgW ? { "--lp-img-w": hero.imgW } : {}),
-    ...(hero.subW ? { "--lp-sub-w": hero.subW } : {}),
-  } as React.CSSProperties;
-  const heroCls = ["lp-hero", biz && "lp-hero--dark", hero.layout === "partial" && "lp-hero--partial", hero.side === "right" && "lp-hero--right"].filter(Boolean).join(" ");
+  const relatedTitle = related.length && related.every((r) => SVC[r.id]) ? t("lp.otherServices") : t("lp.related");
+  const heroStyle = (hero
+    ? {
+        "--pos-lg": hero.pos.lg,
+        "--pos-md": hero.pos.md,
+        "--pos-sm": hero.pos.sm,
+        "--lp-band-md": `${hero.mdH ?? 330}px`,
+        "--lp-ratio": String(hero.h / hero.w),
+        ...(hero.imgW ? { "--lp-img-w": hero.imgW } : {}),
+        ...(hero.subW ? { "--lp-sub-w": hero.subW } : {}),
+      }
+    : {}) as React.CSSProperties;
+  const heroCls = [
+    "lp-hero",
+    biz && "lp-hero--dark",
+    !hero && "lp-hero--plain",
+    hero?.layout === "partial" && "lp-hero--partial",
+    hero?.side === "right" && "lp-hero--right",
+    hero?.fit === "width" && "lp-hero--fitw",
+  ].filter(Boolean).join(" ");
+
+  // Primary action: the existing pop-up (products), or the pre-filled WhatsApp chat (service pages)
+  const primary = (cls: string, arc: string) => (
+    <span className="lp-btnwrap">
+      {target ? (
+        <QuoteButton target={target} className={cls}>{copy.cta}</QuoteButton>
+      ) : (
+        <a href={whatsappHref(waMsg)} target="_blank" rel="noopener noreferrer" data-arc="" className={`${cls} lp-btn--wa-icon`}>
+          <span data-glint="" aria-hidden />
+          <img src="/2027/icons/deep/whatsapp.svg" alt="" width={20} height={20} />
+          <span>{copy.cta}</span>
+        </a>
+      )}
+      <span aria-hidden className={`${arc} a27-btn-arc`} />
+    </span>
+  );
+  const phonePill = (lg?: boolean) => (
+    <a href={PHONE_HREF} className={`lp-btn-pill${lg ? " lp-btn-pill--lg" : ""}`}>
+      <img src="/2027/icons/navy/phone.svg" alt="" width={18} height={18} />
+      {PHONE_DISPLAY}
+    </a>
+  );
 
   return (
     <InnerShell lang={lang} alternates={alternatesFor(id)} line={e.line}>
@@ -75,12 +122,14 @@ export default function LandingPage({ id, lang }: { id: PageId; lang: Language }
 
       {/* Hero */}
       <section className={heroCls} style={heroStyle} aria-labelledby="lp-title" data-section="hero">
-        <div className="lp-hero__media">
-          <div className="lp-hero__img">
-            <Image src={`/2027/landing/${hero.file}`} alt={copy.alt} fill priority sizes={hero.layout === "partial" ? "(min-width: 1024px) 66vw, 100vw" : "100vw"} />
+        {hero && (
+          <div className="lp-hero__media">
+            <div className="lp-hero__img">
+              <Image src={`/2027/landing/${hero.file}`} alt={copy.alt ?? ""} fill priority sizes={hero.layout === "partial" ? "(min-width: 1024px) 66vw, 100vw" : "100vw"} />
+            </div>
+            <div className="lp-hero__veil" aria-hidden />
           </div>
-          <div className="lp-hero__veil" aria-hidden />
-        </div>
+        )}
         <div className="lp-hero__inner">
           <div className="lp-hero__col">
             <nav aria-label={t("lp.crumbs.label")} className="lp-crumbs">
@@ -99,24 +148,26 @@ export default function LandingPage({ id, lang }: { id: PageId; lang: Language }
                 ))}
               </ol>
             </nav>
-            <p className="lp-eyebrow">{t(`lp.eyebrow.${biz ? "business" : "personal"}`)}</p>
+            <p className="lp-eyebrow">{t(`lp.eyebrow.${isService ? "service" : biz ? "business" : "personal"}`)}</p>
             <h1 id="lp-title" className="lp-hero__h1">{copy.h1}</h1>
             <span aria-hidden className={`${arcCls} lp-hero__arc`} />
             <p className="lp-hero__sub">{copy.sub}</p>
             <div className="lp-hero__btns">
-              <span className="lp-btnwrap">
-                <QuoteButton target={target} className="lp-btn">{copy.cta}</QuoteButton>
-                <span aria-hidden className={`${arcCls} a27-btn-arc`} />
-              </span>
-              <a href={whatsappHref(t("a27.wa.hello"))} target="_blank" rel="noopener noreferrer" className="lp-btn-wa">
-                <img src="/2027/icons/deep/whatsapp.svg" alt="" width={20} height={20} />
-                {t("a27.cta.whatsapp")}
-              </a>
+              {primary("lp-btn", arcCls)}
+              {isService ? (
+                phonePill()
+              ) : (
+                <a href={whatsappHref(waMsg)} target="_blank" rel="noopener noreferrer" className="lp-btn-wa">
+                  <img src="/2027/icons/deep/whatsapp.svg" alt="" width={20} height={20} />
+                  {t("a27.cta.whatsapp")}
+                </a>
+              )}
             </div>
             <p className="lp-hero__lic">
               <img src={`/2027/icons/${biz ? "white" : "navy"}/check.svg`} alt="" width={15} height={15} />
               {t("lp.licensed")}
             </p>
+            {svc?.note && <p className="lp-hero__note">{svc.note}</p>}
           </div>
         </div>
         {biz && <Scallop edge="bottom" fill="#FFFFFF" />}
@@ -159,14 +210,16 @@ export default function LandingPage({ id, lang }: { id: PageId; lang: Language }
       ) : null}
 
       {/* Interactive coverage explorer */}
-      <Explorer
-        scene={c.scene}
-        title={copy.explorer.title}
-        lead={copy.explorer.lead}
-        legend={copy.explorer.legend}
-        items={copy.explorer.items}
-        labels={{ count: t("lp.count"), sources: t("lp.sources"), group: t("lp.explorerGroup") }}
-      />
+      {copy.explorer && c.scene ? (
+        <Explorer
+          scene={c.scene}
+          title={copy.explorer.title}
+          lead={copy.explorer.lead}
+          legend={copy.explorer.legend}
+          items={copy.explorer.items}
+          labels={{ count: t("lp.count"), sources: t("lp.sources"), group: t("lp.explorerGroup") }}
+        />
+      ) : null}
 
       {/* Real-world situations */}
       {copy.scenarios.length ? (
@@ -199,7 +252,8 @@ export default function LandingPage({ id, lang }: { id: PageId; lang: Language }
         </section>
       ) : null}
 
-      {/* What it usually covers / doesn't cover */}
+      {/* What it usually covers / doesn't cover (products) */}
+      {copy.explorer && copy.notCovered.length ? (
       <section className="lp-sec" aria-label={t("lp.covers")} data-section="covers">
         <div className="a27-container">
           <div className="lp-grid2">
@@ -207,7 +261,7 @@ export default function LandingPage({ id, lang }: { id: PageId; lang: Language }
               <h2 className="lp-h2-card">{t("lp.covers")}</h2>
               <span aria-hidden className="a27-arc lp-covers__arc" />
               <ul className="lp-list">
-                {copy.explorer.items.map((it) => (
+                {copy.explorer!.items.map((it) => (
                   <li key={it.t}>
                     <span className="lp-bullet"><img src="/2027/icons/navy/check.svg" alt="" width={15} height={15} /></span>
                     <span className="lp-list__t">{it.t}</span>
@@ -231,6 +285,70 @@ export default function LandingPage({ id, lang }: { id: PageId; lang: Language }
           <p className="lp-src">{t("lp.independent")} {t("lp.stateNote")}</p>
         </div>
       </section>
+      ) : null}
+
+      {/* Service: how to get it done + what to have ready */}
+      {svc ? (
+        <section className="lp-sec" aria-labelledby="howto-title" data-section="how-to">
+          <div className="a27-container lp-howto">
+            <div>
+              <SectionHead id="howto-title" title={t("lp.howto")} />
+              <ol className="lp-howto__steps">
+                {svc.howto.map((s, i) => (
+                  <li key={s.t} className="lp-howto__step">
+                    <span aria-hidden className="lp-howto__n">{i + 1}</span>
+                    <span>
+                      <span className="lp-howto__t">{s.t}</span>
+                      <span className="lp-howto__d">{s.d}</span>
+                    </span>
+                  </li>
+                ))}
+              </ol>
+              <p className="lp-howto__turn">
+                <img src="/2027/icons/navy/clock.svg" alt="" width={16} height={16} />
+                {svc.turnaround}
+              </p>
+            </div>
+            <div className="lp-ready">
+              <h3 className="lp-ready__t">{t("lp.ready")}</h3>
+              <ul className="lp-ready__list">
+                {svc.ready.map((r) => (
+                  <li key={r}><img src="/2027/icons/navy/check.svg" alt="" width={18} height={18} />{r}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {/* Service: ways to reach us (no form) */}
+      {svc ? (
+        <section className="lp-sec" aria-labelledby="routes-title" data-section="contact-routes" id="routes">
+          <div className="a27-container">
+            <SectionHead id="routes-title" title={t("lp.routes")} note={t("lp.routesNote")} />
+            <ul className="lp-grid3 lp-routes">
+              <li>
+                <a href={whatsappHref(waMsg)} target="_blank" rel="noopener noreferrer" className="lp-route">
+                  <span aria-hidden className="lp-route__icon lp-route__icon--wa"><img src="/2027/icons/deep/whatsapp.svg" alt="" width={22} height={22} /></span>
+                  <span><span className="lp-route__label">WhatsApp</span><span className="lp-route__value">{PHONE_DISPLAY}</span></span>
+                </a>
+              </li>
+              <li>
+                <a href={PHONE_HREF} className="lp-route">
+                  <span aria-hidden className="lp-route__icon"><img src="/2027/icons/navy/phone.svg" alt="" width={22} height={22} /></span>
+                  <span><span className="lp-route__label">{t("lp.phone")}</span><span className="lp-route__value">{PHONE_DISPLAY}</span></span>
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${EMAIL}`} className="lp-route">
+                  <span aria-hidden className="lp-route__icon lp-route__icon--glyph">@</span>
+                  <span><span className="lp-route__label">{t("lp.email")}</span><span className="lp-route__value lp-route__value--sm">{EMAIL}</span></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </section>
+      ) : null}
 
       {/* Who needs it */}
       {copy.who.length ? (
@@ -269,7 +387,8 @@ export default function LandingPage({ id, lang }: { id: PageId; lang: Language }
         </section>
       ) : null}
 
-      {/* How it works */}
+      {/* How it works (products) */}
+      {!isService && (
       <section className="lp-sec" aria-labelledby="how-title" data-section="how-it-works">
         <div className="a27-container">
           <SectionHead id="how-title" title={t("lp.how")} />
@@ -284,9 +403,10 @@ export default function LandingPage({ id, lang }: { id: PageId; lang: Language }
           </ol>
         </div>
       </section>
+      )}
 
       {/* Carriers: the live Personal or Commercial list (per-product lists declined) */}
-      <CarrierMarquee mode={mode} variant="page" title={t("lp.carriers")} note={t("lp.carriersNote")} pauseLabel={t("lp.pause")} playLabel={t("lp.play")} />
+      {!isService && <CarrierMarquee mode={mode} variant="page" title={t("lp.carriers")} note={t("lp.carriersNote")} pauseLabel={t("lp.pause")} playLabel={t("lp.play")} />}
 
       {/* FAQ */}
       {copy.faq.length ? (
@@ -297,7 +417,7 @@ export default function LandingPage({ id, lang }: { id: PageId; lang: Language }
       {related.length ? (
         <section className="lp-sec" aria-labelledby="related-title" data-section="related">
           <div className="a27-container">
-            <SectionHead id="related-title" title={t("lp.related")} />
+            <SectionHead id="related-title" title={relatedTitle} />
             <ul className="lp-related" style={{ "--lp-related-n": Math.max(3, Math.min(6, related.length)) } as React.CSSProperties}>
               {related.map((r) => (
                 <li key={r.id}>
@@ -342,20 +462,23 @@ export default function LandingPage({ id, lang }: { id: PageId; lang: Language }
         <div className="a27-container lp-cta__inner">
           <h2 id="fcta-title" className="lp-cta__h2">{copy.cta}</h2>
           <span aria-hidden className="a27-arc a27-arc--orange lp-cta__arc" />
-          <p className="lp-cta__lead">{t("lp.ctaLead")}</p>
+          <p className="lp-cta__lead">{isService ? copy.sub : t("lp.ctaLead")}</p>
           <div className="lp-cta__btns">
-            <span className="lp-btnwrap">
-              <QuoteButton target={target} className="lp-btn lp-btn--lg">{copy.cta}</QuoteButton>
-              <span aria-hidden className="a27-arc a27-arc--orange a27-btn-arc" />
-            </span>
-            <a href={whatsappHref(t("a27.wa.hello"))} target="_blank" rel="noopener noreferrer" className="lp-btn-wa lp-btn-wa--lg">
-              <img src="/2027/icons/deep/whatsapp.svg" alt="" width={20} height={20} />
-              {t("a27.cta.whatsapp")}
-            </a>
-            <a href={PHONE_HREF} className="a27-btn-outline-dark a27-btn-outline-dark--soft">
-              <img src="/2027/icons/white/phone.svg" alt="" width={18} height={18} />
-              {PHONE_DISPLAY}
-            </a>
+            {primary("lp-btn lp-btn--lg", "a27-arc a27-arc--orange")}
+            {isService ? (
+              phonePill(true)
+            ) : (
+              <>
+                <a href={whatsappHref(waMsg)} target="_blank" rel="noopener noreferrer" className="lp-btn-wa lp-btn-wa--lg">
+                  <img src="/2027/icons/deep/whatsapp.svg" alt="" width={20} height={20} />
+                  {t("a27.cta.whatsapp")}
+                </a>
+                <a href={PHONE_HREF} className="a27-btn-outline-dark a27-btn-outline-dark--soft">
+                  <img src="/2027/icons/white/phone.svg" alt="" width={18} height={18} />
+                  {PHONE_DISPLAY}
+                </a>
+              </>
+            )}
           </div>
         </div>
       </section>
@@ -364,8 +487,10 @@ export default function LandingPage({ id, lang }: { id: PageId; lang: Language }
         target={target}
         label={copy.cta}
         shortLabel={t("nav.getQuote")}
-        waMessage={t("a27.wa.hello")}
+        waMessage={waMsg}
         waLabel={t("a27.fab")}
+        callLabel={t("a27.cta.call")}
+        phoneHref={PHONE_HREF}
         groupLabel={t("lp.stickyLabel")}
       />
     </InnerShell>

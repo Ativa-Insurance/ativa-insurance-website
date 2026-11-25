@@ -38,17 +38,27 @@ export interface LandingCopy {
   sub: string;
   /** Primary button label (also the final CTA heading) */
   cta: string;
-  alt: string;
+  /** Hero photo alt text (pages with a photo) */
+  alt?: string;
   quickQ: string;
   quick: string;
   protects?: Array<{ icon: string; t: string; d: string; items: string[] }>;
-  explorer: { title: string; lead: string; legend: string; items: ExplorerItem[] };
+  explorer?: { title: string; lead: string; legend: string; items: ExplorerItem[] };
   scenarios: Array<{ t: string; parts: string[]; d: string }>;
   myths: Array<{ m: string; f: string }>;
   notCovered: string[];
   who: Array<{ t: string; d: string }>;
   factors: string[];
   faq: Array<{ q: string; a: string; sources?: Source[] }>;
+  /** Service template only (site-v2 README 5.3 and 5.5) */
+  service?: {
+    /** Line under "Licensed in 10 states" */
+    note?: string;
+    howto: Array<{ t: string; d: string }>;
+    ready: string[];
+    /** One line, no guarantees */
+    turnaround: string;
+  };
 }
 
 export interface HeroPhoto {
@@ -58,6 +68,8 @@ export interface HeroPhoto {
   h: number;
   /** "full": full-width panorama. "partial": 2:1 photo anchored right, fading in from its left edge */
   layout: "full" | "partial";
+  /** "width": fit the photo to its full width (height capped at its ratio) so nothing is cropped */
+  fit?: "width";
   imgW?: string;
   subW?: string;
   side?: "left" | "right";
@@ -71,8 +83,12 @@ export interface LandingContent {
   status: Status;
   /** ISO date of the last content edit (shown only with a filled "Reviewed by" box) */
   updated: string;
-  scene: SceneId;
-  hero: HeroPhoto;
+  /** Explorer scene (pages with an explorer) */
+  scene?: SceneId;
+  /** Hero photo; service pages without one get a light hero with no photo */
+  hero?: HeroPhoto;
   related: PageId[];
+  /** Service pages: which pre-filled WhatsApp message the primary button opens (a27.wa.<key>) */
+  waKey?: "coi" | "idcards" | "changes" | "claims";
   copy: Record<Language, LandingCopy>;
 }

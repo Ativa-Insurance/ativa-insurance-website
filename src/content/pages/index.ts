@@ -18,6 +18,10 @@ import trucking from "./trucking";
 import bop from "./bop";
 import commercialUmbrella from "./commercial-umbrella";
 import eo from "./eo";
+import coi from "./coi";
+import claimsHelp from "./claims-help";
+import idCards from "./id-cards";
+import policyChanges from "./policy-changes";
 
 export const CONTENT: Partial<Record<PageId, LandingContent>> = {
   auto,
@@ -33,6 +37,10 @@ export const CONTENT: Partial<Record<PageId, LandingContent>> = {
   bop,
   "commercial-umbrella": commercialUmbrella,
   eo,
+  coi,
+  "claims-help": claimsHelp,
+  "id-cards": idCards,
+  "policy-changes": policyChanges,
 };
 
 // built.ts (used by client menus) must list exactly the pages that have content

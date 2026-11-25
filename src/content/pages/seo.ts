@@ -32,7 +32,7 @@ export function pageMetadata(id: PageId, lang: Language): Metadata {
       siteName: "Ativa Insurance",
       type: "website",
       locale: HTML_LANG[lang].replace("-", "_"),
-      images: [{ url: `/2027/landing/${c.hero.file}`, width: c.hero.w, height: c.hero.h, alt: copy.alt }],
+      ...(c.hero ? { images: [{ url: `/2027/landing/${c.hero.file}`, width: c.hero.w, height: c.hero.h, alt: copy.alt ?? copy.h1 }] } : {}),
     },
   };
 }

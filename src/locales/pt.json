@@ -725,7 +725,8 @@
       "hello": "Olá, Ativa. Tenho uma dúvida sobre seguro.",
       "idcards": "Olá, Ativa. Preciso dos meus cartões de seguro (ID cards).",
       "coi": "Olá, Ativa. Preciso de um certificado de seguro (COI). Titular do certificado: ",
-      "changes": "Olá, Ativa. Preciso alterar minha apólice: "
+      "changes": "Olá, Ativa. Preciso alterar minha apólice: ",
+      "claims": "Olá, Ativa. Preciso de ajuda com um sinistro: "
     },
     "fab": "Falar com a Ativa no WhatsApp",
     "trust": {
@@ -969,6 +970,13 @@
     "independent": "A Ativa Insurance é uma agência independente. A cobertura depende da apólice e da seguradora que a emite.",
     "sources": "Fontes",
     "explorerGroup": "Partes da cobertura",
-    "stickyLabel": "Ações rápidas"
+    "stickyLabel": "Ações rápidas",
+    "howto": "Como resolver",
+    "ready": "O que ter em mãos",
+    "routes": "Como falar com a gente",
+    "routesNote": "WhatsApp, telefone ou e-mail. Não há formulário para preencher.",
+    "email": "E-mail",
+    "phone": "Telefone",
+    "otherServices": "Outras solicitações de atendimento"
   }
 }

@@ -376,8 +376,9 @@
 .lp-bar__quote { flex: 1; min-width: 0; height: 52px; min-height: 52px; padding: 0 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .lp-bar__wa { width: 52px; height: 52px; flex-shrink: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--c-whatsapp); box-shadow: var(--sh-whatsapp); }
 .lp-bar__wa img { display: block; width: 22px; height: 22px; }
-.lp-bar-space { height: 76px; }
-@media (min-width: 768px) { .lp-bar, .lp-bar-space { display: none; } }
+/* The page reserves 76px at the very end (after the footer) so the bar never covers its last line */
+@media (max-width: 767px) { .a27[data-page="inner"] { padding-bottom: 76px; } }
+@media (min-width: 768px) { .lp-bar { display: none; } }
 
 /* Inner pages hide the homepage's floating WhatsApp button on phone (the sticky bar replaces it) */
 @media (max-width: 767px) { .a27[data-page="inner"] .a27-fabs { display: none !important; } }
@@ -397,3 +398,54 @@
 .lp-x__head .a27-h2 { color: var(--c-white); }
 .lp-price__note { margin-top: 12px; }
 @media (max-width: 767px) { .lp-x__svg path[data-arc-layer] { stroke-width: 9px; } }
+
+/* ═══ Service template (site-v2 README 5.3, 5.5) ═════════════════════════ */
+.lp-btn-pill--lg { height: 54px; }
+.lp-btn--wa-icon { text-decoration: none; }
+/* Light hero without a photo (Claims help, ID cards, Policy changes) */
+.lp-hero--plain .lp-hero__inner { min-height: 0; padding: clamp(18px, 2.5vw, 36px) var(--gutter) clamp(36px, 4.5vw, 64px); }
+.lp-hero--plain .lp-hero__col { width: 100%; }
+.lp-hero--plain .lp-hero__sub { max-width: 60ch; }
+/* Photo fitted to its full width so nothing important is cropped (COI) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .lp-hero--fitw .lp-hero__media { height: min(330px, calc(100vw * var(--lp-ratio))); }
+  .lp-hero--fitw .lp-hero__inner { padding-top: calc(min(330px, calc(100vw * var(--lp-ratio))) - 68px); }
+}
+@media (min-width: 1024px) {
+  .lp-hero--fitw .lp-hero__media { height: min(100%, calc(100vw * var(--lp-ratio))); }
+}
+/* How to get it done + what to have ready */
+.lp-howto { display: grid; grid-template-columns: minmax(0,1fr); gap: 32px 48px; align-items: start; }
+@media (min-width: 768px) { .lp-howto { grid-template-columns: minmax(0,1fr) minmax(0,1fr); } }
+.lp-howto__steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.lp-howto__step { display: flex; align-items: flex-start; gap: 16px; padding: 18px 20px; border-radius: var(--r); background: var(--c-white); box-shadow: var(--sh-step); }
+.lp-howto__n { flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--c-orange); color: var(--c-midnight); font-size: 17px; font-weight: 800; }
+.lp-howto__t { display: block; font-size: 17px; line-height: 1.3; font-weight: 700; color: var(--c-midnight); }
+.lp-howto__d { display: block; margin-top: 4px; font-family: var(--f-body); font-size: 15px; line-height: 1.55; font-weight: 500; color: var(--c-slate); }
+.lp-howto__turn { margin: 16px 0 0; display: flex; align-items: flex-start; gap: 8px; max-width: 60ch; font-family: var(--f-body); font-size: 14.5px; line-height: 1.55; font-weight: 500; color: var(--c-midnight-2); }
+.lp-howto__turn img { display: block; flex-shrink: 0; margin-top: 2px; }
+.lp-ready { padding: clamp(20px, 2.6vw, 34px); border-radius: var(--r); background: var(--c-soft-blue-50); box-shadow: var(--sh-tinted); }
+.lp-ready__t { margin: 0 0 14px; font-size: 20px; line-height: 1.3; font-weight: 800; color: var(--c-midnight); }
+.lp-ready__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.lp-ready__list li { display: flex; align-items: flex-start; gap: 10px; font-family: var(--f-body); font-size: 15px; line-height: 1.5; font-weight: 500; color: var(--c-midnight); }
+.lp-ready__list img { display: block; flex-shrink: 0; margin-top: 1px; }
+/* Ways to reach us */
+.lp-route {
+  display: flex; align-items: center; gap: 14px; min-height: 92px; height: 100%; padding: 16px 20px;
+  border-radius: var(--r); background: var(--c-white); box-shadow: var(--sh-step); color: var(--c-midnight) !important;
+  transition: transform 200ms var(--ease), box-shadow 200ms var(--ease);
+}
+.lp-route:hover { transform: translateY(-2px); box-shadow: var(--sh-card-hover); }
+.lp-route__icon { flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: #EEF7FA; }
+.lp-route__icon img { display: block; }
+.lp-route__icon--wa { background: var(--c-whatsapp); }
+.lp-route__icon--glyph { font-size: 22px; font-weight: 800; color: var(--c-midnight); }
+.lp-route__label { display: block; font-size: 13px; font-weight: 700; color: var(--c-slate); }
+.lp-route__value { display: block; margin-top: 2px; font-size: 17px; font-weight: 700; color: var(--c-midnight); overflow-wrap: anywhere; }
+.lp-route__value--sm { font-size: 15.5px; }
+/* Sticky bar, service pages: Call + WhatsApp, equal widths */
+.lp-bar__call, .lp-bar__wa2 { flex: 1; min-width: 0; height: 52px; display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: var(--r-pill); font-size: 16px; font-weight: 700; color: var(--c-midnight) !important; }
+.lp-bar__call { background: var(--c-white); box-shadow: inset 0 0 0 1px rgba(0,41,65,0.2); }
+.lp-bar__wa2 { background: var(--c-whatsapp); box-shadow: var(--sh-whatsapp); }
+.lp-bar__call img, .lp-bar__wa2 img { display: block; }
+@media (prefers-reduced-motion: reduce) { .lp-route { transition: none !important; } }

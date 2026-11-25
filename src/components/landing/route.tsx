@@ -22,6 +22,7 @@ export function InnerRoute({ lang, slug }: { lang: Language; slug: string[] }) {
   if (!id) notFound();
   switch (REGISTRY[id].template) {
     case "product":
+    case "service":
       return <LandingPage id={id} lang={lang} />;
     default:
       notFound();

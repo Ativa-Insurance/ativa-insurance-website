@@ -725,7 +725,8 @@
       "hello": "Hi Ativa, I have a question about insurance.",
       "idcards": "Hi Ativa, I need my insurance ID cards.",
       "coi": "Hi Ativa, I need a certificate of insurance (COI). Certificate holder: ",
-      "changes": "Hi Ativa, I need to change my policy: "
+      "changes": "Hi Ativa, I need to change my policy: ",
+      "claims": "Hi Ativa, I need help with a claim: "
     },
     "fab": "Talk to Ativa on WhatsApp",
     "trust": {
@@ -969,6 +970,13 @@
     "independent": "Ativa Insurance is an independent agency. Coverage depends on the policy and the carrier that issues it.",
     "sources": "Sources",
     "explorerGroup": "Coverage parts",
-    "stickyLabel": "Quick actions"
+    "stickyLabel": "Quick actions",
+    "howto": "How to get it done",
+    "ready": "What to have ready",
+    "routes": "Ways to reach us",
+    "routesNote": "WhatsApp, phone or e-mail. There is no form to fill in.",
+    "email": "E-mail",
+    "phone": "Phone",
+    "otherServices": "Other service requests"
   }
 }
