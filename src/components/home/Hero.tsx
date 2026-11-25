@@ -1,9 +1,9 @@
 "use client";
 
-// 2027 hero. Personal: photo on the left 64%, fading to white; Commercial:
-// full-width photo under a midnight veil. Phone: full photo, flat veil, centred.
-// No buttons in the hero itself — the product selection (children) overlaps
-// its bottom edge.
+// 2027 hero (site v2). Both lines: full-width photo that runs 150px (110px on
+// phone) below the hero, behind the top of the product selection, and fades
+// out. Text column on the right on desktop for both lines. No buttons in the
+// hero itself — the product selection (children) overlaps its bottom edge.
 
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
@@ -27,11 +27,11 @@ export default function Hero({ mode, children }: HeroProps) {
           <div className="a27-hero__img">
             <Image
               key={mode}
-              src={personal ? "/2027/photos/hero-personal.webp" : "/2027/photos/hero-commercial.webp"}
+              src={personal ? "/2027/home/personal-hero-street-2027.webp" : "/2027/home/commercial-hero-logistics-2027.webp"}
               alt=""
               fill
               priority
-              sizes={personal ? "(min-width: 1024px) 64vw, 100vw" : "100vw"}
+              sizes="100vw"
             />
           </div>
           <div className="a27-hero__veil" />
