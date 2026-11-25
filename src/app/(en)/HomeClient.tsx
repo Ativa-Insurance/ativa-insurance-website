@@ -194,9 +194,10 @@ function AtivaSite({ tips }: { tips: Record<Mode, TipPost[]> }) {
 export default function HomeClient({ tips }: { tips: Record<Mode, TipPost[]> }) {
   return (
     <LanguageProvider>
-      <LangFromQuery />
       <Suspense fallback={null}>
         <AtivaSite tips={tips} />
+        {/* after AtivaSite, inside its boundary, so ?lang= applies once it has hydrated */}
+        <LangFromQuery />
       </Suspense>
     </LanguageProvider>
   );

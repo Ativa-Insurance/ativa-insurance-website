@@ -9,7 +9,7 @@
 
 import { useState } from "react";
 import type { Mode } from "@/types";
-import { useLanguage } from "@/context/LanguageContext";
+import { useSiteI18n } from "@/i18n/PageLang";
 
 interface Carrier {
   name: string;
@@ -72,18 +72,36 @@ function logoSrc(file: string): string {
   return `/carriers/${file.replace(/ /g, "%20")}`;
 }
 
-export default function CarrierMarquee({ mode }: { mode: Mode }) {
-  const { t } = useLanguage();
+interface CarrierMarqueeProps {
+  mode: Mode;
+  /** "page": inner-page variant — left-aligned heading, page title and note (README 5.5) */
+  variant?: "home" | "page";
+  title?: string;
+  note?: string;
+  pauseLabel?: string;
+  playLabel?: string;
+}
+
+export default function CarrierMarquee({ mode, variant = "home", title, note, pauseLabel, playLabel }: CarrierMarqueeProps) {
+  const { t } = useSiteI18n();
+  const page = variant === "page";
   const [paused, setPaused] = useState(false);
   const carriers = mode === "personal" ? PERSONAL_CARRIERS : COMMERCIAL_CARRIERS;
 
   return (
-    <section className="a27-carriers" aria-labelledby="carriers-title" data-section="carriers">
-      <div className="a27-intro">
-        <h2 id="carriers-title" className="a27-h2">{t("carriers.heading")}</h2>
-        <span aria-hidden className="a27-arc a27-h2-arc" />
-      </div>
-      <div className="a27-carriers__wrap">
+    <section className={page ? "lp-sec" : "a27-carriers"} aria-labelledby="carriers-title" data-section="carriers">
+      {page ? (
+        <div className="a27-container lp-head">
+          <h2 id="carriers-title" className="a27-h2">{title}</h2>
+          <span aria-hidden className="a27-arc lp-head__arc" />
+        </div>
+      ) : (
+        <div className="a27-intro">
+          <h2 id="carriers-title" className="a27-h2">{t("carriers.heading")}</h2>
+          <span aria-hidden className="a27-arc a27-h2-arc" />
+        </div>
+      )}
+      <div className={page ? "a27-carriers__wrap lp-carriers__wrap" : "a27-carriers__wrap"}>
         <div className="a27-carriers__panel">
           <div className="a27-carriers__mask">
             <div className="a27-carriers__track" data-marquee="" data-paused={paused ? "true" : "false"}>
@@ -97,10 +115,10 @@ export default function CarrierMarquee({ mode }: { mode: Mode }) {
           </div>
         </div>
         <div className="a27-carriers__foot">
-          <p className="a27-carriers__note">{t("a27.carriers.note")}</p>
+          <p className="a27-carriers__note">{note ?? t("a27.carriers.note")}</p>
           <button type="button" className="a27-carriers__pause" aria-pressed={paused} onClick={() => setPaused((p) => !p)}>
             <img src={`/2027/icons/navy/${paused ? "play" : "pause"}.svg`} alt="" width={13} height={13} />
-            {paused ? t("a27.carriers.play") : t("a27.carriers.pause")}
+            {paused ? playLabel ?? t("a27.carriers.play") : pauseLabel ?? t("a27.carriers.pause")}
           </button>
         </div>
       </div>

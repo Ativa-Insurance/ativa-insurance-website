@@ -1,13 +1,20 @@
 "use client";
 
-// 2027 header (design/claude-design/home/source/Ativa2027Header.dc.html).
-// Sticky; transparent at the top of the homepage, frosted after 8px of scroll.
-// Desktop (≥1024): Personal / Commercial / Service / Learn / About, language
-// switch, WhatsApp, "Get a quote". Phone + tablet: line tabs + full-screen menu.
+// 2027 header (design/claude-design/site-v2/source/Ativa2027Header.dc.html).
+// Sticky; transparent at the top of the homepage, frosted after 8px of scroll;
+// 0.94 white from the top on other pages. Desktop (≥1024): Personal / Commercial
+// / Service / Learn / About, language switch, WhatsApp, "Get a quote".
+// Homepage: Personal / Commercial switch the view; phone + tablet get line tabs.
+// Other pages: Personal / Commercial open their menu panels, and the language
+// switch goes to the same page in the other language.
+// Menu items link to their page (current language) when it exists; otherwise
+// they open the EXISTING pop-up for that product.
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { useLanguage } from "@/context/LanguageContext";
+import { useSiteI18n } from "@/i18n/PageLang";
+import { pageHref } from "@/content/pages/built";
+import { homeHref } from "@/content/pages/registry";
 import Toggle from "@/components/Toggle";
 import {
   BUSINESS_MENU,
@@ -28,9 +35,16 @@ interface HeaderProps {
   onGetQuote?: () => void;
   /** Homepage only: switch between the Personal and Commercial views */
   onModeChange?: (mode: Mode) => void;
-  /** Homepage only: open the existing pop-up for one product */
+  /** Open the existing pop-up for one product (homepage and inner pages) */
   onOpenProduct?: (line: Mode, product?: string) => void;
+  /** Inner pages: the line underlined in the nav (product and industry pages), or null */
+  current?: Mode | null;
 }
+
+type Panel = "personal" | "business" | "service" | null;
+
+/** Page id for each service menu item */
+const SERVICE_PAGE: Record<ServiceId, string> = { claims: "claims-help", idcards: "id-cards", coi: "coi", changes: "policy-changes" };
 
 const LANGS: Array<{ code: Language; label: string; htmlLang: string; name: string }> = [
   { code: "en", label: "EN", htmlLang: "en", name: "English" },
@@ -40,16 +54,16 @@ const LANGS: Array<{ code: Language; label: string; htmlLang: string; name: stri
 
 const icon = (id: string, color = "navy") => `/2027/icons/${color}/${id}.svg`;
 
-export default function Header({ mode, onGetQuote, onModeChange, onOpenProduct }: HeaderProps) {
-  const { lang, setLang, t } = useLanguage();
+export default function Header({ mode, onGetQuote, onModeChange, onOpenProduct, current = null }: HeaderProps) {
+  const { lang, setLang, t, page } = useSiteI18n();
   const isHome = !!onModeChange;
   const [scrolled, setScrolled] = useState(false);
-  const [serviceOpen, setServiceOpen] = useState(false);
+  const [panel, setPanel] = useState<Panel>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
   const closeAll = useCallback(() => {
-    setServiceOpen(false);
+    setPanel(null);
     setMenuOpen(false);
   }, []);
 
@@ -65,7 +79,7 @@ export default function Header({ mode, onGetQuote, onModeChange, onOpenProduct }
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") closeAll(); };
     const onDown = (e: MouseEvent) => {
-      if (rootRef.current && !rootRef.current.contains(e.target as Node)) setServiceOpen(false);
+      if (rootRef.current && !rootRef.current.contains(e.target as Node)) setPanel(null);
     };
     document.addEventListener("keydown", onKey);
     document.addEventListener("mousedown", onDown);
@@ -91,7 +105,7 @@ export default function Header({ mode, onGetQuote, onModeChange, onOpenProduct }
   const getQuote = () => {
     closeAll();
     if (onGetQuote) onGetQuote();
-    else window.location.href = `/?openQuote=${mode}`;
+    else window.location.href = `/?openQuote=${mode}${lang !== "en" ? `&lang=${lang}` : ""}`;
   };
 
   const runTarget = (target: QuoteTarget) => {
@@ -113,36 +127,63 @@ export default function Header({ mode, onGetQuote, onModeChange, onOpenProduct }
     onModeChange?.(m);
   };
 
-  const serviceHref = (id: ServiceId) => (id === "claims" ? "/faq" : whatsappHref(t(`a27.wa.${id}`)));
+  const togglePanel = (p: Exclude<Panel, null>) => setPanel((cur) => (cur === p ? null : p));
+  // Service items: their page when built; until then claims → FAQ, others → WhatsApp with a pre-filled message
+  const serviceHref = (id: ServiceId) => pageHref(SERVICE_PAGE[id], lang) ?? (id === "claims" ? "/faq" : whatsappHref(t(`a27.wa.${id}`)));
+  const serviceExternal = (id: ServiceId) => !pageHref(SERVICE_PAGE[id], lang) && id !== "claims";
+  const learnHref = pageHref("coverages", lang) ?? "/blog";
+  const aboutHref = pageHref("about", lang) ?? "/faq";
+  const logoHref = isHome ? "/?tab=personal" : homeHref(lang);
   const langIndex = Math.max(0, LANGS.findIndex((l) => l.code === lang));
   const frosted = scrolled || menuOpen;
 
   const lineItem = (m: Mode) => {
     const label = t(m === "personal" ? "nav.personal" : "nav.commercial");
-    const current = isHome && mode === m;
-    const arc = current ? <span aria-hidden className="a27-arc a27-nav__arc" /> : null;
-    return isHome ? (
-      <button type="button" className="a27-nav__link" aria-pressed={current} onClick={() => switchLine(m)}>
-        {label}
-        <img src={icon("chevron")} alt="" width={14} height={14} className="a27-nav__chev" />
-        {arc}
+    const isCurrent = isHome ? mode === m : current === m;
+    const arc = isCurrent ? <span aria-hidden className="a27-arc a27-nav__arc" /> : null;
+    const chev = <img src={icon("chevron")} alt="" width={14} height={14} className="a27-nav__chev" />;
+    if (isHome) {
+      return (
+        <button type="button" className="a27-nav__link" aria-pressed={isCurrent} onClick={() => switchLine(m)}>
+          {label}{chev}{arc}
+        </button>
+      );
+    }
+    const p = m === "personal" ? "personal" : "business";
+    return (
+      <button
+        type="button"
+        className="a27-nav__link"
+        aria-expanded={panel === p}
+        aria-controls={`a27-menu-${p}`}
+        aria-current={isCurrent ? "true" : undefined}
+        onClick={() => togglePanel(p)}
+      >
+        {label}{chev}{arc}
       </button>
-    ) : (
-      <Link href={`/?tab=${m}`} className="a27-nav__link">
-        {label}
-        <img src={icon("chevron")} alt="" width={14} height={14} className="a27-nav__chev" />
-      </Link>
     );
   };
 
-  const menuItem = (it: CatalogItem, group: "personal" | "business") => (
-    <li key={it.id}>
-      <button type="button" className="a27-mmenu__item" onClick={() => runTarget(it.target)}>
-        <img src={icon(it.icon)} alt="" width={20} height={20} />
+  /** A product menu item: link to its page when built, otherwise the existing pop-up */
+  const productItem = (it: CatalogItem, group: "personal" | "business", cls: string, size: number) => {
+    const href = pageHref(it.id, lang);
+    const body = (
+      <>
+        <img src={icon(it.icon)} alt="" width={size} height={size} />
         {t(`a27.items.${group}.${it.id}`)}
-      </button>
-    </li>
-  );
+      </>
+    );
+    return (
+      <li key={it.id}>
+        {href ? (
+          <Link href={href} className={cls} onClick={closeAll}>{body}</Link>
+        ) : (
+          <button type="button" className={cls} onClick={() => runTarget(it.target)}>{body}</button>
+        )}
+      </li>
+    );
+  };
+  const menuItem = (it: CatalogItem, group: "personal" | "business") => productItem(it, group, "a27-mmenu__item", 20);
 
   return (
     <div ref={rootRef} className="a27-chrome a27-header-root" data-home={isHome ? "true" : "false"}>
@@ -150,7 +191,7 @@ export default function Header({ mode, onGetQuote, onModeChange, onOpenProduct }
 
       <header className="a27-header" data-frosted={frosted ? "true" : "false"}>
         <div className="a27-header__row">
-          <Link href="/?tab=personal" aria-label="Ativa Insurance" className="a27-brand" onClick={closeAll}>
+          <Link href={logoHref} aria-label="Ativa Insurance" className="a27-brand" onClick={closeAll}>
             <img src="/2027/brand/logo-mono-black-emblem.png" alt="" width={48} height={38} className="a27-brand__emblem" />
             <span className="a27-brand__words">
               <span className="a27-brand__ativa">ATIVA</span>
@@ -164,32 +205,46 @@ export default function Header({ mode, onGetQuote, onModeChange, onOpenProduct }
             <button
               type="button"
               className="a27-nav__link"
-              aria-expanded={serviceOpen}
+              aria-expanded={panel === "service"}
               aria-controls="a27-menu-service"
-              onClick={() => setServiceOpen((o) => !o)}
+              onClick={() => togglePanel("service")}
             >
               {t("a27.nav.service")}
               <img src={icon("chevron")} alt="" width={14} height={14} className="a27-nav__chev" />
             </button>
-            <Link href="/blog" className="a27-nav__link">{t("a27.nav.learn")}</Link>
-            <Link href="/faq" className="a27-nav__link">{t("a27.nav.about")}</Link>
+            <Link href={learnHref} className="a27-nav__link">{t("a27.nav.learn")}</Link>
+            <Link href={aboutHref} className="a27-nav__link">{t("a27.nav.about")}</Link>
           </nav>
 
           <div className="a27-header__right">
             <div role="group" aria-label={t("a27.nav.language")} className="a27-lang">
-              {LANGS.map((l) => (
-                <button
-                  key={l.code}
-                  type="button"
-                  lang={l.htmlLang}
-                  aria-label={l.name}
-                  aria-pressed={l.code === lang}
-                  onClick={() => setLang(l.code)}
-                  className="a27-lang__btn"
-                >
-                  {l.label}
-                </button>
-              ))}
+              {LANGS.map((l) =>
+                page?.alternates[l.code] ? (
+                  <a
+                    key={l.code}
+                    href={page.alternates[l.code]}
+                    lang={l.htmlLang}
+                    hrefLang={l.htmlLang}
+                    aria-label={l.name}
+                    aria-current={l.code === lang ? "true" : undefined}
+                    className="a27-lang__btn"
+                  >
+                    {l.label}
+                  </a>
+                ) : (
+                  <button
+                    key={l.code}
+                    type="button"
+                    lang={l.htmlLang}
+                    aria-label={l.name}
+                    aria-pressed={l.code === lang}
+                    onClick={() => setLang(l.code)}
+                    className="a27-lang__btn"
+                  >
+                    {l.label}
+                  </button>
+                ),
+              )}
               <span aria-hidden className="a27-lang__arc" style={{ transform: `translateX(${langIndex * 44}px)` }} />
             </div>
 
@@ -217,7 +272,7 @@ export default function Header({ mode, onGetQuote, onModeChange, onOpenProduct }
               aria-expanded={menuOpen}
               aria-controls="a27-mobile-menu"
               aria-label={menuOpen ? t("a27.nav.close") : t("a27.nav.menu")}
-              onClick={() => { setServiceOpen(false); setMenuOpen((o) => !o); }}
+              onClick={() => { setPanel(null); setMenuOpen((o) => !o); }}
             >
               <img src={icon(menuOpen ? "x" : "menu")} alt="" width={22} height={22} />
             </button>
@@ -232,7 +287,31 @@ export default function Header({ mode, onGetQuote, onModeChange, onOpenProduct }
         <span aria-hidden className="a27-arc a27-header__edge" />
       </header>
 
-      {serviceOpen && (
+      {panel === "personal" && (
+        <div id="a27-menu-personal" className="a27-panel a27-panel--personal" data-enter="rise">
+          <div className="a27-panel__intro">
+            <p className="a27-panel__title">{t("nav.personal")}</p>
+            <p className="a27-panel__blurb">{t("a27.nav.personalBlurb")}</p>
+          </div>
+          <ul className="a27-panel__list a27-panel__list--grid">
+            {PERSONAL_MENU.map((it) => productItem(it, "personal", "a27-panel__item", 22))}
+          </ul>
+        </div>
+      )}
+
+      {panel === "business" && (
+        <div id="a27-menu-business" className="a27-panel a27-panel--business" data-enter="rise">
+          <div className="a27-panel__intro">
+            <p className="a27-panel__title">{t("nav.commercial")}</p>
+            <p className="a27-panel__blurb">{t("a27.nav.businessBlurb")}</p>
+          </div>
+          <ul className="a27-panel__list a27-panel__list--grid">
+            {BUSINESS_MENU.map((it) => productItem(it, "business", "a27-panel__item", 22))}
+          </ul>
+        </div>
+      )}
+
+      {panel === "service" && (
         <div id="a27-menu-service" className="a27-panel" data-enter="rise">
           <div className="a27-panel__intro">
             <p className="a27-panel__title">{t("a27.nav.service")}</p>
@@ -243,10 +322,10 @@ export default function Header({ mode, onGetQuote, onModeChange, onOpenProduct }
               <li key={id}>
                 <a
                   href={serviceHref(id)}
-                  target={id === "claims" ? undefined : "_blank"}
-                  rel={id === "claims" ? undefined : "noopener noreferrer"}
+                  target={serviceExternal(id) ? "_blank" : undefined}
+                  rel={serviceExternal(id) ? "noopener noreferrer" : undefined}
                   className="a27-panel__item"
-                  onClick={() => setServiceOpen(false)}
+                  onClick={() => setPanel(null)}
                 >
                   <img src={icon(id)} alt="" width={22} height={22} />
                   {t(`a27.items.service.${id}`)}
@@ -275,8 +354,8 @@ export default function Header({ mode, onGetQuote, onModeChange, onOpenProduct }
                   <li key={id}>
                     <a
                       href={serviceHref(id)}
-                      target={id === "claims" ? undefined : "_blank"}
-                      rel={id === "claims" ? undefined : "noopener noreferrer"}
+                      target={serviceExternal(id) ? "_blank" : undefined}
+                      rel={serviceExternal(id) ? "noopener noreferrer" : undefined}
                       className="a27-mmenu__item"
                       onClick={closeAll}
                     >
@@ -288,8 +367,8 @@ export default function Header({ mode, onGetQuote, onModeChange, onOpenProduct }
               </ul>
             </div>
             <div className="a27-mmenu__grid">
-              <Link href="/blog" className="a27-mmenu__item" onClick={closeAll}>{t("a27.nav.learn")}</Link>
-              <Link href="/faq" className="a27-mmenu__item" onClick={closeAll}>{t("a27.nav.about")}</Link>
+              <Link href={learnHref} className="a27-mmenu__item" onClick={closeAll}>{t("a27.nav.learn")}</Link>
+              <Link href={aboutHref} className="a27-mmenu__item" onClick={closeAll}>{t("a27.nav.about")}</Link>
             </div>
           </nav>
           <div className="a27-mmenu__actions">

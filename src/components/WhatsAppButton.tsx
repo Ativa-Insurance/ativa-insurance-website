@@ -6,11 +6,11 @@
 // widget (same ativa:openChat event MobileFAB used); on tablet/desktop the
 // ChatWidget shows its own chat button, lifted above this one in CSS.
 
-import { useLanguage } from "@/context/LanguageContext";
+import { useSiteI18n } from "@/i18n/PageLang";
 import { whatsappHref } from "@/components/home/catalog";
 
 export default function WhatsAppButton({ hidden = false }: { hidden?: boolean }) {
-  const { t } = useLanguage();
+  const { t } = useSiteI18n();
   if (hidden) return null;
   return (
     <div className="a27-chrome a27-fabs">

@@ -1,8 +1,9 @@
 import { MetadataRoute } from "next";
 import { readdir } from "fs/promises";
 import path from "path";
-
-const BASE_URL = "https://ativainsurance.com";
+import { BASE_URL } from "@/content/site";
+import { CONTENT, alternatesFor, isApproved } from "@/content/pages/index";
+import type { PageId } from "@/content/pages/registry";
 
 async function getBlogSlugs(): Promise<string[]> {
   try {
@@ -53,5 +54,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...blogRoutes];
+  // Inner pages: only pages the owner marked "approved" (drafts are noindex and
+  // left out), one entry per language with hreflang alternates.
+  const pageRoutes: MetadataRoute.Sitemap = (Object.keys(CONTENT) as PageId[])
+    .filter(isApproved)
+    .flatMap((id) => {
+      const alt = alternatesFor(id);
+      const languages = { en: `${BASE_URL}${alt.en}`, pt: `${BASE_URL}${alt.pt}`, es: `${BASE_URL}${alt.es}`, "x-default": `${BASE_URL}${alt.en}` };
+      return (["en", "pt", "es"] as const).map((l) => ({
+        url: `${BASE_URL}${alt[l]}`,
+        lastModified: new Date(CONTENT[id]!.updated),
+        changeFrequency: "monthly" as const,
+        priority: 0.8,
+        alternates: { languages },
+      }));
+    });
+
+  return [...staticRoutes, ...pageRoutes, ...blogRoutes];
 }

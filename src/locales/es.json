@@ -908,5 +908,67 @@
         "commercial": "Negocios"
       }
     }
+  },
+  "lp": {
+    "crumbs": {
+      "label": "Ruta de navegación",
+      "home": "Inicio",
+      "personal": "Personal",
+      "business": "Negocios",
+      "service": "Servicio",
+      "industries": "Industrias"
+    },
+    "eyebrow": {
+      "personal": "Seguros personales",
+      "business": "Seguros para negocios",
+      "service": "Servicio"
+    },
+    "licensed": "Con licencia en 10 estados",
+    "quick": "Respuesta rápida",
+    "whatIs": "¿Qué es {x}?",
+    "protects": "Qué protege",
+    "example": "Ejemplo",
+    "count": "{n} / {total}",
+    "scen": "Situaciones de la vida real",
+    "scenNote": "Situaciones ilustrativas, no reclamos reales. La cobertura depende de los términos, límites y deducibles de su póliza.",
+    "parts": "Cobertura que puede responder",
+    "myths": "Lo que suele confundirse",
+    "mythsLead": "Seleccione una afirmación para ver lo que realmente aplica.",
+    "think": "Muchos creen que",
+    "fact": "Lo que realmente aplica",
+    "covers": "Qué cubre normalmente",
+    "notCovers": "Qué no cubre normalmente",
+    "who": "Quién lo necesita",
+    "factors": "Qué influye en el precio",
+    "factorsNote": "No publicamos precios aquí. Un agente con licencia cotiza su caso.",
+    "how": "Cómo funciona",
+    "steps": [
+      {
+        "t": "Cuéntenos qué quiere proteger",
+        "d": "Algunas preguntas cortas. Los detalles pueden venir después."
+      },
+      {
+        "t": "Comparamos aseguradoras",
+        "d": "Un agente con licencia revisa qué aseguradoras ofrecen esta cobertura donde usted está."
+      },
+      {
+        "t": "Usted decide",
+        "d": "Le explicamos las opciones lado a lado. Después de contratar, la misma agencia sigue siendo su contacto."
+      }
+    ],
+    "carriers": "Aseguradoras que lo ofrecen",
+    "carriersNote": "La disponibilidad de aseguradoras varía según el estado, el tipo de cobertura y la elegibilidad.",
+    "pause": "Pausar",
+    "play": "Reproducir",
+    "faq": "Preguntas sobre {x}",
+    "related": "Coberturas relacionadas",
+    "reviewed": "Revisado por",
+    "updated": "Última actualización",
+    "ctaLead": "Algunas preguntas para empezar. Un agente con licencia se encarga del resto.",
+    "stateNote": "Los requisitos, formularios y términos cambian según el estado. Un agente con licencia confirma lo que aplica en el suyo.",
+    "independent": "Ativa Insurance es una agencia independiente. La cobertura depende de la póliza y de la aseguradora que la emite.",
+    "sources": "Fuentes",
+    "explorerGroup": "Partes de la cobertura",
+    "stickyLabel": "Acciones rápidas"
   }
 }

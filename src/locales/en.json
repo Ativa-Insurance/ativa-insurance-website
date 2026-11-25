@@ -908,5 +908,67 @@
         "commercial": "Business"
       }
     }
+  },
+  "lp": {
+    "crumbs": {
+      "label": "Breadcrumb",
+      "home": "Home",
+      "personal": "Personal",
+      "business": "Business",
+      "service": "Service",
+      "industries": "Industries"
+    },
+    "eyebrow": {
+      "personal": "Personal coverage",
+      "business": "Business coverage",
+      "service": "Service"
+    },
+    "licensed": "Licensed in 10 states",
+    "quick": "Quick answer",
+    "whatIs": "What is {x}?",
+    "protects": "What it protects",
+    "example": "Example",
+    "count": "{n} / {total}",
+    "scen": "Real-world situations",
+    "scenNote": "Illustrative situations, not real claims. Whether a loss is covered depends on your policy's terms, limits and deductibles.",
+    "parts": "Coverage that can respond",
+    "myths": "Commonly misunderstood",
+    "mythsLead": "Select a statement to see what's actually true.",
+    "think": "People often think",
+    "fact": "What's actually true",
+    "covers": "What it usually covers",
+    "notCovers": "What it usually doesn't cover",
+    "who": "Who needs it",
+    "factors": "What affects the price",
+    "factorsNote": "We don't publish prices here. A licensed agent quotes your exact situation.",
+    "how": "How it works",
+    "steps": [
+      {
+        "t": "Tell us what you're protecting",
+        "d": "A few short questions. Details can come later."
+      },
+      {
+        "t": "We compare carriers",
+        "d": "A licensed agent checks which carriers write this coverage where you are."
+      },
+      {
+        "t": "You decide",
+        "d": "We explain the options side by side. After you buy, the same agency stays your contact."
+      }
+    ],
+    "carriers": "Carriers that offer it",
+    "carriersNote": "Carrier availability varies by state, coverage type, and eligibility.",
+    "pause": "Pause",
+    "play": "Play",
+    "faq": "Questions about {x}",
+    "related": "Related coverages",
+    "reviewed": "Reviewed by",
+    "updated": "Last updated",
+    "ctaLead": "A few questions to start. A licensed agent takes it from there.",
+    "stateNote": "Requirements, policy forms and terms differ by state. A licensed agent confirms what applies in yours.",
+    "independent": "Ativa Insurance is an independent agency. Coverage depends on the policy and the carrier that issues it.",
+    "sources": "Sources",
+    "explorerGroup": "Coverage parts",
+    "stickyLabel": "Quick actions"
   }
 }

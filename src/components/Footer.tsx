@@ -5,9 +5,13 @@
 // link columns (Personal, Business, Service + Company, Talk to Ativa), licensed
 // states + language buttons, agency note, copyright + privacy links.
 // Office, disclosure and tagline use the live site's footer information.
+// Product and service links go to their page (current language) when it exists;
+// otherwise they open the EXISTING pop-up. On inner pages the language buttons
+// go to the same page in the other language.
 
 import Link from "next/link";
-import { useLanguage } from "@/context/LanguageContext";
+import { useSiteI18n } from "@/i18n/PageLang";
+import { pageHref } from "@/content/pages/built";
 import {
   BUSINESS_MENU,
   LICENSED_STATES,
@@ -65,16 +69,26 @@ interface FooterProps {
   mode: Mode;
   /** "Get a quote" — homepage passes its opener; elsewhere it goes to /?openQuote= */
   onGetQuote?: () => void;
-  /** Homepage only: open the existing pop-up for one product */
+  /** Open the existing pop-up for one product (homepage and inner pages) */
   onOpenProduct?: (line: Mode, product?: string) => void;
 }
 
 export default function Footer({ mode, onGetQuote, onOpenProduct }: FooterProps) {
-  const { t, lang, setLang } = useLanguage();
+  const { t, lang, setLang, page } = useSiteI18n();
 
   const getQuote = () => {
     if (onGetQuote) onGetQuote();
-    else window.location.href = `/?openQuote=${mode}`;
+    else window.location.href = `/?openQuote=${mode}${lang !== "en" ? `&lang=${lang}` : ""}`;
+  };
+  const SERVICE_PAGE: Record<string, string> = { claims: "claims-help", idcards: "id-cards", coi: "coi", changes: "policy-changes" };
+  const serviceHref = (id: string) => pageHref(SERVICE_PAGE[id], lang) ?? (id === "claims" ? "/faq" : whatsappHref(t(`a27.wa.${id}`)));
+  const serviceExternal = (id: string) => !pageHref(SERVICE_PAGE[id], lang) && id !== "claims";
+  const productLink = (id: string, group: "personal" | "business", target: QuoteTarget) => {
+    const href = pageHref(id, lang);
+    const label = t(`a27.items.${group}.${id}`);
+    return href
+      ? <Link href={href} className="a27-footer__link">{label}</Link>
+      : <button type="button" className="a27-footer__link" onClick={() => run(target)}>{label}</button>;
   };
   const run = (target: QuoteTarget) => {
     if (target.kind === "ams") { window.location.href = bopHref(lang); return; }
@@ -87,8 +101,8 @@ export default function Footer({ mode, onGetQuote, onOpenProduct }: FooterProps)
   };
 
   const company = [
-    { label: t("a27.footer.aboutLink"), href: "/faq" },
-    { label: t("a27.footer.learnLink"), href: "/blog" },
+    { label: t("a27.footer.aboutLink"), href: pageHref("about", lang) ?? "/faq" },
+    { label: t("a27.footer.learnLink"), href: pageHref("coverages", lang) ?? "/blog" },
     { label: t("nav.faq"), href: "/faq" },
     { label: t("nav.blog"), href: "/blog" },
     { label: t("nav.rceCalculator"), href: "/rce-calculator" },
@@ -129,7 +143,7 @@ export default function Footer({ mode, onGetQuote, onOpenProduct }: FooterProps)
             <p className="a27-footer__h">{t("nav.personal")}</p>
             <ul className="a27-footer__list">
               {PERSONAL_MENU.map((it) => (
-                <li key={it.id}><button type="button" className="a27-footer__link" onClick={() => run(it.target)}>{t(`a27.items.personal.${it.id}`)}</button></li>
+                <li key={it.id}>{productLink(it.id, "personal", it.target)}</li>
               ))}
             </ul>
           </div>
@@ -137,7 +151,7 @@ export default function Footer({ mode, onGetQuote, onOpenProduct }: FooterProps)
             <p className="a27-footer__h">{t("nav.commercial")}</p>
             <ul className="a27-footer__list">
               {BUSINESS_MENU.map((it) => (
-                <li key={it.id}><button type="button" className="a27-footer__link" onClick={() => run(it.target)}>{t(`a27.items.business.${it.id}`)}</button></li>
+                <li key={it.id}>{productLink(it.id, "business", it.target)}</li>
               ))}
             </ul>
           </div>
@@ -147,9 +161,9 @@ export default function Footer({ mode, onGetQuote, onOpenProduct }: FooterProps)
               {SERVICE_ITEMS.map((id) => (
                 <li key={id}>
                   <a
-                    href={id === "claims" ? "/faq" : whatsappHref(t(`a27.wa.${id}`))}
-                    target={id === "claims" ? undefined : "_blank"}
-                    rel={id === "claims" ? undefined : "noopener noreferrer"}
+                    href={serviceHref(id)}
+                    target={serviceExternal(id) ? "_blank" : undefined}
+                    rel={serviceExternal(id) ? "noopener noreferrer" : undefined}
                     className="a27-footer__link"
                   >
                     {t(`a27.items.service.${id}`)}
@@ -189,18 +203,31 @@ export default function Footer({ mode, onGetQuote, onOpenProduct }: FooterProps)
             ))}
           </div>
           <div role="group" aria-label={t("a27.nav.language")} className="a27-footer__langs">
-            {LANGS.map((l) => (
-              <button
-                key={l.code}
-                type="button"
-                lang={l.htmlLang}
-                aria-pressed={l.code === lang}
-                onClick={() => setLang(l.code)}
-                className="a27-footer__lang"
-              >
-                {l.name}
-              </button>
-            ))}
+            {LANGS.map((l) =>
+              page?.alternates[l.code] ? (
+                <a
+                  key={l.code}
+                  href={page.alternates[l.code]}
+                  lang={l.htmlLang}
+                  hrefLang={l.htmlLang}
+                  aria-current={l.code === lang ? "true" : undefined}
+                  className="a27-footer__lang"
+                >
+                  {l.name}
+                </a>
+              ) : (
+                <button
+                  key={l.code}
+                  type="button"
+                  lang={l.htmlLang}
+                  aria-pressed={l.code === lang}
+                  onClick={() => setLang(l.code)}
+                  className="a27-footer__lang"
+                >
+                  {l.name}
+                </button>
+              ),
+            )}
           </div>
         </div>
 

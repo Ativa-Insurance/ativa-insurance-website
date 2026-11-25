@@ -382,3 +382,15 @@
 @media (prefers-reduced-motion: reduce) {
   .lp-x__water, .lp-x__svg path, .lp-x__marker, .lp-x__chip, .lp-myth__chev, .lp-rel, .a27-art { transition: none !important; }
 }
+
+/* Landing hero photo focal points per breakpoint */
+.lp-hero__img img { object-position: var(--pos-sm, 50% 50%); }
+@media (min-width: 768px) and (max-width: 1023px) { .lp-hero__img img { object-position: var(--pos-md, 50% 50%); } }
+@media (min-width: 1024px) { .lp-hero__img img { object-position: var(--pos-lg, 50% 50%); } }
+.lp-carriers__wrap { margin-top: 0; }
+.lp-faq__src { display: block; margin-top: 8px; font-size: 13.5px; color: var(--c-slate); }
+.lp-faq__src a, .lp-src a { color: var(--c-midnight-2) !important; text-decoration: underline; text-underline-offset: 3px; }
+.lp-src { margin: 14px 0 0; font-family: var(--f-body); font-size: 13.5px; line-height: 1.55; color: var(--c-slate); max-width: 80ch; }
+.lp-x__head .a27-h2 { color: var(--c-white); }
+.lp-price__note { margin-top: 12px; }
+@media (max-width: 767px) { .lp-x__svg path[data-arc-layer] { stroke-width: 9px; } }
