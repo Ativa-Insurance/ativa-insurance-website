@@ -8,13 +8,15 @@ import type { Language } from "@/types";
 import { BASE_URL, AGENCY_ID, LICENSED_STATE_NAMES } from "@/content/site";
 import { makeT, HTML_LANG } from "@/i18n/dict";
 import { REGISTRY, homeHref, pathFor, type PageId } from "./registry";
-import { CONTENT, alternatesFor } from "./index";
+import { CONTENT, alternatesFor, baseCopy } from "./index";
+import type { LandingContent } from "./types";
 
 const abs = (p: string) => `${BASE_URL}${p}`;
 
 export function pageMetadata(id: PageId, lang: Language): Metadata {
   const c = CONTENT[id]!;
-  const copy = c.copy[lang];
+  const copy = baseCopy(id, lang);
+  const hero = (c as LandingContent).hero;
   const alt = alternatesFor(id);
   const url = abs(alt[lang]);
   return {
@@ -32,7 +34,7 @@ export function pageMetadata(id: PageId, lang: Language): Metadata {
       siteName: "Ativa Insurance",
       type: "website",
       locale: HTML_LANG[lang].replace("-", "_"),
-      ...(c.hero ? { images: [{ url: `/2027/landing/${c.hero.file}`, width: c.hero.w, height: c.hero.h, alt: copy.alt ?? copy.h1 }] } : {}),
+      ...(hero ? { images: [{ url: `/2027/landing/${hero.file}`, width: hero.w, height: hero.h, alt: copy.alt ?? copy.h1 }] } : {}),
     },
   };
 }
@@ -40,19 +42,19 @@ export function pageMetadata(id: PageId, lang: Language): Metadata {
 export function breadcrumbs(id: PageId, lang: Language): Array<{ name: string; href?: string }> {
   const t = makeT(lang).t;
   const e = REGISTRY[id];
-  const copy = CONTENT[id]!.copy[lang];
+  const copy = baseCopy(id, lang);
   const items: Array<{ name: string; href?: string }> = [{ name: t("lp.crumbs.home"), href: homeHref(lang) }];
   if (e.line === "personal") items.push({ name: t("lp.crumbs.personal"), href: homeHref(lang, "personal") });
   if (e.line === "business") items.push({ name: t("lp.crumbs.business"), href: homeHref(lang, "commercial") });
-  if (e.template === "industry") items.push({ name: t("lp.crumbs.industries") });
+  // Industries → the "By industry" group of the Coverages hub, when the hub is built
+  if (e.template === "industry") items.push({ name: t("lp.crumbs.industries"), href: CONTENT.coverages ? `${pathFor("coverages", lang)}#idx-i` : undefined });
   if (e.line === "service") items.push({ name: t("lp.crumbs.service") });
-  items.push({ name: copy.h1 });
+  items.push({ name: e.template === "industry" ? t(`a27.items.business.${id}`) : copy.h1 });
   return items;
 }
 
 export function pageJsonLd(id: PageId, lang: Language): object[] {
-  const c = CONTENT[id]!;
-  const copy = c.copy[lang];
+  const copy = baseCopy(id, lang);
   const e = REGISTRY[id];
   const url = abs(pathFor(id, lang));
   const crumbs = breadcrumbs(id, lang);
@@ -85,15 +87,15 @@ export function pageJsonLd(id: PageId, lang: Language): object[] {
       "@type": "Service",
       name: copy.h1,
       serviceType: copy.h1,
-      description: copy.quick,
+      description: copy.quick ?? copy.sub,
       url,
       provider: { "@id": AGENCY_ID },
       areaServed: LICENSED_STATE_NAMES.map((name) => ({ "@type": "State", name })),
       availableLanguage: ["en", "pt", "es"],
     });
   }
-  const faq = [{ q: copy.quickQ, a: copy.quick }, ...copy.faq];
-  out.push({
+  const faq = [...(copy.quickQ && copy.quick ? [{ q: copy.quickQ, a: copy.quick }] : []), ...copy.faq];
+  if (faq.length) out.push({
     "@context": "https://schema.org",
     "@type": "FAQPage",
     inLanguage: HTML_LANG[lang],

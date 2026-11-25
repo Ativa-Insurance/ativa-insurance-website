@@ -693,7 +693,8 @@
         "renters": "Renters",
         "condo": "Condo",
         "flood": "Flood",
-        "umbrella": "Umbrella"
+        "umbrella": "Umbrella",
+        "pet": "Pet"
       },
       "business": {
         "commercial-auto": "Commercial auto",
@@ -977,6 +978,39 @@
     "routesNote": "WhatsApp, phone or e-mail. There is no form to fill in.",
     "email": "E-mail",
     "phone": "Phone",
-    "otherServices": "Other service requests"
+    "otherServices": "Other service requests",
+    "needed": "Coverage this kind of business usually needs",
+    "neededLead": "Each one links to its own page.",
+    "see": "See coverage",
+    "whatWeDo": "What an independent agency does",
+    "states": "Where we're licensed",
+    "office": "Office",
+    "faqAbout": "Questions people ask us",
+    "indexP": "Personal coverage",
+    "indexB": "Business coverage",
+    "indexI": "By industry",
+    "glossary": "Glossary A–Z",
+    "glossaryLead": "One plain line per term.",
+    "glossaryLetters": "Jump to letter",
+    "mapAlt": "Map of the 10 states where Ativa is licensed",
+    "band": {
+      "title": "Protecting your family too?",
+      "body": "Auto, home, renters, condo, flood and pet, with the same agency.",
+      "cta": "See personal coverage"
+    },
+    "cardLine": {
+      "auto": "The cars and drivers in your household",
+      "home": "The house you own and what's inside",
+      "renters": "Your belongings in a place you rent",
+      "condo": "Your unit, from the walls in",
+      "flood": "Water from outside, on its own policy",
+      "pet": "Vet bills for your dog or cat",
+      "commercial-auto": "Vehicles your business owns or uses",
+      "trucking": "For-hire carriers and owner-operators",
+      "bop": "Liability and property in one policy",
+      "workers-comp": "Employee injuries on the job",
+      "commercial-umbrella": "Extra liability above your business policies",
+      "eo": "Claims over professional mistakes"
+    }
   }
 }

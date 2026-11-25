@@ -92,3 +92,67 @@ export interface LandingContent {
   waKey?: "coi" | "idcards" | "changes" | "claims";
   copy: Record<Language, LandingCopy>;
 }
+
+/** Fields every inner page has (metadata, breadcrumbs, structured data) */
+export interface BaseCopy {
+  seo: { title: string; description: string };
+  h1: string;
+  sub: string;
+  quickQ?: string;
+  quick?: string;
+  faq: Array<{ q: string; a: string; sources?: Source[] }>;
+  alt?: string;
+}
+
+/** Industry page (site-v2 README 5.4 / 5.5): older inner-page hero with artwork on the right */
+export interface IndustryCopy extends BaseCopy {
+  quickQ: string;
+  quick: string;
+  /** One line for the Coverages hub index card */
+  line: string;
+  /** Coverage this kind of business usually needs: a product page + one "why" line */
+  needed: Array<{ id: PageId; why: string }>;
+  factors: Array<{ t: string; d: string }>;
+}
+
+export interface IndustryContent {
+  id: PageId;
+  status: Status;
+  updated: string;
+  copy: Record<Language, IndustryCopy>;
+}
+
+export interface AboutCopy extends BaseCopy {
+  quickQ: string;
+  quick: string;
+  /** Fact tiles: only facts already on the live site */
+  facts: string[];
+  whatWeDo: Array<{ t: string; d: string }>;
+}
+
+export interface AboutContent {
+  id: PageId;
+  status: Status;
+  updated: string;
+  /** Team cards stay hidden until the owner supplies names, roles and photos */
+  team: Array<{ name: string; role: string; langs: string }>;
+  /** Office hours stay hidden until the owner supplies them */
+  hours: Record<Language, string> | null;
+  copy: Record<Language, AboutCopy>;
+}
+
+export interface HubCopy extends BaseCopy {
+  glossary: Array<{ t: string; d: string }>;
+}
+
+export interface HubContent {
+  id: PageId;
+  status: Status;
+  updated: string;
+  indexP: PageId[];
+  indexB: PageId[];
+  indexI: PageId[];
+  copy: Record<Language, HubCopy>;
+}
+
+export type AnyContent = LandingContent | IndustryContent | AboutContent | HubContent;

@@ -53,8 +53,8 @@ export const REGISTRY: Record<PageId, PageEntry> = {
   restaurants: { id: "restaurants", template: "industry", line: "business", quote: P("commercial"),                          icon: "restaurants", slugs: { en: "business/restaurant-insurance",       pt: "empresas/seguro-restaurantes",      es: "negocios/seguro-para-restaurantes" } },
   cleaning:    { id: "cleaning",    template: "industry", line: "business", quote: P("commercial"),                          icon: "cleaning",    slugs: { en: "business/cleaning-business-insurance", pt: "empresas/seguro-empresas-limpeza",  es: "negocios/seguro-empresas-de-limpieza" } },
   contractors: { id: "contractors", template: "industry", line: "business", quote: P("commercial"), globe: "contractors", icon: "contractors", slugs: { en: "business/contractor-insurance",       pt: "empresas/seguro-construcao-reformas", es: "negocios/seguro-para-contratistas" } },
-  about:     { id: "about",     template: "about", line: "page", icon: "users", slugs: { en: "about",     pt: "sobre-a-ativa",         es: "sobre-ativa" } },
-  coverages: { id: "coverages", template: "hub",   line: "page", icon: "book",  slugs: { en: "coverages", pt: "coberturas-explicadas", es: "coberturas-explicadas" } },
+  about:     { id: "about",     template: "about", line: "page", quote: P("personal"), icon: "users", slugs: { en: "about",     pt: "sobre-a-ativa",         es: "sobre-ativa" } },
+  coverages: { id: "coverages", template: "hub",   line: "page", quote: P("personal"), icon: "book",  slugs: { en: "coverages", pt: "coberturas-explicadas", es: "coberturas-explicadas" } },
 };
 
 /** Absolute path of a page in a language, e.g. /pt/seguro-auto */

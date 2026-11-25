@@ -3,7 +3,7 @@
 
 import type { Language } from "@/types";
 import { REGISTRY, pathFor, type PageId } from "./registry";
-import type { LandingContent } from "./types";
+import type { AnyContent, BaseCopy, LandingContent } from "./types";
 import { BUILT } from "./built";
 import auto from "./auto";
 import home from "./home";
@@ -22,8 +22,13 @@ import coi from "./coi";
 import claimsHelp from "./claims-help";
 import idCards from "./id-cards";
 import policyChanges from "./policy-changes";
+import restaurants from "./restaurants";
+import cleaning from "./cleaning";
+import contractors from "./contractors";
+import about from "./about";
+import coverages from "./coverages";
 
-export const CONTENT: Partial<Record<PageId, LandingContent>> = {
+export const CONTENT: Partial<Record<PageId, AnyContent>> = {
   auto,
   home,
   renters,
@@ -41,6 +46,11 @@ export const CONTENT: Partial<Record<PageId, LandingContent>> = {
   "claims-help": claimsHelp,
   "id-cards": idCards,
   "policy-changes": policyChanges,
+  restaurants,
+  cleaning,
+  contractors,
+  about,
+  coverages,
 };
 
 // built.ts (used by client menus) must list exactly the pages that have content
@@ -74,4 +84,14 @@ export function staticParams(lang: Language): Array<{ slug: string[] }> {
 
 export function isApproved(id: PageId): boolean {
   return CONTENT[id]?.status === "approved";
+}
+
+/** Shared fields of a page in one language (metadata, breadcrumbs, structured data) */
+export function baseCopy(id: PageId, lang: Language): BaseCopy {
+  return CONTENT[id]!.copy[lang] as BaseCopy;
+}
+
+/** Product and service pages (landing template) */
+export function landing(id: PageId): LandingContent {
+  return CONTENT[id] as LandingContent;
 }

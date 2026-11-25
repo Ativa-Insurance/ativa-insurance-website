@@ -11,9 +11,9 @@ import Link from "next/link";
 import type { Language, Mode } from "@/types";
 import { makeT } from "@/i18n/dict";
 import { REGISTRY, type PageId } from "@/content/pages/registry";
-import { CONTENT, alternatesFor, pageHref } from "@/content/pages/index";
+import { alternatesFor, landing } from "@/content/pages/index";
 import { breadcrumbs, pageJsonLd } from "@/content/pages/seo";
-import { PERSONAL_TILES, COMMERCIAL_TILES, PHONE_DISPLAY, PHONE_HREF, whatsappHref } from "@/components/home/catalog";
+import { PHONE_DISPLAY, PHONE_HREF, whatsappHref } from "@/components/home/catalog";
 import { REVIEWER_NAME, REVIEWER_ROLE } from "@/content/reviewer";
 import { EMAIL } from "@/content/site";
 import SectionHead from "@/components/v2/SectionHead";
@@ -25,19 +25,12 @@ import Explorer from "./Explorer";
 import Myths from "./Myths";
 import LandingFaq from "./LandingFaq";
 import StickyBar from "./StickyBar";
+import { pageCards } from "./cards";
 
 const lower = (s: string) => s.charAt(0).toLowerCase() + s.slice(1);
 
-// Service page ids → their key in a27.items.service and their navy icon
-const SVC: Partial<Record<PageId, { key: string; icon: string }>> = {
-  coi: { key: "coi", icon: "coi" },
-  "claims-help": { key: "claims", icon: "claims" },
-  "id-cards": { key: "idcards", icon: "idcards" },
-  "policy-changes": { key: "changes", icon: "changes" },
-};
-
 export default function LandingPage({ id, lang }: { id: PageId; lang: Language }) {
-  const c = CONTENT[id]!;
+  const c = landing(id);
   const e = REGISTRY[id];
   const copy = c.copy[lang];
   const tr = makeT(lang);
@@ -53,25 +46,10 @@ export default function LandingPage({ id, lang }: { id: PageId; lang: Language }
   const arcCls = biz ? "a27-arc a27-arc--orange" : "a27-arc";
 
   // Related cards: link to built pages only (a product without a page is left out)
-  const related = c.related
-    .map((rid) => {
-      const href = pageHref(rid, lang);
-      if (!href) return null;
-      const r = REGISTRY[rid];
-      const sv = SVC[rid];
-      if (sv) return { id: rid, href, t: t(`a27.items.service.${sv.key}`), d: "", globe: undefined, icon: sv.icon };
-      const group = r.line === "business" ? "business" : "personal";
-      const tile = (group === "personal" ? PERSONAL_TILES : COMMERCIAL_TILES).find((x) => x.id === rid);
-      const liveSet = tr.tProducts(group === "personal" ? "personal" : "commercial");
-      let d = "";
-      if (tile?.copy.source === "live") d = liveSet.find((p) => p.id === (tile.copy as { liveId: string }).liveId)?.description ?? "";
-      else if (tile) d = t(`a27.tiles.${group === "personal" ? "personal" : "commercial"}.${rid}.d`);
-      return { id: rid, href, t: t(`a27.items.${group}.${rid}`), d, globe: r.globe, icon: r.icon };
-    })
-    .filter((x): x is NonNullable<typeof x> => !!x);
+  const related = pageCards(c.related, lang);
 
   const reviewer = REVIEWER_NAME && REVIEWER_ROLE;
-  const relatedTitle = related.length && related.every((r) => SVC[r.id]) ? t("lp.otherServices") : t("lp.related");
+  const relatedTitle = related.length && related.every((r) => r.service) ? t("lp.otherServices") : t("lp.related");
   const heroStyle = (hero
     ? {
         "--pos-lg": hero.pos.lg,

@@ -7,7 +7,8 @@ import { pathFor, type PageId } from "./registry";
 
 export const BUILT: readonly PageId[] = ["auto", "home", "renters", "condo", "flood", "pet",
   "commercial-auto", "gl", "workers-comp", "trucking", "bop", "commercial-umbrella", "eo",
-  "coi", "claims-help", "id-cards", "policy-changes"];
+  "coi", "claims-help", "id-cards", "policy-changes",
+  "restaurants", "cleaning", "contractors", "about", "coverages"];
 
 export function isBuilt(id: string): id is PageId {
   return (BUILT as readonly string[]).includes(id);

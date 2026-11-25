@@ -693,7 +693,8 @@
         "renters": "Inquilinos",
         "condo": "Condominio",
         "flood": "Inundación",
-        "umbrella": "Umbrella"
+        "umbrella": "Umbrella",
+        "pet": "Mascotas"
       },
       "business": {
         "commercial-auto": "Auto comercial",
@@ -977,6 +978,39 @@
     "routesNote": "WhatsApp, teléfono o correo. No hay formulario que llenar.",
     "email": "Correo",
     "phone": "Teléfono",
-    "otherServices": "Otras solicitudes de servicio"
+    "otherServices": "Otras solicitudes de servicio",
+    "needed": "Coberturas que este tipo de negocio suele necesitar",
+    "neededLead": "Cada una lleva a su propia página.",
+    "see": "Ver cobertura",
+    "whatWeDo": "Qué hace una agencia independiente",
+    "states": "Dónde tenemos licencia",
+    "office": "Oficina",
+    "faqAbout": "Preguntas que nos hacen",
+    "indexP": "Seguros personales",
+    "indexB": "Seguros para negocios",
+    "indexI": "Por industria",
+    "glossary": "Glosario A–Z",
+    "glossaryLead": "Una línea simple por término.",
+    "glossaryLetters": "Ir a la letra",
+    "mapAlt": "Mapa de los 10 estados donde Ativa tiene licencia",
+    "band": {
+      "title": "¿También quiere proteger a su familia?",
+      "body": "Auto, vivienda, inquilinos, condominio, inundación y mascotas, con la misma agencia.",
+      "cta": "Ver seguros personales"
+    },
+    "cardLine": {
+      "auto": "Los autos y conductores de su hogar",
+      "home": "La casa que es suya y lo que hay dentro",
+      "renters": "Sus pertenencias en el lugar que alquila",
+      "condo": "Su unidad, de las paredes hacia adentro",
+      "flood": "Agua que viene de afuera, en su propia póliza",
+      "pet": "Gastos veterinarios de su perro o gato",
+      "commercial-auto": "Vehículos que su negocio tiene o usa",
+      "trucking": "Transportistas y owner-operators",
+      "bop": "Responsabilidad y propiedad en una sola póliza",
+      "workers-comp": "Empleados lesionados en el trabajo",
+      "commercial-umbrella": "Responsabilidad adicional sobre las pólizas del negocio",
+      "eo": "Reclamos por errores profesionales"
+    }
   }
 }

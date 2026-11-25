@@ -9,6 +9,7 @@ import { REGISTRY } from "@/content/pages/registry";
 import { findPage, staticParams } from "@/content/pages/index";
 import { pageMetadata } from "@/content/pages/seo";
 import LandingPage from "./LandingPage";
+import InnerPage from "./InnerPage";
 
 export { staticParams };
 
@@ -24,6 +25,10 @@ export function InnerRoute({ lang, slug }: { lang: Language; slug: string[] }) {
     case "product":
     case "service":
       return <LandingPage id={id} lang={lang} />;
+    case "industry":
+    case "about":
+    case "hub":
+      return <InnerPage id={id} lang={lang} />;
     default:
       notFound();
   }

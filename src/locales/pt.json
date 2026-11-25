@@ -693,7 +693,8 @@
         "renters": "Inquilino",
         "condo": "Condomínio",
         "flood": "Enchente",
-        "umbrella": "Umbrella"
+        "umbrella": "Umbrella",
+        "pet": "Pet"
       },
       "business": {
         "commercial-auto": "Auto comercial",
@@ -977,6 +978,39 @@
     "routesNote": "WhatsApp, telefone ou e-mail. Não há formulário para preencher.",
     "email": "E-mail",
     "phone": "Telefone",
-    "otherServices": "Outras solicitações de atendimento"
+    "otherServices": "Outras solicitações de atendimento",
+    "needed": "Coberturas que esse tipo de empresa costuma precisar",
+    "neededLead": "Cada uma leva à sua própria página.",
+    "see": "Ver cobertura",
+    "whatWeDo": "O que faz uma agência independente",
+    "states": "Onde somos licenciados",
+    "office": "Escritório",
+    "faqAbout": "Perguntas que nos fazem",
+    "indexP": "Seguros pessoais",
+    "indexB": "Seguros para empresas",
+    "indexI": "Por setor",
+    "glossary": "Glossário A–Z",
+    "glossaryLead": "Uma linha simples por termo.",
+    "glossaryLetters": "Ir para a letra",
+    "mapAlt": "Mapa dos 10 estados onde a Ativa é licenciada",
+    "band": {
+      "title": "Quer proteger a família também?",
+      "body": "Auto, residencial, inquilino, condomínio, enchente e pet, com a mesma agência.",
+      "cta": "Ver seguros pessoais"
+    },
+    "cardLine": {
+      "auto": "Os carros e os motoristas da sua casa",
+      "home": "A casa que é sua e o que tem dentro",
+      "renters": "Seus pertences no imóvel que você aluga",
+      "condo": "A sua unidade, das paredes para dentro",
+      "flood": "Água que vem de fora, em apólice própria",
+      "pet": "Despesas veterinárias do seu cão ou gato",
+      "commercial-auto": "Veículos que a sua empresa tem ou usa",
+      "trucking": "Transportadores e owner-operators",
+      "bop": "Responsabilidade civil e imóvel em uma apólice",
+      "workers-comp": "Funcionários que se machucam no trabalho",
+      "commercial-umbrella": "Responsabilidade civil extra, acima das apólices da empresa",
+      "eo": "Reclamações por erros profissionais"
+    }
   }
 }
