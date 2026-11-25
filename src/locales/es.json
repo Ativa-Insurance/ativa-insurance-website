@@ -824,9 +824,10 @@
       }
     },
     "band": {
-      "title": "¿También quiere proteger a su familia?",
-      "body": "Auto, vivienda, inquilinos, condominio, inundación y mascotas, con la misma agencia.",
-      "cta": "Ver seguros personales"
+      "title": "Proteja su negocio. Siga avanzando.",
+      "body": "Opciones de cobertura para contratistas, dueños de negocios, flotas y operaciones comerciales.",
+      "cta": "Cotizar seguro comercial",
+      "wa": "Hablar con un agente"
     },
     "footer": {
       "label": "Pie de página",

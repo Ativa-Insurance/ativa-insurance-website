@@ -512,6 +512,9 @@
 .a27-band__title { margin: 0; font-size: var(--fs-h2-band); line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; color: var(--c-white); }
 .a27-band__body { margin: 0; font-family: var(--f-body); font-size: 15.5px; line-height: 1.6; font-weight: 500; color: var(--c-white); }
 .a27-band__cta { position: relative; display: inline-flex; }
+.a27-band__btns { position: relative; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 10px; }
+.a27-band__quote { height: 54px; padding: 0 28px; font-size: 16px; box-shadow: var(--sh-btn); }
+[data-line="commercial"] .a27-band__block { flex-direction: column; align-items: flex-start; justify-content: center; }
 .a27-btn-white {
   height: 54px; padding: 0 28px; border: none; border-radius: var(--r-pill); cursor: pointer; white-space: nowrap;
   color: var(--c-midnight); font-size: 16px; font-weight: 700; background: var(--g-btn-white); box-shadow: var(--sh-btn-white);

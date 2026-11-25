@@ -156,7 +156,7 @@ function AtivaSite({ tips }: { tips: Record<Mode, TipPost[]> }) {
       <Tips mode={mode} posts={tips[mode]} />
 
       {/* ── Cross-line band ───────────────────────────────────────────────── */}
-      <ContactCTA mode={mode} onSwitchMode={(m) => { handleModeChange(m); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
+      <ContactCTA mode={mode} onQuote={() => openProduct("commercial")} onSwitchMode={(m) => { handleModeChange(m); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
 
       </main>
 
